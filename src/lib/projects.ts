@@ -30,6 +30,7 @@ export const projects: Project[] = [
     summary:
       "A modern service and rentals site for an Alberta oilfield anchoring company — public pages plus a lightweight admin portal for inventory.",
     tags: ["Next.js", "Operations", "SMB"],
+    href: "https://deepset.vercel.app/",
   },
   {
     id: "network-travel",
@@ -37,7 +38,7 @@ export const projects: Project[] = [
     summary:
       "Boutique travel marketing site for destination weddings and honeymoons — bilingual content, booking CTAs, and SEO-ready destination pages.",
     tags: ["Next.js", "Travel", "SEO"],
-    href: "https://www.networktravelagency.com",
+    href: "https://nta-seven.vercel.app/",
   },
   {
     id: "corn-crush",
