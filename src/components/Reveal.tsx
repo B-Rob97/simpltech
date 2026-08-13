@@ -10,6 +10,12 @@ type RevealProps = {
   mode?: "wipe" | "words";
 };
 
+const inViewOptions = {
+  once: true,
+  amount: 0.05,
+  margin: "120px 0px",
+} as const;
+
 export function Reveal({
   children,
   className,
@@ -17,8 +23,11 @@ export function Reveal({
   mode = "wipe",
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
-  const ref = useRef<HTMLElement | null>(null);
-  const inView = useInView(ref, { once: true, amount: 0.05, margin: "120px 0px" });
+  const wipeRef = useRef<HTMLDivElement>(null);
+  const wordsRef = useRef<HTMLSpanElement>(null);
+  const wipeInView = useInView(wipeRef, inViewOptions);
+  const wordsInView = useInView(wordsRef, inViewOptions);
+  const inView = mode === "words" ? wordsInView : wipeInView;
   const [shown, setShown] = useState(false);
   const visible = inView || shown;
 
@@ -27,7 +36,7 @@ export function Reveal({
   }, [inView]);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = wordsRef.current ?? wipeRef.current;
     if (!el) return;
 
     const revealIfVisible = () => {
@@ -63,7 +72,7 @@ export function Reveal({
   if (mode === "words" && wordText) {
     const words = wordText.split(" ");
     return (
-      <span ref={ref} className={className}>
+      <span ref={wordsRef} className={className}>
         {words.map((word, index) => (
           <span key={`${word}-${index}`} className="inline-block overflow-hidden">
             <motion.span
@@ -89,7 +98,7 @@ export function Reveal({
 
   return (
     <motion.div
-      ref={ref}
+      ref={wipeRef}
       className={className}
       initial={{
         opacity: 0,
