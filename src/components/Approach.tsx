@@ -6,7 +6,7 @@ export function Approach() {
   return (
     <section id="approach" className="relative scroll-mt-24 py-24 sm:py-32">
       <SkylineBand id="approach" flip className="opacity-55" />
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
             Approach

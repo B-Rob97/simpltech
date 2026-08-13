@@ -1,20 +1,35 @@
-function makeStars(seed: number, count: number) {
-  return Array.from({ length: count }, (_, i) => {
-    const n = (i + 1 + seed) * 12.9898;
-    const x = Math.abs((Math.sin(n) * 43758.5453) % 1);
-    const y = Math.abs((Math.sin(n * 1.71) * 23421.631) % 1);
-    return {
-      cx: x * 1600,
-      cy: y * 900,
-      r: i % 7 === 0 ? 1.15 : i % 3 === 0 ? 0.75 : 0.5,
-      delay: `${(i % 8) * 0.4}s`,
-      duration: `${3 + (i % 5) * 0.55}s`,
-    };
-  });
-}
+import type { CSSProperties } from "react";
+import { CityRise } from "@/components/CityRise";
+
+const NIGHT_STARS = [
+  { cx: 1073, cy: 473, r: 1.15, delay: "0.00s", duration: "3.00s" },
+  { cx: 737, cy: 862, r: 0.5, delay: "0.40s", duration: "3.55s" },
+  { cx: 46, cy: 144, r: 0.5, delay: "0.80s", duration: "4.10s" },
+  { cx: 286, cy: 383, r: 0.75, delay: "1.20s", duration: "4.65s" },
+  { cx: 1314, cy: 648, r: 0.5, delay: "1.60s", duration: "5.20s" },
+  { cx: 8, cy: 208, r: 0.5, delay: "2.00s", duration: "3.00s" },
+  { cx: 294, cy: 144, r: 0.75, delay: "2.40s", duration: "3.55s" },
+  { cx: 707, cy: 689, r: 1.15, delay: "2.80s", duration: "4.10s" },
+  { cx: 1483, cy: 431, r: 0.5, delay: "0.00s", duration: "4.65s" },
+  { cx: 695, cy: 796, r: 0.75, delay: "0.40s", duration: "5.20s" },
+  { cx: 1031, cy: 610, r: 0.5, delay: "0.80s", duration: "3.00s" },
+  { cx: 516, cy: 89, r: 0.5, delay: "1.20s", duration: "3.55s" },
+  { cx: 1217, cy: 89, r: 0.75, delay: "1.60s", duration: "4.10s" },
+  { cx: 890, cy: 426, r: 0.5, delay: "2.00s", duration: "4.65s" },
+  { cx: 1057, cy: 546, r: 1.15, delay: "2.40s", duration: "5.20s" },
+  { cx: 929, cy: 539, r: 0.75, delay: "2.80s", duration: "3.00s" },
+  { cx: 1383, cy: 611, r: 0.5, delay: "0.00s", duration: "3.55s" },
+  { cx: 1071, cy: 829, r: 0.5, delay: "0.40s", duration: "4.10s" },
+  { cx: 807, cy: 386, r: 0.75, delay: "0.80s", duration: "4.65s" },
+  { cx: 1599, cy: 251, r: 0.5, delay: "1.20s", duration: "5.20s" },
+  { cx: 1341, cy: 542, r: 0.5, delay: "1.60s", duration: "3.00s" },
+  { cx: 928, cy: 628, r: 1.15, delay: "2.00s", duration: "3.55s" },
+  { cx: 1576, cy: 44, r: 0.5, delay: "2.40s", duration: "4.10s" },
+  { cx: 1157, cy: 489, r: 0.5, delay: "2.80s", duration: "4.65s" },
+] as const;
 
 export function NightBackdrop() {
-  const stars = makeStars(7, 24);
+  const stars = NIGHT_STARS;
 
   return (
     <div
@@ -34,10 +49,12 @@ export function NightBackdrop() {
             cy={star.cy}
             r={star.r}
             fill="#eef4ff"
-            style={{
-              animationDelay: star.delay,
-              animationDuration: star.duration,
-            }}
+            style={
+              {
+                "--star-delay": star.delay,
+                "--star-duration": star.duration,
+              } as CSSProperties
+            }
           />
         ))}
       </svg>
@@ -70,6 +87,7 @@ export function SkylineBand({
       } ${anchor === "bottom" ? "bottom-0" : "top-0"} ${className}`}
       aria-hidden
     >
+      <CityRise className="h-full w-full">
       <svg
         className={`h-full w-full ${flip ? "-scale-x-100" : ""}`}
         viewBox="0 0 1600 160"
@@ -184,12 +202,30 @@ export function SkylineBand({
         />
         <rect
           className="hero-window"
+          x="784"
+          y="108"
+          width="2.5"
+          height="4"
+          fill="#f5c518"
+          style={{ animationDelay: "0.7s" }}
+        />
+        <rect
+          className="hero-window"
           x="990"
           y="58"
           width="3"
           height="5"
           fill="#f5c518"
           style={{ animationDelay: "1.2s" }}
+        />
+        <rect
+          className="hero-window"
+          x="1002"
+          y="86"
+          width="2.5"
+          height="4"
+          fill="#f5c518"
+          style={{ animationDelay: "2.4s" }}
         />
         <rect
           className="hero-window"
@@ -200,12 +236,53 @@ export function SkylineBand({
           fill="#f5c518"
           style={{ animationDelay: "2s" }}
         />
+        <rect
+          className="hero-window"
+          x="1302"
+          y="108"
+          width="2.5"
+          height="4"
+          fill="#f5c518"
+          style={{ animationDelay: "3.1s" }}
+        />
+        <path
+          className="hero-traffic"
+          d="M 0 152 H 1600"
+          fill="none"
+          stroke="rgba(245,197,24,0.55)"
+          strokeWidth="1.2"
+          strokeDasharray="28 480"
+          style={
+            {
+              "--traffic-duration": "18s",
+              "--traffic-delay": "-4s",
+            } as CSSProperties
+          }
+        />
       </svg>
+      </CityRise>
     </div>
   );
 }
 
-export function ChinookGlow({ className = "" }: { className?: string }) {
+type ChinookGlowProps = {
+  className?: string;
+  align?: "center" | "start";
+};
+
+export function ChinookGlow({
+  className = "",
+  align = "center",
+}: ChinookGlowProps) {
+  const glowPath =
+    align === "start"
+      ? "M-80 250 C 120 120, 560 70, 1680 260"
+      : "M-80 230 C 320 40, 1280 20, 1680 240";
+  const linePath =
+    align === "start"
+      ? "M-80 252 C 140 148, 540 98, 1680 262"
+      : "M-80 232 C 340 70, 1260 50, 1680 242";
+
   return (
     <svg
       className={`night-live pointer-events-none absolute inset-x-0 top-0 h-64 w-full sm:h-80 ${className}`}
@@ -213,20 +290,22 @@ export function ChinookGlow({ className = "" }: { className?: string }) {
       preserveAspectRatio="xMidYMin slice"
       aria-hidden
     >
-      <path
-        className="hero-chinook-glow"
-        d="M-80 230 C 320 40, 1280 20, 1680 240"
-        fill="none"
-        stroke="rgba(245,197,24,0.16)"
-        strokeWidth="40"
-      />
-      <path
-        className="hero-chinook"
-        d="M-80 232 C 340 70, 1260 50, 1680 242"
-        fill="none"
-        stroke="rgba(245,197,24,0.32)"
-        strokeWidth="2.5"
-      />
+      <g className="hero-chinook-group">
+        <path
+          className="hero-chinook-glow"
+          d={glowPath}
+          fill="none"
+          stroke="rgba(245,197,24,0.16)"
+          strokeWidth="40"
+        />
+        <path
+          className="hero-chinook"
+          d={linePath}
+          fill="none"
+          stroke="rgba(245,197,24,0.32)"
+          strokeWidth="2.5"
+        />
+      </g>
     </svg>
   );
 }
@@ -237,6 +316,7 @@ export function ContactCity() {
       className="night-live pointer-events-none absolute inset-0"
       aria-hidden
     >
+      <CityRise className="absolute inset-0">
       <svg
         className="absolute inset-y-0 right-0 h-full w-[70%] [mask-image:linear-gradient(to_right,transparent,black_28%)]"
         viewBox="0 0 720 420"
@@ -249,20 +329,22 @@ export function ContactCity() {
           </linearGradient>
         </defs>
 
-        <path
-          className="hero-chinook-glow"
-          d="M 40 90 C 220 10, 520 6, 740 100"
-          fill="none"
-          stroke="rgba(245,197,24,0.22)"
-          strokeWidth="28"
-        />
-        <path
-          className="hero-chinook"
-          d="M 40 92 C 230 28, 510 22, 740 102"
-          fill="none"
-          stroke="rgba(245,197,24,0.5)"
-          strokeWidth="2.2"
-        />
+        <g className="hero-chinook-group">
+          <path
+            className="hero-chinook-glow"
+            d="M 40 90 C 220 10, 520 6, 740 100"
+            fill="none"
+            stroke="rgba(245,197,24,0.22)"
+            strokeWidth="28"
+          />
+          <path
+            className="hero-chinook"
+            d="M 40 92 C 230 28, 510 22, 740 102"
+            fill="none"
+            stroke="rgba(245,197,24,0.5)"
+            strokeWidth="2.2"
+          />
+        </g>
 
         <g fill="rgba(7,17,31,0.55)">
           <rect x="80" y="268" width="48" height="72" />
@@ -337,12 +419,30 @@ export function ContactCity() {
         />
         <rect
           className="hero-window"
+          x="266"
+          y="268"
+          width="2.5"
+          height="4"
+          fill="#f5c518"
+          style={{ animationDelay: "0.6s" }}
+        />
+        <rect
+          className="hero-window"
           x="440"
           y="176"
           width="3.5"
           height="6"
           fill="#f5c518"
           style={{ animationDelay: "1.1s" }}
+        />
+        <rect
+          className="hero-window"
+          x="452"
+          y="214"
+          width="3"
+          height="5"
+          fill="#f5c518"
+          style={{ animationDelay: "2.3s" }}
         />
         <rect
           className="hero-window"
@@ -353,7 +453,31 @@ export function ContactCity() {
           fill="#f5c518"
           style={{ animationDelay: "1.8s" }}
         />
+        <rect
+          className="hero-window"
+          x="644"
+          y="252"
+          width="2.5"
+          height="4"
+          fill="#f5c518"
+          style={{ animationDelay: "3s" }}
+        />
+        <path
+          className="hero-traffic"
+          d="M 40 336 H 720"
+          fill="none"
+          stroke="rgba(245,197,24,0.55)"
+          strokeWidth="1.3"
+          strokeDasharray="24 360"
+          style={
+            {
+              "--traffic-duration": "14s",
+              "--traffic-delay": "-3s",
+            } as CSSProperties
+          }
+        />
       </svg>
+      </CityRise>
     </div>
   );
 }

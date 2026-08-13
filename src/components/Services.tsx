@@ -8,8 +8,8 @@ export function Services() {
       id="services"
       className="relative scroll-mt-24 overflow-hidden py-24 sm:py-32"
     >
-      <ChinookGlow className="opacity-80" />
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <ChinookGlow align="start" className="top-28 opacity-55 sm:top-32" />
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
             Services

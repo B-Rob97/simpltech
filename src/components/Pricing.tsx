@@ -10,7 +10,7 @@ export function Pricing() {
   return (
     <section id="pricing" className="relative scroll-mt-24 py-24 sm:py-32">
       <SkylineBand id="pricing" flip className="opacity-45" />
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-16">
           <div>
             <Reveal>
@@ -52,60 +52,78 @@ export function Pricing() {
         </div>
 
         <div className="mt-16 grid gap-0 border-t border-white/10 lg:mt-20 lg:grid-cols-3">
-          {pricingPackages.map((pack, index) => (
-            <Reveal key={pack.id} delay={0.06 + index * 0.06}>
-              <article
-                className={`relative h-full border-t border-white/10 py-10 lg:border-l lg:border-t-0 lg:px-8 lg:py-12 lg:first:border-l-0 lg:first:pl-0 ${
-                  pack.featured ? "lg:-my-3 lg:bg-white/[0.03] lg:px-9 lg:py-14" : ""
-                }`}
+          {pricingPackages.map((pack, index) => {
+            const featured = Boolean(pack.featured);
+            const isFirst = index === 0;
+            const followsFeatured = Boolean(
+              pricingPackages[index - 1]?.featured,
+            );
+
+            return (
+              <Reveal
+                key={pack.id}
+                delay={0.06 + index * 0.06}
+                className="h-full"
               >
-                <p
-                  className={`mb-4 min-h-[1.25rem] text-xs font-semibold uppercase tracking-[0.18em] ${
-                    pack.featured
-                      ? "text-[color:var(--volt)]"
-                      : "text-transparent"
+                <article
+                  className={`relative h-full border-t border-white/10 py-10 lg:border-t-0 lg:px-8 lg:py-12 ${
+                    featured
+                      ? "bg-white/[0.04] lg:border-x lg:border-white/15"
+                      : isFirst
+                        ? "lg:pl-0"
+                        : followsFeatured
+                          ? ""
+                          : "lg:border-l lg:border-white/10"
                   }`}
                 >
-                  {pack.featured ? "Most chosen" : "Pack"}
-                </p>
-                <h3 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                  {pack.name}
-                </h3>
-                <p className="mt-2 text-sm text-white/55">{pack.bestFor}</p>
-                <p className="mt-6 flex items-baseline gap-2">
-                  <span className="text-sm uppercase tracking-[0.14em] text-white/45">
-                    Starting at
-                  </span>
-                </p>
-                <p className="mt-1 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                  {pack.priceLabel}
-                </p>
-                <ul className="mt-8 space-y-3">
-                  {pack.includes.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-sm leading-relaxed text-white/70"
-                    >
-                      <span
-                        className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--volt)]"
-                        aria-hidden
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <CalendlyButton
-                  className={`mt-8 inline-flex rounded-full px-5 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5 ${
-                    pack.featured
-                      ? "bg-[color:var(--volt)] text-[color:var(--ink)]"
-                      : "border border-white/20 text-white"
-                  }`}
-                >
-                  Book this pack
-                </CalendlyButton>
-              </article>
-            </Reveal>
-          ))}
+                  <p
+                    className={`mb-4 min-h-[1.25rem] text-xs font-semibold uppercase tracking-[0.18em] ${
+                      featured
+                        ? "text-[color:var(--volt)]"
+                        : "text-transparent"
+                    }`}
+                  >
+                    {featured ? "Most chosen" : "Pack"}
+                  </p>
+                  <h3 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                    {pack.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-white/55">{pack.bestFor}</p>
+                  <p className="mt-6 flex items-baseline gap-2">
+                    <span className="text-sm uppercase tracking-[0.14em] text-white/45">
+                      Starting at
+                    </span>
+                  </p>
+                  <p className="mt-1 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                    {pack.priceLabel}
+                  </p>
+                  <ul className="mt-8 space-y-3">
+                    {pack.includes.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-3 text-sm leading-relaxed text-white/70"
+                      >
+                        <span
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--volt)]"
+                          aria-hidden
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <CalendlyButton
+                    className={`mt-8 inline-flex rounded-full px-5 py-2.5 text-sm font-semibold transition-transform hover:-translate-y-0.5 ${
+                      featured
+                        ? "bg-[color:var(--volt)] text-[color:var(--ink)]"
+                        : "border border-white/20 text-white"
+                    }`}
+                  >
+                    Book this pack
+                  </CalendlyButton>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
 
         <Reveal delay={0.12}>

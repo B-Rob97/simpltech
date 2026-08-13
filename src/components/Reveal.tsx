@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -17,6 +17,37 @@ export function Reveal({
   mode = "wipe",
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLElement | null>(null);
+  const inView = useInView(ref, { once: true, amount: 0.05, margin: "120px 0px" });
+  const [shown, setShown] = useState(false);
+  const visible = inView || shown;
+
+  useEffect(() => {
+    if (inView) setShown(true);
+  }, [inView]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const revealIfVisible = () => {
+      const box = el.getBoundingClientRect();
+      if (box.bottom > 0 && box.top < window.innerHeight) {
+        setShown(true);
+      }
+    };
+
+    revealIfVisible();
+    const timeout = window.setTimeout(revealIfVisible, 200);
+    window.addEventListener("scroll", revealIfVisible, { passive: true });
+    window.addEventListener("resize", revealIfVisible);
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.removeEventListener("scroll", revealIfVisible);
+      window.removeEventListener("resize", revealIfVisible);
+    };
+  }, []);
 
   if (reduceMotion) {
     return <div className={className}>{children}</div>;
@@ -32,14 +63,15 @@ export function Reveal({
   if (mode === "words" && wordText) {
     const words = wordText.split(" ");
     return (
-      <span className={className}>
+      <span ref={ref} className={className}>
         {words.map((word, index) => (
           <span key={`${word}-${index}`} className="inline-block overflow-hidden">
             <motion.span
               className="inline-block"
               initial={{ y: "110%", opacity: 0 }}
-              whileInView={{ y: "0%", opacity: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
+              animate={
+                visible ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }
+              }
               transition={{
                 duration: 0.55,
                 ease: [0.22, 1, 0.36, 1],
@@ -57,18 +89,18 @@ export function Reveal({
 
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial={{
         opacity: 0,
         y: 28,
         clipPath: "inset(12% 0 0 0)",
       }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        clipPath: "inset(0% 0 0 0)",
-      }}
-      viewport={{ once: true, margin: "-80px" }}
+      animate={
+        visible
+          ? { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }
+          : { opacity: 0, y: 28, clipPath: "inset(12% 0 0 0)" }
+      }
       transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}

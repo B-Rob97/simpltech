@@ -84,7 +84,7 @@ export function About() {
         YYC
       </motion.p>
 
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Reveal>

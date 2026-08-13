@@ -10,7 +10,7 @@ import {
 import { useRef } from "react";
 import { useBrandMorph } from "@/components/BrandMorphContext";
 import { CalendlyButton } from "@/components/CalendlyButton";
-import { HeroScene } from "@/components/HeroScene";
+import { HeroCity, HeroSky } from "@/components/HeroScene";
 import { siteConfig } from "@/lib/site";
 
 export function Hero() {
@@ -39,7 +39,8 @@ export function Hero() {
   );
   const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.45], [0, -40]);
-  const sceneY = useTransform(scrollYProgress, [0, 0.8], [0, 72]);
+  const skyY = useTransform(scrollYProgress, [0, 0.8], [0, 40]);
+  const cityY = useTransform(scrollYProgress, [0, 0.8], [0, 88]);
   const sceneOpacity = useTransform(scrollYProgress, [0.12, 0.82], [1, 0]);
   const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
@@ -50,16 +51,29 @@ export function Hero() {
     >
       <div className="hero-atmosphere" aria-hidden />
       <motion.div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={
-          reduceMotion ? undefined : { y: sceneY, opacity: sceneOpacity }
+        className={
+          reduceMotion
+            ? "hero-scene pointer-events-none absolute inset-0"
+            : "hero-scene hero-scene-live pointer-events-none absolute inset-0"
         }
+        aria-hidden
+        style={reduceMotion ? undefined : { opacity: sceneOpacity }}
       >
-        <HeroScene animate={!reduceMotion} />
+        <motion.div
+          className="absolute inset-0"
+          style={reduceMotion ? undefined : { y: skyY }}
+        >
+          <HeroSky />
+        </motion.div>
+        <motion.div
+          className="absolute inset-0"
+          style={reduceMotion ? undefined : { y: cityY }}
+        >
+          <HeroCity />
+        </motion.div>
       </motion.div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
         <motion.p
           className="origin-bottom-left font-[family-name:var(--font-display)] text-[clamp(3.5rem,14vw,9.5rem)] font-semibold leading-[0.88] tracking-[-0.04em] text-white will-change-transform"
           style={
@@ -81,13 +95,8 @@ export function Hero() {
         <motion.div
           className="mt-8 max-w-xl sm:mt-10"
           style={
-            reduceMotion
-              ? undefined
-              : { opacity: contentOpacity, y: contentY }
+            reduceMotion ? undefined : { opacity: contentOpacity, y: contentY }
           }
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          animate={reduceMotion ? undefined : { opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           <h1 className="text-2xl font-medium leading-snug tracking-tight text-white sm:text-3xl">
             Websites and web apps that make startups look inevitable.
@@ -101,13 +110,8 @@ export function Hero() {
         <motion.div
           className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10"
           style={
-            reduceMotion
-              ? undefined
-              : { opacity: contentOpacity, y: contentY }
+            reduceMotion ? undefined : { opacity: contentOpacity, y: contentY }
           }
-          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.75, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
         >
           <CalendlyButton className="rounded-full bg-[color:var(--volt)] px-6 py-3 text-sm font-semibold text-[color:var(--ink)] transition-transform hover:-translate-y-0.5">
             Book a discovery call
@@ -124,7 +128,7 @@ export function Hero() {
       {!reduceMotion ? (
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-2 sm:bottom-8"
+          className="pointer-events-none absolute inset-x-0 bottom-6 z-0 flex flex-col items-center gap-2 sm:bottom-8"
           style={{ opacity: scrollCueOpacity }}
         >
           <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/45">
