@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
 import { Sora, Unbounded } from "next/font/google";
-import { BrandMorphProvider } from "@/components/BrandMorphContext";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { JsonLd } from "@/components/JsonLd";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { SmoothScroll } from "@/components/SmoothScroll";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -80,15 +74,7 @@ export default function RootLayout({
   return (
     <html lang="en-CA" className={`${display.variable} ${body.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
-        <SmoothScroll>
-          <BrandMorphProvider>
-            <JsonLd />
-            <ScrollProgress />
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </BrandMorphProvider>
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );

@@ -1,0 +1,49 @@
+.sundance-root {
+  --sand: #f3ece1;
+  --sand-deep: #e6dccb;
+  --cream: #faf6ef;
+  --ink: #1d1914;
+  --ink-soft: #5a5248;
+  --sage: #3d5644;
+  --sage-deep: #2a3b30;
+  --sun: #d9a441;
+  --sun-bright: #ebc15a;
+  min-height: 100vh;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sundance-body), system-ui, sans-serif;
+}
+
+.sundance-root ::selection {
+  background: color-mix(in oklab, var(--sun) 70%, white);
+  color: var(--ink);
+}
+
+.sundance-grain {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(217, 164, 65, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 10%, rgba(61, 86, 68, 0.12), transparent 50%);
+}
+
+.sundance-hero-overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(29, 25, 20, 0.72) 0%,
+      rgba(29, 25, 20, 0.42) 48%,
+      rgba(29, 25, 20, 0.18) 100%
+    ),
+    linear-gradient(180deg, rgba(29, 25, 20, 0.2) 0%, rgba(29, 25, 20, 0.45) 100%);
+}
+
+@media (max-width: 768px) {
+  .sundance-hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(29, 25, 20, 0.35) 0%,
+        rgba(29, 25, 20, 0.72) 42%,
+        rgba(29, 25, 20, 0.88) 100%
+      );
+  }
+}

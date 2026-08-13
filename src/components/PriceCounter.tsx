@@ -9,19 +9,21 @@ import {
   useTransform,
 } from "motion/react";
 import { useEffect, useRef } from "react";
+import { pricingFloor } from "@/lib/pricing";
 
 const START = 5000;
-const END = 1000;
+const END = pricingFloor;
+
+function formatPrice(value: number) {
+  return `$${Math.round(value).toLocaleString("en-US")}`;
+}
 
 export function PriceCounter() {
   const reduceMotion = useReducedMotion();
   const ref = useRef<HTMLParagraphElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const value = useMotionValue(reduceMotion ? END : START);
-  const display = useTransform(value, (latest) => {
-    const rounded = Math.round(latest);
-    return `$${rounded.toLocaleString("en-US")}`;
-  });
+  const display = useTransform(value, (latest) => formatPrice(latest));
 
   useEffect(() => {
     if (reduceMotion || !inView) return;
@@ -38,9 +40,9 @@ export function PriceCounter() {
     return (
       <p
         ref={ref}
-        className="mt-2 font-[family-name:var(--font-display)] text-6xl font-semibold tracking-tight text-white sm:text-7xl"
+        className="mt-2 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-white sm:text-6xl"
       >
-        $1,000
+        {formatPrice(END)}
       </p>
     );
   }
@@ -48,7 +50,7 @@ export function PriceCounter() {
   return (
     <motion.p
       ref={ref}
-      className="mt-2 font-[family-name:var(--font-display)] text-6xl font-semibold tracking-tight text-white sm:text-7xl"
+      className="mt-2 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-white sm:text-6xl"
     >
       {display}
     </motion.p>

@@ -10,6 +10,7 @@ import {
 import { useRef } from "react";
 import { useBrandMorph } from "@/components/BrandMorphContext";
 import { CalendlyButton } from "@/components/CalendlyButton";
+import { HeroScene } from "@/components/HeroScene";
 import { siteConfig } from "@/lib/site";
 
 export function Hero() {
@@ -38,8 +39,8 @@ export function Hero() {
   );
   const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.45], [0, -40]);
-  const orbScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.35]);
-  const orbOpacity = useTransform(scrollYProgress, [0.2, 0.85], [1, 0]);
+  const sceneY = useTransform(scrollYProgress, [0, 0.8], [0, 72]);
+  const sceneOpacity = useTransform(scrollYProgress, [0.12, 0.82], [1, 0]);
   const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
 
   return (
@@ -49,35 +50,14 @@ export function Hero() {
     >
       <div className="hero-atmosphere" aria-hidden />
       <motion.div
-        className="hero-orb hero-orb-blue"
+        className="pointer-events-none absolute inset-0"
         aria-hidden
         style={
-          reduceMotion
-            ? undefined
-            : { scale: orbScale, opacity: orbOpacity }
+          reduceMotion ? undefined : { y: sceneY, opacity: sceneOpacity }
         }
-        animate={
-          reduceMotion
-            ? undefined
-            : { x: [0, 40, -20, 0], y: [0, -30, 20, 0] }
-        }
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="hero-orb hero-orb-volt"
-        aria-hidden
-        style={
-          reduceMotion
-            ? undefined
-            : { scale: orbScale, opacity: orbOpacity }
-        }
-        animate={
-          reduceMotion
-            ? undefined
-            : { x: [0, -50, 30, 0], y: [0, 40, -25, 0] }
-        }
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-      />
+      >
+        <HeroScene animate={!reduceMotion} />
+      </motion.div>
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
         <motion.p

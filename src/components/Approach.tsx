@@ -1,10 +1,12 @@
 import { ApproachSteps } from "@/components/ApproachSteps";
+import { SkylineBand } from "@/components/CityNight";
 import { Reveal } from "@/components/Reveal";
 
 export function Approach() {
   return (
-    <section id="approach" className="scroll-mt-24 border-t border-white/10 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section id="approach" className="relative scroll-mt-24 py-24 sm:py-32">
+      <SkylineBand id="approach" flip className="opacity-55" />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
             Approach

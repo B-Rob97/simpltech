@@ -1,15 +1,17 @@
 import { CalendlyButton } from "@/components/CalendlyButton";
+import { ContactCity } from "@/components/CityNight";
 import { MagneticButton } from "@/components/MagneticButton";
 import { Reveal } from "@/components/Reveal";
 import { siteConfig } from "@/lib/site";
 
 export function Contact() {
   return (
-    <section id="contact" className="scroll-mt-24 border-t border-white/10 py-24 sm:py-32">
+    <section id="contact" className="relative scroll-mt-24 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.35),rgba(10,22,40,0.95)_45%,rgba(245,197,24,0.18))] px-6 py-14 sm:px-12 sm:py-20">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(245,197,24,0.25),transparent_40%)]" />
+            <ContactCity />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(245,197,24,0.18),transparent_40%)]" />
             <div className="relative max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
                 Contact

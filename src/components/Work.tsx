@@ -1,5 +1,6 @@
 "use client";
 
+import { SkylineBand } from "@/components/CityNight";
 import { projects } from "@/lib/projects";
 import { Reveal } from "@/components/Reveal";
 import { WorkRail } from "@/components/WorkRail";
@@ -9,8 +10,9 @@ export function Work() {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
-    <section id="work" className="scroll-mt-24 border-t border-white/10 pt-24 sm:pt-32">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section id="work" className="relative scroll-mt-24 pt-24 sm:pt-32">
+      <SkylineBand id="work" className="opacity-70" />
+      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
             Selected work

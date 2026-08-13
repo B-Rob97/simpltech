@@ -7,6 +7,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef } from "react";
+import { ChinookGlow, SkylineBand } from "@/components/CityNight";
 import { Reveal } from "@/components/Reveal";
 
 const beliefs = [
@@ -25,7 +26,7 @@ const beliefs = [
     label: "03",
     title: "Fair pricing",
     detail:
-      "Canadian agency rates from another decade don't match how tech works now.",
+      "Clear packs, no hidden fees — priced to beat padded local quotes, not protect them.",
   },
 ] as const;
 
@@ -57,8 +58,9 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative isolate scroll-mt-24 overflow-hidden border-t border-white/10 py-28 sm:py-36"
+      className="relative isolate scroll-mt-24 overflow-hidden py-28 sm:py-36"
     >
+      <ChinookGlow className="top-8 opacity-90 sm:top-12" />
       <motion.div
         aria-hidden
         className="pointer-events-none absolute -left-24 top-1/4 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(47,123,255,0.28),transparent_68%)] blur-2xl"
@@ -68,6 +70,7 @@ export function About() {
         aria-hidden
         className="pointer-events-none absolute -right-16 bottom-0 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(245,197,24,0.16),transparent_70%)] blur-2xl"
       />
+      <SkylineBand id="about" anchor="bottom" className="opacity-40" />
 
       <motion.p
         aria-hidden
