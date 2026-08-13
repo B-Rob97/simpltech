@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Sora, Unbounded } from "next/font/google";
+import localFont from "next/font/local";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const display = Unbounded({
+const display = localFont({
+  src: "../fonts/unbounded.woff2",
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: "500 700",
+  display: "swap",
 });
 
-const body = Sora({
+const body = localFont({
+  src: "../fonts/sora.woff2",
   variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400 700",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
