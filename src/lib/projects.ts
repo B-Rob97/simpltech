@@ -9,6 +9,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "revolution-drilling",
+    name: "Revolution Drilling",
+    summary:
+      "A custom marketing site for a Grande Prairie transmission-line drilling contractor — services, equipment, project case studies, and careers, rebuilt from Wix.",
+    tags: ["Next.js", "Industrial", "Brand site"],
+    href: "https://www.revolution-drilling.com",
+  },
+  {
     id: "evolving-prowess",
     name: "Evolving Prowess",
     summary:
