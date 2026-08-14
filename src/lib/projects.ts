@@ -33,6 +33,13 @@ export const projects: Project[] = [
     privateNote: "Private engagement — details intentionally limited.",
   },
   {
+    id: "wp-mls-ab",
+    name: "WordPress MLS Search for Alberta Realtors",
+    summary:
+      "A white-label WordPress plugin for Alberta realtors — live CREA listings with map, grid, and list search, faceted filters, and AI-assisted property Q&A.",
+    tags: ["WordPress", "Real estate", "Plugin"],
+  },
+  {
     id: "deep-set",
     name: "Deep Set Anchors",
     summary:
