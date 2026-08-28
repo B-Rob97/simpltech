@@ -3,7 +3,7 @@ export const siteConfig = {
   legalName: "SimplTech Inc.",
   domain: "simpltech.ca",
   url: "https://simpltech.ca",
-  email: "hello@simpltech.ca",
+  email: "brett.roberts@live.ca",
   calendlyUrl: "https://calendly.com/brett-roberts-_0ay/simpltech-consultation",
   description:
     "SimplTech builds fast, conversion-focused websites and web apps for startups and small to medium-sized businesses across Canada.",
