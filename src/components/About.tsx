@@ -9,6 +9,21 @@ import {
 import { useRef } from "react";
 import { ChinookGlow, SkylineBand } from "@/components/CityNight";
 import { Reveal } from "@/components/Reveal";
+import { useTheme } from "@/components/ThemeProvider";
+import type { ThemeId } from "@/lib/themes";
+
+const aboutMarks: Record<ThemeId, string> = {
+  "night-signal": "YYC",
+  cupertino: "",
+  editorial: "VOL",
+  swiss: "04",
+  "soft-product": "",
+  brutalist: "RAW",
+  "warm-craft": "CLAY",
+  "neon-club": "02",
+  newsprint: "LATE",
+  playground: "PLAY",
+};
 
 const beliefs = [
   {
@@ -38,6 +53,8 @@ const paragraphs = [
 
 export function About() {
   const reduceMotion = useReducedMotion();
+  const { theme } = useTheme();
+  const watermark = aboutMarks[theme.id];
   const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -72,17 +89,19 @@ export function About() {
       />
       <SkylineBand id="about" anchor="bottom" className="opacity-40" />
 
-      <motion.p
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-[family-name:var(--font-display)] text-[clamp(7rem,28vw,22rem)] font-semibold leading-none tracking-[-0.08em] text-foreground"
-        style={
-          reduceMotion
-            ? { opacity: 0.1 }
-            : { y: markY, opacity: markOpacity, rotate: markRotate }
-        }
-      >
-        YYC
-      </motion.p>
+      {watermark ? (
+        <motion.p
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-[family-name:var(--font-display)] text-[clamp(7rem,28vw,22rem)] font-semibold leading-none tracking-[-0.08em] text-foreground"
+          style={
+            reduceMotion
+              ? { opacity: 0.1 }
+              : { y: markY, opacity: markOpacity, rotate: markRotate }
+          }
+        >
+          {watermark}
+        </motion.p>
+      ) : null}
 
       <div className="relative z-10 mx-auto max-w-[var(--content-max)] px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">

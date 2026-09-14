@@ -15,14 +15,15 @@ export type ThemeId = (typeof THEME_IDS)[number];
 
 export type HeroTreatment =
   | "skyline"
-  | "void"
-  | "ruled"
-  | "grid"
-  | "mesh"
-  | "paper"
-  | "blocks"
+  | "device"
+  | "magazine"
+  | "poster"
+  | "window"
   | "raw"
-  | "glow";
+  | "still-life"
+  | "neon"
+  | "broadsheet"
+  | "collage";
 
 export type ThemeDensity = "airy" | "regular" | "dense";
 export type ThemeMotion = "still" | "calm" | "energetic";
@@ -68,7 +69,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "cupertino",
     label: "Cupertino",
     pitch: "Near-white, black type, almost no chrome.",
-    hero: "void",
+    hero: "device",
     density: "airy",
     motion: "still",
     showNightBackdrop: false,
@@ -80,7 +81,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "editorial",
     label: "Editorial",
     pitch: "Serif display on cream paper, rules and folio.",
-    hero: "ruled",
+    hero: "magazine",
     density: "regular",
     motion: "calm",
     showNightBackdrop: false,
@@ -92,7 +93,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "swiss",
     label: "Swiss",
     pitch: "Grotesque type, red accent, poster grid.",
-    hero: "grid",
+    hero: "poster",
     density: "dense",
     motion: "still",
     showNightBackdrop: false,
@@ -104,7 +105,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "soft-product",
     label: "Soft Product",
     pitch: "Cool gray, one accent, soft product cards.",
-    hero: "mesh",
+    hero: "window",
     density: "regular",
     motion: "calm",
     showNightBackdrop: false,
@@ -128,7 +129,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "warm-craft",
     label: "Warm Craft",
     pitch: "Terracotta, paper, humanist studio type.",
-    hero: "paper",
+    hero: "still-life",
     density: "regular",
     motion: "calm",
     showNightBackdrop: false,
@@ -140,7 +141,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "neon-club",
     label: "Neon Club",
     pitch: "Magenta and cyan glow — no skyline.",
-    hero: "glow",
+    hero: "neon",
     density: "regular",
     motion: "energetic",
     showNightBackdrop: true,
@@ -152,7 +153,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "newsprint",
     label: "Newsprint",
     pitch: "Utilitarian columns, high contrast, dense.",
-    hero: "ruled",
+    hero: "broadsheet",
     density: "dense",
     motion: "still",
     showNightBackdrop: false,
@@ -164,7 +165,7 @@ export const THEMES: readonly ThemeDefinition[] = [
     id: "playground",
     label: "Playground",
     pitch: "Color-block studio portfolio, bold shapes.",
-    hero: "blocks",
+    hero: "collage",
     density: "airy",
     motion: "energetic",
     showNightBackdrop: false,

@@ -330,184 +330,101 @@ body {
     linear-gradient(180deg, #06101c 0%, var(--ink) 48%, #050b14 100%);
 }
 
-.hero-void,
-.hero-ruled,
-.hero-grid,
-.hero-mesh,
-.hero-paper,
-.hero-blocks,
-.hero-raw,
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.hero-void {
-  background: var(--background);
-}
-
-.hero-void-rule {
-  position: absolute;
-  left: 8%;
-  top: 18%;
-  bottom: 22%;
-  width: 1px;
-  background: color-mix(in oklab, var(--foreground) 12%, transparent);
-}
-
-.hero-ruled {
+[data-theme="cupertino"] body {
   background:
-    linear-gradient(180deg, color-mix(in oklab, var(--foreground) 6%, var(--background)), var(--background));
+    radial-gradient(ellipse 70% 40% at 50% 0%, #ffffff, transparent 55%),
+    var(--background);
 }
 
-.hero-ruled-folio {
-  position: absolute;
-  top: 6.5rem;
-  right: 6%;
-  font-family: var(--font-display), serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--foreground) 55%, transparent);
+[data-theme="editorial"] body {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--foreground) 4%, var(--background)), var(--background));
 }
 
-.hero-ruled-line {
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  height: 1px;
-  background: color-mix(in oklab, var(--foreground) 22%, transparent);
-}
-
-.hero-ruled-line-a { top: 28%; }
-.hero-ruled-line-b { top: 52%; }
-.hero-ruled-line-c { top: 76%; }
-
-.hero-grid {
+[data-theme="swiss"] body {
   background-color: var(--background);
   background-image:
-    linear-gradient(color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
-  background-size: 8.333% 8.333%;
+    linear-gradient(color-mix(in oklab, var(--foreground) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 10%, transparent) 1px, transparent 1px);
+  background-size: 8.333vw 8.333vw;
 }
 
-.hero-grid-block {
-  position: absolute;
-  top: 18%;
-  right: 10%;
-  width: min(22vw, 9rem);
-  height: min(22vw, 9rem);
-  background: var(--accent);
+[data-theme="swiss"] h2 {
+  text-transform: uppercase;
 }
 
-.hero-grid-index {
-  position: absolute;
-  bottom: 14%;
-  left: 8%;
-  font-family: var(--font-display), sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-}
-
-.hero-mesh {
+[data-theme="soft-product"] body {
   background:
-    radial-gradient(ellipse 70% 50% at 20% 20%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%),
-    radial-gradient(ellipse 60% 45% at 80% 70%, color-mix(in oklab, var(--signal) 12%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 80% 10%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 50%),
     var(--background);
 }
 
-.hero-paper {
+[data-theme="brutalist"] h2 {
+  text-transform: uppercase;
+}
+
+[data-theme="warm-craft"] body {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+  background-color: var(--background);
+}
+
+[data-theme="neon-club"] body {
   background:
-    radial-gradient(ellipse 80% 50% at 70% 10%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 50%),
+    radial-gradient(ellipse 50% 36% at 18% 20%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
+    radial-gradient(ellipse 46% 38% at 86% 70%, color-mix(in oklab, var(--signal) 24%, transparent), transparent 58%),
     var(--background);
 }
 
-.hero-paper-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.22;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+[data-theme="newsprint"] body {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    color-mix(in oklab, var(--foreground) 7%, transparent) 28px
+  );
 }
 
-.hero-blocks {
+[data-theme="editorial"] h2 {
+  font-style: italic;
+}
+
+.hero-swiss-page {
+  background: transparent;
+}
+
+.hero-product-window {
+  filter: drop-shadow(0 24px 50px color-mix(in oklab, var(--foreground) 12%, transparent));
+}
+
+.hero-brutal-frame {
+  border: 3px solid var(--foreground);
   background: var(--background);
 }
 
-.hero-block {
-  position: absolute;
-  display: block;
+.hero-brutal-tape {
+  height: 18px;
+  margin: -1.25rem -1.25rem 1.5rem;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--foreground),
+    var(--foreground) 10px,
+    var(--background) 10px,
+    var(--background) 20px
+  );
 }
 
-.hero-block-a {
-  top: 16%;
-  right: 8%;
-  width: min(34vw, 18rem);
-  height: min(34vw, 18rem);
-  background: #ff4d1c;
+@media (min-width: 640px) {
+  .hero-brutal-tape {
+    margin: -2rem -2rem 1.75rem;
+  }
 }
 
-.hero-block-b {
-  bottom: 18%;
-  left: 10%;
-  width: min(28vw, 13rem);
-  height: min(28vw, 13rem);
-  background: #2f6bff;
+.hero-news-frame {
+  border: 2px solid var(--foreground);
+  background: var(--elevated);
 }
 
-.hero-block-c {
-  top: 38%;
-  left: 38%;
-  width: min(18vw, 8rem);
-  height: min(18vw, 8rem);
-  background: #ffe14a;
-}
-
-.hero-raw {
-  background: var(--background);
-}
-
-.hero-raw-stamp {
-  position: absolute;
-  top: 7.5rem;
-  left: 6%;
-  border: var(--border-width) solid var(--foreground);
-  padding: 0.35rem 0.7rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-}
-
-.hero-glow {
-  background:
-    radial-gradient(ellipse 55% 40% at 18% 30%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 62%),
-    radial-gradient(ellipse 50% 42% at 84% 68%, color-mix(in oklab, var(--signal) 34%, transparent), transparent 60%),
-    var(--background);
-}
-
-.hero-glow-orb {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(40px);
-}
-
-.hero-glow-orb-a {
-  top: 12%;
-  right: 12%;
-  width: 16rem;
-  height: 16rem;
-  background: color-mix(in oklab, var(--accent) 55%, transparent);
-}
-
-.hero-glow-orb-b {
-  bottom: 10%;
-  left: 8%;
-  width: 18rem;
-  height: 18rem;
-  background: color-mix(in oklab, var(--signal) 45%, transparent);
+.hero-neon-page {
+  text-shadow: 0 0 24px color-mix(in oklab, var(--accent) 30%, transparent);
 }
 
 html:not([data-theme="night-signal"]):not([data-theme="neon-club"]) .night-backdrop {
@@ -895,9 +812,7 @@ html:not([data-theme="night-signal"]) .night-live:not(.night-backdrop) {
   .night-live .hero-traffic,
   .theme-refresh-tile,
   .theme-refresh-scan,
-  .theme-refresh-rule,
-  .hero-glow-orb-a,
-  .hero-glow-orb-b {
+  .theme-refresh-rule {
     animation: none;
   }
 

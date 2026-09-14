@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useBrandMorph } from "@/components/BrandMorphContext";
 import { CalendlyButton } from "@/components/CalendlyButton";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
-import { siteConfig } from "@/lib/site";
+import { ThemeWordmark } from "@/components/ThemeWordmark";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -40,8 +40,7 @@ export function Header() {
           href="/"
           className="shrink-0 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-foreground sm:text-xl"
         >
-          {siteConfig.name}
-          <span className="text-[color:var(--volt)]">.</span>
+          <ThemeWordmark />
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm text-foreground/75 md:flex">
