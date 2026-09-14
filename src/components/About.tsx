@@ -58,23 +58,23 @@ export function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative isolate scroll-mt-24 overflow-hidden py-28 sm:py-36"
+      className="relative isolate scroll-mt-24 overflow-hidden py-[var(--section-space)]"
     >
       <ChinookGlow className="top-8 opacity-90 sm:top-12" />
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -left-24 top-1/4 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(47,123,255,0.28),transparent_68%)] blur-2xl"
+        className="pointer-events-none absolute -left-24 top-1/4 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--signal)_28%,transparent),transparent_68%)] blur-2xl"
         style={reduceMotion ? undefined : { x: glowX }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-16 bottom-0 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(245,197,24,0.16),transparent_70%)] blur-2xl"
+        className="pointer-events-none absolute -right-16 bottom-0 h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--volt)_16%,transparent),transparent_70%)] blur-2xl"
       />
       <SkylineBand id="about" anchor="bottom" className="opacity-40" />
 
       <motion.p
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-[family-name:var(--font-display)] text-[clamp(7rem,28vw,22rem)] font-semibold leading-none tracking-[-0.08em] text-white"
+        className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none font-[family-name:var(--font-display)] text-[clamp(7rem,28vw,22rem)] font-semibold leading-none tracking-[-0.08em] text-foreground"
         style={
           reduceMotion
             ? { opacity: 0.1 }
@@ -84,7 +84,7 @@ export function About() {
         YYC
       </motion.p>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-[var(--content-max)] px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Reveal>
@@ -92,14 +92,14 @@ export function About() {
                 About
               </p>
             </Reveal>
-            <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-white sm:text-6xl sm:leading-[1.05]">
+            <h2 className="mt-4 max-w-3xl font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-foreground sm:text-6xl sm:leading-[1.05]">
               <Reveal mode="words">Calgary-based. Startup-obsessed.</Reveal>
             </h2>
           </div>
 
           <Reveal delay={0.12}>
             <motion.div
-              className="flex items-center gap-3 text-sm text-white/60"
+              className="flex items-center gap-3 text-sm text-foreground/60"
               animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -109,7 +109,7 @@ export function About() {
                 ) : null}
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[color:var(--volt)]" />
               </span>
-              <span className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
+              <span className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.16em] text-foreground/70">
                 Based in Calgary, AB
               </span>
             </motion.div>
@@ -120,9 +120,9 @@ export function About() {
           {paragraphs.map((text, index) => (
             <Reveal key={text} delay={0.08 + index * 0.1}>
               <p
-                className={`leading-[1.45] tracking-[-0.01em] text-white/75 ${
+                className={`leading-[1.45] tracking-[-0.01em] text-foreground/75 ${
                   index === 0
-                    ? "text-2xl font-medium text-white/90 sm:text-3xl"
+                    ? "text-2xl font-medium text-foreground/90 sm:text-3xl"
                     : "text-xl sm:text-2xl"
                 }`}
               >
@@ -132,11 +132,11 @@ export function About() {
           ))}
         </div>
 
-        <ul className="mt-16 grid gap-0 border-t border-white/10 sm:mt-20 md:grid-cols-3">
+        <ul className="mt-16 grid gap-0 border-t border-foreground/10 sm:mt-20 md:grid-cols-3">
           {beliefs.map((belief, index) => (
             <li
               key={belief.title}
-              className="relative border-t border-white/10 py-8 first:border-t-0 md:border-l md:border-t-0 md:px-8 md:py-10 md:first:border-l-0 md:first:pl-0"
+              className="relative border-t border-foreground/10 py-8 first:border-t-0 md:border-l md:border-t-0 md:px-8 md:py-10 md:first:border-l-0 md:first:pl-0"
             >
               <Reveal delay={0.1 + index * 0.08}>
                 <motion.span
@@ -155,10 +155,10 @@ export function About() {
                 <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-[color:var(--signal)]">
                   {belief.label}
                 </p>
-                <h3 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                   {belief.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-white/65 sm:text-lg">
+                <p className="mt-3 text-base leading-relaxed text-foreground/65 sm:text-lg">
                   {belief.detail}
                 </p>
               </Reveal>

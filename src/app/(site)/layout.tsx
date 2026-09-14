@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { ThemeRefreshOverlay } from "@/components/ThemeRefreshOverlay";
 
 export default function SiteLayout({
   children,
@@ -20,6 +21,7 @@ export default function SiteLayout({
         <Header />
         <main className="relative z-[1] flex-1">{children}</main>
         <Footer />
+        <ThemeRefreshOverlay />
       </BrandMorphProvider>
     </SmoothScroll>
   );

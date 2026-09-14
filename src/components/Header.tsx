@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useBrandMorph } from "@/components/BrandMorphContext";
 import { CalendlyButton } from "@/components/CalendlyButton";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { siteConfig } from "@/lib/site";
 
 const links = [
@@ -30,34 +31,37 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color] duration-300 ${
         scrolled || morphProgress > 0.35
-          ? "border-b border-white/10 bg-[color:var(--ink)]/80 backdrop-blur-xl"
+          ? "border-b border-foreground/10 bg-[color:var(--background)]/80 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-20 sm:px-8">
+      <div className="mx-auto flex h-16 max-w-[var(--content-max)] items-center justify-between gap-3 px-5 sm:h-20 sm:px-8">
         <Link
           href="/"
-          className="font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-white sm:text-xl"
+          className="shrink-0 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-foreground sm:text-xl"
         >
           {siteConfig.name}
           <span className="text-[color:var(--volt)]">.</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-white/75 md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-foreground/75 md:flex">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-white"
+              className="transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <CalendlyButton className="rounded-full bg-[color:var(--volt)] px-4 py-2 text-sm font-semibold text-[color:var(--ink)] transition-transform hover:-translate-y-0.5">
-          Start a project
-        </CalendlyButton>
+        <div className="flex items-center gap-1.5 sm:gap-3">
+          <ThemeSwitcher />
+          <CalendlyButton className="rounded-[var(--radius-button)] bg-[color:var(--volt)] px-3 py-2 text-sm font-semibold text-[color:var(--accent-ink)] transition-transform hover:-translate-y-0.5 sm:px-4">
+            Start a project
+          </CalendlyButton>
+        </div>
       </div>
     </header>
   );

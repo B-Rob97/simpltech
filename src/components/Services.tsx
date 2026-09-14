@@ -6,20 +6,20 @@ export function Services() {
   return (
     <section
       id="services"
-      className="relative scroll-mt-24 overflow-hidden py-24 sm:py-32"
+      className="relative scroll-mt-24 overflow-hidden py-[var(--section-space)]"
     >
       <ChinookGlow align="start" className="top-28 opacity-55 sm:top-32" />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-[var(--content-max)] px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
             Services
           </p>
         </Reveal>
-        <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+        <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
           <Reveal mode="words">Built for speed, clarity, and growth.</Reveal>
         </h2>
         <Reveal delay={0.08}>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/65 sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground/65 sm:text-lg">
             Whether you need a launch-ready marketing site, a quick prototype —
             including phone apps — or a custom web app, we keep the stack modern
             and the experience sharp. We can also build on top of any website
@@ -36,10 +36,10 @@ export function Services() {
                 <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-[color:var(--signal)]">
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-3 font-[family-name:var(--font-display)] text-xl font-semibold text-white sm:text-2xl">
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-xl font-semibold text-foreground sm:text-2xl">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
+                <p className="mt-3 text-sm leading-relaxed text-foreground/65 sm:text-base">
                   {service.description}
                 </p>
               </article>

@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="relative z-[1] overflow-hidden pt-20 pb-10">
       <SkylineBand id="footer" compact className="opacity-45" />
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-4 px-5 text-sm text-white/45 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="relative mx-auto flex max-w-[var(--content-max)] flex-col gap-4 px-5 text-sm text-foreground/45 sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <p>
           © {year} {siteConfig.legalName}. {siteConfig.domain}
         </p>

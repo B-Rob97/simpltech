@@ -1,19 +1,47 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import { IBM_Plex_Mono, Newsreader, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
+import Script from "next/script";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/lib/site";
+import {
+  getTheme,
+  THEME_BOOTSTRAP_SCRIPT,
+  THEME_COOKIE,
+} from "@/lib/themes";
 import "./globals.css";
 
-const display = localFont({
+const unbounded = localFont({
   src: "../fonts/unbounded.woff2",
-  variable: "--font-display",
+  variable: "--font-unbounded",
   weight: "500 700",
   display: "swap",
 });
 
-const body = localFont({
+const sora = localFont({
   src: "../fonts/sora.woff2",
-  variable: "--font-body",
+  variable: "--font-sora",
   weight: "400 700",
+  display: "swap",
+});
+
+const grotesque = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesque",
+  display: "swap",
+});
+
+const serif = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -68,15 +96,32 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const theme = getTheme(cookieStore.get(THEME_COOKIE)?.value);
+
   return (
-    <html lang="en-CA" className={`${display.variable} ${body.variable} h-full`}>
+    <html
+      lang="en-CA"
+      className={`${unbounded.variable} ${sora.variable} ${grotesque.variable} ${serif.variable} ${mono.variable} h-full`}
+      data-theme={theme.id}
+      data-motion={theme.motion}
+      data-density={theme.density}
+      data-hero={theme.hero}
+      style={{ colorScheme: theme.colorScheme }}
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col antialiased">
-        {children}
+        <Script
+          id="theme-bootstrap"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }}
+        />
+        <ThemeProvider initialThemeId={theme.id}>{children}</ThemeProvider>
       </body>
     </html>
   );

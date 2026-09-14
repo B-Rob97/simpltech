@@ -31,7 +31,7 @@ export function WeekTimeline() {
   return (
     <div ref={ref} className="mt-10">
       <div className="relative">
-        <div className="absolute left-0 right-0 top-[13px] h-px bg-white/15" />
+        <div className="absolute left-0 right-0 top-[13px] h-px bg-foreground/15" />
         <motion.div
           className="absolute left-0 top-[13px] h-px origin-left bg-[color:var(--volt)]"
           style={reduceMotion ? { width: "100%" } : { width: fillWidth }}
@@ -51,7 +51,7 @@ export function WeekTimeline() {
           })}
         </ol>
       </div>
-      <p className="mt-5 text-sm text-white/50">
+      <p className="mt-5 text-sm text-foreground/50">
         Designed and built in under a week — with expert review before launch.
       </p>
     </div>
@@ -85,11 +85,11 @@ function DayStep({
       className="flex flex-col items-start"
       style={reduceMotion ? undefined : { opacity, scale }}
     >
-      <span className="mb-3 h-3 w-3 rounded-full border border-[color:var(--volt)] bg-[color:var(--ink)] shadow-[0_0_0_3px_rgba(245,197,24,0.15)]" />
+      <span className="mb-3 h-3 w-3 rounded-full border border-[color:var(--volt)] bg-[color:var(--background)] shadow-[0_0_0_3px_color-mix(in_oklab,var(--volt)_15%,transparent)]" />
       <span className="font-[family-name:var(--font-display)] text-xs font-semibold uppercase tracking-[0.14em] text-[color:var(--volt)]">
         {item.day}
       </span>
-      <span className="mt-1 text-sm text-white/70">{item.label}</span>
+      <span className="mt-1 text-sm text-foreground/70">{item.label}</span>
     </motion.li>
   );
 }
