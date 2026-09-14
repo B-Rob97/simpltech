@@ -173,7 +173,7 @@ function CupertinoLayout() {
         bodyClassName="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/60 sm:text-lg"
       />
       <HeroActions className="mt-8 flex flex-wrap items-center justify-center gap-3" />
-      <div className="mt-16 w-full max-w-3xl sm:mt-20">
+      <div className="mt-10 w-full max-w-xl sm:mt-12">
         <LaptopMark />
       </div>
     </div>
@@ -258,7 +258,7 @@ function SoftProductLayout() {
 
 function BrutalistLayout() {
   return (
-    <div className="relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 py-24 sm:px-8 sm:py-28">
+    <div className="relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
       <div className="hero-brutal-frame flex min-h-[calc(100svh-8rem)] flex-col justify-between p-5 sm:p-8">
         <div className="hero-brutal-tape" aria-hidden />
         <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.18em]">
@@ -333,7 +333,7 @@ function NewsprintLayout() {
         <p className="text-center text-[10px] uppercase tracking-[0.28em]">
           {siteConfig.location} · Monday morning edition · 25¢
         </p>
-        <p className="mt-2 border-y-2 border-foreground py-2 text-center font-[family-name:var(--font-display)] text-[clamp(2rem,7vw,4.6rem)] font-bold uppercase leading-none tracking-tight">
+        <p className="mt-2 border-y-2 border-foreground py-2 text-center font-[family-name:var(--font-display)] text-[clamp(1.6rem,4.6vw,3rem)] font-bold uppercase leading-none tracking-tight">
           The {siteConfig.name}
         </p>
         <div className="mt-6 grid gap-6 border-t border-foreground pt-6 md:grid-cols-[minmax(0,1.3fr)_150px_minmax(0,1fr)]">

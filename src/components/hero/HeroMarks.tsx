@@ -10,7 +10,7 @@ export function LaptopMark() {
 
   return (
     <svg
-      viewBox="0 0 720 460"
+      viewBox="0 0 720 400"
       className="h-auto w-full"
       role="img"
       aria-label="Laptop showing a product homepage"
@@ -21,25 +21,24 @@ export function LaptopMark() {
           <stop offset="100%" stopColor="#eef0f4" />
         </linearGradient>
         <radialGradient id={shadow} cx="50%" cy="100%" r="50%">
-          <stop offset="0%" stopColor="rgba(0,0,0,0.22)" />
+          <stop offset="0%" stopColor="rgba(0,0,0,0.2)" />
           <stop offset="100%" stopColor="rgba(0,0,0,0)" />
         </radialGradient>
       </defs>
-      <ellipse cx="360" cy="438" rx="250" ry="16" fill={`url(#${shadow})`} />
-      <rect x="86" y="18" width="548" height="348" rx="18" fill="#d5d7dc" />
-      <rect x="102" y="32" width="516" height="318" rx="8" fill={`url(#${screen})`} />
-      <rect x="118" y="48" width="72" height="8" rx="4" fill="#1d1d1f" />
-      <rect x="200" y="50" width="28" height="4" rx="2" fill="#d2d2d7" />
-      <rect x="236" y="50" width="28" height="4" rx="2" fill="#d2d2d7" />
-      <rect x="272" y="50" width="28" height="4" rx="2" fill="#d2d2d7" />
-      <circle cx="360" cy="168" r="58" fill="#e8e8ed" />
-      <circle cx="360" cy="168" r="34" fill="#1d1d1f" />
-      <rect x="250" y="248" width="220" height="10" rx="5" fill="#1d1d1f" />
-      <rect x="286" y="268" width="148" height="6" rx="3" fill="#c7c7cc" />
-      <rect x="318" y="292" width="84" height="22" rx="11" fill="#1d1d1f" />
-      <rect x="62" y="364" width="596" height="18" rx="4" fill="#c5c7cc" />
-      <rect x="48" y="380" width="624" height="36" rx="8" fill="#b9bbc1" />
-      <rect x="300" y="388" width="120" height="8" rx="4" fill="#9ea1a8" />
+      <ellipse cx="360" cy="388" rx="240" ry="12" fill={`url(#${shadow})`} />
+      <rect x="118" y="8" width="484" height="292" rx="16" fill="#c8cad0" />
+      <rect x="132" y="20" width="456" height="266" rx="6" fill={`url(#${screen})`} />
+      <rect x="148" y="34" width="56" height="6" rx="3" fill="#1d1d1f" />
+      <rect x="216" y="36" width="22" height="3" rx="1.5" fill="#d2d2d7" />
+      <rect x="246" y="36" width="22" height="3" rx="1.5" fill="#d2d2d7" />
+      <circle cx="360" cy="128" r="44" fill="#e8e8ed" />
+      <circle cx="360" cy="128" r="26" fill="#1d1d1f" />
+      <rect x="268" y="196" width="184" height="8" rx="4" fill="#1d1d1f" />
+      <rect x="298" y="214" width="124" height="5" rx="2.5" fill="#c7c7cc" />
+      <rect x="328" y="234" width="64" height="18" rx="9" fill="#1d1d1f" />
+      <path d="M96 300 H 624 L 700 348 H 20 Z" fill="#b4b6bc" />
+      <rect x="20" y="348" width="680" height="22" rx="6" fill="#9ea1a8" />
+      <rect x="292" y="354" width="136" height="8" rx="4" fill="#868990" />
     </svg>
   );
 }
@@ -288,40 +287,10 @@ export function CraftVesselMark() {
 }
 
 export function NeonSignMark() {
-  const id = useId();
-  const glow = `${id}-glow`;
-
   return (
-    <svg
-      viewBox="0 0 640 180"
-      className="h-auto w-full"
-      role="img"
-      aria-label="Neon SimplTech sign"
-    >
-      <defs>
-        <filter id={glow} x="-20%" y="-40%" width="140%" height="180%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-      <text
-        x="20"
-        y="118"
-        fill="none"
-        stroke="var(--accent)"
-        strokeWidth="3"
-        fontSize="92"
-        fontWeight="700"
-        letterSpacing="6"
-        fontFamily="var(--font-unbounded), sans-serif"
-        filter={`url(#${glow})`}
-      >
-        SIMPLTECH
-      </text>
-    </svg>
+    <p className="hero-neon-sign" aria-hidden>
+      SIMPLTECH
+    </p>
   );
 }
 
