@@ -56,6 +56,18 @@ Prompt: Photorealistic macro product photograph, 4:3. Close-up of an unbranded s
 
 Prompt: Photorealistic premium product photograph, landscape 16:9. A large unbranded thin silver desktop display floating in an infinite soft light-gray studio (#f5f5f7), front-facing. The screen shows a very soft out-of-focus abstract light-gray interface glow only — no readable text, no logos, no icons, no website layout. Extremely thin bezels, cinematic keynote lighting, soft contact shadow. No people, no stand clutter, no fruit mark. Standalone product shot, not a website mockup.
 
+## soft-product-studio.webp
+
+Portrait 3:4 product-studio still life. Cool daylight, unbranded laptop with a soft lavender interface glow, ceramic cup, notebook, trailing plant. Conceptual, not a SimplTech office.
+
+## soft-product-windows.webp
+
+Landscape 16:9 floating frosted-glass application windows. Abstract indigo/mint UI blocks only — no readable product data.
+
+## soft-product-schedule.webp
+
+Portrait 3:4 booking card UI: weekday strip, indigo appointment blocks, mint confirm control. Used as contact imagery. No logos or prices.
+
 ## editorial-architecture.webp
 
 Cover proof for the Editorial theme. Regenerated for the magazine scroll-story.

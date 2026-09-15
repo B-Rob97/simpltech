@@ -112,12 +112,12 @@
 }
 
 [data-theme="soft-product"] {
-  --ink: #eef1f6;
+  --ink: #e8ecf5;
   --ink-elevated: #ffffff;
   --signal: #4f46e5;
   --volt: #4f46e5;
   --foam: #12141a;
-  --background: #eef1f6;
+  --background: #e8ecf5;
   --elevated: #ffffff;
   --foreground: #12141a;
   --accent: #4f46e5;
@@ -136,6 +136,10 @@
   --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-display: var(--font-grotesque);
   --font-body: var(--font-grotesque);
+  --product-mint: #0f9d8e;
+  --soft-title: 3.25rem;
+  --soft-rail: 12.5rem;
+  --soft-stage-top: 4.75rem;
 }
 
 [data-theme="brutalist"] {
@@ -345,8 +349,23 @@ body {
 
 [data-theme="soft-product"] body {
   background:
-    radial-gradient(ellipse 60% 40% at 80% 10%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 50%),
+    radial-gradient(ellipse 55% 38% at 84% 6%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 54%),
+    radial-gradient(ellipse 42% 34% at 6% 78%, color-mix(in oklab, var(--product-mint) 12%, transparent), transparent 52%),
     var(--background);
+}
+
+[data-theme="soft-product"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.45;
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--foreground) 10%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
 }
 
 [data-theme="brutalist"] h2 {
@@ -845,4 +864,65 @@ html:not([data-theme="night-signal"]) .night-live:not(.night-backdrop) {
 
 [data-motion="still"] .hero-scene-live .hero-chinook {
   stroke-dashoffset: 0;
+}
+
+@keyframes soft-product-spark {
+  from {
+    stroke-dashoffset: 480;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes soft-product-lane-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes soft-product-activity {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes soft-product-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--product-mint) 55%, transparent);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+@keyframes soft-product-maximize {
+  0%,
+  100% {
+    transform: scale(0.72);
+  }
+  45% {
+    transform: scale(1);
+  }
+}
+
+@keyframes soft-product-chip-orbit {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
 }
