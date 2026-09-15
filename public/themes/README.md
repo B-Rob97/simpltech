@@ -80,6 +80,24 @@ Generated with the built-in imagegen tool and saved here at 864 × 1152. Complem
 
 Prompt: Photorealistic close-up still life, portrait 3:4. Hand-thrown terracotta vessel, worn maple letterpress wood-type block, linen binding tape, beeswax-stained cotton rag on a sunlit plaster ledge. Late-afternoon honey light, analog film grain. No people, no readable words, no logos.
 
+## newsprint-lead.webp
+
+Generated with the built-in imagegen tool and saved here at 1600 × 1200. Conceptual press photograph of downtown Calgary, not a photo of a SimplTech client or office.
+
+Prompt: Photorealistic black-and-white newspaper photograph of downtown Calgary on a cold morning, viewed from street level looking toward glass office towers and the Calgary Tower in the distance. High-contrast analog press photo, coarse film grain, wet pavement reflections, overcast sky. Looks like a broadsheet front-page photo already screened for newsprint. No readable signage, no logos, no text, no UI.
+
+## newsprint-press.webp
+
+Generated with the built-in imagegen tool and saved here at 1200 × 1600.
+
+Prompt: Photorealistic black-and-white newspaper photograph of a vintage rotary printing press. Huge inked metal cylinders, newsprint web threading through rollers, smears of black ink, hanging work lamps. High contrast, coarse film grain. No readable text, no logos, no people faces, no UI.
+
+## newsprint-desk.webp
+
+Generated with the built-in imagegen tool and saved here at 1600 × 1200.
+
+Prompt: Photorealistic black-and-white newspaper photograph of an editor's oak desk: stacked broadsheet proofs, a manual typewriter, a fountain pen, metal type sorts in a wooden case, a ceramic coffee cup, a gooseneck lamp. Analog film grain, high-contrast newsprint reproduction look. No readable headlines, no logos, no people, no UI.
+
 ## editorial-architecture.webp
 
 Cover proof for the Editorial theme. Regenerated for the magazine scroll-story.

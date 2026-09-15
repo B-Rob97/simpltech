@@ -18,12 +18,12 @@ import { CupertinoHero } from "@/components/cupertino/CupertinoHero";
 import { BrutalistHero } from "@/components/hero/BrutalistHero";
 import { EditorialIssue } from "@/components/hero/EditorialIssue";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
-import { NewsHalftoneMark, PlayCollageMark } from "@/components/hero/HeroMarks";
+import { PlayCollageMark } from "@/components/hero/HeroMarks";
 import { NeonClubHero } from "@/components/hero/NeonClubHero";
+import { NewsprintHero } from "@/components/hero/NewsprintHero";
 import { NightSignalHero } from "@/components/hero/NightSignalHero";
 import { SwissRegister } from "@/components/hero/SwissRegister";
 import { useTheme } from "@/components/ThemeProvider";
-import { siteConfig } from "@/lib/site";
 
 type ThemeHeroProps = {
   sectionRef: RefObject<HTMLElement | null>;
@@ -53,7 +53,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "neon-club":
       return <NeonClubHero sectionRef={sectionRef} />;
     case "newsprint":
-      return <NewsprintLayout />;
+      return <NewsprintHero sectionRef={sectionRef} />;
     case "playground":
       return <PlaygroundLayout />;
     default: {
@@ -160,35 +160,6 @@ function WarmCraftLayout({
       </div>
       <span className="craft-photo-label">The art of making things work.</span>
       <div className="craft-deckle" aria-hidden />
-    </div>
-  );
-}
-
-function NewsprintLayout() {
-  return (
-    <div className="relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 pb-12 pt-24 sm:px-8 sm:pt-28">
-      <div className="hero-news-frame p-4 sm:p-6">
-        <p className="text-center text-[10px] uppercase tracking-[0.28em]">
-          {siteConfig.location} · Monday morning edition · 25¢
-        </p>
-        <p className="mt-2 border-y-2 border-foreground py-2 text-center font-[family-name:var(--font-display)] text-[clamp(1.6rem,4.6vw,3rem)] font-bold uppercase leading-none tracking-tight">
-          The {siteConfig.name}
-        </p>
-        <div className="mt-6 grid gap-6 border-t border-foreground pt-6 md:grid-cols-[minmax(0,1.3fr)_150px_minmax(0,1fr)]">
-          <div className="md:border-r md:border-foreground md:pr-6">
-            <HeroCopy
-              headingClassName="font-[family-name:var(--font-display)] text-[clamp(1.6rem,3.4vw,2.6rem)] font-bold leading-[1.1] text-foreground"
-              bodyClassName="mt-4 columns-1 text-sm leading-relaxed text-foreground sm:columns-2 sm:gap-6"
-            />
-            <HeroActions className="mt-6 flex flex-wrap gap-3" />
-          </div>
-          <NewsHalftoneMark />
-          <p className="text-sm leading-relaxed text-foreground/80">
-            We build fast, sharp digital products for startups and SMBs — from
-            first landing page to the tools that run the business.
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
