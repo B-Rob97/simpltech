@@ -131,9 +131,10 @@
   box-shadow: 0 10px 28px color-mix(in oklab, var(--foreground) 8%, transparent);
   animation: soft-product-chip-orbit 5.6s ease-in-out infinite;
 }
-.soft-product-chips li:nth-child(1) { top: calc(18% + var(--soft-max) * 62%); left: calc(41% - var(--soft-max) * 28%); animation-delay: 0s; }
-.soft-product-chips li:nth-child(2) { top: calc(72% - var(--soft-max) * 48%); left: calc(38% - var(--soft-max) * 24%); animation-delay: .4s; }
-.soft-product-chips li:nth-child(3) { top: calc(28% - var(--soft-max) * 8%); right: calc(4% + var(--soft-max) * 18%); animation-delay: .8s; }
+.soft-product-chips { z-index: 3; }
+.soft-product-chips li:nth-child(1) { top: calc(16% + var(--soft-max) * 62%); left: calc(34% - var(--soft-max) * 20%); animation-delay: 0s; }
+.soft-product-chips li:nth-child(2) { top: calc(78% - var(--soft-max) * 48%); left: calc(28% - var(--soft-max) * 16%); animation-delay: .4s; }
+.soft-product-chips li:nth-child(3) { top: calc(22% - var(--soft-max) * 8%); right: calc(2% + var(--soft-max) * 12%); animation-delay: .8s; }
 .soft-product-copy {
   position: absolute; z-index: 5; max-width: 34rem;
   top: calc(26% * (1 - var(--soft-max)) + .72rem * var(--soft-max));
@@ -141,7 +142,7 @@
   width: min(36rem, calc(38% * (1 - var(--soft-max)) + 24rem * var(--soft-max)));
   transform: scale(calc(1 - var(--soft-max) * .58));
   transform-origin: top left;
-  clip-path: inset(0 0 calc(var(--soft-max) * 74%) 0);
+  clip-path: inset(0 0 calc(var(--soft-max) * 100%) 0);
 }
 .soft-product-chip { display: inline-flex; align-items: center; gap: .45rem; border-radius: 999px; border: 1px solid var(--border); background: var(--elevated); padding: .28rem .7rem; font-size: .72rem; font-weight: 600; color: color-mix(in oklab, var(--foreground) 62%, transparent); }
 .soft-product-chip-dot { width: .45rem; height: .45rem; border-radius: 999px; background: var(--product-mint); animation: soft-product-pulse 2.2s ease-out infinite; }
@@ -203,11 +204,12 @@
 .soft-product-activity li:nth-child(2) { animation-delay: .4s; }
 .soft-product-activity li:nth-child(3) { animation-delay: .8s; }
 .soft-product-cursor {
-  position: absolute; z-index: 8; width: .85rem; height: .85rem; border-radius: .2rem 1rem .2rem .2rem;
-  background: var(--foreground); transform: rotate(-18deg);
+  position: absolute; z-index: 8; width: .9rem; height: .9rem;
+  background: var(--foreground);
+  clip-path: polygon(0 0, 72% 58%, 42% 58%, 58% 100%, 42% 100%, 28% 58%, 0 78%);
   left: calc(68% - var(--soft-max) * 62%);
   top: calc(56% - var(--soft-max) * 50%);
-  scale: calc(1 - var(--soft-max) * .15);
+  scale: calc(1 - var(--soft-max));
 }
 
 .composition-soft-product .slot-services {
@@ -218,6 +220,14 @@
 }
 .composition-soft-product .slot-services .design-services { max-width: none; margin: 0; padding: .4rem 0 1rem; scroll-margin-top: 6rem; }
 .soft-product-pin[data-open] .soft-product-stage { pointer-events: none; }
+.soft-product-pin[data-open] .soft-product-copy,
+.soft-product-pin[data-open] .soft-product-chips,
+.soft-product-pin[data-open] .soft-product-cue,
+.soft-product-pin[data-open] .soft-product-cursor,
+.soft-product-pin[data-open] .soft-product-atmosphere {
+  clip-path: inset(50%);
+  pointer-events: none;
+}
 .soft-product-pin.is-static { --soft-max: 0; --soft-clear: 0; }
 .soft-product-pin.is-static .soft-product-stage { position: relative; height: auto; }
 .soft-product-pin.is-static .site-hero { height: auto; min-height: 100svh; }
@@ -247,7 +257,8 @@
 .composition-soft-product .approach-timeline > div[aria-hidden] { display: none; }
 .composition-soft-product .pricing-packages { gap: 1rem; border: 0; }
 .composition-soft-product .pricing-packages article { border: 1px solid var(--border); border-radius: 1.25rem; padding: 2rem; background: var(--elevated); }
-.composition-soft-product .pricing-packages article:nth-child(2) { box-shadow: 0 0 0 2px var(--accent); transform: translateY(-6px); }
+.composition-soft-product .pricing-packages > *:nth-child(2) { transform: translateY(-6px); }
+.composition-soft-product .pricing-packages > *:nth-child(2) article { box-shadow: 0 0 0 2px var(--accent); }
 .composition-soft-product .pricing-packages article > p:first-child.text-transparent { display: none; }
 
 [data-theme="soft-product"] .about-content { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(15rem, .85fr); gap: 2rem 2.75rem; align-items: start; }
@@ -256,8 +267,11 @@
 [data-theme="soft-product"] .about-beliefs { grid-column: 1 / -1; grid-row: 3; border: 1px solid var(--border); border-radius: 1.25rem; background: var(--elevated); padding: .5rem 1rem; }
 [data-theme="soft-product"] .about-content::after {
   content: ""; grid-column: 2; grid-row: 1 / span 2; min-height: 22rem; border-radius: 1.35rem;
-  background: url("/themes/soft-product-studio.webp") center/cover;
+  background:
+    linear-gradient(180deg, transparent 55%, color-mix(in oklab, var(--foreground) 18%, transparent)),
+    url("/themes/soft-product-studio.webp") 40% 70% / cover;
   box-shadow: 0 22px 50px color-mix(in oklab, var(--foreground) 12%, transparent);
+  border: 1px solid var(--border);
 }
 [data-theme="soft-product"] #contact .relative.overflow-hidden { min-height: 28rem; background: var(--elevated); }
 [data-theme="soft-product"] #contact .relative.overflow-hidden::after {
@@ -458,7 +472,8 @@
   .composition-swiss .about-story { margin-top: 2rem; }
   .work-soft-product .design-projects { grid-template-columns: 1fr; }
   .work-soft-product .design-project:first-child { grid-column: auto; }
-  .soft-product-chips, .soft-product-atmosphere { display: none; }
+  .soft-product-chips, .soft-product-atmosphere, .soft-product-lanes, .soft-product-activity, .soft-product-cursor { display: none; }
+  .soft-product-board { grid-template-rows: auto auto minmax(0, 1fr); }
   .soft-product-copy { left: calc(6% * (1 - var(--soft-max)) + 1.1rem * var(--soft-max)); width: min(34rem, calc(92% * (1 - var(--soft-max)) + 18rem * var(--soft-max))); top: calc(5.6rem * (1 - var(--soft-max)) + .65rem * var(--soft-max)); }
   .soft-product-window { top: calc(46% * (1 - var(--soft-max)) + var(--soft-stage-top) * var(--soft-max)); left: calc(5% * (1 - var(--soft-max))); right: calc(5% * (1 - var(--soft-max))); bottom: calc(3% * (1 - var(--soft-max))); }
   .soft-product-shell { flex-direction: column; }
