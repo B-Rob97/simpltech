@@ -30,23 +30,23 @@ export function NightSignalHero({ sectionRef }: NightSignalHeroProps) {
   const photoOpacity = useTransform(
     scrollYProgress,
     [0, 0.18, 0.52],
-    [0.32, 0.58, 0.88],
+    [0.48, 0.68, 0.9],
   );
   const photoScale = useTransform(scrollYProgress, [0, 0.55], [1.06, 1.26]);
 
   const brandScale = useTransform(scrollYProgress, [0.04, 0.4], [1, 0.18]);
   const brandY = useTransform(scrollYProgress, [0.04, 0.4], [0, -210]);
   const brandX = useTransform(scrollYProgress, [0.04, 0.4], [0, -28]);
-  const brandOpacity = useTransform(scrollYProgress, [0.1, 0.38], [1, 0]);
+  const brandOpacity = useTransform(scrollYProgress, [0.08, 0.3], [1, 0]);
   const brandTracking = useTransform(
     scrollYProgress,
     [0.04, 0.4],
     ["-0.04em", "-0.06em"],
   );
 
-  const copyOpacity = useTransform(scrollYProgress, [0.02, 0.26], [1, 0]);
-  const copyY = useTransform(scrollYProgress, [0.02, 0.26], [0, -32]);
-  const cueOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const copyOpacity = useTransform(scrollYProgress, [0.02, 0.2], [1, 0]);
+  const copyY = useTransform(scrollYProgress, [0.02, 0.2], [0, -32]);
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   const searchlightRotate = useTransform(
     scrollYProgress,
@@ -65,19 +65,18 @@ export function NightSignalHero({ sectionRef }: NightSignalHeroProps) {
     [0, 0.75, 0],
   );
 
-  const glassWidth = useTransform(scrollYProgress, [0.32, 0.8], ["22%", "94%"]);
+  const glassWidth = useTransform(scrollYProgress, [0.16, 0.55], ["18%", "90%"]);
   const glassHeight = useTransform(
     scrollYProgress,
-    [0.32, 0.8],
-    ["18%", "86%"],
+    [0.16, 0.55],
+    ["16%", "74%"],
   );
-  const glassX = useTransform(scrollYProgress, [0.32, 0.8], ["63%", "50%"]);
-  const glassY = useTransform(scrollYProgress, [0.32, 0.8], ["38%", "50%"]);
-  const glassOpacity = useTransform(scrollYProgress, [0.28, 0.36], [0, 1]);
-  const glassRadius = useTransform(scrollYProgress, [0.32, 0.8], [22, 6]);
+  const glassX = useTransform(scrollYProgress, [0.16, 0.55], ["74%", "50%"]);
+  const glassY = useTransform(scrollYProgress, [0.16, 0.55], ["26%", "54%"]);
+  const glassRadius = useTransform(scrollYProgress, [0.16, 0.55], [18, 8]);
   const lockLabelOpacity = useTransform(
     scrollYProgress,
-    [0.34, 0.42, 0.62, 0.74],
+    [0.18, 0.26, 0.4, 0.5],
     [0, 1, 1, 0],
   );
 
@@ -188,7 +187,6 @@ export function NightSignalHero({ sectionRef }: NightSignalHeroProps) {
             height: glassHeight,
             left: glassX,
             top: glassY,
-            opacity: glassOpacity,
             borderRadius: glassRadius,
           }}
         >

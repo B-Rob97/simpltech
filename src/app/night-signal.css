@@ -6,7 +6,7 @@
 }
 
 [data-theme="night-signal"] .night-signal-lock {
-  height: 230svh;
+  height: 260svh;
 }
 
 [data-theme="night-signal"] .night-signal-pin,
@@ -203,14 +203,14 @@
   z-index: 5;
   overflow: hidden;
   translate: -50% -50%;
-  border: 1px solid color-mix(in oklab, var(--volt) 42%, transparent);
+  border: 1px solid color-mix(in oklab, var(--volt) 58%, transparent);
   background:
-    linear-gradient(180deg, color-mix(in oklab, var(--ink) 72%, transparent), color-mix(in oklab, #06101c 94%, transparent));
+    linear-gradient(180deg, color-mix(in oklab, var(--ink) 86%, #06101c), #06101ce8);
   box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--signal) 18%, transparent),
-    0 24px 80px rgba(0, 0, 0, 0.45),
-    inset 0 0 80px color-mix(in oklab, var(--signal) 10%, transparent);
-  backdrop-filter: blur(16px);
+    0 0 0 1px color-mix(in oklab, var(--signal) 22%, transparent),
+    0 28px 90px rgba(0, 0, 0, 0.55),
+    inset 0 0 60px color-mix(in oklab, var(--signal) 12%, transparent);
+  backdrop-filter: blur(18px);
 }
 
 [data-theme="night-signal"] .night-observatory-chrome {
@@ -248,18 +248,16 @@
 }
 
 [data-theme="night-signal"] .night-observatory-page {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(94vw, 76rem);
-  height: 86svh;
-  translate: -50% -50%;
-  padding: 3.4rem 1.25rem 1.5rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 2.9rem 1rem 0.85rem;
+  overflow: hidden;
 }
 
 @media (min-width: 640px) {
   [data-theme="night-signal"] .night-observatory-page {
-    padding: 3.6rem 2rem 1.75rem;
+    padding: 3.1rem 1.6rem 1rem;
   }
 }
 
@@ -267,7 +265,7 @@
   display: flex;
   height: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   scroll-margin-top: 5.5rem;
 }
 
@@ -292,10 +290,10 @@
 }
 
 [data-theme="night-signal"] .night-feed-title {
-  margin-top: 0.55rem;
-  max-width: 20ch;
+  margin-top: 0.4rem;
+  max-width: 22ch;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(1.7rem, 4vw, 3.4rem);
+  font-size: clamp(1.35rem, 3.2vw, 2.5rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.04em;
@@ -326,7 +324,7 @@
   grid-template-columns: 2.4rem minmax(0, 1.3fr) minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.72rem 0.15rem;
+  padding: 0.52rem 0.15rem;
   position: relative;
   overflow: hidden;
 }
@@ -429,11 +427,6 @@
 }
 
 [data-theme="night-signal"] .night-street-kicker {
-  position: relative;
-  z-index: 1;
-  max-width: var(--content-max);
-  margin: 0 auto;
-  padding: 0 1.25rem;
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -441,10 +434,25 @@
   color: var(--volt);
 }
 
-@media (min-width: 640px) {
-  [data-theme="night-signal"] .night-street-kicker {
-    padding-inline: 2rem;
-  }
+[data-theme="night-signal"] .night-street-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+[data-theme="night-signal"] .night-street-card {
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--foam) 10%, transparent);
+  background: color-mix(in oklab, var(--elevated) 88%, transparent);
+}
+
+[data-theme="night-signal"] a.night-street-card:hover {
+  border-color: color-mix(in oklab, var(--volt) 40%, transparent);
+}
+
+[data-theme="night-signal"] .night-stack-copy {
+  padding: 1.25rem 1.15rem 1.4rem;
 }
 
 [data-theme="night-signal"] .night-work-cover {
@@ -493,25 +501,19 @@
   animation-duration: 1.4s;
 }
 
-[data-theme="night-signal"] .night-stack-row {
-  display: grid;
-  grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr);
-  gap: 1.1rem;
-  align-items: center;
-  padding-block: 1.4rem;
-}
-
 [data-theme="night-signal"] .night-stack-thumb {
   position: relative;
-  min-height: 6.5rem;
+  min-height: 12rem;
+  margin: 0;
   overflow: hidden;
   background: #0a1628;
 }
 
 [data-theme="night-signal"] .night-service {
   position: relative;
-  padding: 1.6rem 0 1.7rem 1.15rem;
-  border-left: 1px solid color-mix(in oklab, var(--foam) 12%, transparent);
+  padding: 1.45rem 1.3rem 1.5rem;
+  border: 1px solid color-mix(in oklab, var(--foam) 12%, transparent);
+  background: color-mix(in oklab, var(--elevated) 72%, transparent);
 }
 
 [data-theme="night-signal"] .night-service-meter {
@@ -661,9 +663,21 @@
   to { left: 100%; opacity: 0; }
 }
 
+@media (min-width: 768px) {
+  [data-theme="night-signal"] .night-street-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.35rem;
+  }
+
+  [data-theme="night-signal"] .night-stack-thumb,
+  [data-theme="night-signal"] .night-work-cover {
+    min-height: 14rem;
+  }
+}
+
 @media (max-width: 767px) {
   [data-theme="night-signal"] .night-signal-lock {
-    height: 210svh;
+    height: 240svh;
   }
 
   [data-theme="night-signal"] .night-feed-link {
@@ -678,13 +692,9 @@
     display: none;
   }
 
-  [data-theme="night-signal"] .night-stack-row {
-    grid-template-columns: minmax(0, 5.5rem) minmax(0, 1fr);
-  }
-
+  [data-theme="night-signal"] .night-stack-thumb,
   [data-theme="night-signal"] .night-work-cover {
-    margin: -2rem -1.25rem 1.25rem;
-    min-height: 9rem;
+    min-height: 10rem;
   }
 }
 
