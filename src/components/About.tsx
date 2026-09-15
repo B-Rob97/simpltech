@@ -13,6 +13,7 @@ import { useTheme } from "@/components/ThemeProvider";
 import type { ThemeId } from "@/lib/themes";
 
 const aboutMarks: Record<ThemeId, string> = {
+  "mission-control": "",
   "night-signal": "YYC",
   cupertino: "",
   editorial: "VOL",
@@ -103,7 +104,7 @@ export function About() {
         </motion.p>
       ) : null}
 
-      <div className="relative z-10 mx-auto max-w-[var(--content-max)] px-5 sm:px-8">
+      <div className="about-content relative z-10 mx-auto max-w-[var(--content-max)] px-5 sm:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <Reveal>
@@ -135,7 +136,7 @@ export function About() {
           </Reveal>
         </div>
 
-        <div className="mt-14 max-w-4xl space-y-8 sm:mt-16 sm:space-y-10">
+        <div className="about-story mt-14 max-w-4xl space-y-8 sm:mt-16 sm:space-y-10">
           {paragraphs.map((text, index) => (
             <Reveal key={text} delay={0.08 + index * 0.1}>
               <p
@@ -151,7 +152,7 @@ export function About() {
           ))}
         </div>
 
-        <ul className="mt-16 grid gap-0 border-t border-foreground/10 sm:mt-20 md:grid-cols-3">
+        <ul className="about-beliefs mt-16 grid gap-0 border-t border-foreground/10 sm:mt-20 md:grid-cols-3">
           {beliefs.map((belief, index) => (
             <li
               key={belief.title}

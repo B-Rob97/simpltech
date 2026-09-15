@@ -11,6 +11,8 @@ import {
   THEME_COOKIE,
 } from "@/lib/themes";
 import "./globals.css";
+import "./theme-layouts.css";
+import "./mission-control.css";
 
 const unbounded = localFont({
   src: "../fonts/unbounded.woff2",

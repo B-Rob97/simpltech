@@ -9,6 +9,7 @@ export const THEME_IDS = [
   "neon-club",
   "newsprint",
   "playground",
+  "mission-control",
 ] as const;
 
 export type ThemeId = (typeof THEME_IDS)[number];
@@ -23,7 +24,8 @@ export type HeroTreatment =
   | "still-life"
   | "neon"
   | "broadsheet"
-  | "collage";
+  | "collage"
+  | "orbit";
 
 export type ThemeDensity = "airy" | "regular" | "dense";
 export type ThemeMotion = "still" | "calm" | "energetic";
@@ -68,7 +70,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "cupertino",
     label: "Cupertino",
-    pitch: "Near-white, black type, almost no chrome.",
+    pitch: "A product launch with a selectable project stage.",
     hero: "device",
     density: "airy",
     motion: "still",
@@ -80,7 +82,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "editorial",
     label: "Editorial",
-    pitch: "Serif display on cream paper, rules and folio.",
+    pitch: "Photographic cover, magazine spreads, and quiet typography.",
     hero: "magazine",
     density: "regular",
     motion: "calm",
@@ -92,7 +94,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "swiss",
     label: "Swiss",
-    pitch: "Grotesque type, red accent, poster grid.",
+    pitch: "Oversized poster typography and a numbered project index.",
     hero: "poster",
     density: "dense",
     motion: "still",
@@ -104,7 +106,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "soft-product",
     label: "Soft Product",
-    pitch: "Cool gray, one accent, soft product cards.",
+    pitch: "An app-like sidebar, bento modules, and workflow cards.",
     hero: "window",
     density: "regular",
     motion: "calm",
@@ -116,7 +118,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "brutalist",
     label: "Brutalist",
-    pitch: "Mono, thick borders, no radius, raw type.",
+    pitch: "A raw project directory and boxed specifications.",
     hero: "raw",
     density: "dense",
     motion: "still",
@@ -128,7 +130,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "warm-craft",
     label: "Warm Craft",
-    pitch: "Terracotta, paper, humanist studio type.",
+    pitch: "Sunlit photography, a paper letter, and a studio scrapbook.",
     hero: "still-life",
     density: "regular",
     motion: "calm",
@@ -140,7 +142,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "neon-club",
     label: "Neon Club",
-    pitch: "Magenta and cyan glow — no skyline.",
+    pitch: "A glowing concert poster, project lineup, and ticket pricing.",
     hero: "neon",
     density: "regular",
     motion: "energetic",
@@ -152,7 +154,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "newsprint",
     label: "Newsprint",
-    pitch: "Utilitarian columns, high contrast, dense.",
+    pitch: "A full broadsheet with columns, features, and classifieds.",
     hero: "broadsheet",
     density: "dense",
     motion: "still",
@@ -164,13 +166,25 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "playground",
     label: "Playground",
-    pitch: "Color-block studio portfolio, bold shapes.",
+    pitch: "An irregular poster wall with colorful cards and bold shapes.",
     hero: "collage",
     density: "airy",
     motion: "energetic",
     showNightBackdrop: false,
     stackWork: false,
     colorScheme: "light",
+    fonts: { display: "grotesque", body: "grotesque" },
+  },
+  {
+    id: "mission-control",
+    label: "Mission Control",
+    pitch: "An orbital command deck. Explore the work. Launch your next chapter.",
+    hero: "orbit",
+    density: "regular",
+    motion: "calm",
+    showNightBackdrop: false,
+    stackWork: true,
+    colorScheme: "dark",
     fonts: { display: "grotesque", body: "grotesque" },
   },
 ];

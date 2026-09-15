@@ -12,6 +12,8 @@ export function ThemeWordmark({ className = "" }: ThemeWordmarkProps) {
   const name = siteConfig.name;
 
   switch (theme.id) {
+    case "mission-control":
+      return <span className={`${className} mission-wordmark`}><span aria-hidden>✳</span> SimplTech<span className="mission-wordmark-plus" aria-hidden>®</span></span>;
     case "night-signal":
       return (
         <span className={className}>

@@ -42,7 +42,7 @@ export function ApproachSteps() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={ref} className="relative mt-14">
+    <div ref={ref} className="approach-timeline relative mt-14">
       {/* Desktop horizontal connector — sits behind step numbers */}
       <div
         aria-hidden
@@ -75,7 +75,7 @@ export function ApproachSteps() {
         />
       </div>
 
-      <div className="relative z-10 grid gap-10 md:grid-cols-3 md:gap-8">
+      <div className="approach-grid relative z-10 grid gap-10 md:grid-cols-3 md:gap-8">
         {steps.map((item, index) => {
           const threshold = index / (steps.length - 1);
           return (

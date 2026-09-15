@@ -6,13 +6,12 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import type { RefObject } from "react";
+import { useState, type RefObject } from "react";
+import Image from "next/image";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import {
   BrutalMark,
-  CraftVesselMark,
   LaptopMark,
-  MagazineStillLife,
   NeonSignMark,
   NeonTicketMark,
   NewsHalftoneMark,
@@ -32,6 +31,9 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
   const { theme } = useTheme();
 
   switch (theme.id) {
+    case "mission-control":
+      // Mission Control renders its own complete page composition.
+      return null;
     case "night-signal":
       return <NightSignalLayout sectionRef={sectionRef} />;
     case "cupertino":
@@ -182,7 +184,7 @@ function CupertinoLayout() {
 
 function EditorialLayout() {
   return (
-    <div className="relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
+    <div className="editorial-cover relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
       <div className="flex items-end justify-between gap-6 border-b border-foreground pb-3">
         <p className="font-[family-name:var(--font-display)] text-2xl italic leading-none sm:text-4xl">
           {siteConfig.name}
@@ -203,9 +205,10 @@ function EditorialLayout() {
           />
           <HeroActions />
         </div>
-        <div className="mx-auto w-full max-w-sm">
-          <MagazineStillLife />
-        </div>
+        <figure className="editorial-photograph">
+          <Image src="/themes/editorial-architecture.webp" alt="Sculptural stone staircase framed by dramatic gallery light" width={1200} height={1499} sizes="(max-width: 767px) 100vw, 48vw" preload />
+          <figcaption>01 — A different perspective. <span>Form / Function</span></figcaption>
+        </figure>
       </div>
     </div>
   );
@@ -284,11 +287,9 @@ function BrutalistLayout() {
 
 function WarmCraftLayout() {
   return (
-    <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-[var(--content-max)] items-center gap-10 px-5 pb-16 pt-28 sm:px-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-      <div className="mx-auto w-full max-w-xs md:max-w-sm">
-        <CraftVesselMark />
-      </div>
-      <div>
+    <div className="craft-cover">
+      <Image className="craft-photograph" src="/themes/craft-studio.webp" alt="Sunlit oak desk with a laptop, terracotta vase, and sketches" fill sizes="100vw" preload />
+      <div className="craft-letter">
         <p className="font-[family-name:var(--font-display)] italic text-foreground/60">
           A Calgary studio
         </p>
@@ -301,18 +302,26 @@ function WarmCraftLayout() {
           primaryClassName="rounded-[0.2rem] bg-[color:var(--volt)] px-6 py-3 text-sm font-semibold text-[color:var(--accent-ink)]"
           secondaryClassName="rounded-[0.2rem] border border-foreground/20 px-6 py-3 text-sm font-semibold text-foreground"
         />
+        <p className="craft-signature">Made with care. Built in Calgary.</p>
       </div>
+      <span className="craft-photo-label">The art of making things work.</span>
     </div>
   );
 }
 
 function NeonClubLayout() {
+  const reduceMotion = useReducedMotion();
+  const [paused, setPaused] = useState(false);
   return (
     <div className="hero-neon-page relative z-10 mx-auto flex min-h-[100svh] max-w-[var(--content-max)] flex-col justify-center px-5 pb-16 pt-28 sm:px-8">
-      <div className="w-full">
+      <div className={`neon-tunnel ${paused || reduceMotion ? "is-paused" : ""}`} aria-hidden="true">
+        {[0, 1, 2, 3, 4].map((frame) => <span key={frame} style={{ animationDelay: `${frame * -1.6}s` }} />)}
+      </div>
+      {!reduceMotion && <button type="button" className="neon-motion-toggle" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Play atmosphere" : "Pause atmosphere"}</button>}
+      <div className="relative w-full">
         <NeonSignMark />
       </div>
-      <div className="mt-8 grid items-start gap-8 md:grid-cols-[minmax(0,1fr)_200px]">
+      <div className="relative mt-8 grid items-start gap-8 md:grid-cols-[minmax(0,1fr)_200px]">
         <div>
           <HeroCopy
             headingClassName="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-tight text-foreground"

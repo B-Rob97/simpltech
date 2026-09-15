@@ -21,7 +21,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate min-h-[100svh] overflow-hidden"
+      className="site-hero relative isolate min-h-[100svh] overflow-hidden"
     >
       <ThemeHero sectionRef={sectionRef} />
     </section>

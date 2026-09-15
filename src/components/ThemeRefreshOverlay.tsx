@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useTheme } from "@/components/ThemeProvider";
-import { themeIndex } from "@/lib/themes";
+import { themeIndex, THEME_IDS } from "@/lib/themes";
 
 export function ThemeRefreshOverlay() {
   const { incoming, refreshing } = useTheme();
@@ -47,7 +47,7 @@ export function ThemeRefreshOverlay() {
             </div>
 
             <p className="theme-refresh-folio">
-              {String(themeIndex(next.id)).padStart(2, "0")} / 10
+              {String(themeIndex(next.id)).padStart(2, "0")} / {THEME_IDS.length}
             </p>
             <p className="theme-refresh-name">{next.label}</p>
             <p className="theme-refresh-pitch">{next.pitch}</p>

@@ -1,8 +1,14 @@
+"use client";
+
 import { ChinookGlow } from "@/components/CityNight";
+import { useTheme } from "@/components/ThemeProvider";
+import { ThemeServices } from "@/components/ThemeServices";
 import { services } from "@/lib/projects";
 import { Reveal } from "@/components/Reveal";
 
 export function Services() {
+  const { theme } = useTheme();
+  if (theme.id !== "night-signal") return <ThemeServices />;
   return (
     <section
       id="services"

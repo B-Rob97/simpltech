@@ -29,7 +29,7 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color] duration-300 ${
+      className={`site-header fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color] duration-300 ${
         scrolled || morphProgress > 0.35
           ? "border-b border-foreground/10 bg-[color:var(--background)]/80 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
@@ -43,7 +43,7 @@ export function Header() {
           <ThemeWordmark />
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm text-foreground/75 md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-foreground/75 min-[1100px]:flex">
           {links.map((link) => (
             <a
               key={link.href}
@@ -57,7 +57,7 @@ export function Header() {
 
         <div className="flex items-center gap-1.5 sm:gap-3">
           <ThemeSwitcher />
-          <CalendlyButton className="rounded-[var(--radius-button)] bg-[color:var(--volt)] px-3 py-2 text-sm font-semibold text-[color:var(--accent-ink)] transition-transform hover:-translate-y-0.5 sm:px-4">
+          <CalendlyButton className="rounded-[var(--radius-button)] bg-[color:var(--volt)] px-3 py-2 text-sm font-semibold text-[color:var(--accent-ink)] transition-transform hover:-translate-y-0.5 max-[439px]:hidden sm:px-4">
             Start a project
           </CalendlyButton>
         </div>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" role="img" aria-label="SimplTech">
+  <rect width="520" height="120" rx="20" fill="#07111F"/>
+  <path d="M36 78.4 56 42.2 76 78.4H36Z" fill="#2F7BFF"/>
+  <circle cx="56" cy="82" r="8.5" fill="#F5C518"/>
+  <text
+    x="100"
+    y="76"
+    fill="#EEF4FF"
+    font-family="Unbounded, Sora, Avenir Next, Segoe UI, sans-serif"
+    font-size="42"
+    font-weight="600"
+    letter-spacing="-1.2"
+  >SimplTech<tspan fill="#F5C518">.</tspan></text>
+</svg>

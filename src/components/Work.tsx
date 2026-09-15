@@ -6,11 +6,14 @@ import { projects } from "@/lib/projects";
 import { Reveal } from "@/components/Reveal";
 import { WorkRail } from "@/components/WorkRail";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { ThemeWork } from "@/components/ThemeWork";
 
 export function Work() {
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const { theme } = useTheme();
   const stacked = theme.stackWork || !isDesktop;
+
+  if (theme.id !== "night-signal") return <ThemeWork />;
 
   return (
     <section id="work" className="relative scroll-mt-24 pt-[var(--section-space)]">

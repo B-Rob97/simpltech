@@ -51,7 +51,7 @@ export function Pricing() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid gap-0 border-t border-foreground/10 lg:mt-20 lg:grid-cols-3">
+        <div className="pricing-packages mt-16 grid gap-0 border-t border-foreground/10 lg:mt-20 lg:grid-cols-3">
           {pricingPackages.map((pack, index) => {
             const featured = Boolean(pack.featured);
             const isFirst = index === 0;
