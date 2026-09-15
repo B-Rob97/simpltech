@@ -36,6 +36,26 @@ Generated with the built-in imagegen tool and saved here at 1280 × 720 (121,074
 
 Prompt: Cinematic night photograph of a wet downtown street with long-exposure gold and cobalt traffic-light streaks, dark glass towers rising on both sides, amber reflections on rain-slick asphalt. Inspired by a prairie city after dark. No people in focus, no text, no logos. Full-bleed standalone photograph.
 
+## cupertino-laptop.webp
+
+Prompt: Photorealistic premium product photograph for an Apple-like website hero, landscape 16:9. A front-facing unbranded thin silver aluminum laptop centered in an infinite soft light-gray studio (#f5f5f7). Camera is slightly above eye level, looking straight at the lid so the screen is a large clean rectangle of dark glossy glass (nearly black, faint environment reflection only, NO user interface, NO icons, NO text, NO wallpaper). Keyboard and large trackpad visible along the bottom of the frame. Extremely sharp, cinematic keynote lighting, soft oval contact shadow on the floor, subtle specular highlight on the aluminum lid bezel. No logos, no fruit mark, no people, no stickers, no cables. Standalone product shot, not a website mockup.
+
+## cupertino-phone.webp
+
+Prompt: Photorealistic premium product photograph matching a silver laptop family, portrait 3:4. An unbranded thin silver smartphone standing upright at a slight three-quarter angle on an infinite soft light-gray studio (#f5f5f7). The screen is dark glossy glass with a faint reflection, completely blank, no UI, no icons, no text, no notch branding. Thin even bezels, no logo, no fruit mark. Soft oval contact shadow, cinematic keynote lighting, extremely sharp. No people, no hands, no cables. Standalone product shot, not a website mockup.
+
+## cupertino-desk.webp
+
+Prompt: Photorealistic quiet product still life for a Cupertino-style about section, landscape 16:9. A pale oak desk in soft north-window daylight: a closed unbranded silver laptop, a matching slim silver phone face-down, a white ceramic cup, a single sheet of ivory paper, and a small gray stone. Background is a pale plaster wall with gentle falloff. Restrained palette of silver, oak, white, and cool gray. Medium-format product photography, tactile, calm, expensive. No people, no text, no logos, no fruit marks, no screens showing UI. Full-bleed standalone photograph, not a website mockup.
+
+## cupertino-keyboard.webp
+
+Prompt: Photorealistic macro product photograph, 4:3. Close-up of an unbranded silver aluminum laptop keyboard and large trackpad, shot from a low three-quarter angle. Soft keynote lighting, shallow depth of field, cool light-gray background falloff. Tactile brushed metal, crisp keycaps with no readable lettering if possible (or very soft out-of-focus keys). No logos, no fruit mark, no people, no text overlays. Standalone product detail, not a website mockup.
+
+## cupertino-display.webp
+
+Prompt: Photorealistic premium product photograph, landscape 16:9. A large unbranded thin silver desktop display floating in an infinite soft light-gray studio (#f5f5f7), front-facing. The screen shows a very soft out-of-focus abstract light-gray interface glow only — no readable text, no logos, no icons, no website layout. Extremely thin bezels, cinematic keynote lighting, soft contact shadow. No people, no stand clutter, no fruit mark. Standalone product shot, not a website mockup.
+
 ## editorial-architecture.webp
 
 Prompt: Photorealistic architectural editorial photograph for a contemporary design magazine website, portrait 4:5. Monumental pale travertine curved staircase in a minimalist gallery, circular skylight, dramatic geometric sunlight and deep soft shadows, a small sculptural black chair at bottom right for scale. Restrained cream, charcoal and stone palette. Shot on medium format, refined, tactile, quiet, striking composition. No text, no logos, no people, no website mockup. Full bleed photograph.

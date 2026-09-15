@@ -4,10 +4,10 @@ import { useReducedMotion } from "motion/react";
 import { useState, type RefObject } from "react";
 import Image from "next/image";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
+import { CupertinoHero } from "@/components/cupertino/CupertinoHero";
 import { NightSignalHero } from "@/components/hero/NightSignalHero";
 import {
   BrutalMark,
-  LaptopMark,
   NeonSignMark,
   NeonTicketMark,
   NewsHalftoneMark,
@@ -57,22 +57,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
 }
 
 function CupertinoLayout() {
-  return (
-    <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[var(--content-max)] flex-col items-center px-5 pb-16 pt-28 text-center sm:px-8 sm:pb-20 sm:pt-36">
-      <p className="text-sm font-medium tracking-[-0.02em] text-foreground/55">
-        {siteConfig.name}
-      </p>
-      <HeroCopy
-        className="mt-6 max-w-3xl"
-        headingClassName="font-[family-name:var(--font-display)] text-[clamp(2.4rem,6vw,4.6rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-foreground"
-        bodyClassName="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/60 sm:text-lg"
-      />
-      <HeroActions className="mt-8 flex flex-wrap items-center justify-center gap-3" />
-      <div className="mt-10 w-full max-w-xl sm:mt-12">
-        <LaptopMark />
-      </div>
-    </div>
-  );
+  return <CupertinoHero />;
 }
 
 function EditorialLayout() {
