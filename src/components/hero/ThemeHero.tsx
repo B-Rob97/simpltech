@@ -2,12 +2,20 @@
 
 import {
   motion,
+  useMotionValueEvent,
   useReducedMotion,
   useScroll,
   useTransform,
 } from "motion/react";
-import { useState, type RefObject } from "react";
+import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
+import {
+  CraftDust,
+  CraftPlaten,
+  CraftStamp,
+  CraftSunshaft,
+  CraftTape,
+} from "@/components/craft/CraftStudioMarks";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import {
   BrutalMark,
@@ -47,7 +55,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "brutalist":
       return <BrutalistLayout />;
     case "warm-craft":
-      return <WarmCraftLayout />;
+      return <WarmCraftLayout sectionRef={sectionRef} />;
     case "neon-club":
       return <NeonClubLayout />;
     case "newsprint":
@@ -285,11 +293,68 @@ function BrutalistLayout() {
   );
 }
 
-function WarmCraftLayout() {
+function WarmCraftLayout({
+  sectionRef,
+}: {
+  sectionRef: RefObject<HTMLElement | null>;
+}) {
+  const reduceMotion = useReducedMotion();
+  const coverRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const applyCraftPull = (value: number) => {
+    const node = coverRef.current;
+    if (!node || reduceMotion) return;
+
+    const press =
+      value < 0.06
+        ? 0
+        : value < 0.14
+          ? (value - 0.06) / 0.08
+          : value < 0.22
+            ? 1
+            : value < 0.32
+              ? 1 - (value - 0.22) / 0.1
+              : 0;
+    const grow = value < 0.3 ? 0 : value > 0.82 ? 1 : (value - 0.3) / 0.52;
+    const dolly =
+      value < 0.22
+        ? (value / 0.22) * 0.12
+        : 0.12 + Math.min(1, (value - 0.22) / 0.6) * 0.88;
+
+    node.style.setProperty("--craft-press", press.toFixed(4));
+    node.style.setProperty("--craft-grow", grow.toFixed(4));
+    node.style.setProperty("--craft-dolly", dolly.toFixed(4));
+  };
+
+  useLayoutEffect(() => {
+    applyCraftPull(scrollYProgress.get());
+  }, [scrollYProgress, reduceMotion]);
+
+  useMotionValueEvent(scrollYProgress, "change", applyCraftPull);
+
   return (
-    <div className="craft-cover">
-      <Image className="craft-photograph" src="/themes/craft-studio.webp" alt="Sunlit oak desk with a laptop, terracotta vase, and sketches" fill sizes="100vw" preload />
+    <div className="craft-cover" ref={coverRef}>
+      <div className="craft-photograph-frame">
+        <Image
+          className="craft-photograph"
+          src="/themes/craft-studio.webp"
+          alt="Sunlit oak desk with a laptop, terracotta vase, and sketches"
+          fill
+          sizes="100vw"
+          preload
+        />
+      </div>
+      <CraftSunshaft />
+      {reduceMotion ? null : <CraftDust />}
+      {reduceMotion ? null : <CraftPlaten />}
       <div className="craft-letter">
+        <CraftTape />
+        <div className="craft-letter-blot" aria-hidden />
+        <CraftStamp />
         <p className="font-[family-name:var(--font-display)] italic text-foreground/60">
           A Calgary studio
         </p>
@@ -305,6 +370,7 @@ function WarmCraftLayout() {
         <p className="craft-signature">Made with care. Built in Calgary.</p>
       </div>
       <span className="craft-photo-label">The art of making things work.</span>
+      <div className="craft-deckle" aria-hidden />
     </div>
   );
 }
