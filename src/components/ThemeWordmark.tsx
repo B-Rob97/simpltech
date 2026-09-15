@@ -69,6 +69,8 @@ export function ThemeWordmark({ className = "" }: ThemeWordmarkProps) {
       );
     case "playground":
       return <span className={`${className} playground-wordmark lowercase`}>{name}</span>;
+    case "quiet":
+      return <span className={`${className} font-normal tracking-[0.04em]`}>{name}</span>;
     default: {
       const _exhaustive: never = theme.id;
       return _exhaustive;

@@ -18,6 +18,7 @@ import "./newsprint.css";
 import "./mission-control.css";
 import "./night-signal.css";
 import "./playground.css";
+import "./quiet.css";
 
 const unbounded = localFont({
   src: "../fonts/unbounded.woff2",

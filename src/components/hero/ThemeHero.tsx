@@ -23,6 +23,7 @@ import { NeonClubHero } from "@/components/hero/NeonClubHero";
 import { NewsprintHero } from "@/components/hero/NewsprintHero";
 import { NightSignalHero } from "@/components/hero/NightSignalHero";
 import { PlaygroundCollage } from "@/components/hero/PlaygroundCollage";
+import { QuietField } from "@/components/hero/QuietField";
 import { SwissRegister } from "@/components/hero/SwissRegister";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -57,6 +58,8 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
       return <NewsprintHero sectionRef={sectionRef} />;
     case "playground":
       return <PlaygroundLayout />;
+    case "quiet":
+      return <QuietField />;
     default: {
       const _exhaustive: never = theme.id;
       return _exhaustive;

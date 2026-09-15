@@ -24,6 +24,7 @@ const aboutMarks: Record<ThemeId, string> = {
   "neon-club": "02",
   newsprint: "LATE",
   playground: "PLAY",
+  quiet: "",
 };
 
 const beliefs = [

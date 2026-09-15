@@ -20,6 +20,7 @@ const sequences: Record<ThemeId, Section[]> = {
   "neon-club": ["work", "services", "pricing", "about", "approach", "contact"],
   newsprint: ["work", "services", "about", "pricing", "approach", "contact"],
   playground: ["work", "services", "about", "approach", "pricing", "contact"],
+  quiet: ["work", "about", "services", "approach", "pricing", "contact"],
 };
 
 // Server-rendered content stays shared; the reading order changes with the design.

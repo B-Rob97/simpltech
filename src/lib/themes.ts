@@ -10,6 +10,7 @@ export const THEME_IDS = [
   "newsprint",
   "playground",
   "mission-control",
+  "quiet",
 ] as const;
 
 export type ThemeId = (typeof THEME_IDS)[number];
@@ -25,7 +26,8 @@ export type HeroTreatment =
   | "neon"
   | "broadsheet"
   | "collage"
-  | "orbit";
+  | "orbit"
+  | "horizon";
 
 export type ThemeDensity = "airy" | "regular" | "dense";
 export type ThemeMotion = "still" | "calm" | "energetic";
@@ -186,6 +188,18 @@ export const THEMES: readonly ThemeDefinition[] = [
     stackWork: true,
     colorScheme: "dark",
     fonts: { display: "grotesque", body: "grotesque" },
+  },
+  {
+    id: "quiet",
+    label: "Quiet",
+    pitch: "Vast space, a single horizon, and type that barely speaks.",
+    hero: "horizon",
+    density: "airy",
+    motion: "still",
+    showNightBackdrop: false,
+    stackWork: true,
+    colorScheme: "light",
+    fonts: { display: "serif", body: "grotesque" },
   },
 ];
 
