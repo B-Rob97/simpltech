@@ -53,8 +53,15 @@
 
 [data-theme="brutalist"] .site-header {
   border-bottom: var(--brutal-rule-w) solid var(--foreground);
-  background: var(--background);
+  background: var(--foreground);
+  color: var(--accent-ink);
   backdrop-filter: none;
+}
+
+[data-theme="brutalist"] .site-header a,
+[data-theme="brutalist"] .site-header button,
+[data-theme="brutalist"] .site-header nav {
+  color: var(--accent-ink);
 }
 
 [data-theme="brutalist"] .site-header > div {
@@ -71,9 +78,9 @@
 
 [data-theme="brutalist"] .site-header [class*="bg-[color:var(--volt)]"] {
   border-radius: 0;
-  border: var(--brutal-rule-w) solid var(--foreground);
-  background: var(--foreground);
-  color: var(--accent-ink);
+  border: var(--brutal-rule-w) solid var(--accent-ink);
+  background: var(--accent-ink);
+  color: var(--foreground);
   box-shadow: none;
   transform: none;
 }
@@ -85,12 +92,19 @@
 [data-theme="brutalist"] .site-header button {
   border-radius: 0;
   border-width: var(--brutal-rule-w);
-  border-color: var(--foreground);
+  border-color: var(--accent-ink);
   background: transparent;
 }
 
-[data-theme="brutalist"] .site-header [class*="rounded-[3px]"] {
+[data-theme="brutalist"] .site-header *,
+[data-theme="brutalist"] .site-header *::before,
+[data-theme="brutalist"] .site-header *::after {
   border-radius: 0;
+}
+
+[data-theme="brutalist"] .site-header [class*="rounded-[3px]"] {
+  background: var(--accent-ink);
+  color: var(--foreground);
 }
 
 [data-theme="brutalist"] footer {
@@ -119,12 +133,16 @@
 
 /* Pin: courtyard holds while the column occupies, then work is the mass. */
 
+.composition-brutalist {
+  overflow-x: clip;
+}
+
 .brutal-scroll-stage {
   --brutal-col: 0;
 }
 
 .brutal-scroll-track {
-  height: 230vh;
+  height: 260vh;
 }
 
 .composition-brutalist .site-hero {
@@ -145,7 +163,8 @@
 .brutal-scroll-stage .slot-work {
   position: relative;
   z-index: 1;
-  margin-top: -100vh;
+  margin-top: -160vh;
+  background: var(--foreground);
 }
 
 .brutal-scroll-stage[data-brutal-reduced="true"] .brutal-scroll-track {
@@ -227,6 +246,7 @@
   margin: 0.7rem 0 1.1rem;
   width: 140vw;
   max-width: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: clamp(4.2rem, 18vw, 13rem);
   font-weight: 700;
   line-height: 0.76;
@@ -329,7 +349,7 @@
 }
 
 .brutal-scroll-stage:not([data-brutal-reduced="true"]) .work-brutalist {
-  padding-left: max(1rem, calc((1 - var(--brutal-col, 0)) * 100%));
+  transform: translate3d(calc((1 - var(--brutal-col, 0)) * 100vw), 0, 0);
 }
 
 .work-brutalist .design-section-heading {
@@ -554,7 +574,24 @@
 }
 
 .composition-brutalist #pricing .min-h-\[1\.25rem\].text-transparent {
-  color: var(--foreground);
+  display: none;
+}
+
+.composition-brutalist #pricing ol {
+  border: var(--brutal-rule-w) solid var(--foreground);
+  padding: 1rem 1rem 0.85rem;
+  background: var(--elevated);
+}
+
+.composition-brutalist #pricing .rounded-full,
+.composition-brutalist #pricing .h-3.w-3 {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.composition-brutalist #contact button,
+.composition-brutalist #contact a {
+  border-radius: 0;
 }
 
 .composition-brutalist .about-content {
@@ -681,11 +718,11 @@
 
 @media (max-width: 767px) {
   .brutal-scroll-track {
-    height: 200vh;
+    height: 220vh;
   }
 
   .brutal-scroll-stage .slot-work {
-    margin-top: -90vh;
+    margin-top: -120vh;
   }
 
   .hero-brutal-field {
@@ -721,8 +758,7 @@
   }
 
   .brutal-scroll-stage:not([data-brutal-reduced="true"]) .work-brutalist {
-    padding-left: 1rem;
-    padding-top: max(4rem, calc((1 - var(--brutal-col, 0)) * 100vh));
+    transform: translate3d(0, calc((1 - var(--brutal-col, 0)) * 100svh), 0);
   }
 
   .work-brutalist {

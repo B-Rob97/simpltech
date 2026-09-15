@@ -14,9 +14,9 @@ import { siteConfig } from "@/lib/site";
 type OccupyPhase = "empty" | "draw" | "occupy" | "index";
 
 function phaseFromProgress(value: number): OccupyPhase {
-  if (value < 0.08) return "empty";
-  if (value < 0.18) return "draw";
-  if (value < 0.52) return "occupy";
+  if (value < 0.16) return "empty";
+  if (value < 0.46) return "draw";
+  if (value < 0.8) return "occupy";
   return "index";
 }
 
@@ -29,16 +29,16 @@ function applyOccupy(
   stage: HTMLElement | null,
   value: number,
 ) {
-  const rule = clamp01((value - 0.02) / 0.14);
+  const rule = clamp01((value - 0.12) / 0.26);
   let column = 0;
-  if (value >= 0.78) {
+  if (value >= 0.94) {
     column = 1;
-  } else if (value >= 0.48) {
-    column = 0.58 + ((value - 0.48) / 0.3) * 0.42;
-  } else if (value >= 0.14) {
-    column = ((value - 0.14) / 0.34) * 0.58;
+  } else if (value >= 0.78) {
+    column = 0.62 + ((value - 0.78) / 0.16) * 0.38;
+  } else if (value >= 0.46) {
+    column = 0.36 + ((value - 0.46) / 0.32) * 0.26;
   }
-  const copy = 1 - clamp01((value - 0.5) / 0.22);
+  const copy = 1 - clamp01((value - 0.68) / 0.16);
 
   page.style.setProperty("--brutal-col", column.toFixed(4));
   page.style.setProperty("--brutal-rule", rule.toFixed(4));
