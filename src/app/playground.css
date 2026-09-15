@@ -236,10 +236,12 @@
 
 .playground-polaroid-tape {
   position: absolute;
-  top: calc(-0.85rem * var(--frame-p));
-  left: 28%;
+  top: calc(-0.55rem * var(--frame-p));
+  left: 31%;
   z-index: 2;
-  width: 38%;
+  width: 28%;
+  height: calc(1.05rem * var(--frame-p));
+  overflow: hidden;
   rotate: -7deg;
   opacity: var(--frame-p);
   pointer-events: none;
@@ -247,8 +249,12 @@
 }
 
 .playground-polaroid-tape img {
-  width: 100%;
-  height: auto;
+  width: 220%;
+  height: 220%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 48%;
+  margin: -60% 0 0 -60%;
   display: block;
 }
 
@@ -303,6 +309,7 @@
   top: auto;
   bottom: 1.55rem;
   z-index: 5;
+  isolation: isolate;
   width: auto;
   max-height: none;
   overflow: visible;
@@ -320,18 +327,23 @@
 
 @media (min-width: 768px) {
   .playground-note {
-    left: 4.5vw;
+    left: 4vw;
     right: auto;
     top: var(--header-clear);
     bottom: auto;
-    width: min(30rem, 38vw);
+    width: min(28rem, 36vw);
     max-height: none;
-    padding: 2rem 1.8rem 1.7rem;
+    padding: 1.7rem 1.7rem 1.55rem;
   }
 }
 
 .playground-note.is-peeled {
   pointer-events: none;
+}
+
+.playground-note-copy {
+  position: relative;
+  z-index: 2;
 }
 
 .playground-badge {
@@ -352,18 +364,25 @@
 
 .playground-tape {
   position: absolute;
-  top: -1.35rem;
-  left: 18%;
-  width: 42%;
-  rotate: -8deg;
+  top: -0.55rem;
+  left: 36%;
+  z-index: 0;
+  width: min(6.8rem, 26%);
+  height: 1.1rem;
+  overflow: hidden;
+  rotate: -6deg;
   transform-origin: center;
   pointer-events: none;
   filter: drop-shadow(1px 2px 0 #17130a22);
 }
 
 .playground-tape img {
-  width: 100%;
-  height: auto;
+  width: 240%;
+  height: 240%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% 48%;
+  margin: -70% 0 0 -70%;
 }
 
 .playground-sticker {
@@ -382,14 +401,14 @@
 
 .playground-sticker-star {
   top: var(--header-clear);
-  left: 2.4%;
+  left: 1.5%;
   --tilt: -12deg;
   animation: playground-wobble 3.4s ease-in-out infinite;
 }
 
 .playground-sticker-smile {
   top: var(--header-clear);
-  right: 4%;
+  right: 2%;
   left: auto;
   width: clamp(3.4rem, 8vw, 6.2rem);
   --tilt: 8deg;
@@ -414,11 +433,17 @@
 }
 
 @media (min-width: 768px) {
+  .playground-sticker-star {
+    top: auto;
+    bottom: 8%;
+    left: 3%;
+  }
+
   .playground-sticker-smile {
     top: auto;
-    bottom: 20%;
+    bottom: 9%;
     left: auto;
-    right: 34%;
+    right: 22%;
   }
 
   .playground-sticker-bolt {

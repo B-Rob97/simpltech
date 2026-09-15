@@ -263,7 +263,7 @@ function PlaygroundNote() {
 
 function PlaygroundNoteBody() {
   return (
-    <>
+    <div className="playground-note-copy">
       <p className="playground-badge">{siteConfig.name}</p>
       <HeroCopy
         headingClassName="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.05em] text-foreground"
@@ -273,7 +273,7 @@ function PlaygroundNoteBody() {
         primaryClassName="rounded-[1.4rem] border-[3px] border-foreground bg-[color:var(--volt)] px-6 py-3 text-sm font-semibold text-[color:var(--accent-ink)] shadow-[4px_4px_0_#17130a] transition-transform hover:-translate-y-1 hover:rotate-[-2deg]"
         secondaryClassName="rounded-[1.4rem] border-[3px] border-foreground bg-[#d9f263] px-6 py-3 text-sm font-semibold text-foreground shadow-[4px_4px_0_#17130a] transition-transform hover:-translate-y-1 hover:rotate-[2deg]"
       />
-    </>
+    </div>
   );
 }
 
