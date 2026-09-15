@@ -310,16 +310,16 @@ function WarmCraftLayout({
     if (!node || reduceMotion) return;
 
     const press =
-      value < 0.06
+      value < 0.05
         ? 0
         : value < 0.14
-          ? (value - 0.06) / 0.08
-          : value < 0.22
+          ? (value - 0.05) / 0.09
+          : value < 0.24
             ? 1
-            : value < 0.32
-              ? 1 - (value - 0.22) / 0.1
+            : value < 0.36
+              ? 1 - (value - 0.24) / 0.12
               : 0;
-    const grow = value < 0.3 ? 0 : value > 0.82 ? 1 : (value - 0.3) / 0.52;
+    const grow = value < 0.38 ? 0 : value > 0.9 ? 1 : (value - 0.38) / 0.52;
     const dolly =
       value < 0.22
         ? (value / 0.22) * 0.12
@@ -350,8 +350,8 @@ function WarmCraftLayout({
       </div>
       <CraftSunshaft />
       {reduceMotion ? null : <CraftDust />}
-      {reduceMotion ? null : <CraftPlaten />}
       <div className="craft-letter">
+        {reduceMotion ? null : <CraftPlaten />}
         <CraftTape />
         <div className="craft-letter-blot" aria-hidden />
         <CraftStamp />
@@ -360,13 +360,23 @@ function WarmCraftLayout({
         </p>
         <HeroCopy
           className="mt-4"
-          headingClassName="font-[family-name:var(--font-display)] text-[clamp(2.1rem,4.6vw,3.8rem)] font-medium leading-[1.12] text-foreground"
+          headingClassName="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.4rem)] font-medium leading-[1.14] tracking-[-0.02em] text-foreground"
           bodyClassName="mt-5 max-w-md text-base leading-relaxed text-foreground/70"
         />
         <HeroActions
           primaryClassName="rounded-[0.2rem] bg-[color:var(--volt)] px-6 py-3 text-sm font-semibold text-[color:var(--accent-ink)]"
           secondaryClassName="rounded-[0.2rem] border border-foreground/20 px-6 py-3 text-sm font-semibold text-foreground"
         />
+        <div className="craft-pulled-print">
+          <p className="craft-pulled-kicker">The pulled print</p>
+          <p className="craft-pulled-headline">
+            Calgary-based. Startup-obsessed.
+          </p>
+          <p className="craft-pulled-body">
+            The studio letter becomes the next page — About is already on the
+            sheet.
+          </p>
+        </div>
         <p className="craft-signature">Made with care. Built in Calgary.</p>
       </div>
       <span className="craft-photo-label">The art of making things work.</span>

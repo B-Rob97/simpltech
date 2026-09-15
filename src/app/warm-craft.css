@@ -15,7 +15,7 @@
 
 [data-theme="warm-craft"] section.site-hero,
 [data-theme="warm-craft"] section.site-hero.overflow-hidden {
-  height: 220vh;
+  height: 200vh;
   max-height: none;
   min-height: 0;
   overflow: visible;
@@ -76,16 +76,16 @@
   animation: craft-mote-drift 12s linear infinite;
 }
 
-[data-theme="warm-craft"] .craft-platen {
+[data-theme="warm-craft"] .craft-letter .craft-platen {
   position: absolute;
-  left: 4%;
-  right: 18%;
+  left: -6%;
+  right: -6%;
   top: 0;
-  z-index: 3;
-  height: 7.5rem;
+  z-index: 6;
+  height: 6.4rem;
   pointer-events: none;
-  transform: translate3d(0, calc(-118% + (126% * var(--craft-press))), 0);
-  filter: drop-shadow(0 18px 20px #2a181066);
+  transform: translate3d(0, calc(-118% + (108% * var(--craft-press))), 0);
+  filter: drop-shadow(0 22px 18px #2a181088);
 }
 
 [data-theme="warm-craft"] .craft-platen-beam {
@@ -119,15 +119,17 @@
 [data-theme="warm-craft"] .craft-letter {
   position: absolute;
   z-index: 4;
-  top: calc(26% * (1 - var(--craft-grow)));
-  right: calc(46% * (1 - var(--craft-grow)));
-  bottom: calc(5.5% * (1 - var(--craft-grow)));
-  left: calc(4.5% * (1 - var(--craft-grow)));
+  top: auto;
+  right: auto;
+  bottom: calc((1 - var(--craft-grow)) * 4.5vh);
+  left: calc((1 - var(--craft-grow)) * 4vw);
   display: flex;
-  flex-direction: column;
+  width: calc(((1 - var(--craft-grow)) * min(28.5rem, 78vw)) + (var(--craft-grow) * 100%));
+  min-height: calc(var(--craft-grow) * 100%);
   max-width: none;
-  padding: clamp(1.4rem, 3vw, 3.4rem) clamp(1.4rem, 3.4vw, 3.6rem);
-  overflow: hidden;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2.6vw, 2.8rem) clamp(1.25rem, 3vw, 3.2rem);
+  overflow: visible;
   color: var(--craft-ink);
   background:
     linear-gradient(180deg, rgba(255, 248, 236, 0.2), transparent 18%),
@@ -135,8 +137,9 @@
   box-shadow:
     0 18px 50px #241c1928,
     0 2px 0 #fffaf0 inset,
-    calc(-10px * (1 - var(--craft-grow))) calc(14px * (1 - var(--craft-grow))) 0 #e4d3b8;
-  transform: rotate(calc(-2.15deg * (1 - var(--craft-grow)))) scaleY(calc(1 - (0.065 * var(--craft-press))));
+    calc(-10px * (1 - var(--craft-grow))) calc(14px * (1 - var(--craft-grow))) 0 #e4d3b8,
+    0 calc(18px * var(--craft-press)) 0 #8d3f1c22;
+  transform: rotate(calc(-2.15deg * (1 - var(--craft-grow)))) scaleY(calc(1 - (0.07 * var(--craft-press))));
   transform-origin: 50% 0;
 }
 
@@ -175,19 +178,20 @@
 
 [data-theme="warm-craft"] .craft-stamp {
   position: absolute;
-  top: 1.1rem;
-  right: 1.2rem;
+  top: 0.85rem;
+  right: 0.9rem;
   display: grid;
-  width: 4.6rem;
-  height: 4.6rem;
+  width: 5rem;
+  height: 5rem;
   place-items: center;
-  border: 2px solid #8d3f1c;
+  border: 3px solid #8d3f1c;
   color: #8d3f1c;
   font-family: var(--font-display), serif;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  transform: rotate(-8deg) scale(calc(0.55 + (0.7 * var(--craft-press)) + (0.1 * var(--craft-grow))));
-  opacity: calc(0.15 + (0.85 * var(--craft-press)) + (0.35 * var(--craft-grow)));
+  background: #f6eddd;
+  transform: rotate(calc(-14deg + (6deg * var(--craft-press)))) scale(calc(1.35 - (0.35 * var(--craft-press))));
+  opacity: calc(0.35 + (0.65 * var(--craft-press)));
 }
 
 [data-theme="warm-craft"] .craft-stamp span {
@@ -202,8 +206,39 @@
   letter-spacing: 0.16em;
 }
 
+[data-theme="warm-craft"] .craft-pulled-print {
+  margin-top: calc(var(--craft-grow) * 1.35rem);
+  padding-top: calc(var(--craft-grow) * 1rem);
+  max-height: calc(var(--craft-grow) * 14rem);
+  overflow: hidden;
+  border-top: 1px dashed color-mix(in oklab, #c4ae8c calc(var(--craft-grow) * 100%), transparent);
+  clip-path: inset(0 0 calc((1 - var(--craft-grow)) * 100%) 0);
+  transform: translate3d(0, calc((1 - var(--craft-grow)) * 1.4rem), 0);
+}
+
+[data-theme="warm-craft"] .craft-pulled-kicker {
+  margin: 0 0 0.35rem;
+  font: 600 0.68rem/1 var(--font-body);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--craft-clay);
+}
+
+[data-theme="warm-craft"] .craft-pulled-headline {
+  margin: 0;
+  font: 500 clamp(1.6rem, 3vw, 2.6rem)/1.15 var(--font-display);
+}
+
+[data-theme="warm-craft"] .craft-pulled-body {
+  margin: 0.55rem 0 0;
+  max-width: 28rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--foreground) 68%, transparent);
+}
+
 [data-theme="warm-craft"] .craft-signature {
-  margin-top: auto;
+  margin-top: 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid #392b2330;
   font: italic 1rem var(--font-display);
@@ -238,30 +273,33 @@
 .composition-warm-craft section#about {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(13rem, 20rem);
-  gap: 2rem 2.5rem;
-  align-items: start;
-  margin-top: -46svh;
-  padding-top: 1.25rem;
+  display: block;
+  margin-top: 0;
+  padding-top: 4rem;
   overflow: visible;
-  background: transparent;
-}
-
-.composition-warm-craft section#about::after {
-  content: "";
-  min-height: 24rem;
-  margin-top: 4.5rem;
-  background: url("/themes/craft-press.webp") center / cover no-repeat;
-  box-shadow: 0 16px 40px #4930191f, 0 0 0 0.7rem #fff6ee;
-  transform: rotate(2.2deg);
+  background: var(--background);
 }
 
 .composition-warm-craft #about .about-content {
-  max-width: none;
-  padding: 2rem 1.5rem 3rem;
-  background:
-    linear-gradient(180deg, color-mix(in oklab, var(--craft-paper) 70%, transparent), var(--background) 5rem);
+  position: relative;
+  max-width: var(--content-max);
+  padding: 0 1.5rem 1rem;
+}
+
+.composition-warm-craft #about .about-content::after {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  right: 1.5rem;
+  width: min(18rem, 26vw);
+  height: 23rem;
+  background: url("/themes/craft-press.webp") center / cover no-repeat;
+  box-shadow: 0 16px 40px #4930191f, 0 0 0 0.65rem #fff6ee;
+  transform: rotate(2.2deg);
+}
+
+.composition-warm-craft #about .about-content > :not(.about-beliefs) {
+  max-width: min(42rem, calc(100% - min(20rem, 28vw)));
 }
 
 .composition-warm-craft .about-story p {
@@ -465,12 +503,23 @@
 }
 
 /* Contact as a kraft envelope. */
+[data-theme="warm-craft"] #contact {
+  padding-top: 3.5rem;
+  padding-bottom: 2.5rem;
+}
+
 [data-theme="warm-craft"] #contact .relative.overflow-hidden {
+  min-height: 22rem;
   background:
     linear-gradient(180deg, #efe2cc, var(--craft-paper-deep) 38%),
     var(--craft-paper);
   border: 1px solid #d4c2a7;
   box-shadow: 0 18px 40px #49301914;
+}
+
+[data-theme="warm-craft"] #contact .relative.max-w-2xl {
+  position: relative;
+  z-index: 1;
 }
 
 [data-theme="warm-craft"] #contact .relative.overflow-hidden::before {
@@ -533,34 +582,37 @@
 }
 
 @media (max-width: 767px) {
-  [data-theme="warm-craft"] .site-hero {
+  [data-theme="warm-craft"] section.site-hero,
+  [data-theme="warm-craft"] section.site-hero.overflow-hidden {
     height: 175vh;
   }
 
   [data-theme="warm-craft"] .craft-letter {
-    top: calc(36% * (1 - var(--craft-grow)));
-    right: calc(3.5% * (1 - var(--craft-grow)));
-    bottom: calc(4% * (1 - var(--craft-grow)));
-    left: calc(3.5% * (1 - var(--craft-grow)));
-    padding: 1.4rem 1.25rem 1.5rem;
+    left: calc((1 - var(--craft-grow)) * 1.15rem);
+    bottom: calc((1 - var(--craft-grow)) * 1.1rem);
+    width: calc(((1 - var(--craft-grow)) * min(100% - 2.3rem, 28rem)) + (var(--craft-grow) * 100%));
+    padding: 1.3rem 1.15rem 1.4rem;
   }
 
-  [data-theme="warm-craft"] .craft-platen {
-    right: 4%;
-    height: 5.6rem;
+  [data-theme="warm-craft"] .craft-letter .craft-platen {
+    height: 5.2rem;
   }
 
   .composition-warm-craft section#about {
-    display: block;
-    margin-top: -28svh;
+    margin-top: 0;
   }
 
-  .composition-warm-craft section#about::after {
+  .composition-warm-craft #about .about-content::after {
+    position: static;
     display: block;
-    min-height: 12rem;
-    margin: 1.5rem 1.15rem 0;
-    aspect-ratio: 16 / 8;
+    width: 100%;
+    height: 12rem;
+    margin: 1.5rem 0 0;
     transform: none;
+  }
+
+  .composition-warm-craft #about .about-content > :not(.about-beliefs) {
+    max-width: none;
   }
 
   .composition-warm-craft #about .about-content {
@@ -624,8 +676,14 @@
     right: auto;
     bottom: auto;
     left: auto;
-    max-width: 36rem;
+    width: min(36rem, calc(100% - 2.5rem));
+    min-height: 0;
     margin: 8rem 1.25rem 3rem;
+    transform: none;
+  }
+
+  [data-theme="warm-craft"] .craft-pulled-print {
+    clip-path: none;
     transform: none;
   }
 
