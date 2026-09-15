@@ -40,7 +40,7 @@ export function PriceCounter() {
     return (
       <p
         ref={ref}
-        className="mt-2 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-white sm:text-6xl"
+        className="mt-2 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-foreground sm:text-6xl"
       >
         {formatPrice(END)}
       </p>
@@ -50,7 +50,7 @@ export function PriceCounter() {
   return (
     <motion.p
       ref={ref}
-      className="mt-2 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-white sm:text-6xl"
+      className="mt-2 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-foreground sm:text-6xl"
     >
       {display}
     </motion.p>

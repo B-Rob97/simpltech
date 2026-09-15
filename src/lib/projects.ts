@@ -9,6 +9,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "brettos",
+    name: "BrettOS",
+    summary:
+      "A personal Windows 97 desktop in the browser — real project folders, built-in apps and games, and live previews of shipped sites.",
+    tags: ["React", "Interactive", "Personal site"],
+    href: "https://brettroberts.ca",
+  },
+  {
     id: "revolution-drilling",
     name: "Revolution Drilling",
     summary:

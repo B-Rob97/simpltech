@@ -33,7 +33,7 @@ export function NightBackdrop() {
 
   return (
     <div
-      className="night-live pointer-events-none fixed inset-0 z-0 opacity-40"
+      className="night-live night-backdrop pointer-events-none fixed inset-0 z-0 opacity-40"
       aria-hidden
     >
       <svg
