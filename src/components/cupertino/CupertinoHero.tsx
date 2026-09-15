@@ -2,7 +2,6 @@
 
 import {
   motion,
-  useAnimationFrame,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
@@ -15,11 +14,12 @@ import { siteConfig } from "@/lib/site";
 import { services } from "@/lib/projects";
 
 // Inner LCD of /themes/cupertino-laptop.webp (1600×900 studio plate).
+// Inset from the measured black panel so the UI stays on the glass.
 const SCREEN = {
-  left: 0.274,
-  top: 0.156,
-  width: 0.452,
-  height: 0.518,
+  left: 0.2675,
+  top: 0.153,
+  width: 0.465,
+  height: 0.522,
 } as const;
 
 const screenStyle = {
@@ -35,12 +35,7 @@ const laptopOrigin = {
 
 export function CupertinoHero() {
   const reduceMotion = useReducedMotion();
-  const staticStory = Boolean(reduceMotion);
-
-  if (staticStory) {
-    return <StaticCupertinoHero />;
-  }
-
+  if (reduceMotion) return <StaticCupertinoHero />;
   return <CupertinoScrollStory />;
 }
 
@@ -56,7 +51,9 @@ function StaticCupertinoHero() {
           <div className="cupertino-laptop" style={laptopOrigin}>
             <LaptopChassis />
             <div className="cupertino-glass" style={screenStyle}>
-              <CupertinoBootUi />
+              <div className="cupertino-frame">
+                <CupertinoBootUi />
+              </div>
             </div>
           </div>
         </div>
@@ -68,74 +65,41 @@ function StaticCupertinoHero() {
 function CupertinoScrollStory() {
   const storyRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
-  const screenRef = useRef<HTMLDivElement>(null);
-  const clipRef = useRef<HTMLDivElement>(null);
-  const worldRef = useRef<HTMLDivElement>(null);
   const laptopRef = useRef<HTMLDivElement>(null);
-  const [endScale, setEndScale] = useState(2.8);
+  const [endScale, setEndScale] = useState(2.4);
+  const [midScale, setMidScale] = useState(1.22);
   const [endX, setEndX] = useState(0);
   const [endY, setEndY] = useState(0);
   const [restY, setRestY] = useState(48);
   const [copyGone, setCopyGone] = useState(false);
   const [phoneGone, setPhoneGone] = useState(false);
+  const [shineGone, setShineGone] = useState(false);
+  const [chromeGone, setChromeGone] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: storyRef,
     offset: ["start start", "end end"],
   });
 
-  const copyY = useTransform(scrollYProgress, [0, 0.2], [0, -64]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.14, 0.24], [1, 0.2, 0]);
-  const copyScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.96]);
-  const phoneX = useTransform(scrollYProgress, [0, 0.28], [0, 80]);
-  const phoneOpacity = useTransform(scrollYProgress, [0.02, 0.24], [1, 0]);
-  const phoneScale = useTransform(scrollYProgress, [0, 0.28], [1, 0.8]);
+  const copyY = useTransform(scrollYProgress, [0, 0.14], [0, -80]);
+  const phoneX = useTransform(scrollYProgress, [0, 0.16], [0, 96]);
   const laptopScale = useTransform(
     scrollYProgress,
-    [0.08, 0.4, 0.84],
-    [1, 1.38, endScale],
+    [0.12, 0.4, 0.78],
+    [1, midScale, endScale],
   );
-  const laptopX = useTransform(scrollYProgress, [0.08, 0.4, 0.84], [0, endX * 0.28, endX]);
+  const laptopX = useTransform(
+    scrollYProgress,
+    [0.12, 0.4, 0.78],
+    [0, endX * 0.2, endX],
+  );
   const laptopY = useTransform(
     scrollYProgress,
-    [0.08, 0.4, 0.84],
-    [restY, restY * 0.35, endY],
+    [0.12, 0.4, 0.78],
+    [restY, restY * 0.3, endY],
   );
-  const bootOpacity = useTransform(scrollYProgress, [0.46, 0.64], [1, 0]);
-  const bootY = useTransform(scrollYProgress, [0.46, 0.64], ["0%", "-10%"]);
-  const chromeOpacity = useTransform(scrollYProgress, [0.8, 0.93], [1, 0]);
-  const pinOpacity = useTransform(scrollYProgress, [0.9, 0.995], [1, 0]);
-  const shineOpacity = useTransform(scrollYProgress, [0, 0.2, 0.42], [1, 0.55, 0]);
-
-  const alignPortal = useCallback(() => {
-    const screen = screenRef.current;
-    const clip = clipRef.current;
-    const world = worldRef.current;
-    const pin = pinRef.current;
-    if (!screen || !clip || !world || !pin) return;
-
-    const glass = screen.getBoundingClientRect();
-    const frame = pin.getBoundingClientRect();
-    const width = Math.max(glass.width, 1);
-    const height = Math.max(glass.height, 1);
-    const x = glass.left - frame.left;
-    const y = glass.top - frame.top;
-    clip.style.left = `${x}px`;
-    clip.style.top = `${y}px`;
-    clip.style.width = `${width}px`;
-    clip.style.height = `${height}px`;
-    clip.style.borderRadius = `${Math.min(width * 0.02, 16)}px`;
-
-    const pageW = frame.width;
-    const pageH = frame.height;
-    const fit = Math.min(width / pageW, height / pageH);
-    const ox = (width - pageW * fit) / 2;
-    const oy = (height - pageH * fit) / 2;
-    world.style.width = `${pageW}px`;
-    world.style.height = `${pageH}px`;
-    world.style.transformOrigin = "0 0";
-    world.style.transform = `translate(${ox}px, ${oy}px) scale(${fit})`;
-  }, []);
+  const reelY = useTransform(scrollYProgress, [0.48, 0.62], ["0%", "-50%"]);
+  const pinOpacity = useTransform(scrollYProgress, [0.94, 1], [1, 0]);
 
   const measureZoom = useCallback(() => {
     const pin = pinRef.current;
@@ -157,35 +121,30 @@ function CupertinoScrollStory() {
     const restScreenCX = restLaptopX + laptopW * (SCREEN.left + SCREEN.width / 2);
     const restScreenCY = restLaptopY + laptopH * (SCREEN.top + SCREEN.height / 2);
 
+    const framed = Math.min(pinW / laptopW, pinH / laptopH);
+    setMidScale(Math.max(1, Math.min(1.26, framed * 0.96)));
     setEndScale(Math.min(pinW / screenW, pinH / screenH));
     setEndX(pinW / 2 - restScreenCX);
     setEndY(pinH / 2 - restScreenCY);
-    const centeredTop = (pinH - laptopH) / 2;
-    const copyReserve = Math.min(pinH * 0.48, 430);
+
+    const copyReserve = Math.min(pinH * 0.46, 400);
     const maxTop = Math.max(0, pinH - laptopH - 16);
-    setRestY(Math.max(0, Math.min(copyReserve, maxTop) - centeredTop));
+    setRestY(Math.max(0, Math.min(copyReserve, maxTop) - restLaptopY));
   }, []);
 
   useLayoutEffect(() => {
     measureZoom();
-    alignPortal();
     window.addEventListener("resize", measureZoom);
-    window.addEventListener("resize", alignPortal);
-    return () => {
-      window.removeEventListener("resize", measureZoom);
-      window.removeEventListener("resize", alignPortal);
-    };
-  }, [alignPortal, measureZoom]);
-
-  useAnimationFrame(() => {
-    alignPortal();
-  });
+    return () => window.removeEventListener("resize", measureZoom);
+  }, [measureZoom]);
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    setCopyGone(progress > 0.16);
-    setPhoneGone(progress > 0.22);
+    setCopyGone(progress >= 0.15);
+    setPhoneGone(progress >= 0.17);
+    setShineGone(progress >= 0.12);
+    setChromeGone(progress >= 0.88);
     if (pinRef.current) {
-      pinRef.current.style.pointerEvents = progress > 0.9 ? "none" : "auto";
+      pinRef.current.style.pointerEvents = progress > 0.93 ? "none" : "auto";
     }
   });
 
@@ -198,7 +157,7 @@ function CupertinoScrollStory() {
       >
         <motion.div
           className={`cupertino-copy${copyGone ? " is-gone" : ""}`}
-          style={{ y: copyY, opacity: copyOpacity, scale: copyScale }}
+          style={{ y: copyY }}
         >
           <CupertinoCopy />
         </motion.div>
@@ -206,7 +165,7 @@ function CupertinoScrollStory() {
         <div className="cupertino-stage">
           <motion.div
             className={`cupertino-phone-wrap${phoneGone ? " is-gone" : ""}`}
-            style={{ x: phoneX, opacity: phoneOpacity, scale: phoneScale }}
+            style={{ x: phoneX }}
           >
             <CupertinoPhone />
           </motion.div>
@@ -216,34 +175,23 @@ function CupertinoScrollStory() {
             className="cupertino-laptop"
             style={{ x: laptopX, y: laptopY, scale: laptopScale, ...laptopOrigin }}
           >
-            <motion.div style={{ opacity: chromeOpacity }}>
+            <div className={`cupertino-chassis${chromeGone ? " is-gone" : ""}`}>
               <LaptopChassis />
-            </motion.div>
-            <div
-              ref={screenRef}
-              className="cupertino-glass"
-              style={screenStyle}
-              aria-hidden
-            >
-              <motion.div
-                className="cupertino-boot-shift"
-                style={{ y: bootY, opacity: bootOpacity }}
-              >
-                <CupertinoBootUi />
+            </div>
+            <div className="cupertino-glass" style={screenStyle}>
+              <motion.div className="cupertino-reel" style={{ y: reelY }}>
+                <div className="cupertino-frame">
+                  <CupertinoBootUi />
+                </div>
+                <div className="cupertino-frame">
+                  <CupertinoGlassNext />
+                </div>
               </motion.div>
             </div>
-            <motion.div
-              className="cupertino-shine"
-              style={{ opacity: shineOpacity }}
-              aria-hidden
-            />
+            {shineGone ? null : (
+              <div className="cupertino-shine" aria-hidden />
+            )}
           </motion.div>
-        </div>
-
-        <div ref={clipRef} className="cupertino-section-clip" aria-hidden>
-          <div ref={worldRef} className="cupertino-section-world">
-            <CupertinoServicesPreview />
-          </div>
         </div>
       </motion.div>
     </div>
@@ -327,30 +275,26 @@ function CupertinoBootUi() {
   );
 }
 
-function CupertinoServicesPreview() {
+function CupertinoGlassNext() {
   return (
-    <section className="design-services services-cupertino">
-      <div className="design-section-heading">
-        <p className="section-kicker">What we do / 02</p>
-        <h2>
-          Built for speed,
-          <br />
-          clarity, and growth.
-        </h2>
-        <p>
-          From a launch-ready marketing site to a prototype or custom web app.
-          The right platform, thoughtfully built.
-        </p>
-      </div>
-      <div className="service-collection">
-        {services.map((service, index) => (
-          <article key={service.title} className="service-item">
-            <span className="service-number">0{index + 1}</span>
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-          </article>
+    <div className="cupertino-next">
+      <p className="cupertino-next-kicker">What we do / 02</p>
+      <h2 className="cupertino-next-title">
+        Built for speed,
+        <br />
+        clarity, and growth.
+      </h2>
+      <p className="cupertino-next-lede">
+        From a launch-ready marketing site to a prototype or custom web app.
+      </p>
+      <ul className="cupertino-next-list">
+        {services.slice(0, 3).map((service, index) => (
+          <li key={service.title}>
+            <span>0{index + 1}</span>
+            <strong>{service.title}</strong>
+          </li>
         ))}
-      </div>
-    </section>
+      </ul>
+    </div>
   );
 }

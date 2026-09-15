@@ -37,7 +37,11 @@
 
 /* Cupertino: product launch, laptop zoom story, selectable portfolio. */
 [data-theme="cupertino"] .site-header { background: #ffffffdf; backdrop-filter: blur(20px); }
-[data-theme="cupertino"] .site-hero { overflow: visible; min-height: 0; }
+[data-theme="cupertino"] .site-hero {
+  overflow: visible;
+  min-height: 0;
+  z-index: 2;
+}
 .composition-cupertino .design-section-heading { text-align: center; }
 .composition-cupertino .design-section-heading > p:last-child { margin-inline: auto; }
 .services-cupertino .service-collection { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem; }
@@ -1081,13 +1085,13 @@
 .composition-cupertino #contact .relative.max-w-2xl { margin-inline: auto; }
 .composition-cupertino #contact .flex { justify-content: center; }
 
-/* Cupertino scroll story: laptop stays framed, glass stays readable, next section fills the display. */
+/* Cupertino scroll story: sticky pin, opaque glass clip, one slide at a time. */
 [data-theme="cupertino"] .cupertino-story {
-  --cupertino-screen-left: 27.4%;
-  --cupertino-screen-top: 15.6%;
-  --cupertino-screen-width: 45.2%;
-  --cupertino-screen-height: 51.8%;
-  height: 260svh;
+  --cupertino-screen-left: 26.75%;
+  --cupertino-screen-top: 15.3%;
+  --cupertino-screen-width: 46.5%;
+  --cupertino-screen-height: 52.2%;
+  height: 280svh;
   position: relative;
   z-index: 2;
 }
@@ -1193,30 +1197,37 @@
   width: min(52rem, 82vw, calc((100svh - 7rem) * 16 / 9));
   will-change: transform;
 }
+[data-theme="cupertino"] .cupertino-chassis.is-gone {
+  visibility: hidden;
+}
 [data-theme="cupertino"] .cupertino-laptop-photo {
   display: block;
   width: 100%;
   height: auto;
-  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-  -webkit-mask-size: 100% 100%, var(--cupertino-screen-width) var(--cupertino-screen-height);
-  mask-size: 100% 100%, var(--cupertino-screen-width) var(--cupertino-screen-height);
-  -webkit-mask-position: 0 0, left var(--cupertino-screen-left) top var(--cupertino-screen-top);
-  mask-position: 0 0, left var(--cupertino-screen-left) top var(--cupertino-screen-top);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
 }
 [data-theme="cupertino"] .cupertino-glass {
   position: absolute;
   overflow: hidden;
-  border-radius: 1.4% / 2.1%;
-  background: transparent;
+  border-radius: 1.5% / 2.2%;
+  background: #f5f5f7;
+  isolation: isolate;
   container-type: size;
 }
-[data-theme="cupertino"] .cupertino-boot-shift,
-[data-theme="cupertino"] .cupertino-boot {
+[data-theme="cupertino"] .cupertino-reel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200%;
+  will-change: transform;
+}
+[data-theme="cupertino"] .cupertino-frame {
+  flex: 0 0 50%;
+  height: 50%;
+  min-height: 0;
+  overflow: hidden;
+}
+[data-theme="cupertino"] .cupertino-boot,
+[data-theme="cupertino"] .cupertino-next {
   height: 100%;
 }
 [data-theme="cupertino"] .cupertino-boot {
@@ -1326,25 +1337,68 @@
   height: auto;
   filter: drop-shadow(0 18px 24px #0002);
 }
-[data-theme="cupertino"] .cupertino-section-clip {
-  position: absolute;
-  z-index: 2;
-  overflow: hidden;
+[data-theme="cupertino"] .cupertino-next {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   background: #f5f5f7;
-  pointer-events: none;
+  color: #1d1d1f;
+  padding: 6% 7% 7%;
 }
-[data-theme="cupertino"] .cupertino-section-world {
-  position: absolute;
-  top: 0;
-  left: 0;
+[data-theme="cupertino"] .cupertino-next-kicker {
+  margin: 0;
+  font-size: clamp(.4rem, 4.6cqw, .75rem);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #6e6e73;
 }
-[data-theme="cupertino"] .cupertino-section-world .design-services {
-  padding-top: 5.5rem;
+[data-theme="cupertino"] .cupertino-next-title {
+  margin: .4rem 0 0;
+  font: 600 clamp(.75rem, 11cqw, 3rem)/1.06 var(--font-display);
+  letter-spacing: -.045em;
+}
+[data-theme="cupertino"] .cupertino-next-lede {
+  margin: .55rem 0 0;
+  max-width: 36em;
+  font-size: clamp(.42rem, 4.4cqw, 1.05rem);
+  line-height: 1.45;
+  color: #6e6e73;
+}
+[data-theme="cupertino"] .cupertino-next-list {
+  display: grid;
+  gap: .35rem;
+  margin: auto 0 0;
+  padding: 0;
+  list-style: none;
+}
+[data-theme="cupertino"] .cupertino-next-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .55rem;
+  align-items: baseline;
+  border-top: 1px solid #d2d2d7;
+  padding: .45rem 0 0;
+}
+[data-theme="cupertino"] .cupertino-next-list span {
+  font-size: clamp(.4rem, 4.2cqw, .8rem);
+  color: #8b93a4;
+  letter-spacing: -.04em;
+}
+[data-theme="cupertino"] .cupertino-next-list strong {
+  font-size: clamp(.48rem, 5.2cqw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -.03em;
+}
+@container (max-height: 11rem) {
+  [data-theme="cupertino"] .cupertino-next-lede,
+  [data-theme="cupertino"] .cupertino-next-list {
+    display: none;
+  }
 }
 [data-theme="cupertino"] .composition-cupertino .slot-services {
   margin-top: -100svh;
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 [data-theme="cupertino"] .cupertino-work-stage {
   position: relative;
