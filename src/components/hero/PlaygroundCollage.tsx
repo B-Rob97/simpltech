@@ -64,13 +64,13 @@ function PlaygroundPeelStory() {
     offset: ["start start", "end start"],
   });
 
-  const growP = useTransform(scrollYProgress, [0.2, 0.86], [0, 1]);
-  const frameP = useTransform(scrollYProgress, [0.7, 0.96], [1, 0]);
-  const peelRotate = useTransform(scrollYProgress, [0.18, 0.48], [8, -78]);
-  const peelSquash = useTransform(scrollYProgress, [0.7, 0.92], [1, 0]);
-  const noteX = useTransform(scrollYProgress, [0, 0.42], [0, -460]);
-  const noteY = useTransform(scrollYProgress, [0, 0.42], [0, -280]);
-  const noteRotate = useTransform(scrollYProgress, [0, 0.42], [-2.5, -28]);
+  const growP = useTransform(scrollYProgress, [0.16, 0.5], [0, 1]);
+  const frameP = useTransform(scrollYProgress, [0.42, 0.54], [1, 0]);
+  const peelRotate = useTransform(scrollYProgress, [0.14, 0.36], [8, -78]);
+  const peelSquash = useTransform(scrollYProgress, [0.42, 0.52], [1, 0]);
+  const noteX = useTransform(scrollYProgress, [0, 0.28], [0, -460]);
+  const noteY = useTransform(scrollYProgress, [0, 0.28], [0, -280]);
+  const noteRotate = useTransform(scrollYProgress, [0, 0.28], [-2.5, -28]);
   const tapeStretch = useTransform(scrollYProgress, [0, 0.22], [1, 1.55]);
   const tapeX = useTransform(scrollYProgress, [0.16, 0.4], [0, -90]);
   const tapeRotate = useTransform(scrollYProgress, [0.16, 0.4], [-8, -48]);
@@ -86,7 +86,7 @@ function PlaygroundPeelStory() {
   const cueScale = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
-    setNoteLive(value < 0.3);
+    setNoteLive(value < 0.2);
   });
 
   useMotionValueEvent(growP, "change", (value) => {
