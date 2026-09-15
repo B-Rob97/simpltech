@@ -1,0 +1,634 @@
+/* Editorial only. Other themes must not inherit these rules. */
+
+[data-theme="editorial"] {
+  --ed-paper: #f3eadc;
+  --ed-ink: #1c1612;
+  --ed-rule: color-mix(in oklab, var(--foreground) 72%, transparent);
+  --ed-clip-t: 18vh;
+  --ed-clip-r: 6vw;
+  --ed-clip-b: 14vh;
+  --ed-clip-l: 50vw;
+}
+
+[data-theme="editorial"] body {
+  background-color: var(--ed-paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.18'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, color-mix(in oklab, var(--foreground) 5%, var(--background)), var(--background));
+}
+
+[data-theme="editorial"] .site-header {
+  background: color-mix(in oklab, var(--ed-paper) 94%, white);
+  border-bottom: 1px solid var(--ed-ink);
+  backdrop-filter: none;
+}
+
+[data-theme="editorial"] .site-header.border-transparent {
+  border-bottom-color: var(--ed-ink);
+}
+
+[data-theme="editorial"] h2 {
+  font-style: italic;
+}
+
+/* Scroll runway: the cover stays pinned while the plate grows. */
+[data-theme="editorial"] .site-hero:has(.editorial-issue:not(.is-static)) {
+  height: 220vh;
+  min-height: 220vh;
+  overflow: visible;
+  isolation: auto;
+}
+
+[data-theme="editorial"] .editorial-issue {
+  --ed-grow: 0;
+}
+
+[data-theme="editorial"] .editorial-issue:not(.is-static) .editorial-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+[data-theme="editorial"] .editorial-issue.is-static .editorial-stage {
+  position: relative;
+  min-height: 100svh;
+  padding: 7.5rem 1.25rem 4rem;
+}
+
+[data-theme="editorial"] .editorial-issue.is-static .editorial-masthead,
+[data-theme="editorial"] .editorial-issue.is-static .editorial-copy {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: auto;
+  background: none;
+  padding: 0;
+}
+
+[data-theme="editorial"] .editorial-issue.is-static .editorial-copy {
+  margin-top: 2rem;
+  max-width: 36rem;
+}
+
+[data-theme="editorial"] .editorial-issue.is-static .editorial-plate {
+  position: relative;
+  top: auto;
+  right: auto;
+  width: min(34rem, 100%);
+  height: min(64vh, 36rem);
+  margin-top: 2.5rem;
+}
+
+[data-theme="editorial"] .editorial-masthead,
+[data-theme="editorial"] .editorial-copy,
+[data-theme="editorial"] .editorial-cue,
+[data-theme="editorial"] .editorial-action {
+  pointer-events: auto;
+}
+
+[data-theme="editorial"] .editorial-masthead {
+  position: absolute;
+  top: 5.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding-bottom: 0.85rem;
+  z-index: 7;
+}
+
+[data-theme="editorial"] .editorial-wordmark {
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  font-style: italic;
+  line-height: 0.9;
+}
+
+[data-theme="editorial"] .editorial-folio {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+}
+
+[data-theme="editorial"] .editorial-ink-rule {
+  display: block;
+  width: 100%;
+  flex-basis: 100%;
+  height: 1px;
+  background: var(--ed-ink);
+  transform-origin: left center;
+  animation: editorial-ink-rule 1.15s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+}
+
+[data-theme="editorial"] .editorial-copy {
+  position: absolute;
+  left: 1.5rem;
+  top: 10.5rem;
+  width: min(36rem, 46vw);
+  z-index: 7;
+  padding: 0.25rem 1.25rem 1.5rem 0;
+  background: linear-gradient(
+    90deg,
+    var(--ed-paper) 0%,
+    var(--ed-paper) 78%,
+    transparent 100%
+  );
+}
+
+[data-theme="editorial"] .editorial-kicker {
+  font-family: var(--font-display), serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+[data-theme="editorial"] .editorial-headline {
+  margin-top: 1rem;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.4rem, 5vw, 4.6rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+[data-theme="editorial"] .editorial-deck {
+  margin-top: 1.4rem;
+  max-width: 28rem;
+  border-left: 1px solid var(--ed-ink);
+  padding-left: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+[data-theme="editorial"] .editorial-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+[data-theme="editorial"] .editorial-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+[data-theme="editorial"] .editorial-action-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+[data-theme="editorial"] .editorial-action-secondary {
+  border: 1px solid var(--ed-ink);
+}
+
+[data-theme="editorial"] .editorial-plate {
+  position: absolute;
+  top: calc(8.4rem * (1 - var(--ed-grow)));
+  right: calc(1.5rem * (1 - var(--ed-grow)));
+  width: calc(min(40vw, 30rem) + (100vw - min(40vw, 30rem)) * var(--ed-grow));
+  height: calc(min(70vh, 44rem) + (100svh - min(70vh, 44rem)) * var(--ed-grow));
+  z-index: 6;
+  perspective: 1400px;
+  transform: translateZ(0);
+}
+
+[data-theme="editorial"] .editorial-well {
+  position: absolute;
+  inset: calc(1.1rem * (1 - var(--ed-grow)))
+    calc(1rem * (1 - var(--ed-grow)))
+    calc(2.4rem * (1 - var(--ed-grow)));
+  background: transparent;
+}
+
+[data-theme="editorial"] .editorial-crop {
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-color: var(--ed-ink);
+  border-style: solid;
+  animation: editorial-crop-draw 0.9s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+}
+
+[data-theme="editorial"] .editorial-crop-tl {
+  top: -2px;
+  left: -2px;
+  border-width: 1px 0 0 1px;
+}
+
+[data-theme="editorial"] .editorial-crop-tr {
+  top: -2px;
+  right: -2px;
+  border-width: 1px 1px 0 0;
+}
+
+[data-theme="editorial"] .editorial-crop-bl {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 1px 1px;
+}
+
+[data-theme="editorial"] .editorial-crop-br {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 1px 1px 0;
+}
+
+[data-theme="editorial"] .editorial-cover-sheet,
+[data-theme="editorial"] .editorial-issue.is-static .editorial-proof {
+  position: absolute;
+  inset: 0;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+[data-theme="editorial"] .editorial-proof {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  background: var(--ed-paper);
+  box-shadow: 0 18px 50px color-mix(in oklab, var(--ed-ink) 16%, transparent);
+}
+
+[data-theme="editorial"] .editorial-proof-frame {
+  position: absolute;
+  inset: 0 0 2.1rem;
+  overflow: hidden;
+}
+
+[data-theme="editorial"] .editorial-proof-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 40%;
+}
+
+[data-theme="editorial"] .editorial-proof figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0.15rem 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--ed-paper);
+}
+
+[data-theme="editorial"] .editorial-cue {
+  position: absolute;
+  right: 2rem;
+  bottom: 1.4rem;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+[data-theme="editorial"] .editorial-cue-rule {
+  display: block;
+  width: 4.5rem;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: right center;
+  animation: editorial-ink-rule 1.3s cubic-bezier(0.16, 0.84, 0.28, 1) 0.2s both;
+}
+
+/* The next section is cropped to the plate — not faded, printed. */
+[data-theme="editorial"][data-editorial-story="live"] .slot-work {
+  min-height: 100vh;
+}
+
+[data-theme="editorial"][data-editorial-story="live"] .slot-work > #work {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  clip-path: inset(
+    var(--ed-clip-t) var(--ed-clip-r) var(--ed-clip-b) var(--ed-clip-l)
+  );
+}
+
+[data-theme="editorial"] .work-editorial {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-theme="editorial"] .work-editorial .design-section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: end;
+  min-height: 100svh;
+  margin: 0;
+  padding: 5.5rem max(1.5rem, calc((100vw - 70rem) / 2)) 3rem;
+  border: 0;
+  color: var(--ed-paper);
+  background:
+    linear-gradient(180deg, transparent 28%, #1c1612 86%),
+    url("/themes/editorial-essay.webp") center/cover;
+}
+
+[data-theme="editorial"] .work-editorial .section-kicker {
+  color: #f1d2c8;
+}
+
+[data-theme="editorial"] .work-editorial .design-section-heading h2 {
+  max-width: 16ch;
+  color: var(--ed-paper);
+}
+
+[data-theme="editorial"] .work-editorial .design-section-heading > p:last-child {
+  grid-column: 1;
+  max-width: 36rem;
+  color: color-mix(in oklab, var(--ed-paper) 78%, transparent);
+}
+
+[data-theme="editorial"] .work-editorial .design-projects {
+  max-width: 86rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 6rem;
+}
+
+[data-theme="editorial"] .work-editorial .design-project {
+  gap: 3rem;
+  padding-block: 3.5rem;
+}
+
+[data-theme="editorial"] .work-editorial .project-cover {
+  min-height: 28rem;
+  color: #fff8ee;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.9s cubic-bezier(0.16, 0.84, 0.28, 1);
+}
+
+[data-theme="editorial"] .work-editorial .project-cover.cover-0 {
+  background-image:
+    linear-gradient(180deg, transparent 46%, #1c1612d0),
+    url("/themes/editorial-plate-facade.webp");
+}
+
+[data-theme="editorial"] .work-editorial .project-cover.cover-1 {
+  background-image:
+    linear-gradient(180deg, transparent 46%, #1c1612d0),
+    url("/themes/editorial-plate-ink.webp");
+}
+
+[data-theme="editorial"] .work-editorial .project-cover.cover-2 {
+  background-image:
+    linear-gradient(180deg, transparent 46%, #1c1612d0),
+    url("/themes/editorial-atelier.webp");
+}
+
+[data-theme="editorial"] .work-editorial .project-cover.cover-3 {
+  background-image:
+    linear-gradient(180deg, transparent 46%, #1c1612d0),
+    url("/themes/editorial-colonnade.webp");
+}
+
+[data-theme="editorial"] .work-editorial .design-project:hover .project-cover {
+  transform: scale(1.035) translate3d(0, -10px, 0);
+}
+
+[data-theme="editorial"] .work-editorial .cover-symbol {
+  display: none;
+}
+
+[data-theme="editorial"] .work-editorial .cover-folio,
+[data-theme="editorial"] .work-editorial .cover-caption {
+  color: inherit;
+}
+
+/* About: fill the empty watermark void with a studio plate. */
+[data-theme="editorial"] #about {
+  padding-block: 5rem;
+}
+
+[data-theme="editorial"] #about .about-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  column-gap: 4rem;
+  row-gap: 3rem;
+}
+
+[data-theme="editorial"] #about .about-content > :first-child {
+  grid-column: 1;
+}
+
+[data-theme="editorial"] #about .about-story {
+  grid-column: 1;
+}
+
+[data-theme="editorial"] #about .about-beliefs {
+  grid-column: 1 / -1;
+}
+
+[data-theme="editorial"] #about .about-content::after {
+  content: "";
+  grid-column: 2;
+  grid-row: 1 / 3;
+  min-height: 28rem;
+  background:
+    url("/themes/editorial-atelier.webp") center/cover;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ed-ink) 18%, transparent);
+  animation: editorial-plate-settle 1.2s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+}
+
+[data-theme="editorial"] .about-story > div:first-child p::first-letter {
+  float: left;
+  font-size: 5.4rem;
+  line-height: 0.8;
+  margin: 0.1rem 0.55rem 0 0;
+  color: var(--accent);
+  transform-origin: left bottom;
+  animation: editorial-dropcap-ink 1.05s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+}
+
+/* Services: the short heading column gets a still-life plate. */
+[data-theme="editorial"] .services-editorial .design-section-heading::after {
+  content: "";
+  display: block;
+  min-height: 22rem;
+  margin-top: 2rem;
+  background: url("/themes/editorial-plate-ink.webp") center/cover;
+  animation: editorial-plate-settle 1.15s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+}
+
+[data-theme="editorial"] .services-editorial .service-item summary {
+  padding-block: 0.4rem;
+}
+
+[data-theme="editorial"] .services-editorial .service-item[open] .service-toggle {
+  transform: rotate(45deg);
+}
+
+/* Approach: numbered essays, no leftover night-signal timeline chrome. */
+[data-theme="editorial"] #approach .approach-timeline > div[aria-hidden] {
+  display: none;
+}
+
+[data-theme="editorial"] #approach .approach-grid {
+  border-top: 1px solid var(--ed-ink);
+  padding-top: 2rem;
+}
+
+[data-theme="editorial"] #approach .approach-grid > div {
+  border-right: 1px solid var(--border);
+  padding-right: 1.5rem;
+}
+
+[data-theme="editorial"] #approach .approach-grid > div:last-child {
+  border-right: 0;
+}
+
+/* Pricing: kill the empty "Pack" label slots. */
+[data-theme="editorial"] .pricing-packages article > p.text-transparent {
+  display: none;
+}
+
+[data-theme="editorial"] .pricing-packages {
+  border-top: 1px solid var(--ed-ink);
+}
+
+[data-theme="editorial"] .pricing-packages article {
+  background: transparent;
+}
+
+/* Contact: colonnade plate instead of a leftover night wash. */
+[data-theme="editorial"] #contact .relative.overflow-hidden {
+  min-height: 28rem;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, #f3eadcf2 0%, #f3eadcd4 42%, #f3eadc66 100%),
+    url("/themes/editorial-colonnade.webp") center/cover;
+  padding-block: 5rem;
+}
+
+[data-theme="editorial"] footer {
+  border-top: 1px solid var(--ed-ink);
+  padding-top: 1.75rem;
+}
+
+@keyframes editorial-ink-rule {
+  from {
+    transform: scaleX(0) translateY(2px);
+  }
+
+  62% {
+    transform: scaleX(1.03) translateY(0);
+  }
+
+  to {
+    transform: scaleX(1) translateY(0);
+  }
+}
+
+@keyframes editorial-crop-draw {
+  from {
+    width: 0;
+    height: 0;
+  }
+
+  to {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+
+@keyframes editorial-dropcap-ink {
+  from {
+    transform: translateY(0.4em) scaleY(0.35);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes editorial-plate-settle {
+  from {
+    clip-path: inset(12% 0 0 0);
+    transform: translate3d(0, 28px, 0);
+  }
+
+  to {
+    clip-path: inset(0);
+    transform: none;
+  }
+}
+
+@media (max-width: 767px) {
+  [data-theme="editorial"] .editorial-copy {
+    top: 9.4rem;
+    width: calc(100% - 2.5rem);
+    background: var(--ed-paper);
+  }
+
+  [data-theme="editorial"] .editorial-plate {
+    top: calc(56vh * (1 - var(--ed-grow)));
+    left: calc(1.25rem * (1 - var(--ed-grow)));
+    right: calc(1.25rem * (1 - var(--ed-grow)));
+    width: auto;
+    height: calc(38vh + (100svh - 38vh) * var(--ed-grow));
+  }
+
+  [data-theme="editorial"] #about .about-content {
+    display: block;
+  }
+
+  [data-theme="editorial"] #about .about-content::after {
+    display: block;
+    min-height: 18rem;
+    margin-top: 2rem;
+  }
+
+  [data-theme="editorial"] .services-editorial .design-section-heading::after {
+    min-height: 14rem;
+  }
+
+  [data-theme="editorial"] #approach .approach-grid > div {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 0 0 1.5rem;
+  }
+
+  [data-theme="editorial"] .work-editorial .design-section-heading {
+    padding: 5rem 1.25rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="editorial"] .editorial-ink-rule,
+  [data-theme="editorial"] .editorial-crop,
+  [data-theme="editorial"] .editorial-cue-rule,
+  [data-theme="editorial"] .about-story > div:first-child p::first-letter,
+  [data-theme="editorial"] #about .about-content::after,
+  [data-theme="editorial"] .services-editorial .design-section-heading::after {
+    animation: none;
+  }
+
+  [data-theme="editorial"] .work-editorial .design-project:hover .project-cover {
+    transform: none;
+  }
+}

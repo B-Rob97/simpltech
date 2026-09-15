@@ -12,6 +12,7 @@ import {
 } from "@/lib/themes";
 import "./globals.css";
 import "./theme-layouts.css";
+import "./editorial-theme.css";
 import "./mission-control.css";
 
 const unbounded = localFont({

@@ -19,6 +19,7 @@ import {
   ProductWindowMark,
   SwissPosterMark,
 } from "@/components/hero/HeroMarks";
+import { EditorialIssue } from "@/components/hero/EditorialIssue";
 import { HeroCity, HeroSky } from "@/components/HeroScene";
 import { useTheme } from "@/components/ThemeProvider";
 import { siteConfig } from "@/lib/site";
@@ -39,7 +40,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "cupertino":
       return <CupertinoLayout />;
     case "editorial":
-      return <EditorialLayout />;
+      return <EditorialIssue sectionRef={sectionRef} />;
     case "swiss":
       return <SwissLayout />;
     case "soft-product":
@@ -177,38 +178,6 @@ function CupertinoLayout() {
       <HeroActions className="mt-8 flex flex-wrap items-center justify-center gap-3" />
       <div className="mt-10 w-full max-w-xl sm:mt-12">
         <LaptopMark />
-      </div>
-    </div>
-  );
-}
-
-function EditorialLayout() {
-  return (
-    <div className="editorial-cover relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
-      <div className="flex items-end justify-between gap-6 border-b border-foreground pb-3">
-        <p className="font-[family-name:var(--font-display)] text-2xl italic leading-none sm:text-4xl">
-          {siteConfig.name}
-        </p>
-        <p className="text-[11px] uppercase tracking-[0.22em] text-foreground/55">
-          {siteConfig.location} · Vol. 01
-        </p>
-      </div>
-      <div className="mt-10 grid items-start gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.8fr)] md:gap-16">
-        <div>
-          <p className="font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.2em] text-[color:var(--accent)]">
-            Cover story
-          </p>
-          <HeroCopy
-            className="mt-5"
-            headingClassName="font-[family-name:var(--font-display)] text-[clamp(2.2rem,5vw,4.2rem)] font-medium italic leading-[1.05] text-foreground"
-            bodyClassName="mt-6 max-w-lg border-l border-foreground pl-5 text-base leading-relaxed text-foreground/75"
-          />
-          <HeroActions />
-        </div>
-        <figure className="editorial-photograph">
-          <Image src="/themes/editorial-architecture.webp" alt="Sculptural stone staircase framed by dramatic gallery light" width={1200} height={1499} sizes="(max-width: 767px) 100vw, 48vw" preload />
-          <figcaption>01 — A different perspective. <span>Form / Function</span></figcaption>
-        </figure>
       </div>
     </div>
   );

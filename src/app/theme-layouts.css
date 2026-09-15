@@ -57,13 +57,7 @@
 .composition-cupertino .pricing-packages { border: 0; gap: 1rem; }
 .composition-cupertino .pricing-packages article { padding: 2rem; border: 0; border-radius: 1.8rem; background: white; }
 
-/* Editorial: asymmetric photographic cover, alternating magazine spreads. */
-.composition-editorial .editorial-cover { max-width: 86rem; }
-.editorial-cover > div:nth-child(2) { grid-template-columns: 1.1fr 1fr; align-items: center; }
-.editorial-cover h1 { font-size: clamp(3rem, 5.4vw, 6rem); letter-spacing: -.05em; }
-.editorial-photograph { position: relative; margin: 0; }
-.editorial-photograph img { width: 100%; height: min(70vh, 48rem); object-fit: cover; }
-.editorial-photograph figcaption { display: flex; justify-content: space-between; gap: 1rem; font: .65rem var(--font-body); text-transform: uppercase; letter-spacing: .1em; margin-top: .8rem; }
+/* Editorial hero/scroll-story lives in editorial-theme.css. Magazine work spreads stay here. */
 .work-editorial .design-section-heading { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem 3rem; border-block: 1px solid; padding-block: 2rem; }
 .work-editorial .design-section-heading > p:last-child { grid-column: 2; }
 .work-editorial .design-projects { display: block; }
@@ -291,9 +285,7 @@
   .design-work, .design-services { padding: 3.5rem 1.25rem; }
   .design-projects, .service-collection { grid-template-columns: 1fr; gap: 2rem; }
   .project-cover { min-height: 17rem; }
-  .editorial-cover > div:nth-child(2), .services-editorial, .services-warm-craft, .services-swiss { display: block; }
-  .editorial-photograph { margin-top: 2rem; }
-  .editorial-photograph img { height: 26rem; }
+  .services-editorial, .services-warm-craft, .services-swiss { display: block; }
   .work-editorial .design-section-heading { display: block; }
   .work-editorial .design-project, .work-editorial .design-project:nth-child(even) { display: flex; flex-direction: column; align-items: stretch; gap: .5rem; }
   .work-editorial .design-project:nth-child(even) .project-cover { order: 0; }
