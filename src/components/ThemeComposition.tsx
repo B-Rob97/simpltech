@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import MissionControl from "@/components/mission/MissionControl";
+import { SoftProductWorkspace } from "@/components/soft-product/SoftProductWorkspace";
 import { useTheme } from "@/components/ThemeProvider";
 import type { ThemeId } from "@/lib/themes";
-import MissionControl from "@/components/mission/MissionControl";
 
 type Section = "work" | "services" | "approach" | "about" | "pricing" | "contact";
 const sequences: Record<ThemeId, Section[]> = {
@@ -31,6 +32,22 @@ export function ThemeComposition({ hero, sections }: { hero: ReactNode; sections
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [theme.id]);
   if (theme.id === "mission-control") return <MissionControl />;
+  if (theme.id === "soft-product") {
+    return (
+      <div className="theme-composition composition-soft-product">
+        <SoftProductWorkspace services={sections.services} />
+        <div className="theme-sections">
+          {sequences["soft-product"]
+            .filter((id) => id !== "services")
+            .map((id) => (
+              <div className={`theme-section-slot slot-${id}`} key={id}>
+                {sections[id]}
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  }
   return <div className={`theme-composition composition-${theme.id}`}>
     {hero}
     <div className="theme-sections">

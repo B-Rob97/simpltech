@@ -34,7 +34,14 @@ export function ThemeWordmark({ className = "" }: ThemeWordmarkProps) {
         </span>
       );
     case "soft-product":
-      return <span className={className}>{name}</span>;
+      return (
+        <span className={`${className} soft-product-wordmark`}>
+          <span className="soft-product-app-mark" aria-hidden>
+            <span />
+          </span>
+          {name}
+        </span>
+      );
     case "brutalist":
       return (
         <span className={`${className} uppercase tracking-[0.08em]`}>

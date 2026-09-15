@@ -16,7 +16,6 @@ import {
   NeonTicketMark,
   NewsHalftoneMark,
   PlayCollageMark,
-  ProductWindowMark,
   SwissPosterMark,
 } from "@/components/hero/HeroMarks";
 import { HeroCity, HeroSky } from "@/components/HeroScene";
@@ -239,24 +238,8 @@ function SwissLayout() {
 }
 
 function SoftProductLayout() {
-  return (
-    <div className="relative z-10 mx-auto grid min-h-[100svh] max-w-[var(--content-max)] items-center gap-10 px-5 pb-16 pt-28 sm:px-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-      <div>
-        <p className="inline-flex rounded-full border border-foreground/10 bg-elevated px-3 py-1 text-xs font-medium text-foreground/55">
-          Product studio
-        </p>
-        <HeroCopy
-          className="mt-6"
-          headingClassName="font-[family-name:var(--font-display)] text-[clamp(2rem,4.4vw,3.6rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-foreground"
-          bodyClassName="mt-5 max-w-md text-base leading-relaxed text-foreground/65"
-        />
-        <HeroActions />
-      </div>
-      <div className="hero-product-window">
-        <ProductWindowMark />
-      </div>
-    </div>
-  );
+  // Workspace pin and live dashboard live in SoftProductWorkspace.
+  return null;
 }
 
 function BrutalistLayout() {

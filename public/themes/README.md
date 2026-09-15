@@ -12,6 +12,18 @@ Prompt: Cinematic fine-art space photograph, landscape 3:2, for a premium digita
 
 Prompt: Create a photorealistic editorial photograph for a boutique digital design studio website. Landscape 3:2 composition, an intimate sunlit creative workspace: natural oak desk with an open unbranded silver laptop viewed obliquely with a blank dark screen, a hand-thrown terracotta vase with sparse branch, large sheets of ivory paper, pencil, linen curtain and warm plaster wall. Strong late-afternoon sunlight from left, tactile materials, quiet lived-in artistry, film grain, premium architectural magazine photography, terracotta and honey palette, no people, no text, no logos. This is a full-bleed standalone photograph, not a website mockup.
 
+## soft-product-studio.webp
+
+Portrait 3:4 product-studio still life. Cool daylight, unbranded laptop with a soft lavender interface glow, ceramic cup, notebook, trailing plant. Conceptual, not a SimplTech office.
+
+## soft-product-windows.webp
+
+Landscape 16:9 floating frosted-glass application windows. Abstract indigo/mint UI blocks only — no readable product data.
+
+## soft-product-schedule.webp
+
+Portrait 3:4 booking card UI: weekday strip, indigo appointment blocks, mint confirm control. Used as contact imagery. No logos or prices.
+
 ## editorial-architecture.webp
 
 Prompt: Photorealistic architectural editorial photograph for a contemporary design magazine website, portrait 4:5. Monumental pale travertine curved staircase in a minimalist gallery, circular skylight, dramatic geometric sunlight and deep soft shadows, a small sculptural black chair at bottom right for scale. Restrained cream, charcoal and stone palette. Shot on medium format, refined, tactile, quiet, striking composition. No text, no logos, no people, no website mockup. Full bleed photograph.
