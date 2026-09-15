@@ -173,8 +173,31 @@
 .composition-warm-craft .pricing-packages article { background: #fffaf0; padding: 2rem; border: 1px solid #d4c2a7; }
 
 /* Neon Club: alley walk-in. Ticket scans, doorway grows, lineup shows through the door. */
+@property --neon-p {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --neon-scan {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --neon-stamp {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --neon-door {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 [data-theme="neon-club"] .site-hero {
-  min-height: 240svh;
+  isolation: auto;
+  z-index: 2;
+  min-height: 220svh;
   background: transparent;
 }
 [data-theme="neon-club"] .site-header {
@@ -193,9 +216,13 @@
   min-height: 100svh;
 }
 .neon-club-stage {
+  --neon-p: 0;
+  --neon-scan: 0;
+  --neon-stamp: 0;
+  --neon-door: 0;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   height: 100svh;
   overflow: hidden;
 }
@@ -213,14 +240,74 @@
 .neon-club-veil {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
   background:
     radial-gradient(ellipse at 70% 30%, #bd0bc733, transparent 60%),
     repeating-linear-gradient(0deg, transparent 0 4px, #ffffff03 4px 5px);
+  -webkit-mask-image: radial-gradient(
+    ellipse calc(16% + var(--neon-door) * 180%) calc(24% + var(--neon-door) * 180%) at 78% 54%,
+    transparent 0%,
+    transparent 97%,
+    #000 99%
+  );
+  mask-image: radial-gradient(
+    ellipse calc(16% + var(--neon-door) * 180%) calc(24% + var(--neon-door) * 180%) at 78% 54%,
+    transparent 0%,
+    transparent 97%,
+    #000 99%
+  );
+}
+.neon-club-stage.is-static .neon-club-veil {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.neon-club-stage.is-static .neon-club-alley,
+.neon-club-stage.is-static .neon-club-bill {
+  transform: none;
+}
+.neon-club-stage.is-static .neon-door-anchor {
+  transform: translate(-50%, -50%) scale(1);
+}
+.neon-club-stage.is-inside {
+  pointer-events: none;
+}
+.neon-club-stage.is-inside .neon-motion-toggle,
+.neon-club-stage.is-inside .neon-led-bar,
+.neon-club-stage.is-inside .neon-scroll-cue,
+.neon-club-stage.is-inside .neon-door-anchor {
+  visibility: hidden;
+}
+.neon-club-interior {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.neon-club-interior-photo {
+  object-fit: cover;
+}
+.neon-interior-bill {
+  position: absolute;
+  left: 78%;
+  top: 54%;
+  width: 9ch;
+  margin: 0;
+  font: 700 clamp(1.2rem, 3.2vw, 2.4rem)/0.9 var(--font-unbounded), sans-serif;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--foreground);
+  text-shadow: 0 0 18px var(--accent);
+  transform: translate(-50%, -50%);
+}
+.neon-club-stage.is-static .neon-club-interior {
+  display: none;
 }
 .neon-club-alley {
   position: absolute;
   inset: 0;
+  transform: scale(calc(1 + var(--neon-door) * 0.85));
+  transform-origin: 78% 52%;
 }
 .neon-club-alley-photo {
   object-fit: cover;
@@ -242,6 +329,7 @@
   position: relative;
   z-index: 3;
   pointer-events: auto;
+  transform: translate(calc(var(--neon-door) * -72px), calc(var(--neon-door) * -150px));
   display: grid;
   width: min(90rem, calc(100% - 2.5rem));
   margin: 0 auto;
@@ -250,9 +338,10 @@
 }
 @media (min-width: 768px) {
   .neon-club-bill {
-    grid-template-columns: minmax(0, 1fr) 220px;
+    grid-template-columns: minmax(0, 1fr) 200px;
     align-items: end;
-    width: min(90rem, calc(100% - 4rem));
+    width: min(46rem, 54%);
+    margin-left: max(1.25rem, calc((100% - 90rem) / 2 + 2rem));
   }
 }
 .neon-club-copy {
@@ -288,6 +377,7 @@
   background: linear-gradient(90deg, transparent, #2de2e6, transparent);
   box-shadow: 0 0 18px #2de2e6, 0 0 36px #2de2e688;
   pointer-events: none;
+  transform: translateX(calc(var(--neon-scan) * 240% - 16%));
 }
 .neon-admit-stamp {
   position: absolute;
@@ -298,6 +388,7 @@
   color: var(--accent);
   font: 700 1.05rem/1 var(--font-unbounded), sans-serif;
   letter-spacing: 0.14em;
+  transform: rotate(-10deg) scale(calc(var(--neon-stamp) * 1.12));
   transform-origin: center;
   box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 55%, transparent);
   pointer-events: none;
@@ -320,13 +411,15 @@
   background: linear-gradient(90deg, #3a1020, #ff2bd6, #3a1020);
   box-shadow: 0 0 12px #ff2bd6;
 }
+.neon-rope-left { transform: translateX(calc(var(--neon-door) * -88px)); }
+.neon-rope-right { transform: translateX(calc(var(--neon-door) * 88px)); }
 .neon-door-anchor {
   position: absolute;
   left: 78%;
   top: 52%;
   z-index: 4;
   width: min(16rem, 38vw);
-  translate: -50% -50%;
+  transform: translate(-50%, -50%) scale(calc(0.4 + var(--neon-door) * 2.7));
   pointer-events: none;
 }
 .neon-door-frame {
@@ -372,6 +465,8 @@
 .neon-led {
   grid-area: 1 / 1;
 }
+.neon-led-scan { transform: scale(calc(1 - var(--neon-stamp))); }
+.neon-led-in { transform: scale(var(--neon-stamp)); }
 .neon-scroll-cue {
   position: absolute;
   bottom: 1.4rem;
@@ -382,7 +477,8 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--foreground);
-  transform: translateX(-50%);
+  transform: translate(-50%, calc(var(--neon-scan) * 36px));
+  clip-path: inset(0 0 calc(var(--neon-scan) * 100%) 0);
 }
 .neon-scroll-cue::after {
   content: "";
@@ -402,6 +498,7 @@
 .work-neon-club {
   max-width: 90rem;
   min-height: 100svh;
+  scroll-margin-top: 6rem;
   background:
     linear-gradient(180deg, #140018d6 0%, #140018f0 38%, #140018 100%),
     url("/themes/neon-club-floor.webp") center top / cover no-repeat;
@@ -729,7 +826,24 @@
   .neon-door-anchor { width: 9.5rem; }
   .neon-led-bar { top: 4.85rem; }
   .neon-rope-row { width: 42vw; bottom: 8%; }
-  [data-theme="neon-club"] .site-hero { min-height: 210svh; }
+  [data-theme="neon-club"] .site-hero { min-height: 200svh; }
+  .composition-neon-club .theme-sections { margin-top: -100svh; }
+  .neon-club-veil {
+    -webkit-mask-image: radial-gradient(
+      ellipse calc(12% + var(--neon-door) * 200%) calc(16% + var(--neon-door) * 200%) at 88% 30%,
+      transparent 0%,
+      transparent 97%,
+      #000 99%
+    );
+    mask-image: radial-gradient(
+      ellipse calc(12% + var(--neon-door) * 200%) calc(16% + var(--neon-door) * 200%) at 88% 30%,
+      transparent 0%,
+      transparent 97%,
+      #000 99%
+    );
+  }
+  .neon-door-anchor { left: 88%; top: 30%; width: 6.2rem; }
+  .neon-club-bill { width: calc(100% - 2.5rem); margin-left: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

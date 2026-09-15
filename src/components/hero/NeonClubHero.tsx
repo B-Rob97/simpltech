@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  motion,
-  useMotionTemplate,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { useState, type RefObject } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { NeonSignMark, NeonTicketMark } from "@/components/hero/HeroMarks";
 
@@ -49,6 +43,14 @@ function NeonClubStatic() {
   );
 }
 
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function progressBetween(progress: number, start: number, end: number) {
+  return clamp01((progress - start) / (end - start));
+}
+
 function NeonClubStory({
   sectionRef,
   paused,
@@ -58,33 +60,54 @@ function NeonClubStory({
   paused: boolean;
   onTogglePaused: () => void;
 }) {
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  const alleyScale = useTransform(scrollYProgress, [0.3, 1], [1, 1.82]);
-  const billX = useTransform(scrollYProgress, [0.2, 0.48], [0, -72]);
-  const billY = useTransform(scrollYProgress, [0.2, 0.48], [0, -140]);
-  const scanX = useTransform(scrollYProgress, [0.02, 0.2], ["-8%", "112%"]);
-  const stampScale = useTransform(scrollYProgress, [0.16, 0.24, 0.32], [0, 1.28, 1]);
-  const stampRotate = useTransform(scrollYProgress, [0.16, 0.32], [-28, -9]);
-  const scanLed = useTransform(scrollYProgress, [0.14, 0.22], [1, 0]);
-  const inLed = useTransform(scrollYProgress, [0.18, 0.26], [0, 1]);
-  const rope = useTransform(scrollYProgress, [0.28, 0.5], [0, 92]);
-  const ropeLeft = useTransform(rope, (value) => -value);
-  const holeW = useTransform(scrollYProgress, [0.32, 1], [15, 180]);
-  const holeH = useTransform(scrollYProgress, [0.32, 1], [28, 180]);
-  const frameScale = useTransform(scrollYProgress, [0.32, 1], [0.42, 3.1]);
-  const veilMask = useMotionTemplate`radial-gradient(ellipse ${holeW}% ${holeH}% at 78% 52%, transparent 0%, transparent 98%, #000 99%)`;
+  useEffect(() => {
+    const hero = sectionRef.current;
+    const stage = stageRef.current;
+    if (!hero || !stage) return;
+
+    let frame = 0;
+    const apply = () => {
+      const travel = Math.max(1, hero.offsetHeight - window.innerHeight);
+      const progress = clamp01(-hero.getBoundingClientRect().top / travel);
+      const door = progressBetween(progress, 0.24, 0.92);
+      stage.style.setProperty("--neon-p", progress.toFixed(4));
+      stage.style.setProperty("--neon-scan", progressBetween(progress, 0.02, 0.2).toFixed(4));
+      stage.style.setProperty("--neon-stamp", progressBetween(progress, 0.14, 0.28).toFixed(4));
+      stage.style.setProperty("--neon-door", door.toFixed(4));
+      stage.classList.toggle("is-inside", door > 0.82);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(apply);
+    };
+
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [sectionRef]);
 
   return (
-    <div className={`neon-club-stage ${paused ? "is-paused" : ""}`}>
-      <motion.div className="neon-club-veil" style={{ maskImage: veilMask, WebkitMaskImage: veilMask }}>
-        <motion.div
-          className="neon-club-alley"
-          style={{ scale: alleyScale, transformOrigin: "78% 52%" }}
-        >
+    <div ref={stageRef} className={`neon-club-stage ${paused ? "is-paused" : ""}`}>
+      <div className="neon-club-interior" aria-hidden="true">
+        <Image
+          src="/themes/neon-club-floor.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="neon-club-interior-photo"
+        />
+        <p className="neon-interior-bill">Tonight&apos;s bill</p>
+      </div>
+      <div className="neon-club-veil">
+        <div className="neon-club-alley">
           <Image
             src="/themes/neon-club-poster.webp"
             alt="Wet alley at night, wheat-pasted posters and a club doorway lit in magenta and cyan neon"
@@ -93,48 +116,36 @@ function NeonClubStory({
             preload
             className="neon-club-alley-photo"
           />
-        </motion.div>
+        </div>
         <div className={`neon-tunnel ${paused ? "is-paused" : ""}`} aria-hidden="true">
           {[0, 1, 2, 3, 4].map((frame) => (
             <span key={frame} style={{ animationDelay: `${frame * -1.6}s` }} />
           ))}
         </div>
         <div className="neon-scanlines" aria-hidden="true" />
-        <motion.div className="neon-club-bill" style={{ x: billX, y: billY }}>
+        <div className="neon-club-bill">
           <NeonClubCopy />
           <div className="neon-ticket-stage">
             <NeonTicketMark />
-            <motion.span className="neon-scan-beam" style={{ x: scanX }} aria-hidden />
-            <motion.span
-              className="neon-admit-stamp"
-              style={{ scale: stampScale, rotate: stampRotate }}
-              aria-hidden
-            >
+            <span className="neon-scan-beam" aria-hidden />
+            <span className="neon-admit-stamp" aria-hidden>
               ADMITTED
-            </motion.span>
+            </span>
           </div>
-        </motion.div>
-        <div className="neon-rope-row" aria-hidden="true">
-          <motion.span className="neon-rope neon-rope-left" style={{ x: ropeLeft }} />
-          <motion.span className="neon-rope neon-rope-right" style={{ x: rope }} />
         </div>
-      </motion.div>
+        <div className="neon-rope-row" aria-hidden="true">
+          <span className="neon-rope neon-rope-left" />
+          <span className="neon-rope neon-rope-right" />
+        </div>
+      </div>
 
-      <motion.div
-        className="neon-door-anchor"
-        style={{ scale: frameScale }}
-        aria-hidden
-      >
+      <div className="neon-door-anchor" aria-hidden>
         <NeonDoorFrame />
-      </motion.div>
+      </div>
 
       <div className="neon-led-bar" aria-hidden="true">
-        <motion.span className="neon-led neon-led-scan" style={{ scale: scanLed }}>
-          SCAN TICKET
-        </motion.span>
-        <motion.span className="neon-led neon-led-in" style={{ scale: inLed }}>
-          ADMITTED · ROOM 02
-        </motion.span>
+        <span className="neon-led neon-led-scan">SCAN TICKET</span>
+        <span className="neon-led neon-led-in">ADMITTED · ROOM 02</span>
       </div>
 
       <button
