@@ -50,8 +50,8 @@
   --heading-tracking: -0.055em;
   --label-tracking: 0.22em;
   --hero-mark-size: clamp(4.4rem, 16vw, 11rem);
-  --motion-duration: 0.2s;
-  --motion-ease: linear;
+  --motion-duration: 0.7s;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --font-display: var(--font-grotesque);
   --font-body: var(--font-grotesque);
 }

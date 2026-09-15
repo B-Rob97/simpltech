@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { CupertinoWork } from "@/components/cupertino/CupertinoWork";
 import { projects, type Project } from "@/lib/projects";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -25,21 +25,15 @@ function ProjectCover({ project, index }: { project: Project; index: number }) {
 
 export function ThemeWork() {
   const { theme } = useTheme();
-  const [selected, setSelected] = useState(0);
-  const showcase = theme.id === "cupertino";
+  if (theme.id === "cupertino") return <CupertinoWork />;
   return <section id="work" className={`design-work work-${theme.id}`}>
     <div className="design-section-heading"><p className="section-kicker">Selected work / 01</p><h2>Products and brands<br />we&apos;ve shipped.</h2><p>A sample of client work and internal platforms — from storefronts to operations software.</p></div>
-    {showcase ? <>
-      <div className="showcase-picker" role="group" aria-label="Choose a project">
-        {projects.map((project, index) => <button key={project.id} aria-pressed={selected === index} onClick={() => setSelected(index)}>{project.name}</button>)}
-      </div>
-      <article className="showcase-project"><ProjectCover project={projects[selected]} index={selected} /><div><ProjectDetails project={projects[selected]} /></div></article>
-    </> : <div className="design-projects">
+    <div className="design-projects">
       {projects.map((project, index) => <article className="design-project" key={project.id}>
         <span className="project-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         <ProjectCover project={project} index={index} />
         <div className="project-details"><ProjectDetails project={project} /></div>
       </article>)}
-    </div>}
+    </div>
   </section>;
 }
