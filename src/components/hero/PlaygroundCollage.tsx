@@ -233,7 +233,7 @@ function Polaroid({ peel }: { peel?: ReactNode }) {
       <div className="playground-polaroid-well">
         <Image
           src="/themes/playground-snapshot.webp"
-          alt="Snapshot of torn color paper, washi tape, and stickers"
+          alt="Instant photo of a red playground slide on green turf under a blue sky"
           fill
           sizes="(min-width: 768px) 30vw, 68vw"
           className="object-cover"

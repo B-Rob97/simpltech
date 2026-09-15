@@ -140,7 +140,7 @@ Regenerated without Polaroid frames so the hero Polaroid is the only snapshot ob
 
 ## playground-snapshot.webp
 
-Portrait 3:4 photograph that fills the Polaroid well — torn paper scraps, washi tape, star, smile, bolt, and burst stickers. No empty frame. Converted to WebP with Sharp (864 × 1152).
+Portrait 3:4 instant-film photograph that fills the Polaroid well — a real cherry-red spiral slide, yellow spring rider, green turf, and cobalt sky. Not a paper collage, so it reads against the sticker wall. No Polaroid border (the UI draws the frame), no text, no logos. Converted to WebP with Sharp (864 × 1152).
 
 ## playground-star-sticker.webp
 ## playground-smile-sticker.webp

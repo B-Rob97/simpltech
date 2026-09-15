@@ -162,11 +162,11 @@
   --punch-p: 0;
   --frame-p: 1;
   --hole-p: clamp(0, calc((var(--punch-p) - 0.72) / 0.22), 1);
-  --header-clear: 5.7rem;
-  --start-x: 18%;
-  --start-y: 5.7rem;
-  --start-w: 64%;
-  --start-h: min(16.25rem, 33svh);
+  --header-clear: 6.35rem;
+  --start-x: 22%;
+  --start-y: 6.35rem;
+  --start-w: 56%;
+  --start-h: min(12.75rem, 27svh);
   --pola-x: calc(var(--start-x) * (1 - var(--punch-p)));
   --pola-y: calc(var(--start-y) * (1 - var(--punch-p)));
   --pola-w: calc(var(--start-w) + (100% - var(--start-w)) * var(--punch-p));
@@ -176,12 +176,19 @@
 @media (min-width: 768px) {
   .playground-sticky,
   .playground-static {
-    --header-clear: 7.5rem;
-    --start-x: 56%;
-    --start-y: 7.5rem;
-    --start-w: min(22.5rem, 30vw);
-    --start-h: min(28rem, calc(100svh - 9.8rem));
+    --header-clear: 8.25rem;
+    --start-x: 63%;
+    --start-y: 8.25rem;
+    --start-w: min(20rem, 26vw);
+    --start-h: min(25.5rem, calc(100svh - 11rem));
   }
+}
+
+[data-theme="playground"] .site-hero > .playground-pin,
+[data-theme="playground"] .site-hero > .playground-static,
+[data-theme="playground"] .composition-playground .site-hero > div {
+  max-width: none;
+  width: 100%;
 }
 
 .playground-static {
@@ -250,12 +257,14 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 22% 28%, #ff4d1c 0 26%, transparent 27%),
-    radial-gradient(circle at 74% 22%, #2f6bff 0 20%, transparent 21%),
-    radial-gradient(circle at 62% 72%, #d9f263 0 28%, transparent 29%),
-    #ffb8d4;
+  background: #0b3d8c;
+  box-shadow: inset 0 0 0 1px rgb(23 19 10 / 0.18);
   opacity: calc(1 - var(--hole-p));
+}
+
+.playground-polaroid-well img {
+  object-fit: cover;
+  object-position: 50% 42%;
 }
 
 .playground-polaroid-caption {
@@ -292,11 +301,11 @@
   left: 1.1rem;
   right: 1.1rem;
   top: auto;
-  bottom: 4.8rem;
+  bottom: 1.55rem;
   z-index: 5;
   width: auto;
-  max-height: calc(100svh - var(--header-clear) - var(--start-h) - 3.2rem);
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
   padding: 1.15rem 1.15rem 1.05rem;
   border: 3px solid var(--playground-ink);
   border-radius: 1.8rem;
@@ -315,8 +324,8 @@
     right: auto;
     top: var(--header-clear);
     bottom: auto;
-    width: min(32rem, 42vw);
-    max-height: calc(100svh - var(--header-clear) - 2rem);
+    width: min(30rem, 38vw);
+    max-height: none;
     padding: 2rem 1.8rem 1.7rem;
   }
 }
@@ -406,9 +415,10 @@
 
 @media (min-width: 768px) {
   .playground-sticker-smile {
-    top: calc(var(--header-clear) - 0.15rem);
-    left: 46%;
-    right: auto;
+    top: auto;
+    bottom: 20%;
+    left: auto;
+    right: 34%;
   }
 
   .playground-sticker-bolt {
