@@ -18,10 +18,10 @@ import { CupertinoHero } from "@/components/cupertino/CupertinoHero";
 import { BrutalistHero } from "@/components/hero/BrutalistHero";
 import { EditorialIssue } from "@/components/hero/EditorialIssue";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
-import { PlayCollageMark } from "@/components/hero/HeroMarks";
 import { NeonClubHero } from "@/components/hero/NeonClubHero";
 import { NewsprintHero } from "@/components/hero/NewsprintHero";
 import { NightSignalHero } from "@/components/hero/NightSignalHero";
+import { PlaygroundCollage } from "@/components/hero/PlaygroundCollage";
 import { SwissRegister } from "@/components/hero/SwissRegister";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -165,18 +165,5 @@ function WarmCraftLayout({
 }
 
 function PlaygroundLayout() {
-  return (
-    <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[var(--content-max)] flex-col justify-center px-5 pb-16 pt-28 sm:px-8">
-      <div className="relative">
-        <PlayCollageMark />
-        <div className="relative z-10 -mt-8 max-w-xl rounded-[1.6rem] border-[3px] border-foreground bg-elevated p-6 sm:-mt-16 sm:p-8">
-          <HeroCopy
-            headingClassName="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-tight text-foreground"
-            bodyClassName="mt-4 text-base leading-relaxed text-foreground/70"
-          />
-          <HeroActions />
-        </div>
-      </div>
-    </div>
-  );
+  return <PlaygroundCollage />;
 }

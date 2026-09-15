@@ -985,7 +985,7 @@
 /* Newsprint layout lives in newsprint.css so this look can be polished in isolation. */
 
 /* Playground: a colorful wall of posters, irregular silhouettes and offset cards. */
-.composition-playground .site-hero { background: #c5bcfa; }
+.composition-playground .site-hero { background: transparent; }
 .composition-playground .site-hero > div { max-width: 86rem; }
 .composition-playground .design-section-heading h2 { font-size: clamp(3rem, 6vw, 6rem); }
 .work-playground .design-projects { gap: 4rem 2.5rem; }

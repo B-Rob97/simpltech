@@ -68,7 +68,7 @@ export function ThemeWordmark({ className = "" }: ThemeWordmarkProps) {
         </span>
       );
     case "playground":
-      return <span className={`${className} lowercase`}>{name}</span>;
+      return <span className={`${className} playground-wordmark lowercase`}>{name}</span>;
     default: {
       const _exhaustive: never = theme.id;
       return _exhaustive;

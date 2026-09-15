@@ -98,6 +98,18 @@ Generated with the built-in imagegen tool and saved here at 1600 × 1200.
 
 Prompt: Photorealistic black-and-white newspaper photograph of an editor's oak desk: stacked broadsheet proofs, a manual typewriter, a fountain pen, metal type sorts in a wooden case, a ceramic coffee cup, a gooseneck lamp. Analog film grain, high-contrast newsprint reproduction look. No readable headlines, no logos, no people, no UI.
 
+## playground-collage.webp
+
+Generated with the built-in imagegen tool and converted to WebP with Sharp (1280 × 720). Overhead analog paper collage: torn construction paper, washi tape, die-cut stars and smiles, and two blank Polaroid frames. No text or logos.
+
+## playground-star-sticker.webp
+## playground-smile-sticker.webp
+## playground-bolt-sticker.webp
+## playground-burst-sticker.webp
+## playground-tape.webp
+
+Die-cut vinyl stickers and a strip of yellow washi tape, photographed on butter-yellow paper matching the Playground page (`#fff3c4`). Generated with the built-in imagegen tool and converted to WebP with Sharp.
+
 ## editorial-architecture.webp
 
 Cover proof for the Editorial theme. Regenerated for the magazine scroll-story.
