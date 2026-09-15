@@ -17,8 +17,8 @@ import {
   NewsHalftoneMark,
   PlayCollageMark,
   ProductWindowMark,
-  SwissPosterMark,
 } from "@/components/hero/HeroMarks";
+import { SwissRegister } from "@/components/hero/SwissRegister";
 import { HeroCity, HeroSky } from "@/components/HeroScene";
 import { useTheme } from "@/components/ThemeProvider";
 import { siteConfig } from "@/lib/site";
@@ -41,7 +41,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "editorial":
       return <EditorialLayout />;
     case "swiss":
-      return <SwissLayout />;
+      return <SwissRegister />;
     case "soft-product":
       return <SoftProductLayout />;
     case "brutalist":
@@ -209,30 +209,6 @@ function EditorialLayout() {
           <Image src="/themes/editorial-architecture.webp" alt="Sculptural stone staircase framed by dramatic gallery light" width={1200} height={1499} sizes="(max-width: 767px) 100vw, 48vw" preload />
           <figcaption>01 — A different perspective. <span>Form / Function</span></figcaption>
         </figure>
-      </div>
-    </div>
-  );
-}
-
-function SwissLayout() {
-  return (
-    <div className="hero-swiss-page relative z-10 mx-auto grid min-h-[100svh] max-w-[var(--content-max)] grid-cols-1 items-center gap-8 px-5 pb-16 pt-28 sm:px-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-      <div className="order-2 md:order-1">
-        <p className="text-xs font-bold uppercase tracking-[0.28em] text-[color:var(--accent)]">
-          Design system 04
-        </p>
-        <HeroCopy
-          className="mt-4"
-          headingClassName="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3.2rem)] font-bold uppercase leading-[0.95] tracking-[-0.06em] text-foreground"
-          bodyClassName="mt-5 max-w-md text-sm leading-relaxed text-foreground/80 sm:text-base"
-        />
-        <HeroActions
-          primaryClassName="rounded-none bg-[color:var(--volt)] px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[color:var(--accent-ink)]"
-          secondaryClassName="rounded-none border border-foreground px-6 py-3 text-sm font-bold uppercase tracking-[0.12em] text-foreground"
-        />
-      </div>
-      <div className="order-1 md:order-2">
-        <SwissPosterMark />
       </div>
     </div>
   );

@@ -1,0 +1,857 @@
+/* Swiss / International Style — this file is the only theme-specific stylesheet. */
+
+[data-theme="swiss"] body {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
+  background-size: calc((100vw - 8vw) / 12) calc((100vw - 8vw) / 12);
+  background-position: 4vw 0;
+}
+
+[data-theme="swiss"] h2 {
+  text-transform: uppercase;
+  letter-spacing: -0.07em;
+}
+
+[data-theme="swiss"] .site-hero {
+  overflow: visible;
+  min-height: 0;
+  height: auto;
+}
+
+[data-theme="swiss"] .site-header {
+  border-bottom: 2px solid var(--foreground);
+  background: var(--background);
+  backdrop-filter: none;
+}
+
+[data-theme="swiss"] .site-header nav {
+  counter-reset: swiss-nav;
+  gap: 1.6rem;
+}
+
+[data-theme="swiss"] .site-header nav a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+[data-theme="swiss"] .site-header nav a::before {
+  counter-increment: swiss-nav;
+  content: counter(swiss-nav, decimal-leading-zero);
+  margin-right: 0.45rem;
+  color: var(--accent);
+}
+
+[data-theme="swiss"] .hover\:-translate-y-0\.5:hover {
+  transform: none;
+}
+
+/* Press-register scroll story ------------------------------------------- */
+
+.swiss-register {
+  height: 230vh;
+}
+
+.swiss-register.is-static {
+  height: auto;
+}
+
+.swiss-register-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  height: 100svh;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.swiss-register.is-static .swiss-register-sticky {
+  position: relative;
+  height: auto;
+  min-height: 100svh;
+  overflow: visible;
+}
+
+.swiss-register-sticky::before,
+.swiss-register-sticky::after {
+  position: absolute;
+  z-index: 5;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--foreground);
+  content: "";
+  pointer-events: none;
+}
+
+.swiss-register-sticky::before {
+  top: 4.75rem;
+  left: 4vw;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.swiss-register-sticky::after {
+  right: 4vw;
+  bottom: 1.25rem;
+  border-top: 0;
+  border-left: 0;
+}
+
+.swiss-grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.swiss-grid-v,
+.swiss-grid-h {
+  position: absolute;
+  background: color-mix(in oklab, var(--foreground) 16%, transparent);
+}
+
+.swiss-grid-v {
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform-origin: top;
+  animation: swiss-rule-draw-y 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.swiss-grid-h {
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform-origin: left;
+  animation: swiss-rule-draw 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.swiss-folio {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  gap: 1rem 1.75rem;
+  align-items: end;
+  margin: 4.75rem 4vw 0;
+  padding-bottom: 0.7rem;
+  border-bottom: 2px solid var(--foreground);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.swiss-folio-system {
+  color: var(--accent);
+}
+
+.swiss-folio-reg {
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.swiss-stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4vw;
+  align-items: stretch;
+  min-height: 0;
+  padding: 1.5rem 4vw 5.5rem;
+}
+
+.swiss-copy {
+  align-self: end;
+  max-width: 38rem;
+  padding-bottom: 0.5rem;
+}
+
+.swiss-kicker,
+.swiss-proof-kicker,
+.swiss-hero-index a span {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.swiss-hero-heading {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.6rem, 5.6vw, 6.4rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.swiss-hero-body {
+  max-width: 28rem;
+  margin-top: 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.swiss-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.6rem;
+}
+
+.swiss-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.15rem;
+  border-radius: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.swiss-btn-solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.swiss-btn-line {
+  border: 2px solid var(--foreground);
+  color: var(--foreground);
+}
+
+.swiss-hero-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--foreground);
+}
+
+.swiss-hero-index a {
+  display: flex;
+  gap: 0.7rem;
+  align-items: baseline;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.swiss-plate {
+  position: relative;
+  align-self: stretch;
+  min-height: 22rem;
+  overflow: hidden;
+  border: 2px solid var(--foreground);
+  background: var(--elevated);
+}
+
+.swiss-plate-image {
+  object-fit: cover;
+}
+
+.swiss-numeral-lock {
+  position: absolute;
+  left: 4%;
+  bottom: 12%;
+  transform-origin: left bottom;
+  mix-blend-mode: multiply;
+}
+
+.swiss-numeral {
+  margin: 0;
+  font-family: var(--font-grotesque), sans-serif;
+  font-size: clamp(6.5rem, 18vw, 14rem);
+  font-weight: 700;
+  line-height: 0.72;
+  letter-spacing: -0.08em;
+  color: var(--foreground);
+}
+
+.swiss-rail {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% / 6);
+  height: 100%;
+  pointer-events: none;
+}
+
+.swiss-module {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100% / 6);
+  background: var(--accent);
+}
+
+.swiss-plate figcaption {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.swiss-trim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 58%;
+  z-index: 4;
+  height: 4px;
+  background: var(--accent);
+  transform-origin: right center;
+}
+
+.swiss-print-bed {
+  position: absolute;
+  inset: 58% 0 0;
+  z-index: 3;
+  overflow: hidden;
+  border-top: 2px solid var(--foreground);
+  background:
+    linear-gradient(var(--background), var(--background)),
+    url("/themes/swiss-grid.webp");
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
+.swiss-proof {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: 1rem 3rem;
+  height: 100%;
+  padding: 1.25rem 4vw 1.5rem;
+}
+
+.swiss-proof-title {
+  grid-column: 1;
+  margin: 0.35rem 0 0;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.swiss-proof-list {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.swiss-proof-list li {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-top: 2px solid var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.swiss-proof-list li span {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.swiss-register-cue {
+  position: absolute;
+  right: 4vw;
+  bottom: 1.1rem;
+  z-index: 5;
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.swiss-register-cue::after {
+  display: block;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.4rem;
+  margin-left: auto;
+  background: var(--accent);
+  content: "";
+  animation: swiss-module-step 1.1s steps(4, end) infinite;
+}
+
+/* Services / work / about ---------------------------------------------- */
+
+.services-swiss,
+.work-swiss {
+  max-width: none;
+  margin: 0 4vw;
+  padding-inline: 0;
+}
+
+.services-swiss {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  gap: 4rem;
+  border-top: 2px solid var(--foreground);
+}
+
+.services-swiss .design-section-heading::before {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--foreground);
+  font-size: clamp(5.5rem, 12vw, 10rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  content: "02";
+}
+
+.services-swiss .design-section-heading::after {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-top: 2rem;
+  background: var(--accent);
+  content: "";
+}
+
+.services-swiss .service-collection {
+  display: block;
+}
+
+.services-swiss .service-item {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  padding-block: 1.35rem;
+  border-top: 2px solid var(--foreground);
+}
+
+.services-swiss .service-item p {
+  grid-column: 2;
+}
+
+.services-swiss .service-number {
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.work-swiss .design-section-heading {
+  display: grid;
+  grid-template-columns: 8rem 1fr 1.2fr;
+  gap: 1rem 2rem;
+  align-items: end;
+  margin-bottom: 0;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--foreground);
+}
+
+.work-swiss .design-section-heading .section-kicker {
+  grid-column: 1;
+}
+
+.work-swiss .design-section-heading h2 {
+  grid-column: 2;
+  margin: 0;
+}
+
+.work-swiss .design-section-heading > p:last-child {
+  grid-column: 3;
+  margin: 0;
+}
+
+.work-swiss .design-projects {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border: 2px solid var(--foreground);
+  border-bottom: 0;
+}
+
+.work-swiss .design-project {
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-right: 2px solid var(--foreground);
+  border-bottom: 2px solid var(--foreground);
+  animation: swiss-sheet-advance 0.8s cubic-bezier(0.18, 0.7, 0.2, 1) both;
+}
+
+.work-swiss .design-project:nth-child(4n) {
+  border-right: 0;
+}
+
+.work-swiss .design-project:nth-child(1) { animation-delay: 0ms; }
+.work-swiss .design-project:nth-child(2) { animation-delay: 70ms; }
+.work-swiss .design-project:nth-child(3) { animation-delay: 140ms; }
+.work-swiss .design-project:nth-child(4) { animation-delay: 210ms; }
+.work-swiss .design-project:nth-child(5) { animation-delay: 280ms; }
+.work-swiss .design-project:nth-child(6) { animation-delay: 350ms; }
+.work-swiss .design-project:nth-child(7) { animation-delay: 420ms; }
+.work-swiss .design-project:nth-child(8) { animation-delay: 490ms; }
+
+.work-swiss .project-number {
+  position: absolute;
+  z-index: 1;
+  top: 0.7rem;
+  left: 0.8rem;
+  display: block;
+  color: var(--accent);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.work-swiss .project-cover {
+  position: relative;
+  display: flex;
+  aspect-ratio: 1;
+  min-height: 0;
+  padding: 0.85rem;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: #f2efe8;
+  background-size: cover;
+  background-position: center;
+  color: #111;
+}
+
+.work-swiss .cover-0 { background-image: url("/themes/swiss-work-01.webp"); }
+.work-swiss .cover-1 { background-image: url("/themes/swiss-work-02.webp"); }
+.work-swiss .cover-2 { background-image: url("/themes/swiss-work-03.webp"); }
+.work-swiss .cover-3 { background-image: url("/themes/swiss-work-04.webp"); }
+
+.work-swiss .cover-folio,
+.work-swiss .cover-caption {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.work-swiss .cover-symbol {
+  display: none;
+}
+
+.work-swiss .cover-name {
+  max-width: 92%;
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.work-swiss .project-details {
+  display: block;
+  padding: 0.9rem 0.85rem 1.1rem;
+}
+
+.work-swiss .project-details h3 {
+  margin: 0.35rem 0;
+  font-size: 1.15rem;
+  text-transform: uppercase;
+}
+
+.work-swiss .project-summary {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.work-swiss .project-link {
+  justify-self: start;
+}
+
+.composition-swiss .about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: none;
+  margin-inline: 4vw;
+  padding-inline: 0;
+}
+
+.composition-swiss .about-story {
+  margin-top: 0;
+}
+
+.composition-swiss .about-beliefs {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  border-top: 2px solid var(--foreground);
+}
+
+.composition-swiss .about-beliefs li {
+  border-color: var(--foreground);
+}
+
+[data-theme="swiss"] #about > p[aria-hidden] {
+  display: block;
+  color: var(--accent);
+  opacity: 0.16 !important;
+  transform: none !important;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="swiss"] #about .animate-ping {
+  display: none;
+}
+
+[data-theme="swiss"] #about .rounded-full {
+  border-radius: 0;
+}
+
+[data-theme="swiss"] #approach {
+  padding-inline: 4vw;
+}
+
+[data-theme="swiss"] #approach .relative.z-10 {
+  max-width: none;
+  padding-inline: 0;
+}
+
+[data-theme="swiss"] .approach-grid {
+  gap: 0;
+}
+
+[data-theme="swiss"] .approach-grid > div {
+  padding: 1.5rem 1.25rem 1.7rem;
+  border: 2px solid var(--foreground);
+  border-right-width: 0;
+}
+
+[data-theme="swiss"] .approach-grid > div:last-child {
+  border-right-width: 2px;
+}
+
+[data-theme="swiss"] .approach-grid h3 {
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+}
+
+[data-theme="swiss"] .approach-timeline .rounded-full {
+  display: none;
+}
+
+[data-theme="swiss"] #pricing > .relative.z-10 {
+  max-width: none;
+  margin-inline: 4vw;
+  padding-inline: 0;
+}
+
+[data-theme="swiss"] .pricing-packages {
+  counter-reset: swiss-pack;
+  gap: 0;
+  border: 2px solid var(--foreground);
+  border-bottom: 0;
+}
+
+[data-theme="swiss"] .pricing-packages article {
+  counter-increment: swiss-pack;
+  padding: 1.75rem;
+  border: 0;
+  border-right: 2px solid var(--foreground);
+  border-bottom: 2px solid var(--foreground);
+  background: var(--background);
+}
+
+[data-theme="swiss"] .pricing-packages article:last-child {
+  border-right: 0;
+}
+
+[data-theme="swiss"] .pricing-packages article > p:first-child {
+  min-height: 0;
+  color: var(--accent);
+}
+
+[data-theme="swiss"] .pricing-packages article > p:first-child::before {
+  content: counter(swiss-pack, decimal-leading-zero) " / ";
+}
+
+[data-theme="swiss"] .pricing-packages li span.h-1\.5 {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.2rem;
+  border-radius: 0;
+}
+
+.composition-swiss #contact {
+  padding-inline: 4vw;
+}
+
+.composition-swiss #contact > div {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.composition-swiss #contact .relative.overflow-hidden {
+  border-radius: 0;
+  border: 2px solid var(--foreground);
+  background: var(--background);
+}
+
+.composition-swiss #contact .pointer-events-none.absolute {
+  display: none;
+}
+
+[data-theme="swiss"] footer {
+  margin-top: 0;
+  padding: 1.25rem 4vw 1.6rem;
+  border-top: 2px solid var(--foreground);
+}
+
+[data-theme="swiss"] footer .relative.mx-auto {
+  max-width: none;
+  padding-inline: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@keyframes swiss-rule-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes swiss-rule-draw-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes swiss-module-step {
+  from { transform: translateY(0); }
+  to { transform: translateY(14px); }
+}
+
+@keyframes swiss-sheet-advance {
+  from { transform: translateY(1.25rem); }
+  to { transform: translateY(0); }
+}
+
+@media (max-width: 767px) {
+  .swiss-register {
+    height: 180vh;
+  }
+
+  .swiss-folio {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 1rem;
+    margin-top: 4.4rem;
+  }
+
+  .swiss-folio-reg {
+    justify-self: start;
+  }
+
+  .swiss-stage {
+    grid-template-columns: 1fr;
+    padding: 1rem 4vw 8rem;
+  }
+
+  .swiss-plate {
+    order: -1;
+    min-height: 16rem;
+    aspect-ratio: 3 / 4;
+    max-width: 18rem;
+    justify-self: end;
+  }
+
+  .swiss-numeral {
+    font-size: clamp(5rem, 28vw, 8rem);
+  }
+
+  .swiss-hero-heading {
+    font-size: clamp(2.1rem, 11vw, 3.4rem);
+  }
+
+  .swiss-proof {
+    display: block;
+    padding: 1rem 4vw;
+  }
+
+  .swiss-proof-list li {
+    font-size: 0.78rem;
+  }
+
+  .services-swiss {
+    display: block;
+  }
+
+  .work-swiss .design-section-heading {
+    display: block;
+  }
+
+  .work-swiss .design-projects {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .work-swiss .design-project:nth-child(4n) {
+    border-right: 2px solid var(--foreground);
+  }
+
+  .work-swiss .design-project:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .work-swiss .project-details h3 {
+    font-size: 1rem;
+  }
+
+  .composition-swiss .about-content {
+    display: block;
+    margin-inline: 1.25rem;
+  }
+
+  .composition-swiss .about-story {
+    margin-top: 2rem;
+  }
+
+  [data-theme="swiss"] .approach-grid > div,
+  [data-theme="swiss"] .approach-grid > div:last-child {
+    border-right-width: 2px;
+    border-bottom-width: 0;
+  }
+
+  [data-theme="swiss"] .approach-grid > div:last-child {
+    border-bottom-width: 2px;
+  }
+
+  [data-theme="swiss"] .pricing-packages article,
+  [data-theme="swiss"] .pricing-packages article:last-child {
+    border-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swiss-grid-v,
+  .swiss-grid-h,
+  .swiss-register-cue::after,
+  .work-swiss .design-project {
+    animation: none;
+  }
+}

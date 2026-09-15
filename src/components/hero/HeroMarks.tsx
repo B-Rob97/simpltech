@@ -152,37 +152,9 @@ export function MagazineStillLife() {
 
 export function SwissPosterMark() {
   return (
-    <svg
-      viewBox="0 0 420 420"
-      className="h-auto w-full"
-      role="img"
-      aria-label="International Style poster with a modular four"
-    >
-      <rect width="420" height="420" fill="transparent" />
-      <text
-        x="8"
-        y="280"
-        fill="var(--foreground)"
-        fontSize="240"
-        fontWeight="700"
-        fontFamily="var(--font-grotesque), sans-serif"
-        letterSpacing="-12"
-      >
-        04
-      </text>
-      <rect x="292" y="36" width="92" height="92" fill="var(--accent)" />
-      <text
-        x="12"
-        y="400"
-        fill="var(--foreground)"
-        fontSize="14"
-        fontWeight="700"
-        letterSpacing="6"
-        fontFamily="var(--font-grotesque), sans-serif"
-      >
-        INTL · YYC
-      </text>
-    </svg>
+    <p className="swiss-numeral" aria-hidden>
+      04
+    </p>
   );
 }
 
