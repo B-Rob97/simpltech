@@ -10,6 +10,7 @@ import Image from "next/image";
 import {
   CraftDust,
   CraftPlaten,
+  CraftSheetPlate,
   CraftStamp,
   CraftSunshaft,
   CraftTape,
@@ -72,6 +73,13 @@ function SoftProductLayout() {
   return null;
 }
 
+function craftSmoothstep(start: number, end: number, value: number) {
+  if (value <= start) return 0;
+  if (value >= end) return 1;
+  const t = (value - start) / (end - start);
+  return t * t * (3 - 2 * t);
+}
+
 function WarmCraftLayout({
   sectionRef,
 }: {
@@ -81,28 +89,18 @@ function WarmCraftLayout({
   const coverRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
   const applyCraftPull = (value: number) => {
     const node = coverRef.current;
     if (!node || reduceMotion) return;
 
+    // Pin-length map: platen travels the first half, the sheet pulls the second.
     const press =
-      value < 0.05
-        ? 0
-        : value < 0.14
-          ? (value - 0.05) / 0.09
-          : value < 0.24
-            ? 1
-            : value < 0.36
-              ? 1 - (value - 0.24) / 0.12
-              : 0;
-    const grow = value < 0.38 ? 0 : value > 0.9 ? 1 : (value - 0.38) / 0.52;
-    const dolly =
-      value < 0.22
-        ? (value / 0.22) * 0.12
-        : 0.12 + Math.min(1, (value - 0.22) / 0.6) * 0.88;
+      craftSmoothstep(0.08, 0.36, value) * (1 - craftSmoothstep(0.46, 0.62, value));
+    const grow = craftSmoothstep(0.42, 0.94, value);
+    const dolly = craftSmoothstep(0, 0.9, value);
 
     node.style.setProperty("--craft-press", press.toFixed(4));
     node.style.setProperty("--craft-grow", grow.toFixed(4));
@@ -121,7 +119,7 @@ function WarmCraftLayout({
         <Image
           className="craft-photograph"
           src="/themes/craft-studio.webp"
-          alt="Sunlit oak desk with a laptop, terracotta vase, and sketches"
+          alt="Sunlit oak desk with a laptop, sketches, and a terracotta vase"
           fill
           sizes="100vw"
           preload
@@ -156,6 +154,7 @@ function WarmCraftLayout({
             sheet.
           </p>
         </div>
+        <CraftSheetPlate />
         <p className="craft-signature">Made with care. Built in Calgary.</p>
       </div>
       <span className="craft-photo-label">The art of making things work.</span>

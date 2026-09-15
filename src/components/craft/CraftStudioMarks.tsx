@@ -54,3 +54,7 @@ export function CraftStamp() {
 export function CraftTape() {
   return <span className="craft-tape" aria-hidden />;
 }
+
+export function CraftSheetPlate() {
+  return <div className="craft-sheet-plate" aria-hidden />;
+}

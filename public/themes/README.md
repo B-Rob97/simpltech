@@ -22,7 +22,9 @@ Embroidered circular mission patch for the about seal. CSS overlays the correct 
 
 ## craft-studio.webp
 
-Prompt: Create a photorealistic editorial photograph for a boutique digital design studio website. Landscape 3:2 composition, an intimate sunlit creative workspace: natural oak desk with an open unbranded silver laptop viewed obliquely with a blank dark screen, a hand-thrown terracotta vase with sparse branch, large sheets of ivory paper, pencil, linen curtain and warm plaster wall. Strong late-afternoon sunlight from left, tactile materials, quiet lived-in artistry, film grain, premium architectural magazine photography, terracotta and honey palette, no people, no text, no logos. This is a full-bleed standalone photograph, not a website mockup.
+Hero desk still life. Landscape 16:9 oak desk, unbranded laptop with a blank screen, sketches, cup, linen, terracotta vase in the background. Not reused on later sections.
+
+Prompt: Photorealistic editorial photograph, landscape 16:9, sunlit boutique design studio desk. Natural oak desktop, unbranded silver laptop with a blank dark screen, ivory sketch sheets, graphite pencil, linen cloth, ceramic cup. Terracotta vase with a dry branch stays out of focus in the background. Late-afternoon honey light, analog film grain. No people, no readable writing, no logos.
 
 ## night-signal-skyline.webp
 
@@ -86,11 +88,33 @@ Generated with the built-in imagegen tool and saved here at 1800 × 1012. Board-
 
 Prompt: Photorealistic architectural photograph of a monumental raw brutalist blast door, landscape 16:9. A huge board-formed concrete slab fills the frame like a bunker hatch: visible timber-board grain, circular form-tie holes in a regular grid, hairline cracks, cold gray and charcoal concrete, one hard diagonal sunlight slash and deep shadow. Industrial, heavy, severe, tactile, no people, no text, no logos, no UI, no yellow tape, no website mockup. Shot like a large-format architecture photograph, high contrast, slight analog grain. Full-bleed standalone photograph.
 
+## craft-letter.webp
+
+Opened ivory letter, fountain pen, and kraft envelope. Used on the pulled print plate only.
+
+## craft-vessel.webp
+
+Single terracotta vessel with a spare branch. Approach plate only.
+
+## craft-about.webp
+
+Standing atelier interior — trestle table, linen curtain, plaster walls. About plate only.
+
+## craft-type.webp
+
+Overhead letterpress type case and composing stick. Services shop note only.
+
+## craft-envelope.webp
+
+Open kraft envelope on blotting paper. Contact card only.
+
+## craft-work-01.webp … craft-work-04.webp
+
+Four distinct scrapbook covers: copper pot, rag-paper stack, clay coils, wood-type blocks. Each work card uses one of these — they are not a crop of the same asset.
+
 ## craft-press.webp
 
-Generated with the built-in imagegen tool and saved here at 864 × 1152. Complementary still life for the Warm Craft approach, about, and services plates — terracotta vessel, letterpress wood type, linen tape. Not a photograph of SimplTech's studio.
-
-Prompt: Photorealistic close-up still life, portrait 3:4. Hand-thrown terracotta vessel, worn maple letterpress wood-type block, linen binding tape, beeswax-stained cotton rag on a sunlit plaster ledge. Late-afternoon honey light, analog film grain. No people, no readable words, no logos.
+Retired still life kept for history. Warm Craft no longer stamps this photo across About, Work, Approach, and Services.
 
 ## newsprint-lead.webp
 
