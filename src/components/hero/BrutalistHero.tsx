@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from "motion/react";
+import { useReducedMotion, useScroll } from "motion/react";
 import Image from "next/image";
 import { useLayoutEffect, useRef, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
@@ -94,66 +90,67 @@ function BrutalistOccupyHero({
     offset: ["start start", "end start"],
   });
 
-  const paint = (immediate = false) => {
-    const page = pageRef.current;
-    if (!page) return;
-    const stage =
-      page.closest<HTMLElement>(".brutal-scroll-stage") ??
-      page.closest<HTMLElement>(".composition-brutalist");
-    const next = target.current;
-    const now = displayed.current;
-
-    if (immediate) {
-      now.rule = next.rule;
-      now.column = next.column;
-      now.copy = next.copy;
-    } else {
-      now.rule = mixToward(now.rule, next.rule);
-      now.column = mixToward(now.column, next.column);
-      now.copy = mixToward(now.copy, next.copy);
-    }
-
-    const settled =
-      immediate ||
-      (Math.abs(next.rule - now.rule) < OCCUPY_SETTLE &&
-        Math.abs(next.column - now.column) < OCCUPY_SETTLE &&
-        Math.abs(next.copy - now.copy) < OCCUPY_SETTLE);
-
-    if (settled) {
-      now.rule = next.rule;
-      now.column = next.column;
-      now.copy = next.copy;
-    }
-
-    writeOccupy(page, stage, now);
-    writePhase(page, next.progress);
-
-    if (settled) {
-      frame.current = 0;
-      return;
-    }
-
-    frame.current = requestAnimationFrame(() => paint());
-  };
-
-  const write = (value: number) => {
-    target.current = { ...mapOccupy(value), progress: value };
-    if (!frame.current) {
-      frame.current = requestAnimationFrame(() => paint());
-    }
-  };
-
   useLayoutEffect(() => {
-    const value = scrollYProgress.get();
-    target.current = { ...mapOccupy(value), progress: value };
+    const pageAt = () => pageRef.current;
+    const paint = (immediate = false) => {
+      const page = pageAt();
+      if (!page) return;
+      const stage =
+        page.closest<HTMLElement>(".brutal-scroll-stage") ??
+        page.closest<HTMLElement>(".composition-brutalist");
+      const next = target.current;
+      const now = displayed.current;
+
+      if (immediate) {
+        now.rule = next.rule;
+        now.column = next.column;
+        now.copy = next.copy;
+      } else {
+        now.rule = mixToward(now.rule, next.rule);
+        now.column = mixToward(now.column, next.column);
+        now.copy = mixToward(now.copy, next.copy);
+      }
+
+      const settled =
+        immediate ||
+        (Math.abs(next.rule - now.rule) < OCCUPY_SETTLE &&
+          Math.abs(next.column - now.column) < OCCUPY_SETTLE &&
+          Math.abs(next.copy - now.copy) < OCCUPY_SETTLE);
+
+      if (settled) {
+        now.rule = next.rule;
+        now.column = next.column;
+        now.copy = next.copy;
+      }
+
+      writeOccupy(page, stage, now);
+      writePhase(page, next.progress);
+
+      if (settled) {
+        frame.current = 0;
+        return;
+      }
+
+      frame.current = requestAnimationFrame(() => paint());
+    };
+
+    const write = (value: number) => {
+      target.current = { ...mapOccupy(value), progress: value };
+      if (!frame.current) {
+        frame.current = requestAnimationFrame(() => paint());
+      }
+    };
+
+    write(scrollYProgress.get());
     paint(true);
+    const unsubscribe = scrollYProgress.on("change", write);
+
     return () => {
+      unsubscribe();
       if (frame.current) cancelAnimationFrame(frame.current);
       frame.current = 0;
     };
   }, [scrollYProgress]);
-
-  useMotionValueEvent(scrollYProgress, "change", write);
 
   return (
     <div
