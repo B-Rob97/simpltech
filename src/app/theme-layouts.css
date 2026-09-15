@@ -164,7 +164,15 @@
 .soft-product-pin[data-open] .soft-product-rail [data-item="overview"] { background: transparent; color: color-mix(in oklab, var(--foreground) 55%, transparent); }
 .soft-product-pin[data-open] .soft-product-rail [data-item="modules"] { background: color-mix(in oklab, var(--accent) 12%, var(--elevated)); color: var(--accent); }
 .soft-product-screen { position: relative; flex: 1; min-width: 0; background: color-mix(in oklab, var(--elevated) calc((1 - var(--soft-clear)) * 100%), transparent); }
-.soft-product-board { position: absolute; inset: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; align-content: start; gap: .75rem; padding: 1rem; background: var(--elevated); clip-path: inset(0 0 0 calc(var(--soft-clear) * 100%)); transform: translateX(calc(var(--soft-clear) * -16%)); }
+.soft-product-board {
+  position: absolute; inset: 0; display: grid;
+  grid-template-rows: auto auto auto auto; align-content: start; gap: .75rem; padding: 1rem;
+  background: var(--elevated);
+  clip-path: inset(0 0 0 calc(var(--soft-clear) * 100%));
+  transform: translateX(calc(var(--soft-clear) * -16%));
+  opacity: calc(1 - var(--soft-clear));
+}
+.soft-product-pin[data-open] .soft-product-board { visibility: hidden; }
 .soft-product-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
 .soft-product-kpi { border: 1px solid var(--border); border-radius: .9rem; padding: .7rem .8rem; background: color-mix(in oklab, var(--accent) 6%, var(--elevated)); }
 .soft-product-kpi p { margin: 0; font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: color-mix(in oklab, var(--foreground) 48%, transparent); }
@@ -215,12 +223,10 @@
   margin: 0;
   padding: .4rem 0 0;
   scroll-margin-top: 6rem;
-  min-height: calc(100svh - var(--soft-stage-top) - var(--soft-title) - 1.5rem);
-  display: flex;
-  flex-direction: column;
 }
 .services-soft-product .design-section-heading { margin-bottom: 1.4rem; }
-.services-soft-product .service-collection { flex: 1; align-content: start; }
+.services-soft-product .service-collection { align-content: start; align-items: start; }
+.services-soft-product .service-item { height: auto; align-self: start; }
 .soft-product-pin[data-open] .soft-product-stage { pointer-events: none; }
 .soft-product-pin[data-open] .soft-product-copy,
 .soft-product-pin[data-open] .soft-product-chips,
@@ -1452,7 +1458,7 @@
   .work-soft-product .design-project:first-child { grid-column: auto; }
   .soft-product-pin { --soft-track: 210vh; }
   .soft-product-chips, .soft-product-atmosphere, .soft-product-lanes, .soft-product-activity, .soft-product-cursor { display: none; }
-  .soft-product-board { grid-template-rows: auto auto minmax(0, 1fr); }
+  .soft-product-board { grid-template-rows: auto auto auto; }
   .soft-product-copy { left: calc(6% * (1 - var(--soft-max)) + 1.1rem * var(--soft-max)); width: min(34rem, calc(92% * (1 - var(--soft-max)) + 18rem * var(--soft-max))); top: calc(5.6rem * (1 - var(--soft-max)) + .65rem * var(--soft-max)); }
   .soft-product-window { top: calc(46% * (1 - var(--soft-max)) + var(--soft-stage-top) * var(--soft-max)); left: calc(5% * (1 - var(--soft-max))); right: calc(5% * (1 - var(--soft-max))); bottom: calc(3% * (1 - var(--soft-max))); }
   .soft-product-shell { flex-direction: column; }
