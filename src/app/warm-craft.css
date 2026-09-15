@@ -38,14 +38,14 @@
 [data-theme="warm-craft"] .craft-photograph-frame {
   position: absolute;
   inset: 0;
-  transform: scale(calc(1 + (var(--craft-dolly) * 0.22))) translate3d(0, calc(var(--craft-dolly) * 6%), 0);
-  transform-origin: 68% 70%;
+  transform: scale(calc(1.22 + (var(--craft-dolly) * 0.18))) translate3d(0, calc(var(--craft-dolly) * 4%), 0);
+  transform-origin: 72% 82%;
 }
 
 [data-theme="warm-craft"] .craft-photograph-frame img,
 [data-theme="warm-craft"] .craft-cover .craft-photograph {
   object-fit: cover;
-  object-position: 52% 78%;
+  object-position: 70% 84%;
 }
 
 [data-theme="warm-craft"] .craft-sunshaft {
@@ -84,7 +84,7 @@
   z-index: 6;
   height: 6.4rem;
   pointer-events: none;
-  transform: translate3d(0, calc(-118% + (108% * var(--craft-press))), 0);
+  transform: translate3d(0, calc(-72vh + (76vh * var(--craft-press))), 0);
   filter: drop-shadow(0 22px 18px #2a181088);
 }
 
@@ -239,10 +239,10 @@
 
 [data-theme="warm-craft"] .craft-sheet-plate {
   flex: calc(var(--craft-grow) * 1.15) 1 0;
-  min-height: calc(var(--craft-grow) * 6.5rem);
-  max-height: calc(var(--craft-grow) * 28vh);
+  min-height: calc(var(--craft-grow) * 11rem);
+  max-height: calc(var(--craft-grow) * 36vh);
   margin-top: calc(var(--craft-grow) * 1.1rem);
-  background: url("/themes/craft-letter.webp") center / cover no-repeat;
+  background: url("/themes/craft-letter.webp") 50% 78% / cover no-repeat;
   box-shadow: 0 0 0 calc(var(--craft-grow) * 0.45rem) #fff6ee;
   opacity: var(--craft-grow);
   transform: rotate(calc((1 - var(--craft-grow)) * 1.6deg));
@@ -307,7 +307,7 @@
 }
 
 .composition-warm-craft #about .about-story {
-  grid-column: 1;
+  grid-column: 1 / -1;
   grid-row: 2;
 }
 
@@ -319,14 +319,14 @@
 .composition-warm-craft #about .about-content::after {
   content: "";
   grid-column: 2;
-  grid-row: 1 / 3;
+  grid-row: 1;
   position: relative;
   top: auto;
   right: auto;
   width: 100%;
-  height: min(28rem, 62vw);
-  min-height: 18rem;
-  background: url("/themes/craft-about.webp") 50% 40% / cover no-repeat;
+  height: 100%;
+  min-height: 16rem;
+  background: url("/themes/craft-about.webp") 50% 55% / cover no-repeat;
   box-shadow: 0 16px 40px #4930191f, 0 0 0 0.65rem #fff6ee;
   transform: rotate(2.2deg);
 }
@@ -492,6 +492,11 @@
   background: var(--craft-paper-deep);
 }
 
+.composition-warm-craft .approach-grid > div [style] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 .composition-warm-craft .approach-grid > div > p:first-of-type {
   animation: craft-ink-stamp 0.7s cubic-bezier(0.18, 0.8, 0.2, 1) both;
   animation-timeline: view();
@@ -576,7 +581,12 @@
 }
 
 [data-theme="warm-craft"] #contact .relative.overflow-hidden {
-  min-height: 26rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 20rem);
+  align-items: center;
+  gap: 1.75rem;
+  min-height: 24rem;
+  padding-right: 1.5rem;
   background:
     linear-gradient(180deg, #efe2cc, var(--craft-paper-deep) 38%),
     var(--craft-paper);
@@ -587,7 +597,11 @@
 [data-theme="warm-craft"] #contact .relative.max-w-2xl {
   position: relative;
   z-index: 1;
-  max-width: min(34rem, 52%);
+  max-width: none;
+}
+
+[data-theme="warm-craft"] #contact .pointer-events-none.absolute.inset-0 {
+  display: none;
 }
 
 [data-theme="warm-craft"] #contact .relative.overflow-hidden::before {
@@ -604,15 +618,13 @@
 
 [data-theme="warm-craft"] #contact .relative.overflow-hidden::after {
   content: "";
-  position: absolute;
-  top: 2.4rem;
-  right: 1.4rem;
-  bottom: 1.4rem;
+  position: relative;
   z-index: 0;
-  width: min(22rem, 38%);
+  width: 100%;
+  min-height: 16rem;
   background: url("/themes/craft-envelope.webp") center / cover no-repeat;
   box-shadow: 0 0 0 0.55rem var(--craft-paper-deep);
-  transform: rotate(1.8deg);
+  transform: rotate(1.4deg);
 }
 
 [data-theme="warm-craft"] footer {
@@ -677,6 +689,7 @@
 
   [data-theme="warm-craft"] .craft-letter .craft-platen {
     height: 5.2rem;
+    transform: translate3d(0, calc(-78vh + (82vh * var(--craft-press))), 0);
   }
 
   .composition-warm-craft section#about {
@@ -724,17 +737,27 @@
     transform: none;
   }
 
+  [data-theme="warm-craft"] #contact .relative.overflow-hidden {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0;
+  }
+
   [data-theme="warm-craft"] #contact .relative.max-w-2xl {
     max-width: none;
   }
 
   [data-theme="warm-craft"] #contact .relative.overflow-hidden::after {
     position: relative;
-    inset: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
     display: block;
     width: 100%;
-    height: 11rem;
-    margin: 1.25rem 0 0;
+    min-height: 0;
+    height: 12rem;
+    margin: 0.25rem 0 0;
     transform: none;
   }
 
