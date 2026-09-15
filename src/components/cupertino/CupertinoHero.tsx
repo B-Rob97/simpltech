@@ -66,15 +66,15 @@ function CupertinoScrollStory() {
   const storyRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const laptopRef = useRef<HTMLDivElement>(null);
-  const [endScale, setEndScale] = useState(2.4);
-  const [midScale, setMidScale] = useState(1.22);
+  const [endScale, setEndScale] = useState(1.45);
+  const [midScale, setMidScale] = useState(1.16);
   const [endX, setEndX] = useState(0);
   const [endY, setEndY] = useState(0);
   const [restY, setRestY] = useState(48);
   const [copyGone, setCopyGone] = useState(false);
   const [phoneGone, setPhoneGone] = useState(false);
   const [shineGone, setShineGone] = useState(false);
-  const [chromeGone, setChromeGone] = useState(false);
+  const [showNext, setShowNext] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: storyRef,
@@ -85,22 +85,19 @@ function CupertinoScrollStory() {
   const phoneX = useTransform(scrollYProgress, [0, 0.16], [0, 96]);
   const laptopScale = useTransform(
     scrollYProgress,
-    [0.12, 0.4, 0.78],
+    [0.12, 0.46, 0.74],
     [1, midScale, endScale],
   );
   const laptopX = useTransform(
     scrollYProgress,
-    [0.12, 0.4, 0.78],
-    [0, endX * 0.2, endX],
+    [0.12, 0.46, 0.74],
+    [0, endX * 0.18, endX],
   );
   const laptopY = useTransform(
     scrollYProgress,
-    [0.12, 0.4, 0.78],
-    [restY, restY * 0.3, endY],
+    [0.12, 0.46, 0.74],
+    [restY, restY * 0.35, endY],
   );
-  const reelY = useTransform(scrollYProgress, [0.48, 0.62], ["0%", "-50%"]);
-  const pinOpacity = useTransform(scrollYProgress, [0.94, 1], [1, 0]);
-
   const measureZoom = useCallback(() => {
     const pin = pinRef.current;
     const laptop = laptopRef.current;
@@ -121,9 +118,9 @@ function CupertinoScrollStory() {
     const restScreenCX = restLaptopX + laptopW * (SCREEN.left + SCREEN.width / 2);
     const restScreenCY = restLaptopY + laptopH * (SCREEN.top + SCREEN.height / 2);
 
-    const framed = Math.min(pinW / laptopW, pinH / laptopH);
-    setMidScale(Math.max(1, Math.min(1.26, framed * 0.96)));
-    setEndScale(Math.min(pinW / screenW, pinH / screenH));
+    const framed = Math.min((pinW - 32) / laptopW, (pinH - 48) / laptopH);
+    setMidScale(Math.max(1, Math.min(1.2, framed)));
+    setEndScale(Math.max(1.12, Math.min(1.58, framed)));
     setEndX(pinW / 2 - restScreenCX);
     setEndY(pinH / 2 - restScreenCY);
 
@@ -142,19 +139,12 @@ function CupertinoScrollStory() {
     setCopyGone(progress >= 0.15);
     setPhoneGone(progress >= 0.17);
     setShineGone(progress >= 0.12);
-    setChromeGone(progress >= 0.88);
-    if (pinRef.current) {
-      pinRef.current.style.pointerEvents = progress > 0.93 ? "none" : "auto";
-    }
+    setShowNext(progress >= 0.6);
   });
 
   return (
     <div ref={storyRef} className="cupertino-story">
-      <motion.div
-        ref={pinRef}
-        className="cupertino-pin"
-        style={{ opacity: pinOpacity }}
-      >
+      <motion.div ref={pinRef} className="cupertino-pin">
         <motion.div
           className={`cupertino-copy${copyGone ? " is-gone" : ""}`}
           style={{ y: copyY }}
@@ -175,18 +165,13 @@ function CupertinoScrollStory() {
             className="cupertino-laptop"
             style={{ x: laptopX, y: laptopY, scale: laptopScale, ...laptopOrigin }}
           >
-            <div className={`cupertino-chassis${chromeGone ? " is-gone" : ""}`}>
+            <div className="cupertino-chassis">
               <LaptopChassis />
             </div>
             <div className="cupertino-glass" style={screenStyle}>
-              <motion.div className="cupertino-reel" style={{ y: reelY }}>
-                <div className="cupertino-frame">
-                  <CupertinoBootUi />
-                </div>
-                <div className="cupertino-frame">
-                  <CupertinoGlassNext />
-                </div>
-              </motion.div>
+              <div className="cupertino-frame">
+                {showNext ? <CupertinoGlassNext /> : <CupertinoBootUi />}
+              </div>
             </div>
             {shineGone ? null : (
               <div className="cupertino-shine" aria-hidden />
