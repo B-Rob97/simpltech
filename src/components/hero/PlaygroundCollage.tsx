@@ -8,7 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import Image from "next/image";
-import { useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { siteConfig } from "@/lib/site";
 
@@ -76,9 +76,9 @@ function PlaygroundPeelStory() {
   const frameP = useTransform(scrollYProgress, [0.72, 0.96], [1, 0]);
   const peelRotate = useTransform(scrollYProgress, [0, 0.3], [8, -78]);
   const peelSquash = useTransform(scrollYProgress, [0.7, 0.92], [1, 0]);
-  const noteX = useTransform(scrollYProgress, [0, 0.38], [0, -160]);
-  const noteY = useTransform(scrollYProgress, [0, 0.38], [0, -90]);
-  const noteRotate = useTransform(scrollYProgress, [0, 0.38], [-2.5, -22]);
+  const noteX = useTransform(scrollYProgress, [0, 0.42], [0, -460]);
+  const noteY = useTransform(scrollYProgress, [0, 0.42], [0, -280]);
+  const noteRotate = useTransform(scrollYProgress, [0, 0.42], [-2.5, -28]);
   const tapeStretch = useTransform(scrollYProgress, [0, 0.22], [1, 1.55]);
   const tapeX = useTransform(scrollYProgress, [0.16, 0.4], [0, -90]);
   const tapeRotate = useTransform(scrollYProgress, [0.16, 0.4], [-8, -48]);
@@ -94,8 +94,19 @@ function PlaygroundPeelStory() {
   const cueScale = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
-    setNoteLive(value < 0.34);
+    setNoteLive(value < 0.3);
   });
+
+  useMotionValueEvent(punchP, "change", (value) => {
+    document.documentElement.style.setProperty("--punch-p", String(value));
+  });
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--punch-p", "0");
+    return () => {
+      document.documentElement.style.removeProperty("--punch-p");
+    };
+  }, []);
 
   return (
     <div className="playground-pin" ref={pinRef}>
