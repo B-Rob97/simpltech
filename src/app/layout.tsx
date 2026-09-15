@@ -13,6 +13,7 @@ import {
 import "./globals.css";
 import "./theme-layouts.css";
 import "./mission-control.css";
+import "./playground.css";
 
 const unbounded = localFont({
   src: "../fonts/unbounded.woff2",

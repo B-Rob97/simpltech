@@ -12,6 +12,18 @@ Prompt: Cinematic fine-art space photograph, landscape 3:2, for a premium digita
 
 Prompt: Create a photorealistic editorial photograph for a boutique digital design studio website. Landscape 3:2 composition, an intimate sunlit creative workspace: natural oak desk with an open unbranded silver laptop viewed obliquely with a blank dark screen, a hand-thrown terracotta vase with sparse branch, large sheets of ivory paper, pencil, linen curtain and warm plaster wall. Strong late-afternoon sunlight from left, tactile materials, quiet lived-in artistry, film grain, premium architectural magazine photography, terracotta and honey palette, no people, no text, no logos. This is a full-bleed standalone photograph, not a website mockup.
 
+## playground-collage.webp
+
+Generated with the built-in imagegen tool and converted to WebP with Sharp (1280 × 720). Overhead analog paper collage: torn construction paper, washi tape, die-cut stars and smiles, and two blank Polaroid frames. No text or logos.
+
+## playground-star-sticker.webp
+## playground-smile-sticker.webp
+## playground-bolt-sticker.webp
+## playground-burst-sticker.webp
+## playground-tape.webp
+
+Die-cut vinyl stickers and a strip of yellow washi tape, photographed on butter-yellow paper matching the Playground page (`#fff3c4`). Generated with the built-in imagegen tool and converted to WebP with Sharp.
+
 ## editorial-architecture.webp
 
 Prompt: Photorealistic architectural editorial photograph for a contemporary design magazine website, portrait 4:5. Monumental pale travertine curved staircase in a minimalist gallery, circular skylight, dramatic geometric sunlight and deep soft shadows, a small sculptural black chair at bottom right for scale. Restrained cream, charcoal and stone palette. Shot on medium format, refined, tactile, quiet, striking composition. No text, no logos, no people, no website mockup. Full bleed photograph.
