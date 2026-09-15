@@ -2,6 +2,7 @@
 
 import {
   motion,
+  useAnimationFrame,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
@@ -48,7 +49,9 @@ function StaticCupertinoHero() {
       <div className="cupertino-pin">
         <CupertinoCopy />
         <div className="cupertino-stage">
-          <CupertinoPhone />
+          <div className="cupertino-phone-wrap">
+            <CupertinoPhone />
+          </div>
           <div className="cupertino-laptop" style={laptopOrigin}>
             <LaptopChassis />
             <div className="cupertino-glass" style={screenStyle}>
@@ -69,24 +72,25 @@ function CupertinoScrollStory() {
   const worldRef = useRef<HTMLDivElement>(null);
   const laptopRef = useRef<HTMLDivElement>(null);
   const [endScale, setEndScale] = useState(3.8);
+  const [copyGone, setCopyGone] = useState(false);
+  const [phoneGone, setPhoneGone] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: storyRef,
     offset: ["start start", "end end"],
   });
 
-  const copyY = useTransform(scrollYProgress, [0, 0.22], [0, -56]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.16, 0.24], [1, 0.2, 0]);
-  const copyScale = useTransform(scrollYProgress, [0, 0.24], [1, 0.94]);
-  const phoneX = useTransform(scrollYProgress, [0, 0.32], [0, 72]);
-  const phoneOpacity = useTransform(scrollYProgress, [0.04, 0.3], [1, 0]);
-  const phoneScale = useTransform(scrollYProgress, [0, 0.32], [1, 0.82]);
-  const laptopScale = useTransform(scrollYProgress, [0.1, 0.84], [1, endScale]);
-  const laptopY = useTransform(scrollYProgress, [0, 0.28], [28, 0]);
-  const bootY = useTransform(scrollYProgress, [0.16, 0.4], ["0%", "-108%"]);
-  const chromeOpacity = useTransform(scrollYProgress, [0.78, 0.94], [1, 0]);
-  const pinOpacity = useTransform(scrollYProgress, [0.9, 0.99], [1, 0]);
-  const shineOpacity = useTransform(scrollYProgress, [0, 0.2, 0.45], [1, 0.7, 0]);
+  const copyY = useTransform(scrollYProgress, [0, 0.18], [0, -72]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.12, 0.2], [1, 0.15, 0]);
+  const copyScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.92]);
+  const phoneX = useTransform(scrollYProgress, [0, 0.28], [0, 80]);
+  const phoneOpacity = useTransform(scrollYProgress, [0.02, 0.24], [1, 0]);
+  const phoneScale = useTransform(scrollYProgress, [0, 0.28], [1, 0.8]);
+  const laptopScale = useTransform(scrollYProgress, [0.16, 0.88], [1, endScale]);
+  const bootY = useTransform(scrollYProgress, [0.14, 0.36], ["0%", "-110%"]);
+  const chromeOpacity = useTransform(scrollYProgress, [0.82, 0.94], [1, 0]);
+  const pinOpacity = useTransform(scrollYProgress, [0.92, 0.995], [1, 0]);
+  const shineOpacity = useTransform(scrollYProgress, [0, 0.18, 0.4], [1, 0.65, 0]);
 
   const alignPortal = useCallback(() => {
     const screen = screenRef.current;
@@ -133,8 +137,13 @@ function CupertinoScrollStory() {
     };
   }, [alignPortal, measureScale]);
 
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+  useAnimationFrame(() => {
     alignPortal();
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    setCopyGone(progress > 0.14);
+    setPhoneGone(progress > 0.22);
     if (pinRef.current) {
       pinRef.current.style.pointerEvents = progress > 0.9 ? "none" : "auto";
     }
@@ -148,7 +157,7 @@ function CupertinoScrollStory() {
         style={{ opacity: pinOpacity }}
       >
         <motion.div
-          className="cupertino-copy"
+          className={`cupertino-copy${copyGone ? " is-gone" : ""}`}
           style={{ y: copyY, opacity: copyOpacity, scale: copyScale }}
         >
           <CupertinoCopy />
@@ -156,7 +165,7 @@ function CupertinoScrollStory() {
 
         <div className="cupertino-stage">
           <motion.div
-            className="cupertino-phone-wrap"
+            className={`cupertino-phone-wrap${phoneGone ? " is-gone" : ""}`}
             style={{ x: phoneX, opacity: phoneOpacity, scale: phoneScale }}
           >
             <CupertinoPhone />
@@ -165,7 +174,7 @@ function CupertinoScrollStory() {
           <motion.div
             ref={laptopRef}
             className="cupertino-laptop"
-            style={{ scale: laptopScale, y: laptopY, ...laptopOrigin }}
+            style={{ scale: laptopScale, ...laptopOrigin }}
           >
             <motion.div style={{ opacity: chromeOpacity }}>
               <LaptopChassis />
@@ -243,6 +252,7 @@ function CupertinoPhone() {
       width={864}
       height={1152}
       sizes="180px"
+      loading="lazy"
       className="cupertino-phone-photo"
     />
   );

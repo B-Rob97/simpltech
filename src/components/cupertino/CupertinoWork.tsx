@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import Image from "next/image";
 import { useState } from "react";
 import { projects } from "@/lib/projects";
 
@@ -26,15 +25,6 @@ export function CupertinoWork() {
       </div>
 
       <div className="cupertino-work-stage">
-        <div className="cupertino-work-display" aria-hidden>
-          <Image
-            src="/themes/cupertino-display.webp"
-            alt=""
-            width={1280}
-            height={720}
-            sizes="(max-width: 767px) 100vw, 56rem"
-          />
-        </div>
         <div className="showcase-picker" role="group" aria-label="Choose a project">
           {projects.map((item, index) => (
             <button
