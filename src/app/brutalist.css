@@ -187,6 +187,7 @@
   --brutal-col: 0;
   --brutal-rule: 0;
   --brutal-copy: 1;
+  --brutal-edge: max(0.5rem, calc(var(--brutal-col) * 100%));
   position: relative;
   z-index: 10;
   height: 100%;
@@ -204,17 +205,20 @@
 
 .hero-brutal-field {
   position: absolute;
-  inset: 0 auto 0 0;
+  inset: 0;
   z-index: 2;
-  width: calc(100% - max(0.5rem, var(--brutal-col) * 100%));
+  width: 100%;
   overflow: hidden;
   background: var(--background);
+  clip-path: inset(0 var(--brutal-edge) 0 0);
+  will-change: clip-path;
 }
 
 .hero-brutal-page.is-static .hero-brutal-field {
   position: relative;
   width: 100%;
   min-height: 100svh;
+  clip-path: none;
 }
 
 .hero-brutal-field-image {
@@ -312,9 +316,11 @@
   bottom: 16%;
   z-index: 3;
   height: var(--brutal-rule-w);
-  width: calc(var(--brutal-rule) * 100%);
+  width: 100%;
   background: var(--foreground);
+  transform: scaleX(var(--brutal-rule));
   transform-origin: left center;
+  will-change: transform;
 }
 
 .hero-brutal-column {
@@ -323,9 +329,11 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  width: max(0.5rem, var(--brutal-col) * 100%);
+  width: 100%;
   pointer-events: none;
+  transform: translate3d(calc(100% - var(--brutal-edge)), 0, 0);
   box-shadow: inset var(--brutal-rule-w) 0 0 var(--foreground);
+  will-change: transform;
 }
 
 .hero-brutal-page.is-static .hero-brutal-column {
@@ -350,6 +358,7 @@
 
 .brutal-scroll-stage:not([data-brutal-reduced="true"]) .work-brutalist {
   transform: translate3d(calc((1 - var(--brutal-col, 0)) * 100vw), 0, 0);
+  will-change: transform;
 }
 
 .work-brutalist .design-section-heading {
@@ -492,6 +501,11 @@
   margin: calc(-1 * var(--brutal-rule-w));
   padding: 1.35rem;
   background: var(--elevated);
+  animation: none;
+  filter: none;
+  transform: none;
+  box-shadow: none;
+  transition: none;
 }
 
 .services-brutalist .service-item:last-child {
@@ -504,8 +518,31 @@
   color: var(--accent-ink);
 }
 
-.services-brutalist .service-item:hover {
-  animation: brutal-invert-tick 0.42s steps(2, end);
+.services-brutalist .service-item:hover,
+.services-brutalist .service-item:focus-visible {
+  animation: none;
+  filter: none;
+  transform: none;
+  box-shadow: none;
+  transition: none;
+  background: var(--foreground);
+  color: var(--accent-ink);
+}
+
+.services-brutalist .service-item:hover .service-number,
+.services-brutalist .service-item:focus-visible .service-number {
+  color: var(--accent-ink);
+}
+
+.services-brutalist .service-item:last-child:hover,
+.services-brutalist .service-item:last-child:focus-visible {
+  background: var(--accent-ink);
+  color: var(--foreground);
+}
+
+.services-brutalist .service-item:last-child:hover .service-number,
+.services-brutalist .service-item:last-child:focus-visible .service-number {
+  color: var(--foreground);
 }
 
 .composition-brutalist #approach {
@@ -704,18 +741,6 @@
   background: var(--accent-ink);
 }
 
-@keyframes brutal-invert-tick {
-  0%,
-  82%,
-  100% {
-    filter: none;
-  }
-  86%,
-  92% {
-    filter: invert(1);
-  }
-}
-
 @media (max-width: 767px) {
   .brutal-scroll-track {
     height: 220vh;
@@ -726,20 +751,23 @@
   }
 
   .hero-brutal-field {
-    inset: 0 0 auto 0;
+    inset: 0;
     width: 100%;
-    height: calc(100% - max(0.5rem, var(--brutal-col) * 100%));
+    height: 100%;
+    clip-path: inset(0 0 var(--brutal-edge) 0);
   }
 
   .hero-brutal-page.is-static .hero-brutal-field {
     height: auto;
+    clip-path: none;
   }
 
   .hero-brutal-column {
     top: auto;
     left: 0;
     width: 100%;
-    height: max(0.5rem, var(--brutal-col) * 100%);
+    height: 100%;
+    transform: translate3d(0, calc(100% - var(--brutal-edge)), 0);
     box-shadow: inset 0 var(--brutal-rule-w) 0 var(--foreground);
   }
 
@@ -817,7 +845,12 @@
     margin-top: 0;
   }
 
-  .services-brutalist .service-item:hover {
+  .services-brutalist .service-item:hover,
+  .services-brutalist .service-item:focus-visible {
     animation: none;
+    filter: none;
+    transform: none;
+    box-shadow: none;
+    transition: none;
   }
 }
