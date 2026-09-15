@@ -1,18 +1,23 @@
 /* Swiss / International Style — this file is the only theme-specific stylesheet. */
 
+[data-theme="swiss"],
+[data-theme="swiss"][data-density="dense"] {
+  --section-space: 8rem;
+}
+
 [data-theme="swiss"] body {
   background-color: var(--background);
   background-image:
-    linear-gradient(color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 12%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
   background-size: calc((100vw - 8vw) / 12) calc((100vw - 8vw) / 12);
   background-position: 4vw 0;
 }
 
 [data-theme="swiss"] h2 {
   text-transform: uppercase;
-  letter-spacing: -0.05em;
-  word-spacing: 0.08em;
+  letter-spacing: -0.04em;
+  word-spacing: 0.1em;
 }
 
 [data-theme="swiss"] .site-hero {
@@ -22,27 +27,27 @@
 }
 
 [data-theme="swiss"] .site-header {
-  border-bottom: 2px solid var(--foreground);
+  border-bottom: 1px solid var(--foreground);
   background: var(--background);
   backdrop-filter: none;
 }
 
 [data-theme="swiss"] .site-header nav {
   counter-reset: swiss-nav;
-  gap: 1.6rem;
+  gap: 1.75rem;
 }
 
 [data-theme="swiss"] .site-header nav a {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 [data-theme="swiss"] .site-header nav a::before {
   counter-increment: swiss-nav;
   content: counter(swiss-nav, decimal-leading-zero);
-  margin-right: 0.45rem;
+  margin-right: 0.4rem;
   color: var(--accent);
 }
 
@@ -53,7 +58,7 @@
 /* Press-register scroll story ------------------------------------------- */
 
 .swiss-register {
-  height: 230vh;
+  height: 210vh;
 }
 
 .swiss-register.is-static {
@@ -78,73 +83,19 @@
   overflow: visible;
 }
 
-.swiss-register-sticky::before,
-.swiss-register-sticky::after {
-  position: absolute;
-  z-index: 5;
-  width: 14px;
-  height: 14px;
-  border: 2px solid var(--foreground);
-  content: "";
-  pointer-events: none;
-}
-
-.swiss-register-sticky::before {
-  top: 4.75rem;
-  left: 4vw;
-  border-right: 0;
-  border-bottom: 0;
-}
-
-.swiss-register-sticky::after {
-  right: 4vw;
-  bottom: 1.25rem;
-  border-top: 0;
-  border-left: 0;
-}
-
-.swiss-grid-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.swiss-grid-v,
-.swiss-grid-h {
-  position: absolute;
-  background: color-mix(in oklab, var(--foreground) 16%, transparent);
-}
-
-.swiss-grid-v {
-  top: 0;
-  width: 1px;
-  height: 100%;
-  transform-origin: top;
-  animation: swiss-rule-draw-y 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.swiss-grid-h {
-  left: 0;
-  width: 100%;
-  height: 1px;
-  transform-origin: left;
-  animation: swiss-rule-draw 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
 .swiss-folio {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: auto 1fr auto auto auto;
-  gap: 1rem 1.75rem;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem 2rem;
   align-items: end;
-  margin: 4.75rem 4vw 0;
-  padding-bottom: 0.7rem;
-  border-bottom: 2px solid var(--foreground);
+  margin: 5.25rem 4vw 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--foreground);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   word-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -163,62 +114,60 @@
   z-index: 2;
   display: grid;
   flex: 1;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 4vw;
-  align-items: stretch;
+  grid-template-columns: minmax(0, 1.2fr) minmax(12rem, 0.7fr);
+  gap: 6vw;
+  align-items: center;
   min-height: 0;
-  padding: 1.1rem 5.5rem 1.25rem 4vw;
+  padding: 2.5rem 5.5rem 2.75rem 4vw;
 }
 
 .swiss-copy {
-  align-self: start;
-  max-width: 36rem;
-  padding-top: 0.25rem;
+  align-self: center;
+  max-width: 34rem;
 }
 
-.swiss-kicker,
-.swiss-proof-kicker,
-.swiss-hero-index a span {
+.swiss-proof-kicker {
   color: var(--accent);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 
 .swiss-hero-heading {
-  margin: 0.55rem 0 0;
+  margin: 0;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(2rem, 4.2vw, 4.6rem);
+  font-size: clamp(2.1rem, 4.2vw, 4rem);
   font-weight: 700;
-  line-height: 0.94;
-  letter-spacing: -0.045em;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
   word-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .swiss-hero-body {
   max-width: 28rem;
-  margin-top: 1.1rem;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--foreground) 78%, var(--background));
 }
 
 .swiss-hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 1.6rem;
+  gap: 0.75rem;
+  margin-top: 2rem;
 }
 
 .swiss-btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.75rem 1.15rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 0;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -228,68 +177,33 @@
 }
 
 .swiss-btn-line {
-  border: 2px solid var(--foreground);
+  border: 1px solid var(--foreground);
   color: var(--foreground);
-}
-
-.swiss-hero-index {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.55rem 1.5rem;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 2px solid var(--foreground);
-}
-
-.swiss-hero-index a {
-  display: flex;
-  gap: 0.7rem;
-  align-items: baseline;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .swiss-plate {
   position: relative;
-  align-self: stretch;
-  min-height: 22rem;
+  align-self: center;
+  width: min(100%, 22rem);
+  min-height: 0;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
-  border: 2px solid var(--foreground);
-  background: var(--elevated);
+  border: 1px solid var(--foreground);
+  background: var(--background);
 }
 
 .swiss-plate-image {
-  object-fit: contain;
-  object-position: center bottom;
-}
-
-.swiss-numeral-lock {
-  position: absolute;
-  left: 4%;
-  bottom: 12%;
-  transform-origin: left bottom;
-  mix-blend-mode: multiply;
-}
-
-.swiss-numeral {
-  margin: 0;
-  font-family: var(--font-grotesque), sans-serif;
-  font-size: clamp(6.5rem, 18vw, 14rem);
-  font-weight: 700;
-  line-height: 0.72;
-  letter-spacing: -0.08em;
-  color: var(--foreground);
+  object-fit: cover;
+  object-position: center;
 }
 
 .swiss-rail {
   position: absolute;
-  top: 7.75rem;
+  top: 8.5rem;
   right: 0;
-  bottom: 42%;
+  bottom: 38%;
   z-index: 4;
-  width: 3.5rem;
+  width: 1.15rem;
   pointer-events: none;
 }
 
@@ -301,30 +215,20 @@
   background: var(--accent);
 }
 
-.swiss-plate figcaption {
-  position: absolute;
-  right: 0.7rem;
-  bottom: 0.55rem;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
 .swiss-trim {
   position: absolute;
   left: 0;
   right: 0;
-  top: 58%;
+  top: 62%;
   z-index: 4;
-  height: 4px;
+  height: 2px;
   background: var(--accent);
   transform-origin: right center;
 }
 
 .swiss-print-bed {
   position: absolute;
-  inset: 58% 0 0;
+  inset: 62% 0 0;
   z-index: 3;
   overflow: hidden;
   pointer-events: none;
@@ -333,31 +237,14 @@
 
 .swiss-proof {
   display: grid;
-  grid-template-columns: 12rem 1fr;
-  gap: 1rem 3rem;
+  gap: 1.25rem;
   height: 100%;
-  padding: 1.25rem 4vw 1.5rem;
-  border-top: 2px solid var(--foreground);
-  background:
-    linear-gradient(color-mix(in oklab, var(--background) 88%, white), var(--background)),
-    url("/themes/swiss-grid.webp");
-  background-size: cover;
-  background-blend-mode: multiply;
-}
-
-.swiss-proof-title {
-  grid-column: 1;
-  margin: 0.35rem 0 0;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 700;
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
-  line-height: 0.9;
+  padding: 1.75rem 4vw 2rem;
+  border-top: 1px solid var(--foreground);
+  background: var(--background);
 }
 
 .swiss-proof-list {
-  grid-column: 2;
-  grid-row: 1 / span 2;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -365,12 +252,12 @@
 
 .swiss-proof-list li {
   display: grid;
-  grid-template-columns: 2.4rem 1fr;
+  grid-template-columns: 2.25rem 1fr;
   gap: 1rem;
   align-items: baseline;
-  padding: 0.55rem 0;
-  border-top: 2px solid var(--foreground);
-  font-size: 0.95rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+  font-size: 0.92rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   word-spacing: 0.1em;
@@ -382,28 +269,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.swiss-register-cue {
-  position: absolute;
-  left: 4vw;
-  bottom: 1.1rem;
-  z-index: 5;
-  margin: 0;
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-
-.swiss-register-cue::after {
-  display: block;
-  width: 0.7rem;
-  height: 0.7rem;
-  margin-top: 0.4rem;
-  background: var(--accent);
-  content: "";
-  animation: swiss-module-step 1.1s steps(4, end) infinite;
-}
-
 /* Services / work / about ---------------------------------------------- */
 
 .services-swiss,
@@ -411,31 +276,25 @@
   max-width: none;
   margin: 0 4vw;
   padding-inline: 0;
+  padding-block: var(--section-space);
 }
 
 .services-swiss {
   display: grid;
-  grid-template-columns: 1fr 1.7fr;
-  gap: 4rem;
-  border-top: 2px solid var(--foreground);
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 5rem 8vw;
+  border-top: 1px solid var(--foreground);
 }
 
-.services-swiss .design-section-heading::before {
-  display: block;
-  margin-bottom: 0.8rem;
-  color: var(--foreground);
-  font-size: clamp(5.5rem, 12vw, 10rem);
-  font-weight: 700;
-  letter-spacing: -0.08em;
-  line-height: 0.8;
-  content: "02";
+.services-swiss .design-section-heading {
+  max-width: 22rem;
 }
 
 .services-swiss .design-section-heading::after {
   display: block;
-  width: 4.5rem;
-  height: 4.5rem;
-  margin-top: 2rem;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 1.75rem;
   background: var(--accent);
   content: "";
 }
@@ -447,8 +306,13 @@
 .services-swiss .service-item {
   display: grid;
   grid-template-columns: 3rem 1fr;
-  padding-block: 1.35rem;
-  border-top: 2px solid var(--foreground);
+  padding-block: 1.75rem;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+}
+
+.services-swiss .service-item:first-child {
+  border-top: 0;
+  padding-top: 0;
 }
 
 .services-swiss .service-item p {
@@ -457,147 +321,112 @@
 
 .services-swiss .service-number {
   color: var(--accent);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
 }
 
 .work-swiss .design-section-heading {
-  display: grid;
-  grid-template-columns: 8rem 1fr 1.2fr;
-  gap: 1rem 2rem;
-  align-items: end;
-  margin-bottom: 0;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid var(--foreground);
+  display: block;
+  max-width: 34rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 2.75rem;
+  border-bottom: 1px solid var(--foreground);
 }
 
-.work-swiss .design-section-heading .section-kicker {
-  grid-column: 1;
+.work-swiss .design-section-heading .section-kicker,
+.work-swiss .design-section-heading h2,
+.work-swiss .design-section-heading > p:last-child {
+  grid-column: auto;
 }
 
 .work-swiss .design-section-heading h2 {
-  grid-column: 2;
   margin: 0;
 }
 
 .work-swiss .design-section-heading > p:last-child {
-  grid-column: 3;
-  margin: 0;
+  margin-top: 1.25rem;
 }
 
 .work-swiss .design-projects {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
+  max-width: 46rem;
   gap: 0;
-  border: 2px solid var(--foreground);
-  border-bottom: 0;
+  border: 0;
 }
 
 .work-swiss .design-project {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  column-gap: 2.25rem;
   position: relative;
   min-width: 0;
-  padding: 0;
+  padding: 3.25rem 0;
   border: 0;
-  border-right: 2px solid var(--foreground);
-  border-bottom: 2px solid var(--foreground);
-  animation: swiss-sheet-advance 0.8s cubic-bezier(0.18, 0.7, 0.2, 1) both;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  animation: none;
 }
 
-.work-swiss .design-project:nth-child(4n) {
-  border-right: 0;
+.work-swiss .design-project:first-child {
+  border-top: 0;
 }
-
-.work-swiss .design-project:nth-child(1) { animation-delay: 0ms; }
-.work-swiss .design-project:nth-child(2) { animation-delay: 70ms; }
-.work-swiss .design-project:nth-child(3) { animation-delay: 140ms; }
-.work-swiss .design-project:nth-child(4) { animation-delay: 210ms; }
-.work-swiss .design-project:nth-child(5) { animation-delay: 280ms; }
-.work-swiss .design-project:nth-child(6) { animation-delay: 350ms; }
-.work-swiss .design-project:nth-child(7) { animation-delay: 420ms; }
-.work-swiss .design-project:nth-child(8) { animation-delay: 490ms; }
 
 .work-swiss .project-number {
-  position: absolute;
-  z-index: 1;
-  top: 0.7rem;
-  left: 0.8rem;
+  position: static;
+  z-index: auto;
+  top: auto;
+  left: auto;
   display: block;
+  padding-top: 0.55rem;
   color: var(--accent);
-  font-size: 1.4rem;
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
   line-height: 1;
 }
 
 .work-swiss .project-cover {
-  position: relative;
-  display: flex;
-  aspect-ratio: 1;
-  min-height: 0;
-  padding: 0.85rem;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  background-color: #f2efe8;
-  background-size: cover;
-  background-position: center;
-  color: #111;
-}
-
-.work-swiss .cover-0 { background-image: url("/themes/swiss-work-01.webp"); }
-.work-swiss .cover-1 { background-image: url("/themes/swiss-work-02.webp"); }
-.work-swiss .cover-2 { background-image: url("/themes/swiss-work-03.webp"); }
-.work-swiss .cover-3 { background-image: url("/themes/swiss-work-04.webp"); }
-
-.work-swiss .cover-folio,
-.work-swiss .cover-caption {
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-}
-
-.work-swiss .cover-symbol,
-.work-swiss .cover-name {
   display: none;
-}
-
-.work-swiss .cover-name {
-  max-width: 92%;
-  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
 }
 
 .work-swiss .project-details {
   display: block;
-  padding: 0.9rem 0.85rem 1.1rem;
+  grid-column: 2;
+  padding: 0;
 }
 
 .work-swiss .project-details h3 {
-  margin: 0.35rem 0;
-  font-size: 1.15rem;
+  margin: 0.4rem 0 1rem;
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  line-height: 1.15;
   text-transform: uppercase;
+  letter-spacing: -0.035em;
+}
+
+.work-swiss .project-category {
+  letter-spacing: 0.1em;
 }
 
 .work-swiss .project-summary {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  font-size: 0.8rem;
-  line-height: 1.45;
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .work-swiss .project-link {
   justify-self: start;
+  margin-top: 1.5rem;
 }
 
 .composition-swiss .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 4rem 6vw;
   max-width: none;
   margin-inline: 4vw;
   padding-inline: 0;
@@ -610,17 +439,17 @@
 .composition-swiss .about-beliefs {
   grid-column: 1 / -1;
   margin-top: 0;
-  border-top: 2px solid var(--foreground);
+  border-top: 1px solid var(--foreground);
 }
 
 .composition-swiss .about-beliefs li {
-  border-color: var(--foreground);
+  border-color: color-mix(in oklab, var(--foreground) 16%, transparent);
 }
 
 [data-theme="swiss"] #about > p[aria-hidden] {
   display: block;
   color: var(--accent);
-  opacity: 0.16 !important;
+  opacity: 0.08 !important;
   transform: none !important;
   mix-blend-mode: multiply;
 }
@@ -643,22 +472,17 @@
 }
 
 [data-theme="swiss"] .approach-grid {
-  gap: 0;
+  gap: 1.5rem;
 }
 
 [data-theme="swiss"] .approach-grid > div {
-  padding: 1.5rem 1.25rem 1.7rem;
-  border: 2px solid var(--foreground);
-  border-right-width: 0;
-}
-
-[data-theme="swiss"] .approach-grid > div:last-child {
-  border-right-width: 2px;
+  padding: 2rem 1.5rem 2.25rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent);
 }
 
 [data-theme="swiss"] .approach-grid h3 {
   text-transform: uppercase;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.03em;
 }
 
 [data-theme="swiss"] .approach-timeline .rounded-full {
@@ -673,22 +497,15 @@
 
 [data-theme="swiss"] .pricing-packages {
   counter-reset: swiss-pack;
-  gap: 0;
-  border: 2px solid var(--foreground);
-  border-bottom: 0;
+  gap: 1.5rem;
+  border: 0;
 }
 
 [data-theme="swiss"] .pricing-packages article {
   counter-increment: swiss-pack;
-  padding: 1.75rem;
-  border: 0;
-  border-right: 2px solid var(--foreground);
-  border-bottom: 2px solid var(--foreground);
+  padding: 2.25rem 1.75rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent);
   background: var(--background);
-}
-
-[data-theme="swiss"] .pricing-packages article:last-child {
-  border-right: 0;
 }
 
 [data-theme="swiss"] .pricing-packages article > p:first-child {
@@ -701,9 +518,9 @@
 }
 
 [data-theme="swiss"] .pricing-packages li span.h-1\.5 {
-  width: 0.7rem;
-  height: 0.7rem;
-  margin-top: 0.2rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.25rem;
   border-radius: 0;
 }
 
@@ -716,9 +533,13 @@
   padding-inline: 0;
 }
 
+.composition-swiss #contact h2 {
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+}
+
 .composition-swiss #contact .relative.overflow-hidden {
   border-radius: 0;
-  border: 2px solid var(--foreground);
+  border: 1px solid var(--foreground);
   background: var(--background);
 }
 
@@ -728,8 +549,8 @@
 
 [data-theme="swiss"] footer {
   margin-top: 0;
-  padding: 1.25rem 4vw 1.6rem;
-  border-top: 2px solid var(--foreground);
+  padding: 1.5rem 4vw 2rem;
+  border-top: 1px solid var(--foreground);
 }
 
 [data-theme="swiss"] footer .relative.mx-auto {
@@ -741,74 +562,50 @@
   text-transform: uppercase;
 }
 
-@keyframes swiss-rule-draw {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-@keyframes swiss-rule-draw-y {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
-@keyframes swiss-module-step {
-  from { transform: translateY(0); }
-  to { transform: translateY(14px); }
-}
-
-@keyframes swiss-sheet-advance {
-  from { transform: translateY(1.25rem); }
-  to { transform: translateY(0); }
-}
-
 @media (max-width: 767px) {
+  [data-theme="swiss"],
+  [data-theme="swiss"][data-density="dense"] {
+    --section-space: 5.5rem;
+  }
+
   .swiss-register {
-    height: 180vh;
+    height: 170vh;
   }
 
   .swiss-rail {
-    top: 12.75rem;
-    width: 2.1rem;
+    top: 12.5rem;
+    width: 0.85rem;
   }
 
   .swiss-folio {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.35rem 1rem;
-    margin-top: 4.4rem;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 1rem;
+    margin-top: 4.6rem;
   }
 
   .swiss-folio-reg {
-    justify-self: start;
+    justify-self: end;
   }
 
   .swiss-stage {
     grid-template-columns: 1fr;
-  padding: 1rem 4vw 1.5rem;
-}
+    align-items: start;
+    gap: 1.75rem;
+    padding: 1.5rem 4vw 2rem;
+  }
 
   .swiss-plate {
     order: -1;
-    min-height: 12rem;
-    aspect-ratio: 3 / 4;
-    max-width: 13.5rem;
-    justify-self: end;
-  }
-
-  .swiss-numeral {
-    font-size: clamp(3.1rem, 18vw, 4.8rem);
+    width: min(42vw, 9.5rem);
+    justify-self: start;
   }
 
   .swiss-hero-heading {
-    font-size: clamp(1.8rem, 9vw, 2.7rem);
-  }
-
-  .swiss-register-cue {
-    display: none;
+    font-size: clamp(1.7rem, 8.4vw, 2.5rem);
   }
 
   .swiss-proof {
-    display: block;
-    padding: 1rem 4vw;
+    padding: 1.25rem 4vw;
   }
 
   .swiss-proof-list li {
@@ -817,26 +614,25 @@
 
   .services-swiss {
     display: block;
+    gap: 0;
   }
 
-  .work-swiss .design-section-heading {
-    display: block;
+  .services-swiss .design-section-heading {
+    margin-bottom: 2.5rem;
   }
 
   .work-swiss .design-projects {
-    grid-template-columns: 1fr 1fr;
+    max-width: none;
   }
 
-  .work-swiss .design-project:nth-child(4n) {
-    border-right: 2px solid var(--foreground);
-  }
-
-  .work-swiss .design-project:nth-child(2n) {
-    border-right: 0;
+  .work-swiss .design-project {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 1.15rem;
+    padding: 2.4rem 0;
   }
 
   .work-swiss .project-details h3 {
-    font-size: 1rem;
+    font-size: 1.35rem;
   }
 
   .composition-swiss .about-content {
@@ -850,25 +646,12 @@
 
   [data-theme="swiss"] .approach-grid > div,
   [data-theme="swiss"] .approach-grid > div:last-child {
-    border-right-width: 2px;
-    border-bottom-width: 0;
-  }
-
-  [data-theme="swiss"] .approach-grid > div:last-child {
-    border-bottom-width: 2px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
   }
 
   [data-theme="swiss"] .pricing-packages article,
   [data-theme="swiss"] .pricing-packages article:last-child {
-    border-right: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .swiss-grid-v,
-  .swiss-grid-h,
-  .swiss-register-cue::after,
-  .work-swiss .design-project {
-    animation: none;
+    border-right-width: 1px;
   }
 }
