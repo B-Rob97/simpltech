@@ -21,13 +21,16 @@ const pinVars = {
 
 export function SoftProductWorkspace({ services }: SoftProductWorkspaceProps) {
   const pinRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const reduceMotion = Boolean(useReducedMotion());
+  // Progress is the spacer track only, not the whole pin. Services sits
+  // one track below the stage, so the board wipes as that section arrives.
   const { scrollYProgress } = useScroll({
-    target: pinRef,
-    offset: ["start start", "end end"],
+    target: trackRef,
+    offset: ["start end", "end end"],
   });
-  const maximize = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-  const clearBoard = useTransform(scrollYProgress, [0.16, 0.28], [0, 1]);
+  const maximize = useTransform(scrollYProgress, [0, 0.74], [0, 1]);
+  const clearBoard = useTransform(scrollYProgress, [0.6, 0.97], [0, 1]);
 
   useMotionValueEvent(maximize, "change", (value) => {
     pinRef.current?.style.setProperty("--soft-max", value.toFixed(4));
@@ -70,7 +73,7 @@ export function SoftProductWorkspace({ services }: SoftProductWorkspaceProps) {
           </p>
         </section>
       </div>
-      <div className="soft-product-track" aria-hidden />
+      <div ref={trackRef} className="soft-product-track" aria-hidden />
       <div className="theme-section-slot slot-services">{services}</div>
     </div>
   );

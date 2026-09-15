@@ -6,14 +6,17 @@ const lanes = [
   {
     name: "Clarify",
     cards: ["Scope the launch", "Pin the first win"],
+    more: ["Map the week", "Name the buyer"],
   },
   {
     name: "Design",
     cards: ["Route the story", "Set the motion"],
+    more: ["Lock the type", "Stage the proof"],
   },
   {
     name: "Ship",
     cards: ["Hand off live", "Measure week one"],
+    more: ["Wire analytics", "Open the inbox"],
   },
 ] as const;
 
@@ -21,6 +24,7 @@ const activity = [
   "BrettOS desktop — live",
   "Prism portal — in review",
   "Discovery quote — sent",
+  "Calgary studio — on",
 ] as const;
 
 type SoftProductWindowProps = {
@@ -100,6 +104,11 @@ export function SoftProductWindow({ reduceMotion }: SoftProductWindowProps) {
                   <p>{lane.name}</p>
                   {lane.cards.map((card) => (
                     <span key={card} className="soft-product-lane-card">
+                      {card}
+                    </span>
+                  ))}
+                  {lane.more.map((card) => (
+                    <span key={card} className="soft-product-lane-card is-more">
                       {card}
                     </span>
                   ))}

@@ -94,10 +94,10 @@
 [data-theme="soft-product"] .soft-product-app-mark span { width: .42rem; height: .42rem; border-radius: 999px; background: var(--accent-ink); box-shadow: .28rem 0 0 var(--product-mint); }
 
 .composition-soft-product { overflow-x: clip; }
-.soft-product-pin { position: relative; --soft-max: 0; --soft-clear: 0; }
+.soft-product-pin { position: relative; --soft-max: 0; --soft-clear: 0; --soft-track: 270vh; }
 .soft-product-stage { position: sticky; top: 0; z-index: 4; height: 100svh; overflow: hidden; }
 .soft-product-stage .site-hero { min-height: 100svh; height: 100svh; overflow: hidden; }
-.soft-product-track { height: 92vh; }
+.soft-product-track { height: var(--soft-track); }
 .soft-product-atmosphere {
   position: absolute; inset: 0;
   background:
@@ -164,7 +164,7 @@
 .soft-product-pin[data-open] .soft-product-rail [data-item="overview"] { background: transparent; color: color-mix(in oklab, var(--foreground) 55%, transparent); }
 .soft-product-pin[data-open] .soft-product-rail [data-item="modules"] { background: color-mix(in oklab, var(--accent) 12%, var(--elevated)); color: var(--accent); }
 .soft-product-screen { position: relative; flex: 1; min-width: 0; background: color-mix(in oklab, var(--elevated) calc((1 - var(--soft-clear)) * 100%), transparent); }
-.soft-product-board { position: absolute; inset: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; gap: .75rem; padding: 1rem; background: var(--elevated); clip-path: inset(0 0 0 calc(var(--soft-clear) * 100%)); transform: translateX(calc(var(--soft-clear) * -16%)); }
+.soft-product-board { position: absolute; inset: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; align-content: start; gap: .75rem; padding: 1rem; background: var(--elevated); clip-path: inset(0 0 0 calc(var(--soft-clear) * 100%)); transform: translateX(calc(var(--soft-clear) * -16%)); }
 .soft-product-kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; }
 .soft-product-kpi { border: 1px solid var(--border); border-radius: .9rem; padding: .7rem .8rem; background: color-mix(in oklab, var(--accent) 6%, var(--elevated)); }
 .soft-product-kpi p { margin: 0; font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: color-mix(in oklab, var(--foreground) 48%, transparent); }
@@ -175,10 +175,18 @@
 .soft-product-spark { display: block; width: 100%; height: 4.2rem; }
 .soft-product-spark-line { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 480; animation: soft-product-spark 2.4s var(--motion-ease) both; }
 .soft-product-spark-fill { fill: color-mix(in oklab, var(--accent) 12%, transparent); }
-.soft-product-lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; min-height: 0; }
-.soft-product-lane { display: flex; flex-direction: column; gap: .45rem; min-height: 0; padding: .55rem; border-radius: .85rem; background: color-mix(in oklab, var(--foreground) 4%, var(--elevated)); }
+.soft-product-lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; min-height: 0; align-items: start; }
+.soft-product-lane { display: flex; flex-direction: column; gap: .45rem; min-height: 0; max-height: 100%; overflow: hidden; padding: .55rem; border-radius: .85rem; background: color-mix(in oklab, var(--foreground) 4%, var(--elevated)); }
 .soft-product-lane p { margin: 0; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .soft-product-lane-card { border-radius: .65rem; padding: .55rem .6rem; background: var(--elevated); border: 1px solid var(--border); font-size: .72rem; font-weight: 600; animation: soft-product-lane-drift 4.8s ease-in-out infinite; }
+.soft-product-lane-card.is-more {
+  opacity: var(--soft-max);
+  max-height: calc(var(--soft-max) * 3.2rem);
+  padding-block: calc(var(--soft-max) * .55rem);
+  margin-top: calc(var(--soft-max) * -.05rem);
+  border-width: calc(var(--soft-max) * 1px);
+  overflow: hidden;
+}
 .soft-product-lane:nth-child(2) .soft-product-lane-card { animation-delay: .5s; }
 .soft-product-lane:nth-child(3) .soft-product-lane-card { animation-delay: 1s; }
 .soft-product-activity { display: grid; gap: .25rem; margin: 0; padding: .2rem 0 0; list-style: none; font-size: .72rem; font-weight: 600; color: color-mix(in oklab, var(--foreground) 62%, transparent); }
@@ -186,6 +194,7 @@
 .soft-product-activity li::before { content: ""; position: absolute; left: 0; top: .55rem; width: .35rem; height: .35rem; border-radius: 999px; background: var(--product-mint); }
 .soft-product-activity li:nth-child(2) { animation-delay: .4s; }
 .soft-product-activity li:nth-child(3) { animation-delay: .8s; }
+.soft-product-activity li:nth-child(4) { animation-delay: 1.2s; }
 .soft-product-cursor {
   position: absolute; z-index: 8; width: .9rem; height: .9rem;
   background: var(--foreground);
@@ -198,10 +207,20 @@
 .composition-soft-product .slot-services {
   position: relative; z-index: 3;
   margin-top: calc(-100svh + var(--soft-stage-top) + var(--soft-title));
-  padding: .75rem 1.25rem 3.5rem calc(var(--soft-rail) + 1.15rem);
+  padding: .75rem 1.25rem 2rem calc(var(--soft-rail) + 1.15rem);
   min-height: calc(100svh - var(--soft-stage-top) - var(--soft-title));
 }
-.composition-soft-product .slot-services .design-services { max-width: none; margin: 0; padding: .4rem 0 1rem; scroll-margin-top: 6rem; }
+.composition-soft-product .slot-services .design-services {
+  max-width: none;
+  margin: 0;
+  padding: .4rem 0 0;
+  scroll-margin-top: 6rem;
+  min-height: calc(100svh - var(--soft-stage-top) - var(--soft-title) - 1.5rem);
+  display: flex;
+  flex-direction: column;
+}
+.services-soft-product .design-section-heading { margin-bottom: 1.4rem; }
+.services-soft-product .service-collection { flex: 1; align-content: start; }
 .soft-product-pin[data-open] .soft-product-stage { pointer-events: none; }
 .soft-product-pin[data-open] .soft-product-copy,
 .soft-product-pin[data-open] .soft-product-chips,
@@ -249,7 +268,7 @@
 [data-theme="soft-product"] .about-story { grid-column: 1; grid-row: 2; }
 [data-theme="soft-product"] .about-beliefs { grid-column: 1 / -1; grid-row: 3; border: 1px solid var(--border); border-radius: 1.25rem; background: var(--elevated); padding: .5rem 1rem; }
 [data-theme="soft-product"] .about-content::after {
-  content: ""; grid-column: 2; grid-row: 1 / span 2; min-height: 22rem; border-radius: 1.35rem;
+  content: ""; grid-column: 2; grid-row: 1 / span 2; min-height: 22rem; max-height: 32rem; border-radius: 1.35rem;
   background:
     linear-gradient(180deg, transparent 55%, color-mix(in oklab, var(--foreground) 18%, transparent)),
     url("/themes/soft-product-studio.webp") 40% 70% / cover;
@@ -1333,12 +1352,25 @@
 @media (min-width: 1200px) {
   [data-theme="soft-product"] { --soft-stage-top: 0px; }
   [data-theme="soft-product"] .site-header { width: 15rem; height: 100svh; right: auto; border-right: 1px solid var(--border); }
-  [data-theme="soft-product"] .site-header > div { flex-direction: column; align-items: stretch; justify-content: start; height: 100%; padding: 2rem 1.5rem; gap: 3rem; }
+  [data-theme="soft-product"] .site-header > div { flex-direction: column; align-items: stretch; justify-content: start; height: 100%; padding: 2rem 1.5rem; gap: 1.25rem; }
   [data-theme="soft-product"] .site-header nav { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   [data-theme="soft-product"] .site-header nav a { padding: .9rem; border-bottom: 1px solid var(--border); }
+  [data-theme="soft-product"] .site-header nav::before {
+    content: "In flight\ABrettOS  ·  live\APrism  ·  review\AQuote  ·  sent";
+    display: block;
+    margin-bottom: 1.15rem;
+    padding: .85rem .9rem;
+    border-radius: .9rem;
+    background: color-mix(in oklab, var(--foreground) 4%, var(--elevated));
+    color: color-mix(in oklab, var(--foreground) 64%, transparent);
+    font-size: .72rem;
+    font-weight: 600;
+    line-height: 1.7;
+    white-space: pre-line;
+  }
   [data-theme="soft-product"] .site-header nav::after { content: "Workspace  ·  Live"; display: block; margin-top: 1.5rem; padding: .85rem .9rem; border-radius: .9rem; background: color-mix(in oklab, var(--accent) 10%, var(--elevated)); color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  [data-theme="soft-product"] .site-header > div > div:last-child { flex-direction: column; align-items: stretch; margin-top: auto; gap: 1rem; }
-  [data-theme="soft-product"] .site-header [role="listbox"] { position: fixed; left: 1rem; right: auto; bottom: 8rem; }
+  [data-theme="soft-product"] .site-header > div > div:last-child { flex-direction: column; align-items: stretch; margin-top: 1.15rem; gap: .75rem; }
+  [data-theme="soft-product"] .site-header [role="listbox"] { position: fixed; left: 1rem; right: auto; top: auto; bottom: 6.5rem; }
   [data-theme="soft-product"] main, [data-theme="soft-product"] footer { margin-left: 15rem; }
 }
 
@@ -1369,6 +1401,7 @@
   .work-neon-club .project-details { display: block; }
   .work-soft-product .design-projects { grid-template-columns: 1fr; }
   .work-soft-product .design-project:first-child { grid-column: auto; }
+  .soft-product-pin { --soft-track: 210vh; }
   .soft-product-chips, .soft-product-atmosphere, .soft-product-lanes, .soft-product-activity, .soft-product-cursor { display: none; }
   .soft-product-board { grid-template-rows: auto auto minmax(0, 1fr); }
   .soft-product-copy { left: calc(6% * (1 - var(--soft-max)) + 1.1rem * var(--soft-max)); width: min(34rem, calc(92% * (1 - var(--soft-max)) + 18rem * var(--soft-max))); top: calc(5.6rem * (1 - var(--soft-max)) + .65rem * var(--soft-max)); }
