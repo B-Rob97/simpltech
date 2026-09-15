@@ -74,6 +74,12 @@ Generated with the built-in imagegen tool and saved here at 1800 × 1012. Board-
 
 Prompt: Photorealistic architectural photograph of a monumental raw brutalist blast door, landscape 16:9. A huge board-formed concrete slab fills the frame like a bunker hatch: visible timber-board grain, circular form-tie holes in a regular grid, hairline cracks, cold gray and charcoal concrete, one hard diagonal sunlight slash and deep shadow. Industrial, heavy, severe, tactile, no people, no text, no logos, no UI, no yellow tape, no website mockup. Shot like a large-format architecture photograph, high contrast, slight analog grain. Full-bleed standalone photograph.
 
+## craft-press.webp
+
+Generated with the built-in imagegen tool and saved here at 864 × 1152. Complementary still life for the Warm Craft approach, about, and services plates — terracotta vessel, letterpress wood type, linen tape. Not a photograph of SimplTech's studio.
+
+Prompt: Photorealistic close-up still life, portrait 3:4. Hand-thrown terracotta vessel, worn maple letterpress wood-type block, linen binding tape, beeswax-stained cotton rag on a sunlit plaster ledge. Late-afternoon honey light, analog film grain. No people, no readable words, no logos.
+
 ## editorial-architecture.webp
 
 Cover proof for the Editorial theme. Regenerated for the magazine scroll-story.

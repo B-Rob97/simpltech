@@ -1,8 +1,19 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
-import { useState, type RefObject } from "react";
+import {
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "motion/react";
+import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import Image from "next/image";
+import {
+  CraftDust,
+  CraftPlaten,
+  CraftStamp,
+  CraftSunshaft,
+  CraftTape,
+} from "@/components/craft/CraftStudioMarks";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { CupertinoHero } from "@/components/cupertino/CupertinoHero";
 import { BrutalistHero } from "@/components/hero/BrutalistHero";
@@ -42,7 +53,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "brutalist":
       return <BrutalistHero />;
     case "warm-craft":
-      return <WarmCraftLayout />;
+      return <WarmCraftLayout sectionRef={sectionRef} />;
     case "neon-club":
       return <NeonClubLayout />;
     case "newsprint":
@@ -65,26 +76,94 @@ function SoftProductLayout() {
   return null;
 }
 
-function WarmCraftLayout() {
+function WarmCraftLayout({
+  sectionRef,
+}: {
+  sectionRef: RefObject<HTMLElement | null>;
+}) {
+  const reduceMotion = useReducedMotion();
+  const coverRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const applyCraftPull = (value: number) => {
+    const node = coverRef.current;
+    if (!node || reduceMotion) return;
+
+    const press =
+      value < 0.05
+        ? 0
+        : value < 0.14
+          ? (value - 0.05) / 0.09
+          : value < 0.24
+            ? 1
+            : value < 0.36
+              ? 1 - (value - 0.24) / 0.12
+              : 0;
+    const grow = value < 0.38 ? 0 : value > 0.9 ? 1 : (value - 0.38) / 0.52;
+    const dolly =
+      value < 0.22
+        ? (value / 0.22) * 0.12
+        : 0.12 + Math.min(1, (value - 0.22) / 0.6) * 0.88;
+
+    node.style.setProperty("--craft-press", press.toFixed(4));
+    node.style.setProperty("--craft-grow", grow.toFixed(4));
+    node.style.setProperty("--craft-dolly", dolly.toFixed(4));
+  };
+
+  useLayoutEffect(() => {
+    applyCraftPull(scrollYProgress.get());
+  }, [scrollYProgress, reduceMotion]);
+
+  useMotionValueEvent(scrollYProgress, "change", applyCraftPull);
+
   return (
-    <div className="craft-cover">
-      <Image className="craft-photograph" src="/themes/craft-studio.webp" alt="Sunlit oak desk with a laptop, terracotta vase, and sketches" fill sizes="100vw" preload />
+    <div className="craft-cover" ref={coverRef}>
+      <div className="craft-photograph-frame">
+        <Image
+          className="craft-photograph"
+          src="/themes/craft-studio.webp"
+          alt="Sunlit oak desk with a laptop, terracotta vase, and sketches"
+          fill
+          sizes="100vw"
+          preload
+        />
+      </div>
+      <CraftSunshaft />
+      {reduceMotion ? null : <CraftDust />}
       <div className="craft-letter">
+        {reduceMotion ? null : <CraftPlaten />}
+        <CraftTape />
+        <div className="craft-letter-blot" aria-hidden />
+        <CraftStamp />
         <p className="font-[family-name:var(--font-display)] italic text-foreground/60">
           A Calgary studio
         </p>
         <HeroCopy
           className="mt-4"
-          headingClassName="font-[family-name:var(--font-display)] text-[clamp(2.1rem,4.6vw,3.8rem)] font-medium leading-[1.12] text-foreground"
+          headingClassName="font-[family-name:var(--font-display)] text-[clamp(2rem,4vw,3.4rem)] font-medium leading-[1.14] tracking-[-0.02em] text-foreground"
           bodyClassName="mt-5 max-w-md text-base leading-relaxed text-foreground/70"
         />
         <HeroActions
           primaryClassName="rounded-[0.2rem] bg-[color:var(--volt)] px-6 py-3 text-sm font-semibold text-[color:var(--accent-ink)]"
           secondaryClassName="rounded-[0.2rem] border border-foreground/20 px-6 py-3 text-sm font-semibold text-foreground"
         />
+        <div className="craft-pulled-print">
+          <p className="craft-pulled-kicker">The pulled print</p>
+          <p className="craft-pulled-headline">
+            Calgary-based. Startup-obsessed.
+          </p>
+          <p className="craft-pulled-body">
+            The studio letter becomes the next page — About is already on the
+            sheet.
+          </p>
+        </div>
         <p className="craft-signature">Made with care. Built in Calgary.</p>
       </div>
       <span className="craft-photo-label">The art of making things work.</span>
+      <div className="craft-deckle" aria-hidden />
     </div>
   );
 }

@@ -470,30 +470,7 @@
 .composition-brutalist #contact a { color: inherit; }
 .composition-brutalist #contact .bg-background\/20 { background: transparent; border-color: #efece3; }
 
-/* Warm Craft: an immersive photo, a paper letter and a studio scrapbook. */
-.craft-cover { position: relative; min-height: 100svh; padding: 9rem 6vw 5rem; display: flex; align-items: center; }
-.craft-cover .craft-photograph { object-fit: cover; object-position: 65% center; }
-.craft-letter { position: relative; z-index: 1; max-width: 35rem; background: #f6edddf5; color: #392b23; padding: 3.5rem; box-shadow: 0 10px 70px #241c1925; transform: rotate(-2deg); }
-.craft-letter h1 { font-size: clamp(2.4rem, 4vw, 4.4rem); }
-.craft-signature { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid #392b2330; font: italic 1rem var(--font-display); }
-.craft-photo-label { position: absolute; bottom: 1.5rem; right: 3rem; color: white; text-shadow: 0 1px 8px #000; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
-[data-theme="warm-craft"] .site-header { background: #f6edddf2; }
-.composition-warm-craft .about-content { max-width: 55rem; }
-.composition-warm-craft .about-story p { font-family: var(--font-display); }
-.composition-warm-craft .about-beliefs { display: block; }
-.composition-warm-craft .about-beliefs li { border-width: 1px 0 0; padding: 1.5rem 0; }
-.work-warm-craft .design-projects { align-items: start; gap: 5rem; }
-.work-warm-craft .design-project { padding: 1rem 1rem 0; background: #fffaf0; box-shadow: 0 12px 35px #49301912; transform: rotate(-2deg); }
-.work-warm-craft .design-project:nth-child(even) { margin-top: 6rem; transform: rotate(2deg); }
-.work-warm-craft .project-cover { background: #e4d4be; min-height: 23rem; }
-.work-warm-craft .cover-1 { background: #c5b8a7; }
-.work-warm-craft .cover-2 { background: #b9c0a4; }
-.work-warm-craft .cover-3 { background: #d5aa8e; }
-.work-warm-craft .project-details { padding: 1.5rem .5rem; }
-.composition-warm-craft .approach-grid { grid-template-columns: 1fr; max-width: 42rem; margin-left: auto; gap: 3rem; }
-.composition-warm-craft .approach-timeline > div[aria-hidden] { display: none; }
-.composition-warm-craft .pricing-packages { gap: 2rem; border: 0; }
-.composition-warm-craft .pricing-packages article { background: #fffaf0; padding: 2rem; border: 1px solid #d4c2a7; }
+/* Warm Craft layout lives in warm-craft.css so the letterpress pull can own the page. */
 
 /* Neon Club: oversize concert typography and a ticket-style project lineup. */
 .composition-neon-club .hero-neon-page { max-width: 90rem; }
@@ -979,11 +956,8 @@
   .composition-brutalist .pricing-packages article ul { display: block; }
   .composition-brutalist .approach-grid > div { border-right: 0; border-bottom: 3px solid; }
   .composition-brutalist .approach-grid > div:last-child { border-bottom: 0; }
-  .craft-cover { padding: 8rem 1.25rem 4rem; align-items: end; }
-  .craft-letter { padding: 2rem; transform: none; }
-  .craft-cover .craft-photograph { object-position: 75% center; }
-  .work-warm-craft .design-projects, .work-playground .design-projects { gap: 3rem; }
-  .work-warm-craft .design-project:nth-child(even), .work-playground .design-project:nth-child(even) { margin-top: 0; }
+  .work-playground .design-projects { gap: 3rem; }
+  .work-playground .design-project:nth-child(even) { margin-top: 0; }
   .composition-newsprint .theme-sections { display: block; }
   .composition-newsprint .slot-about { border-left: 0; }
   .composition-newsprint .theme-section-slot > section { padding: 2rem 1.25rem; }
