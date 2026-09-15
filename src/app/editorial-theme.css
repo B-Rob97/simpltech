@@ -253,6 +253,15 @@
   backface-visibility: hidden;
 }
 
+[data-theme="editorial"][data-editorial-proof="lifted"] .editorial-cover-sheet {
+  visibility: hidden;
+}
+
+[data-theme="editorial"][data-editorial-story="done"] .editorial-stage {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 [data-theme="editorial"] .editorial-proof {
   position: relative;
   height: 100%;
@@ -514,15 +523,39 @@
   background: transparent;
 }
 
-/* Contact: colonnade plate instead of a leftover night wash. */
+/* Contact: a closing folio with a defined colonnade plate, not an empty wash. */
+[data-theme="editorial"] #contact {
+  padding-top: 4rem;
+}
+
 [data-theme="editorial"] #contact .relative.overflow-hidden {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
+  align-items: stretch;
   min-height: 28rem;
   border: 0;
   border-radius: 0;
-  background:
-    linear-gradient(90deg, #f3eadcf2 0%, #f3eadcd4 42%, #f3eadc66 100%),
-    url("/themes/editorial-colonnade.webp") center/cover;
-  padding-block: 5rem;
+  border-top: 1px solid var(--ed-ink);
+  background: var(--ed-paper);
+  padding: 3.5rem 0 2rem;
+}
+
+[data-theme="editorial"] #contact .relative.overflow-hidden::after {
+  content: "";
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 22rem;
+  background: url("/themes/editorial-colonnade.webp") center/cover;
+}
+
+[data-theme="editorial"] #contact .relative.max-w-2xl {
+  grid-column: 1;
+  max-width: 36rem;
+  padding-right: 2rem;
+}
+
+[data-theme="editorial"] #contact .pointer-events-none.absolute {
+  display: none;
 }
 
 [data-theme="editorial"] footer {
@@ -615,6 +648,17 @@
 
   [data-theme="editorial"] .work-editorial .design-section-heading {
     padding: 5rem 1.25rem 2rem;
+  }
+
+  [data-theme="editorial"] #contact .relative.overflow-hidden {
+    display: block;
+    padding-top: 2.5rem;
+  }
+
+  [data-theme="editorial"] #contact .relative.overflow-hidden::after {
+    display: block;
+    min-height: 14rem;
+    margin-top: 2rem;
   }
 }
 

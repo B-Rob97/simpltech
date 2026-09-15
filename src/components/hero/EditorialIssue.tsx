@@ -74,9 +74,13 @@ export function EditorialIssue({ sectionRef }: EditorialIssueProps) {
     const applyStory = (value: number) => {
       if (reduceMotion) {
         root.removeAttribute("data-editorial-story");
+        root.removeAttribute("data-editorial-proof");
         return;
       }
-      root.dataset.editorialStory = value >= 0.995 ? "done" : "live";
+      const heroBottom = sectionRef.current?.getBoundingClientRect().bottom ?? 0;
+      const finished = value >= 0.995 || heroBottom <= 0;
+      root.dataset.editorialStory = finished ? "done" : "live";
+      root.dataset.editorialProof = value >= 0.6 || finished ? "lifted" : "set";
     };
 
     applyProgress(grow.get());
@@ -91,11 +95,12 @@ export function EditorialIssue({ sectionRef }: EditorialIssueProps) {
       unsubStory();
       window.removeEventListener("resize", syncWell);
       root.removeAttribute("data-editorial-story");
+      root.removeAttribute("data-editorial-proof");
       for (const name of CLIP_VARS) {
         root.style.removeProperty(name);
       }
     };
-  }, [grow, reduceMotion, scrollYProgress]);
+  }, [grow, reduceMotion, scrollYProgress, sectionRef]);
 
   return (
     <div
