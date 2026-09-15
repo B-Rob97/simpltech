@@ -9,8 +9,8 @@ import {
 import { useState, type RefObject } from "react";
 import Image from "next/image";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
+import { BrutalistHero } from "@/components/hero/BrutalistHero";
 import {
-  BrutalMark,
   LaptopMark,
   NeonSignMark,
   NeonTicketMark,
@@ -45,7 +45,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "soft-product":
       return <SoftProductLayout />;
     case "brutalist":
-      return <BrutalistLayout />;
+      return <BrutalistHero />;
     case "warm-craft":
       return <WarmCraftLayout />;
     case "neon-club":
@@ -254,32 +254,6 @@ function SoftProductLayout() {
       </div>
       <div className="hero-product-window">
         <ProductWindowMark />
-      </div>
-    </div>
-  );
-}
-
-function BrutalistLayout() {
-  return (
-    <div className="relative z-10 mx-auto min-h-[100svh] max-w-[var(--content-max)] px-5 pb-16 pt-28 sm:px-8 sm:pt-32">
-      <div className="hero-brutal-frame flex min-h-[calc(100svh-8rem)] flex-col justify-between p-5 sm:p-8">
-        <div className="hero-brutal-tape" aria-hidden />
-        <p className="font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.18em]">
-          {siteConfig.legalName} · SITE 06
-        </p>
-        <HeroCopy
-          className="max-w-4xl"
-          headingClassName="font-[family-name:var(--font-mono)] text-[clamp(1.8rem,5vw,3.8rem)] font-bold uppercase leading-[0.95] text-foreground"
-          bodyClassName="mt-6 max-w-xl text-sm leading-relaxed text-foreground sm:text-base"
-        />
-        <div className="grid gap-6 md:grid-cols-[1fr_220px] md:items-end">
-          <HeroActions
-            className="flex flex-wrap gap-3"
-            primaryClassName="rounded-none bg-foreground px-5 py-3 font-[family-name:var(--font-mono)] text-sm uppercase text-[color:var(--accent-ink)]"
-            secondaryClassName="rounded-none border-[3px] border-foreground px-5 py-3 font-[family-name:var(--font-mono)] text-sm uppercase text-foreground"
-          />
-          <BrutalMark />
-        </div>
       </div>
     </div>
   );

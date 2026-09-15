@@ -123,29 +123,175 @@
 .composition-soft-product .pricing-packages { gap: 1rem; border: 0; }
 .composition-soft-product .pricing-packages article { border: 1px solid var(--border); border-radius: 1.25rem; padding: 2rem; background: var(--elevated); }
 
-/* Brutalist: a raw document, giant index numbers and boxed specification lists. */
-[data-theme="brutalist"] .site-header { border-bottom: 4px solid; background: var(--background); }
-.composition-brutalist .site-hero { min-height: auto; }
-.composition-brutalist .site-hero > div { min-height: auto; max-width: none; }
-.composition-brutalist .hero-brutal-frame { min-height: 70svh; }
-.composition-brutalist .hero-brutal-frame h1 { max-width: 65rem; font-size: clamp(2.5rem, 6vw, 6rem); }
-.work-brutalist { max-width: none; padding: 3rem 2rem; }
-.work-brutalist .design-projects { display: block; border: 3px solid; }
-.work-brutalist .design-project { display: grid; grid-template-columns: 10rem 1fr; border-bottom: 3px solid; }
+/* Brutalist: SITE-06 blast bay, stamped directory, boxed specifications. */
+[data-theme="brutalist"] .site-header {
+  border-bottom: 0;
+  background: var(--background);
+}
+[data-theme="brutalist"] .site-header::after {
+  content: "";
+  display: block;
+  height: 12px;
+  background: repeating-linear-gradient(-45deg, #0a0a0a 0 8px, var(--hazard) 8px 16px);
+}
+[data-theme="brutalist"] .site-header > div {
+  max-width: none;
+  padding-inline: 1rem;
+}
+[data-theme="brutalist"] footer {
+  border-top: 4px solid var(--foreground);
+  padding-top: 1.5rem;
+}
+[data-theme="brutalist"] footer::before {
+  content: "SITE-06  ·  RAW CAST  ·  YYC  ·  51.04N";
+  display: block;
+  margin: 0 1rem 0.85rem;
+  font: 600 .68rem/1 var(--font-mono);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.brutal-scroll-track { height: 230vh; }
+.composition-brutalist .site-hero {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+  pointer-events: none;
+}
+.composition-brutalist .hero-brutal-page a,
+.composition-brutalist .hero-brutal-page button { pointer-events: auto; }
+.brutal-scroll-stage .slot-work {
+  position: relative;
+  z-index: 1;
+  margin-top: -155vh;
+}
+.brutal-scroll-stage[data-brutal-reduced="true"] .brutal-scroll-track { height: auto; }
+.brutal-scroll-stage[data-brutal-reduced="true"] .site-hero {
+  position: relative;
+  height: auto;
+  min-height: auto;
+  overflow: visible;
+  pointer-events: auto;
+}
+.brutal-scroll-stage[data-brutal-reduced="true"] .slot-work { margin-top: 0; }
+
+.work-brutalist { max-width: none; padding: 5.5rem 1rem 3rem; }
+.work-brutalist .design-section-heading {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: .4rem 1.5rem;
+  border: 3px solid;
+  padding: 1rem 1.1rem;
+  margin-bottom: 0;
+}
+.work-brutalist .design-section-heading h2 { grid-column: 2; font-size: clamp(1.8rem, 4vw, 3.4rem); }
+.work-brutalist .design-section-heading > p:last-child { grid-column: 2; margin-top: 0; max-width: none; }
+.work-brutalist .design-projects { display: block; border: 3px solid; border-top: 0; }
+.work-brutalist .design-project {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(7rem, 12rem) 1fr;
+  border-bottom: 3px solid;
+}
 .work-brutalist .design-project:last-child { border-bottom: 0; }
-.work-brutalist .project-number { display: grid; place-items: center; background: var(--accent); color: var(--accent-ink); font-size: 4rem; font-weight: bold; border-right: 3px solid var(--foreground); }
-.work-brutalist .project-cover { display: none; }
-.work-brutalist .project-details { padding: 2rem; }
-.work-brutalist .project-details h3 { text-transform: uppercase; }
-.work-brutalist .project-link { background: var(--foreground); color: var(--background); padding: .6rem 1rem; }
+.work-brutalist .project-number {
+  display: grid;
+  place-items: center;
+  background: var(--foreground);
+  color: var(--accent-ink);
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  font-weight: 700;
+  border-right: 3px solid var(--foreground);
+}
+.work-brutalist .project-cover {
+  display: flex;
+  min-height: 8.5rem;
+  padding: .7rem;
+  border-right: 3px solid var(--foreground);
+  background:
+    linear-gradient(#0a0a0acc, #0a0a0a99),
+    url("/themes/brutalist-slab.webp") center / cover;
+  color: #efece3;
+}
+.work-brutalist .cover-symbol { font-size: 2.6rem; }
+.work-brutalist .cover-name { font-size: 1rem; }
+.work-brutalist .project-details { padding: 1.2rem 1.3rem; }
+.work-brutalist .project-details h3 { text-transform: uppercase; font-size: clamp(1.2rem, 2vw, 1.8rem); }
+.work-brutalist .project-link {
+  background: var(--foreground);
+  color: var(--background);
+  padding: .55rem .85rem;
+  border-bottom: 0;
+}
+.work-brutalist .project-link:hover { background: var(--hazard); color: #0a0a0a; }
+
+.services-brutalist { max-width: none; padding-inline: 1rem; }
+.services-brutalist .design-section-heading { border-bottom: 3px solid; padding-bottom: 1.2rem; }
 .services-brutalist .service-collection { gap: 0; border: 3px solid; }
-.services-brutalist .service-item { border: 2px solid; padding: 2rem; }
-.services-brutalist .service-item:last-child { grid-column: 1 / -1; }
+.services-brutalist .service-item { border: 3px solid #0a0a0a; margin: -1px; padding: 1.4rem; background: var(--elevated); }
+.services-brutalist .service-item:last-child {
+  grid-column: 1 / -1;
+  background: var(--foreground);
+  color: var(--accent-ink);
+}
+.services-brutalist .service-item:last-child .service-number { color: var(--hazard); }
+.services-brutalist .service-item:hover { animation: brutal-invert-tick .42s steps(2, end); }
+
+.composition-brutalist #approach { padding-inline: 1rem; }
+.composition-brutalist .approach-timeline > div[aria-hidden] { display: none; }
+.composition-brutalist .approach-grid { gap: 0; border: 3px solid; }
+.composition-brutalist .approach-grid > div {
+  border-right: 3px solid;
+  padding: 1.4rem;
+  background: var(--elevated);
+}
+.composition-brutalist .approach-grid > div:last-child { border-right: 0; }
+.composition-brutalist .approach-grid p.relative { background: var(--foreground); color: var(--accent-ink); }
+.composition-brutalist .approach-timeline .absolute.left-0.top-1\.5 { border-radius: 0; }
+
+.composition-brutalist #pricing { padding-inline: 1rem; }
+.composition-brutalist #pricing > .relative { border: 3px solid; padding: 1.4rem; background: var(--elevated); }
 .composition-brutalist .pricing-packages { grid-template-columns: 1fr; border: 3px solid; }
-.composition-brutalist .pricing-packages article { border: 0; border-bottom: 3px solid; padding: 2rem; }
-.composition-brutalist .pricing-packages article ul { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 3rem; }
-.composition-brutalist .about-beliefs { display: block; border: 3px solid; }
-.composition-brutalist .about-beliefs li { padding: 2rem; border-bottom: 3px solid; }
+.composition-brutalist .pricing-packages article { border: 0; border-bottom: 3px solid; padding: 1.6rem; }
+.composition-brutalist .pricing-packages article ul { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem 2rem; }
+.composition-brutalist .pricing-packages [class*="bg-foreground"] { background: var(--foreground); color: var(--accent-ink); }
+.composition-brutalist #pricing .h-3.w-3 { border-radius: 0; box-shadow: none; background: var(--hazard); }
+.composition-brutalist #pricing .min-h-\[1\.25rem\].text-transparent { color: var(--foreground); }
+
+.composition-brutalist .about-content { border: 3px solid; padding: 1.4rem; background: var(--elevated); }
+.composition-brutalist .about-story p { font-size: 1.15rem; }
+.composition-brutalist .about-beliefs { display: block; border: 3px solid; margin-top: 1.5rem; }
+.composition-brutalist .about-beliefs li { padding: 1.3rem; border-bottom: 3px solid; }
+.composition-brutalist .about-beliefs li:last-child { border-bottom: 0; }
+.composition-brutalist #about > p[aria-hidden] {
+  display: block;
+  mix-blend-mode: multiply;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.composition-brutalist #contact { padding-inline: 1rem; }
+.composition-brutalist #contact .overflow-hidden {
+  border-radius: 0;
+  border: 4px solid var(--foreground);
+  background-color: #0a0a0a;
+  background-image: none;
+  color: #efece3;
+}
+.composition-brutalist #contact .overflow-hidden::before {
+  content: "";
+  display: block;
+  height: 16px;
+  margin: -3.5rem -1.5rem 1.5rem;
+  background: repeating-linear-gradient(-45deg, #0a0a0a 0 8px, var(--hazard) 8px 16px);
+}
+.composition-brutalist #contact h2,
+.composition-brutalist #contact p,
+.composition-brutalist #contact a { color: inherit; }
+.composition-brutalist #contact .bg-background\/20 { background: transparent; border-color: #efece3; }
 
 /* Warm Craft: an immersive photo, a paper letter and a studio scrapbook. */
 .craft-cover { position: relative; min-height: 100svh; padding: 9rem 6vw 5rem; display: flex; align-items: center; }
@@ -264,8 +410,10 @@
 .composition-playground .approach-grid > div { border-bottom: 5px solid; padding-bottom: 2rem; }
 
 /* Keep supporting sections in the same design language as their opening. */
-:is(.composition-editorial, .composition-warm-craft, .composition-newsprint, .composition-swiss, .composition-brutalist) #about > [aria-hidden],
-:is(.composition-editorial, .composition-warm-craft, .composition-newsprint, .composition-swiss, .composition-brutalist) #about > .pointer-events-none { display: none; }
+:is(.composition-editorial, .composition-warm-craft, .composition-newsprint, .composition-swiss) #about > [aria-hidden],
+:is(.composition-editorial, .composition-warm-craft, .composition-newsprint, .composition-swiss) #about > .pointer-events-none { display: none; }
+.composition-brutalist #about > .night-live,
+.composition-brutalist #about > div.pointer-events-none { display: none; }
 .composition-swiss #contact h2, .composition-brutalist #contact h2 { text-transform: uppercase; font-size: clamp(2rem, 5vw, 5rem); }
 .composition-editorial #contact h2, .composition-warm-craft #contact h2 { font-style: italic; font-weight: 400; }
 .composition-cupertino #contact { text-align: center; }
@@ -313,10 +461,23 @@
   .composition-swiss .about-content { display: block; }
   .composition-swiss .about-story { margin-top: 2rem; }
   .work-soft-product .design-projects { grid-template-columns: 1fr; }
+  .brutal-scroll-track { height: 200vh; }
+  .brutal-scroll-stage .slot-work { margin-top: -130vh; }
+  .hero-brutal-page { padding-top: 4.85rem; }
+  .hero-brutal-page::before { height: 4.85rem; }
+  .hero-brutal-plates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-brutal-plates li:nth-child(2) { border-right: 0; }
+  .hero-brutal-plates li:nth-child(-n+2) { border-bottom: 3px solid; }
+  .work-brutalist { padding: 4rem 1rem 2.5rem; }
+  .work-brutalist .design-section-heading { display: block; }
   .work-brutalist .design-project { grid-template-columns: 3rem 1fr; }
-  .work-brutalist .project-number { font-size: 1.5rem; }
+  .work-brutalist .project-cover { display: none; }
+  .work-brutalist .project-number { font-size: 1.3rem; }
   .work-brutalist .project-details { padding: 1rem; overflow-wrap: anywhere; }
   .composition-brutalist .pricing-packages article ul { display: block; }
+  .composition-brutalist .approach-grid > div { border-right: 0; border-bottom: 3px solid; }
+  .composition-brutalist .approach-grid > div:last-child { border-bottom: 0; }
+  .composition-brutalist #contact .overflow-hidden::before { margin: -3.5rem -1.5rem 1.25rem; }
   .craft-cover { padding: 8rem 1.25rem 4rem; align-items: end; }
   .craft-letter { padding: 2rem; transform: none; }
   .craft-cover .craft-photograph { object-position: 75% center; }
@@ -336,4 +497,13 @@
 @media (prefers-reduced-motion: reduce) {
   .design-project { transition: none; }
   .neon-tunnel span { animation: none; transform: scale(1.4) rotate(-12deg); }
+  .brutal-scroll-track { height: auto; }
+  .composition-brutalist .site-hero {
+    position: relative;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+    pointer-events: auto;
+  }
+  .brutal-scroll-stage .slot-work { margin-top: 0; }
 }
