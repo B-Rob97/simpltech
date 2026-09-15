@@ -260,9 +260,15 @@ export function CraftVesselMark() {
 }
 
 export function NeonSignMark() {
+  const letters = ["S", "I", "M", "P", "L", "T", "E", "C", "H"] as const;
+
   return (
     <p className="hero-neon-sign" aria-hidden>
-      SIMPLTECH
+      {letters.map((letter, index) => (
+        <span key={`${letter}-${index}`} style={{ animationDelay: `${index * 0.11}s` }}>
+          {letter}
+        </span>
+      ))}
     </p>
   );
 }
@@ -271,12 +277,12 @@ export function NeonTicketMark() {
   return (
     <svg
       viewBox="0 0 220 120"
-      className="h-auto w-full"
+      className="h-auto w-full neon-ticket-svg"
       role="img"
       aria-label="Nightclub ticket stub"
     >
       <path
-        d="M8 8 H 212 V 112 H 8 Z"
+        d="M18 8 H 202 Q 212 8 212 18 V 50 A 10 10 0 0 0 212 70 V 102 Q 212 112 202 112 H 18 Q 8 112 8 102 V 70 A 10 10 0 0 0 8 50 V 18 Q 8 8 18 8 Z"
         fill="color-mix(in oklab, var(--elevated) 80%, black)"
         stroke="var(--signal)"
         strokeWidth="2"
