@@ -1,7 +1,6 @@
 "use client";
 
 import { useId } from "react";
-import { siteConfig } from "@/lib/site";
 
 export function LaptopMark() {
   const id = useId();
@@ -155,40 +154,6 @@ export function SwissPosterMark() {
     <p className="swiss-numeral" aria-hidden>
       04
     </p>
-  );
-}
-
-export function BrutalMark() {
-  return (
-    <svg
-      viewBox="0 0 320 128"
-      className="hero-brutal-mark"
-      role="img"
-      aria-label="SITE-06 barcode stamp"
-    >
-      <rect x="0" y="0" width="320" height="12" fill="var(--foreground)" />
-      <rect x="0" y="0" width="12" height="128" fill="var(--foreground)" />
-      {Array.from({ length: 32 }, (_, index) => (
-        <rect
-          key={index}
-          x={20 + index * 8}
-          y="22"
-          width={index % 5 === 0 ? 2 : index % 3 === 0 ? 5 : 3}
-          height="62"
-          fill="var(--foreground)"
-        />
-      ))}
-      <text
-        x="20"
-        y="108"
-        fill="var(--foreground)"
-        fontSize="12"
-        letterSpacing="2.4"
-        fontFamily="var(--font-mono), ui-monospace, monospace"
-      >
-        SITE-06 · {siteConfig.name.toUpperCase()} · RAW
-      </text>
-    </svg>
   );
 }
 

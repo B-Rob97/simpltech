@@ -1,34 +1,49 @@
 "use client";
 
 import {
-  motion,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-  useTransform,
 } from "motion/react";
 import Image from "next/image";
-import { useRef, useState, type RefObject } from "react";
+import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
-import { BrutalMark } from "@/components/hero/HeroMarks";
 import { useBrutalistScroll } from "@/components/hero/BrutalistScrollStage";
 import { siteConfig } from "@/lib/site";
 
-const plates = [
-  { key: "SITE", value: "06" },
-  { key: "LOC", value: "YYC" },
-  { key: "CLASS", value: "RAW" },
-  { key: "CAST", value: "MONO" },
-] as const;
+type OccupyPhase = "empty" | "draw" | "occupy" | "index";
 
-type BayPhase = "seal" | "scan" | "shear" | "stamp" | "cleared";
+function phaseFromProgress(value: number): OccupyPhase {
+  if (value < 0.08) return "empty";
+  if (value < 0.18) return "draw";
+  if (value < 0.52) return "occupy";
+  return "index";
+}
 
-function phaseFromProgress(value: number): BayPhase {
-  if (value < 0.05) return "seal";
-  if (value < 0.12) return "scan";
-  if (value < 0.4) return "shear";
-  if (value < 0.52) return "stamp";
-  return "cleared";
+function clamp01(value: number) {
+  return Math.min(1, Math.max(0, value));
+}
+
+function applyOccupy(
+  page: HTMLElement,
+  stage: HTMLElement | null,
+  value: number,
+) {
+  const rule = clamp01((value - 0.02) / 0.14);
+  let column = 0;
+  if (value >= 0.78) {
+    column = 1;
+  } else if (value >= 0.48) {
+    column = 0.58 + ((value - 0.48) / 0.3) * 0.42;
+  } else if (value >= 0.14) {
+    column = ((value - 0.14) / 0.34) * 0.58;
+  }
+  const copy = 1 - clamp01((value - 0.5) / 0.22);
+
+  page.style.setProperty("--brutal-col", column.toFixed(4));
+  page.style.setProperty("--brutal-rule", rule.toFixed(4));
+  page.style.setProperty("--brutal-copy", copy.toFixed(4));
+  stage?.style.setProperty("--brutal-col", column.toFixed(4));
 }
 
 export function BrutalistHero() {
@@ -39,115 +54,76 @@ export function BrutalistHero() {
     return <BrutalistStaticHero />;
   }
 
-  return <BrutalistBayHero trackRef={scroll?.trackRef ?? null} />;
+  return <BrutalistOccupyHero trackRef={scroll?.trackRef ?? null} />;
 }
 
-function BrutalistBayHero({
+function BrutalistOccupyHero({
   trackRef,
 }: {
   trackRef: RefObject<HTMLDivElement | null> | null;
 }) {
   const fallbackRef = useRef<HTMLDivElement>(null);
-  const [phase, setPhase] = useState<BayPhase>("seal");
+  const pageRef = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState<OccupyPhase>("empty");
   const { scrollYProgress } = useScroll({
     target: trackRef ?? fallbackRef,
     offset: ["start start", "end start"],
   });
 
-  const doorY = useTransform(scrollYProgress, (latest) => {
-    const t = clamp((latest - 0.08) / 0.34, 0, 1);
-    let drop: number;
-    if (t < 0.36) {
-      drop = (t / 0.36) * 0.18;
-    } else if (t < 0.48) {
-      drop = 0.18;
-    } else {
-      drop = 0.18 + ((t - 0.48) / 0.52) * 0.9;
-    }
-    return `${drop * 100}%`;
-  });
-
-  const scanX = useTransform(scrollYProgress, [0.02, 0.16], ["-6%", "112%"]);
-  const copyClip = useTransform(
-    scrollYProgress,
-    [0.24, 0.5],
-    ["inset(0% 0 0% 0)", "inset(0% 0 100% 0)"],
-  );
-  useMotionValueEvent(scrollYProgress, "change", (value) => {
+  const write = (value: number) => {
+    const page = pageRef.current;
+    if (!page) return;
+    const stage =
+      page.closest<HTMLElement>(".brutal-scroll-stage") ??
+      page.closest<HTMLElement>(".composition-brutalist");
+    applyOccupy(page, stage, value);
     setPhase(phaseFromProgress(value));
-  });
+  };
+
+  useLayoutEffect(() => {
+    write(scrollYProgress.get());
+  }, [scrollYProgress]);
+
+  useMotionValueEvent(scrollYProgress, "change", write);
 
   return (
     <div
       className="hero-brutal-page"
       data-brutal-phase={phase}
-      ref={trackRef ? undefined : fallbackRef}
+      ref={(node) => {
+        pageRef.current = node;
+        if (!trackRef) fallbackRef.current = node;
+      }}
     >
-      <CropMarks />
-      <div className="hero-brutal-tape" aria-hidden />
-      <div className="hero-brutal-lintel">
-        <SpecPlates />
-        <motion.div className="hero-brutal-copy" style={{ clipPath: copyClip }}>
-          <p className="hero-brutal-kicker">
-            {siteConfig.legalName} · SITE 06 · BLAST BAY
-          </p>
-          <HeroCopy
-            className="hero-brutal-lede"
-            headingClassName="hero-brutal-heading"
-            bodyClassName="hero-brutal-body"
-          />
-          <HeroActions
-            className="hero-brutal-actions"
-            primaryClassName="hero-brutal-btn hero-brutal-btn-primary"
-            secondaryClassName="hero-brutal-btn hero-brutal-btn-secondary"
-          />
-        </motion.div>
-        <div className="hero-brutal-dock">
-          <p className="hero-brutal-dock-line" aria-hidden>
-            SITE-06 ARCHIVE · SELECTED WORK
-          </p>
-          <span className="hero-brutal-cleared">CLEARED</span>
-        </div>
-      </div>
-
-      <div className="hero-brutal-bay">
-        <p className="hero-brutal-bay-label">BAY 06 · INTERIOR</p>
-        <motion.div className="hero-brutal-door" style={{ y: doorY }}>
-          <Image
-            src="/themes/brutalist-slab.webp"
-            alt=""
-            fill
-            sizes="100vw"
-            preload
-            className="hero-brutal-slab-image"
-          />
-          <span className="hero-brutal-door-stencil">SITE-06</span>
-          <span className="hero-brutal-door-lip" aria-hidden />
-          <motion.span
-            className="hero-brutal-scan"
-            style={{ x: scanX }}
-            aria-hidden
-          />
-        </motion.div>
-      </div>
-
-      <div className="hero-brutal-sill">
-        <BrutalMark />
-      </div>
+      <BrutalistHeroMatter />
     </div>
   );
 }
 
 function BrutalistStaticHero() {
   return (
-    <div className="hero-brutal-page is-static" data-brutal-phase="cleared">
-      <CropMarks />
-      <div className="hero-brutal-tape" aria-hidden />
-      <div className="hero-brutal-lintel">
-        <SpecPlates />
+    <div className="hero-brutal-page is-static" data-brutal-phase="index">
+      <BrutalistHeroMatter />
+    </div>
+  );
+}
+
+function BrutalistHeroMatter() {
+  return (
+    <>
+      <div className="hero-brutal-field">
+        <Image
+          src="/themes/brutalist-field.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          preload
+          className="hero-brutal-field-image"
+        />
         <div className="hero-brutal-copy">
-          <p className="hero-brutal-kicker">
-            {siteConfig.legalName} · SITE 06 · BLAST BAY
+          <p className="hero-brutal-kicker">{siteConfig.location}</p>
+          <p className="hero-brutal-name" aria-hidden>
+            simpltech
           </p>
           <HeroCopy
             className="hero-brutal-lede"
@@ -160,56 +136,9 @@ function BrutalistStaticHero() {
             secondaryClassName="hero-brutal-btn hero-brutal-btn-secondary"
           />
         </div>
-        <div className="hero-brutal-dock">
-          <p className="hero-brutal-dock-line">SITE-06 ARCHIVE · SELECTED WORK</p>
-          <span className="hero-brutal-cleared">CLEARED</span>
-        </div>
+        <span className="hero-brutal-measure" aria-hidden />
       </div>
-      <figure className="hero-brutal-static-slab">
-        <Image
-          src="/themes/brutalist-slab.webp"
-          alt="Board-formed concrete blast slab"
-          width={1800}
-          height={1012}
-          sizes="(max-width: 767px) 100vw, 72vw"
-          preload
-        />
-        <figcaption>SITE-06 · RAW CAST · YYC</figcaption>
-      </figure>
-      <div className="hero-brutal-sill">
-        <BrutalMark />
-        <span className="hero-brutal-cleared">CLEARED</span>
-      </div>
-    </div>
+      <div className="hero-brutal-column" aria-hidden />
+    </>
   );
-}
-
-function SpecPlates() {
-  return (
-    <ul className="hero-brutal-plates">
-      {plates.map((plate) => (
-        <li key={plate.key}>
-          <span>{plate.key}</span>
-          <strong>{plate.value}</strong>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function CropMarks() {
-  return (
-    <div className="hero-brutal-crops" aria-hidden>
-      {(["tl", "tr", "bl", "br"] as const).map((corner) => (
-        <span
-          key={corner}
-          className={`hero-brutal-crop hero-brutal-crop-${corner}`}
-        />
-      ))}
-    </div>
-  );
-}
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, value));
 }

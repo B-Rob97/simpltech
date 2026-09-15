@@ -19,7 +19,7 @@ const aboutMarks: Record<ThemeId, string> = {
   editorial: "VOL",
   swiss: "04",
   "soft-product": "",
-  brutalist: "RAW",
+  brutalist: "WWW",
   "warm-craft": "CLAY",
   "neon-club": "02",
   newsprint: "LATE",

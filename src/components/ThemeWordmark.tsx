@@ -45,11 +45,7 @@ export function ThemeWordmark({ className = "" }: ThemeWordmarkProps) {
         </span>
       );
     case "brutalist":
-      return (
-        <span className={`${className} uppercase tracking-[0.08em]`}>
-          {name.toUpperCase()}
-        </span>
-      );
+      return <span className={`${className} brutal-wordmark`}>{name.toLowerCase()}</span>;
     case "warm-craft":
       return <span className={`${className} italic`}>{name}</span>;
     case "neon-club":

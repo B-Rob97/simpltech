@@ -82,11 +82,11 @@ Landscape 16:9 floating frosted-glass application windows. Abstract indigo/mint 
 
 Portrait 3:4 booking card UI: weekday strip, indigo appointment blocks, mint confirm control. Used as contact imagery. No logos or prices.
 
-## brutalist-slab.webp
+## brutalist-field.webp
 
-Generated with the built-in imagegen tool and saved here at 1800 × 1012. Board-formed concrete blast slab for the Brutalist SITE-06 bay — not a photograph of a real SimplTech site.
+Generated with the built-in imagegen tool and converted to WebP with Sharp (1800 × 1012). Empty béton brut courtyard for the Brutalist theme — not a blast door, not a SimplTech site.
 
-Prompt: Photorealistic architectural photograph of a monumental raw brutalist blast door, landscape 16:9. A huge board-formed concrete slab fills the frame like a bunker hatch: visible timber-board grain, circular form-tie holes in a regular grid, hairline cracks, cold gray and charcoal concrete, one hard diagonal sunlight slash and deep shadow. Industrial, heavy, severe, tactile, no people, no text, no logos, no UI, no yellow tape, no website mockup. Shot like a large-format architecture photograph, high contrast, slight analog grain. Full-bleed standalone photograph.
+Prompt: Photorealistic architectural photograph, landscape 16:9. An empty brutalist courtyard seen straight-on: monumental board-formed béton brut concrete walls with visible timber-board grain and a regular grid of circular form-tie holes, a vast empty poured-concrete plaza in the foreground, pale overcast daylight. No people, no text, no logos, no doors, no hatches, no hazard tape, no barcodes, no website UI.
 
 ## craft-letter.webp
 

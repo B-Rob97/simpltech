@@ -120,7 +120,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "brutalist",
     label: "Brutalist",
-    pitch: "A raw project directory and boxed specifications.",
+    pitch: "Mono type, thick rules, and a column that occupies the page.",
     hero: "raw",
     density: "dense",
     motion: "still",
