@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
+@import "./swiss.css";
 
 :root,
 [data-theme="night-signal"] {
@@ -341,17 +342,6 @@ body {
     linear-gradient(180deg, color-mix(in oklab, var(--foreground) 4%, var(--background)), var(--background));
 }
 
-[data-theme="swiss"] body {
-  background-color: var(--background);
-  background-image:
-    linear-gradient(color-mix(in oklab, var(--foreground) 10%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 10%, transparent) 1px, transparent 1px);
-  background-size: 8.333vw 8.333vw;
-}
-
-[data-theme="swiss"] h2 {
-  text-transform: uppercase;
-}
 
 [data-theme="soft-product"] body {
   background:
@@ -385,10 +375,6 @@ body {
 
 [data-theme="editorial"] h2 {
   font-style: italic;
-}
-
-.hero-swiss-page {
-  background: transparent;
 }
 
 .hero-product-window {
