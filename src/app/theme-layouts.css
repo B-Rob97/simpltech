@@ -1190,7 +1190,7 @@
 }
 [data-theme="cupertino"] .cupertino-laptop {
   position: relative;
-  width: min(56rem, 88vw, calc((100svh - 4.5rem) * 16 / 9));
+  width: min(52rem, 82vw, calc((100svh - 7rem) * 16 / 9));
   will-change: transform;
 }
 [data-theme="cupertino"] .cupertino-laptop-photo {

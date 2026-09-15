@@ -90,11 +90,19 @@ function CupertinoScrollStory() {
   const phoneX = useTransform(scrollYProgress, [0, 0.28], [0, 80]);
   const phoneOpacity = useTransform(scrollYProgress, [0.02, 0.24], [1, 0]);
   const phoneScale = useTransform(scrollYProgress, [0, 0.28], [1, 0.8]);
-  const laptopScale = useTransform(scrollYProgress, [0.1, 0.84], [1, endScale]);
-  const laptopX = useTransform(scrollYProgress, [0.1, 0.84], [0, endX]);
-  const laptopY = useTransform(scrollYProgress, [0.1, 0.84], [restY, endY]);
-  const bootOpacity = useTransform(scrollYProgress, [0.32, 0.5], [1, 0]);
-  const bootY = useTransform(scrollYProgress, [0.32, 0.5], ["0%", "-12%"]);
+  const laptopScale = useTransform(
+    scrollYProgress,
+    [0.08, 0.4, 0.84],
+    [1, 1.38, endScale],
+  );
+  const laptopX = useTransform(scrollYProgress, [0.08, 0.4, 0.84], [0, endX * 0.28, endX]);
+  const laptopY = useTransform(
+    scrollYProgress,
+    [0.08, 0.4, 0.84],
+    [restY, restY * 0.35, endY],
+  );
+  const bootOpacity = useTransform(scrollYProgress, [0.46, 0.64], [1, 0]);
+  const bootY = useTransform(scrollYProgress, [0.46, 0.64], ["0%", "-10%"]);
   const chromeOpacity = useTransform(scrollYProgress, [0.8, 0.93], [1, 0]);
   const pinOpacity = useTransform(scrollYProgress, [0.9, 0.995], [1, 0]);
   const shineOpacity = useTransform(scrollYProgress, [0, 0.2, 0.42], [1, 0.55, 0]);
@@ -152,7 +160,10 @@ function CupertinoScrollStory() {
     setEndScale(Math.min(pinW / screenW, pinH / screenH));
     setEndX(pinW / 2 - restScreenCX);
     setEndY(pinH / 2 - restScreenCY);
-    setRestY(Math.min(pinH * 0.07, 64));
+    const centeredTop = (pinH - laptopH) / 2;
+    const copyReserve = Math.min(pinH * 0.48, 430);
+    const maxTop = Math.max(0, pinH - laptopH - 16);
+    setRestY(Math.max(0, Math.min(copyReserve, maxTop) - centeredTop));
   }, []);
 
   useLayoutEffect(() => {
