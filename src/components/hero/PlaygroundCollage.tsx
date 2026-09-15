@@ -8,7 +8,7 @@ import {
   useTransform,
 } from "motion/react";
 import Image from "next/image";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { siteConfig } from "@/lib/site";
 
@@ -48,17 +48,9 @@ export function PlaygroundCollage() {
 function StaticPlaygroundHero() {
   return (
     <div className="playground-static">
-      <div className="playground-static-wall">
-        <Image
-          src="/themes/playground-collage.webp"
-          alt="Paper collage of torn color scraps, washi tape, stickers, and Polaroid frames"
-          fill
-          sizes="100vw"
-          preload
-          className="object-cover"
-        />
-      </div>
+      <CollageWall preload />
       <ScatteredStickers />
+      <Polaroid />
       <PlaygroundNote />
     </div>
   );
@@ -72,9 +64,9 @@ function PlaygroundPeelStory() {
     offset: ["start start", "end start"],
   });
 
-  const punchP = useTransform(scrollYProgress, [0.06, 0.82], [0, 1]);
-  const frameP = useTransform(scrollYProgress, [0.72, 0.96], [1, 0]);
-  const peelRotate = useTransform(scrollYProgress, [0, 0.3], [8, -78]);
+  const growP = useTransform(scrollYProgress, [0.2, 0.86], [0, 1]);
+  const frameP = useTransform(scrollYProgress, [0.7, 0.96], [1, 0]);
+  const peelRotate = useTransform(scrollYProgress, [0.18, 0.48], [8, -78]);
   const peelSquash = useTransform(scrollYProgress, [0.7, 0.92], [1, 0]);
   const noteX = useTransform(scrollYProgress, [0, 0.42], [0, -460]);
   const noteY = useTransform(scrollYProgress, [0, 0.42], [0, -280]);
@@ -82,14 +74,14 @@ function PlaygroundPeelStory() {
   const tapeStretch = useTransform(scrollYProgress, [0, 0.22], [1, 1.55]);
   const tapeX = useTransform(scrollYProgress, [0.16, 0.4], [0, -90]);
   const tapeRotate = useTransform(scrollYProgress, [0.16, 0.4], [-8, -48]);
-  const starX = useTransform(scrollYProgress, [0.12, 0.8], [0, -70]);
-  const starY = useTransform(scrollYProgress, [0.12, 0.8], [0, -40]);
-  const smileX = useTransform(scrollYProgress, [0.12, 0.8], [0, 90]);
-  const smileY = useTransform(scrollYProgress, [0.12, 0.8], [0, -30]);
-  const boltX = useTransform(scrollYProgress, [0.12, 0.8], [0, -50]);
-  const boltY = useTransform(scrollYProgress, [0.12, 0.8], [0, 70]);
-  const burstX = useTransform(scrollYProgress, [0.12, 0.8], [0, 60]);
-  const burstY = useTransform(scrollYProgress, [0.12, 0.8], [0, 55]);
+  const starX = useTransform(scrollYProgress, [0.12, 0.8], [0, -36]);
+  const starY = useTransform(scrollYProgress, [0.12, 0.8], [0, -18]);
+  const smileX = useTransform(scrollYProgress, [0.12, 0.8], [0, 42]);
+  const smileY = useTransform(scrollYProgress, [0.12, 0.8], [0, -16]);
+  const boltX = useTransform(scrollYProgress, [0.12, 0.8], [0, -28]);
+  const boltY = useTransform(scrollYProgress, [0.12, 0.8], [0, 36]);
+  const burstX = useTransform(scrollYProgress, [0.12, 0.8], [0, 32]);
+  const burstY = useTransform(scrollYProgress, [0.12, 0.8], [0, 28]);
   const cueY = useTransform(scrollYProgress, [0, 0.18], [0, 28]);
   const cueScale = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
@@ -97,7 +89,7 @@ function PlaygroundPeelStory() {
     setNoteLive(value < 0.3);
   });
 
-  useMotionValueEvent(punchP, "change", (value) => {
+  useMotionValueEvent(growP, "change", (value) => {
     document.documentElement.style.setProperty("--punch-p", String(value));
   });
 
@@ -114,29 +106,21 @@ function PlaygroundPeelStory() {
         className="playground-sticky"
         style={
           {
-            "--punch-p": punchP,
+            "--punch-p": growP,
             "--frame-p": frameP,
           } as CSSProperties
         }
       >
-        <div className="playground-wall">
-          <Image
-            src="/themes/playground-collage.webp"
-            alt="Paper collage of torn color scraps, washi tape, stickers, and Polaroid frames"
-            fill
-            sizes="100vw"
-            preload
-            className="object-cover"
-          />
-        </div>
+        <CollageWall preload />
 
-        <div className="playground-diecut" aria-hidden>
-          <p className="playground-diecut-caption">Selected work / snapshot 10</p>
-          <motion.span
-            className="playground-peel"
-            style={{ rotate: peelRotate, scale: peelSquash }}
-          />
-        </div>
+        <Polaroid
+          peel={
+            <motion.span
+              className="playground-peel"
+              style={{ rotate: peelRotate, scale: peelSquash }}
+            />
+          }
+        />
 
         <motion.div
           className="playground-sticker playground-sticker-star"
@@ -216,6 +200,47 @@ function PlaygroundPeelStory() {
           <span />
         </motion.p>
       </motion.div>
+    </div>
+  );
+}
+
+function CollageWall({ preload = false }: { preload?: boolean }) {
+  return (
+    <div className="playground-wall">
+      <Image
+        src="/themes/playground-collage.webp"
+        alt="Paper collage of torn color scraps, washi tape, and stickers"
+        fill
+        sizes="100vw"
+        preload={preload}
+        className="object-cover"
+      />
+    </div>
+  );
+}
+
+function Polaroid({ peel }: { peel?: ReactNode }) {
+  return (
+    <div className="playground-polaroid">
+      <div className="playground-polaroid-tape" aria-hidden>
+        <Image
+          src="/themes/playground-tape.webp"
+          alt=""
+          width={1280}
+          height={720}
+        />
+      </div>
+      <div className="playground-polaroid-well">
+        <Image
+          src="/themes/playground-snapshot.webp"
+          alt="Snapshot of torn color paper, washi tape, and stickers"
+          fill
+          sizes="(min-width: 768px) 30vw, 68vw"
+          className="object-cover"
+        />
+      </div>
+      <p className="playground-polaroid-caption">Selected work / snapshot 10</p>
+      {peel}
     </div>
   );
 }

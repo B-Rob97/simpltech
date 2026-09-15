@@ -136,7 +136,11 @@ Prompt: Photorealistic black-and-white newspaper photograph of an editor's oak d
 
 ## playground-collage.webp
 
-Generated with the built-in imagegen tool and converted to WebP with Sharp (1280 × 720). Overhead analog paper collage: torn construction paper, washi tape, die-cut stars and smiles, and two blank Polaroid frames. No text or logos.
+Regenerated without Polaroid frames so the hero Polaroid is the only snapshot object. Dense torn construction paper, washi tape, and die-cut stickers. Converted to WebP with Sharp (1600 × 900). No text or logos.
+
+## playground-snapshot.webp
+
+Portrait 3:4 photograph that fills the Polaroid well — torn paper scraps, washi tape, star, smile, bolt, and burst stickers. No empty frame. Converted to WebP with Sharp (864 × 1152).
 
 ## playground-star-sticker.webp
 ## playground-smile-sticker.webp
