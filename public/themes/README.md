@@ -15,3 +15,21 @@ Prompt: Create a photorealistic editorial photograph for a boutique digital desi
 ## editorial-architecture.webp
 
 Prompt: Photorealistic architectural editorial photograph for a contemporary design magazine website, portrait 4:5. Monumental pale travertine curved staircase in a minimalist gallery, circular skylight, dramatic geometric sunlight and deep soft shadows, a small sculptural black chair at bottom right for scale. Restrained cream, charcoal and stone palette. Shot on medium format, refined, tactile, quiet, striking composition. No text, no logos, no people, no website mockup. Full bleed photograph.
+
+## neon-club-poster.webp
+
+1280 × 720. Wet alley at night, wheat-pasted brick, magenta and cyan neon tubes, velvet rope, and a doorway on the right. No readable text.
+
+Prompt: Photorealistic nightclub alley photograph for a premium website hero, landscape 16:9. A dark urban side street at night, wet black asphalt with sharp magenta and cyan neon reflections. A brick wall on the left is covered in overlapping concert posters and wheat-paste flyers that are abstract color blocks and silhouettes only — no readable letters, no logos, no numbers. Overhead, bent glass neon tubes in hot magenta and electric cyan glow against black, lighting a haze of fog. A single empty velvet rope and a dim doorway at right. Cinematic, tactile, high contrast, analog film grain. No people, no faces, no text, no watermarks, no UI, not a website mockup. Full-bleed photograph.
+
+## neon-club-floor.webp
+
+1280 × 720. Empty dance floor, fog, speaker stacks, DJ booth, magenta/cyan light bars.
+
+Prompt: Photorealistic nightclub interior photograph, landscape 16:9. View from the back of an empty dance floor toward a DJ booth and stacked speakers. Dense atmospheric fog, wet black floor tiles mirroring hot magenta and cyan neon strips along the ceiling and stage edge. Subtle laser specks, no words on the booth, no brand logos, no screens with text. Deep purple-black shadows, electric rim light, cinematic club photography, analog grain. No people, no faces, no readable text, no watermarks, not a website mockup. Full-bleed photograph.
+
+## neon-club-flyers.webp
+
+864 × 1152. Wheat-pasted dancer silhouettes on brick, magenta/cyan graphic flyers, no readable text.
+
+Prompt: Photorealistic close-up of a wheat-pasted concert poster wall at night, portrait 3:4. Overlapping flyers on grimy brick: abstract geometric club graphics, silhouettes of dancers, neon magenta and cyan bars, torn paper edges, wheat-paste wrinkles, staples, tape. All posters are purely graphic with no readable letters, no numbers, no logos. Strong side light from a magenta neon tube at the left edge, cyan bounce from the right. Tactile paper texture, cinematic, analog grain. No people, no text, no watermarks, not a website mockup. Full-bleed photograph.

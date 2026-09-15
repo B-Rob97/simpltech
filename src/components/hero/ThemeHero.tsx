@@ -6,19 +6,18 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { useState, type RefObject } from "react";
+import { type RefObject } from "react";
 import Image from "next/image";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import {
   BrutalMark,
   LaptopMark,
-  NeonSignMark,
-  NeonTicketMark,
   NewsHalftoneMark,
   PlayCollageMark,
   ProductWindowMark,
   SwissPosterMark,
 } from "@/components/hero/HeroMarks";
+import { NeonClubHero } from "@/components/hero/NeonClubHero";
 import { HeroCity, HeroSky } from "@/components/HeroScene";
 import { useTheme } from "@/components/ThemeProvider";
 import { siteConfig } from "@/lib/site";
@@ -49,7 +48,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
     case "warm-craft":
       return <WarmCraftLayout />;
     case "neon-club":
-      return <NeonClubLayout />;
+      return <NeonClubHero sectionRef={sectionRef} />;
     case "newsprint":
       return <NewsprintLayout />;
     case "playground":
@@ -305,32 +304,6 @@ function WarmCraftLayout() {
         <p className="craft-signature">Made with care. Built in Calgary.</p>
       </div>
       <span className="craft-photo-label">The art of making things work.</span>
-    </div>
-  );
-}
-
-function NeonClubLayout() {
-  const reduceMotion = useReducedMotion();
-  const [paused, setPaused] = useState(false);
-  return (
-    <div className="hero-neon-page relative z-10 mx-auto flex min-h-[100svh] max-w-[var(--content-max)] flex-col justify-center px-5 pb-16 pt-28 sm:px-8">
-      <div className={`neon-tunnel ${paused || reduceMotion ? "is-paused" : ""}`} aria-hidden="true">
-        {[0, 1, 2, 3, 4].map((frame) => <span key={frame} style={{ animationDelay: `${frame * -1.6}s` }} />)}
-      </div>
-      {!reduceMotion && <button type="button" className="neon-motion-toggle" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Play atmosphere" : "Pause atmosphere"}</button>}
-      <div className="relative w-full">
-        <NeonSignMark />
-      </div>
-      <div className="relative mt-8 grid items-start gap-8 md:grid-cols-[minmax(0,1fr)_200px]">
-        <div>
-          <HeroCopy
-            headingClassName="font-[family-name:var(--font-display)] text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-tight text-foreground"
-            bodyClassName="mt-4 max-w-lg text-base leading-relaxed text-foreground/70"
-          />
-          <HeroActions />
-        </div>
-        <NeonTicketMark />
-      </div>
     </div>
   );
 }

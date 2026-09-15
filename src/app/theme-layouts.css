@@ -172,31 +172,418 @@
 .composition-warm-craft .pricing-packages { gap: 2rem; border: 0; }
 .composition-warm-craft .pricing-packages article { background: #fffaf0; padding: 2rem; border: 1px solid #d4c2a7; }
 
-/* Neon Club: oversize concert typography and a ticket-style project lineup. */
-.composition-neon-club .hero-neon-page { max-width: 90rem; }
-.neon-tunnel { position: absolute; inset: 0; overflow: hidden; pointer-events: none; opacity: .35; mask-image: linear-gradient(black, transparent 95%); }
+/* Neon Club: alley walk-in. Ticket scans, doorway grows, lineup shows through the door. */
+[data-theme="neon-club"] .site-hero {
+  min-height: 240svh;
+  background: transparent;
+}
+[data-theme="neon-club"] .site-header {
+  border-bottom-color: color-mix(in oklab, var(--accent) 42%, transparent);
+  box-shadow: 0 0 28px color-mix(in oklab, var(--accent) 16%, transparent);
+}
+[data-theme="neon-club"] .site-header a {
+  text-shadow: 0 0 12px color-mix(in oklab, var(--signal) 45%, transparent);
+}
+.composition-neon-club .theme-sections {
+  position: relative;
+  z-index: 1;
+  margin-top: -100svh;
+}
+.composition-neon-club .slot-work {
+  min-height: 100svh;
+}
+.neon-club-stage {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  height: 100svh;
+  overflow: hidden;
+}
+.neon-club-stage.is-static {
+  position: relative;
+  min-height: 100svh;
+  height: auto;
+}
+[data-theme="neon-club"] .site-hero:has(.neon-club-stage.is-static) {
+  min-height: 100svh;
+}
+.composition-neon-club:has(.neon-club-stage.is-static) .theme-sections {
+  margin-top: 0;
+}
+.neon-club-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 70% 30%, #bd0bc733, transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0 4px, #ffffff03 4px 5px);
+}
+.neon-club-alley {
+  position: absolute;
+  inset: 0;
+}
+.neon-club-alley-photo {
+  object-fit: cover;
+  object-position: 78% center;
+}
+.neon-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    #14001822 3px 4px
+  );
+  mix-blend-mode: multiply;
+  animation: neon-scan-crawl 7s linear infinite;
+}
+.neon-club-bill {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  display: grid;
+  width: min(90rem, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 7.5rem 0 5rem;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .neon-club-bill {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    align-items: end;
+    width: min(90rem, calc(100% - 4rem));
+  }
+}
+.neon-club-copy {
+  max-width: 38rem;
+}
+.neon-club-kicker {
+  margin-bottom: 0.8rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--signal) 70%, transparent);
+}
+.neon-club-kicker::after {
+  content: "";
+  display: block;
+  width: 42%;
+  height: 2px;
+  margin-top: 0.4rem;
+  background: var(--signal);
+  box-shadow: 0 0 8px var(--signal);
+  animation: neon-kicker-slide 2.2s linear infinite;
+}
+.neon-ticket-stage {
+  position: relative;
+  align-self: end;
+}
+.neon-scan-beam {
+  position: absolute;
+  inset-block: 8%;
+  left: 0;
+  width: 14px;
+  background: linear-gradient(90deg, transparent, #2de2e6, transparent);
+  box-shadow: 0 0 18px #2de2e6, 0 0 36px #2de2e688;
+  pointer-events: none;
+}
+.neon-admit-stamp {
+  position: absolute;
+  inset: 18% 8%;
+  display: grid;
+  place-items: center;
+  border: 3px solid var(--accent);
+  color: var(--accent);
+  font: 700 1.05rem/1 var(--font-unbounded), sans-serif;
+  letter-spacing: 0.14em;
+  transform-origin: center;
+  box-shadow: 0 0 18px color-mix(in oklab, var(--accent) 55%, transparent);
+  pointer-events: none;
+}
+.neon-rope-row {
+  position: absolute;
+  right: 8%;
+  bottom: 11%;
+  z-index: 3;
+  display: flex;
+  width: min(22rem, 46vw);
+  justify-content: space-between;
+  pointer-events: none;
+}
+.neon-rope {
+  display: block;
+  width: 46%;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3a1020, #ff2bd6, #3a1020);
+  box-shadow: 0 0 12px #ff2bd6;
+}
+.neon-door-anchor {
+  position: absolute;
+  left: 78%;
+  top: 52%;
+  z-index: 4;
+  width: min(16rem, 38vw);
+  translate: -50% -50%;
+  pointer-events: none;
+}
+.neon-door-frame {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.neon-tube {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 18 10 6 14;
+  animation: neon-tube-current 2.2s linear infinite;
+}
+.neon-tube-magenta {
+  stroke: #ff2bd6;
+  filter: drop-shadow(0 0 6px #ff2bd6) drop-shadow(0 0 16px #ff2bd6);
+}
+.neon-tube-cyan {
+  stroke: #2de2e6;
+  filter: drop-shadow(0 0 6px #2de2e6) drop-shadow(0 0 14px #2de2e6);
+  animation-duration: 1.7s;
+  animation-direction: reverse;
+}
+.neon-led-bar {
+  position: absolute;
+  top: 5.6rem;
+  left: 50%;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  min-width: 12rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid #2de2e655;
+  background: #0c0414cc;
+  color: var(--signal);
+  font: 600 0.68rem/1 var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.2em;
+  transform: translateX(-50%);
+  box-shadow: 0 0 16px #2de2e644;
+}
+.neon-led {
+  grid-area: 1 / 1;
+}
+.neon-scroll-cue {
+  position: absolute;
+  bottom: 1.4rem;
+  left: 50%;
+  z-index: 5;
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  transform: translateX(-50%);
+}
+.neon-scroll-cue::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 1.4rem;
+  margin: 0.4rem auto 0;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal);
+  animation: neon-cue-step 1.1s steps(3, end) infinite;
+}
+.neon-tunnel { position: absolute; inset: 0; overflow: hidden; pointer-events: none; opacity: .28; mask-image: linear-gradient(black, transparent 95%); }
 .neon-tunnel span { position: absolute; inset: 20% 25%; border: 2px solid #ff38eb; box-shadow: 0 0 25px #ff38eb88, inset 0 0 25px #ff38eb55; transform: scale(.2) rotate(-12deg); animation: neon-depth 8s linear infinite; }
 .neon-tunnel span:nth-child(even) { border-color: #3bf4ef; box-shadow: 0 0 25px #3bf4ef66; }
-.neon-tunnel.is-paused span { animation-play-state: paused; }
-.neon-motion-toggle { position: absolute; bottom: 1.5rem; right: 2rem; border: 1px solid #ffffff55; border-radius: 2rem; padding: .5rem 1rem; font-size: .7rem; cursor: pointer; z-index: 2; background: #130b20; }
-@keyframes neon-depth { from { transform: scale(.2) rotate(-12deg); opacity: 0; } 20% { opacity: 1; } to { transform: scale(4) rotate(12deg); opacity: 0; } }
-.composition-neon-club .site-hero { background: radial-gradient(ellipse at 70% 30%, #bd0bc733, transparent 60%), repeating-linear-gradient(0deg, transparent 0 4px, #ffffff03 4px 5px); }
-.work-neon-club { max-width: 90rem; }
-.work-neon-club .design-section-heading h2 { font-size: clamp(3rem, 7vw, 7rem); text-transform: uppercase; }
-.work-neon-club .design-projects { display: block; }
-.work-neon-club .design-project { display: grid; grid-template-columns: 6rem 1fr; border-top: 1px solid #f04edf77; padding-block: 2rem; transition: background .25s; }
-.work-neon-club .design-project:hover { background: #ff32ec0a; }
-.work-neon-club .project-number { display: block; color: var(--accent); font-size: 2.5rem; }
-.work-neon-club .project-cover { display: none; }
-.work-neon-club .project-details { display: grid; grid-template-columns: 1.3fr 1fr; gap: .5rem 3rem; padding: 0; }
-.work-neon-club .project-details h3 { grid-column: 1; font-size: clamp(1.8rem, 3.5vw, 3.5rem); text-transform: uppercase; }
-.work-neon-club .project-summary { grid-column: 2; grid-row: 1 / span 2; }
-.work-neon-club .project-link { justify-self: start; color: var(--accent); }
+.neon-tunnel.is-paused span, .is-paused .neon-tunnel span { animation-play-state: paused; }
+.neon-motion-toggle { position: absolute; bottom: 1.5rem; right: 1.25rem; border: 1px solid #ffffff55; border-radius: 2rem; padding: .5rem 1rem; font-size: .7rem; cursor: pointer; z-index: 6; background: #130b20; }
+.work-neon-club {
+  max-width: 90rem;
+  min-height: 100svh;
+  background:
+    linear-gradient(180deg, #140018d6 0%, #140018f0 38%, #140018 100%),
+    url("/themes/neon-club-floor.webp") center top / cover no-repeat;
+}
+.work-neon-club .section-kicker::before {
+  content: "Tonight's bill · ";
+}
+.work-neon-club .design-section-heading h2 {
+  font-size: clamp(3rem, 7vw, 7rem);
+  text-transform: uppercase;
+  text-shadow: 0 0 22px color-mix(in oklab, var(--accent) 40%, transparent);
+}
+.work-neon-club .design-projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+.work-neon-club .design-project {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #f04edf77;
+  background: #160c20ee;
+  padding: 0;
+  transition: transform 0.25s var(--motion-ease), box-shadow 0.25s var(--motion-ease);
+}
+.work-neon-club .design-project:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 28px #ff32ec44;
+}
+.work-neon-club .project-number {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.9rem;
+  z-index: 1;
+  display: block;
+  color: var(--accent);
+  font-size: 1.4rem;
+  text-shadow: 0 0 10px var(--accent);
+}
+.work-neon-club .project-cover {
+  position: relative;
+  display: flex;
+  min-height: 13.5rem;
+  color: #f7e9ff;
+  background-color: #1a0824;
+  background-image: url("/themes/neon-club-flyers.webp");
+  background-size: cover;
+}
+.work-neon-club .cover-1 { background-position: 100% 0; }
+.work-neon-club .cover-2 { background-position: 0 100%; }
+.work-neon-club .cover-3 { background-position: 100% 100%; filter: hue-rotate(18deg); }
+.work-neon-club .project-details {
+  display: block;
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+.work-neon-club .project-details h3 {
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  text-transform: uppercase;
+}
+.work-neon-club .project-link { color: var(--accent); }
 .services-neon-club .service-collection { gap: 1rem; }
-.services-neon-club .service-item { border: 1px solid #f04edf66; padding: 2rem; background: #220e2c; }
-.services-neon-club .service-item:first-child { grid-column: 1 / -1; }
+.services-neon-club .service-item {
+  border: 1px solid #f04edf66;
+  padding: 2rem;
+  background: #220e2c;
+  box-shadow: inset 0 0 24px #ff2bd614;
+}
+.services-neon-club .service-item:first-child {
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(135deg, #ff2bd61f, transparent 55%),
+    #220e2c;
+}
+.services-neon-club .service-item:hover {
+  box-shadow: 0 0 24px #2de2e633, inset 0 0 24px #ff2bd614;
+}
 .composition-neon-club .pricing-packages { gap: 1rem; border: 0; }
-.composition-neon-club .pricing-packages article { padding: 2rem; border: 1px solid #f04edf66; border-top: 8px solid var(--accent); background: #160c20; clip-path: polygon(0 0,100% 0,100% 96%,95% 100%,90% 96%,85% 100%,80% 96%,75% 100%,70% 96%,65% 100%,60% 96%,55% 100%,50% 96%,45% 100%,40% 96%,35% 100%,30% 96%,25% 100%,20% 96%,15% 100%,10% 96%,5% 100%,0 96%); }
+.composition-neon-club .pricing-packages article {
+  padding: 2rem 2rem 2.6rem;
+  border: 1px solid #f04edf66;
+  border-top: 8px solid var(--accent);
+  background-color: #160c20;
+  background-image: radial-gradient(circle at 12px 100%, #140018 7px, transparent 8px);
+  background-size: 24px 14px;
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+}
+.composition-neon-club #pricing {
+  background:
+    linear-gradient(#140018f2, #140018),
+    url("/themes/neon-club-floor.webp") center / cover;
+}
+.composition-neon-club #about {
+  background:
+    linear-gradient(#140018e8, #140018f5),
+    url("/themes/neon-club-flyers.webp") center / cover;
+}
+.composition-neon-club #about > p {
+  color: transparent;
+  -webkit-text-stroke: 2px color-mix(in oklab, var(--accent) 70%, transparent);
+  text-shadow: 0 0 28px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+.composition-neon-club .about-beliefs li {
+  border-color: #f04edf55;
+}
+.composition-neon-club #approach {
+  background:
+    linear-gradient(#140018f0, #140018);
+}
+.composition-neon-club .approach-grid > div {
+  padding: 1.4rem;
+  border: 1px solid #f04edf66;
+  background: #1a0b24;
+  box-shadow: 0 0 20px #ff2bd614;
+}
+.composition-neon-club #contact .relative.overflow-hidden {
+  min-height: 28rem;
+  background:
+    linear-gradient(90deg, #140018f5 0 46%, #14001888 68%, #14001833),
+    url("/themes/neon-club-floor.webp") right center / cover no-repeat;
+  box-shadow: 0 0 40px #ff2bd622;
+}
+[data-theme="neon-club"] footer {
+  padding-top: 0;
+  margin-top: 0;
+  background:
+    linear-gradient(#14001800, #140018ef 42%, #140018),
+    url("/themes/neon-club-floor.webp") center / cover;
+}
+[data-theme="neon-club"] footer::before {
+  content: "";
+  display: block;
+  height: 4px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--signal), var(--accent), transparent);
+  background-size: 220% 100%;
+  animation: neon-kicker-current 2.4s linear infinite;
+}
+
+@keyframes neon-depth {
+  from { transform: scale(.2) rotate(-12deg); opacity: 0; }
+  20% { opacity: 1; }
+  to { transform: scale(4) rotate(12deg); opacity: 0; }
+}
+@keyframes neon-ignite {
+  0% { transform: scaleY(0.15) skewX(-8deg); filter: brightness(3.2); }
+  55% { transform: scaleY(1.12) skewX(2deg); filter: brightness(1.8); }
+  100% { transform: scaleY(1) skewX(0); filter: brightness(1); }
+}
+@keyframes neon-tube-flicker {
+  0%, 18%, 22%, 26%, 53%, 57%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--accent)) drop-shadow(0 0 22px var(--accent));
+  }
+  20%, 24%, 55% {
+    opacity: 0.28;
+    filter: drop-shadow(0 0 2px var(--accent));
+  }
+  41% {
+    filter: drop-shadow(0 0 10px var(--signal)) drop-shadow(0 0 26px var(--accent));
+  }
+}
+@keyframes neon-tube-current {
+  to { stroke-dashoffset: -48; }
+}
+@keyframes neon-scan-crawl {
+  to { background-position: 0 28px; }
+}
+@keyframes neon-kicker-current {
+  to { background-position: 220% 0; }
+}
+@keyframes neon-kicker-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(130%); }
+}
+@keyframes neon-cue-step {
+  0% { transform: translateY(0); }
+  33% { transform: translateY(5px); }
+  66% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
 
 /* Newsprint: a true broadsheet, compact multi-column articles and classifieds. */
 [data-theme="newsprint"] .site-header { background: var(--background); border-bottom: 4px double; }
@@ -331,9 +718,38 @@
   .work-newsprint .project-cover { padding: .75rem; }
   .work-newsprint .cover-folio { font-size: .55rem; }
   .composition-neon-club .pricing-packages, .composition-warm-craft .pricing-packages, .composition-playground .pricing-packages { grid-template-columns: 1fr; }
+  .work-neon-club .design-projects { grid-template-columns: 1fr; }
+  .work-neon-club .design-project {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: none;
+  }
+  .work-neon-club .project-number { position: absolute; font-size: 1.2rem; }
+  .neon-club-bill { padding-top: 6.25rem; }
+  .neon-door-anchor { width: 9.5rem; }
+  .neon-led-bar { top: 4.85rem; }
+  .neon-rope-row { width: 42vw; bottom: 8%; }
+  [data-theme="neon-club"] .site-hero { min-height: 210svh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .design-project { transition: none; }
   .neon-tunnel span { animation: none; transform: scale(1.4) rotate(-12deg); }
+  [data-theme="neon-club"] .site-hero { min-height: 100svh; }
+  .composition-neon-club .theme-sections { margin-top: 0; }
+  .neon-club-stage { position: relative; height: auto; min-height: 100svh; }
+  .neon-scanlines,
+  .neon-tube,
+  .neon-scroll-cue::after,
+  .neon-club-kicker::after,
+  [data-theme="neon-club"] footer::before {
+    animation: none;
+  }
+}
+
+.is-paused .neon-scanlines,
+.is-paused .neon-tube,
+.is-paused .neon-club-kicker::after,
+.is-paused .neon-scroll-cue::after {
+  animation-play-state: paused;
 }
