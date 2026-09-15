@@ -878,7 +878,7 @@
 .work-neon-club .project-cover {
   position: relative;
   display: flex;
-  min-height: 18rem;
+  min-height: 20rem;
   color: #f7e9ff;
   background-color: #1a0824;
   background-image: none;
@@ -899,7 +899,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(180deg, #14001833 0%, #140018c4 100%);
+  background: linear-gradient(180deg, transparent 0 38%, #14001855 72%, #140018e0 100%);
 }
 .work-neon-club .cover-folio,
 .work-neon-club .cover-name,
