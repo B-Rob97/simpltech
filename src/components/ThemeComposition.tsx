@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { BrutalistScrollStage } from "@/components/hero/BrutalistScrollStage";
 import MissionControl from "@/components/mission/MissionControl";
 import { SoftProductWorkspace } from "@/components/soft-product/SoftProductWorkspace";
 import { useTheme } from "@/components/ThemeProvider";
@@ -44,6 +45,21 @@ export function ThemeComposition({ hero, sections }: { hero: ReactNode; sections
                 {sections[id]}
               </div>
             ))}
+        </div>
+      </div>
+    );
+  }
+  if (theme.id === "brutalist") {
+    const rest = sequences.brutalist.filter((id) => id !== "work");
+    return (
+      <div className="theme-composition composition-brutalist">
+        <BrutalistScrollStage hero={hero} work={sections.work} />
+        <div className="theme-sections">
+          {rest.map((id) => (
+            <div className={`theme-section-slot slot-${id}`} key={id}>
+              {sections[id]}
+            </div>
+          ))}
         </div>
       </div>
     );
