@@ -550,11 +550,49 @@ body {
   border-color: #0a0a0a;
 }
 
+.hero-brutal-copy {
+  overflow: hidden;
+  max-height: 28rem;
+}
+
+.hero-brutal-page[data-brutal-phase="scan"] .hero-brutal-copy {
+  max-height: 8.5rem;
+}
+
+.hero-brutal-page[data-brutal-phase="shear"] .hero-brutal-copy,
+.hero-brutal-page[data-brutal-phase="stamp"] .hero-brutal-copy,
+.hero-brutal-page[data-brutal-phase="cleared"] .hero-brutal-copy {
+  max-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-brutal-dock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 0;
+}
+
 .hero-brutal-dock-line {
   min-height: 1.1rem;
   font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+.hero-brutal-page[data-brutal-phase="seal"] .hero-brutal-dock-line,
+.hero-brutal-page[data-brutal-phase="scan"] .hero-brutal-dock-line {
+  clip-path: inset(0 100% 0 0);
+}
+
+.hero-brutal-page[data-brutal-phase="shear"] .hero-brutal-sill,
+.hero-brutal-page[data-brutal-phase="stamp"] .hero-brutal-sill,
+.hero-brutal-page[data-brutal-phase="cleared"] .hero-brutal-sill {
+  height: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
 .hero-brutal-bay {
@@ -639,7 +677,7 @@ body {
 }
 
 .hero-brutal-cleared {
-  display: inline-block;
+  display: none;
   border: 3px solid var(--foreground);
   padding: 0.35rem 0.7rem;
   font-size: 1.05rem;
@@ -649,9 +687,20 @@ body {
   transform-origin: center;
 }
 
+.hero-brutal-page[data-brutal-phase="stamp"] .hero-brutal-dock-line,
+.hero-brutal-page[data-brutal-phase="cleared"] .hero-brutal-dock-line,
+.hero-brutal-page.is-static .hero-brutal-dock-line {
+  clip-path: none;
+}
+
 .hero-brutal-page[data-brutal-phase="stamp"] .hero-brutal-cleared,
-.hero-brutal-page[data-brutal-phase="cleared"] .hero-brutal-cleared {
-  animation: brutal-stamp-jitter 0.28s steps(2, end) 1;
+.hero-brutal-page[data-brutal-phase="cleared"] .hero-brutal-cleared,
+.hero-brutal-page.is-static .hero-brutal-cleared {
+  display: inline-block;
+}
+
+.hero-brutal-page[data-brutal-phase="stamp"] .hero-brutal-cleared {
+  animation: brutal-stamp-slam 0.34s steps(3, end) both;
 }
 
 .hero-brutal-static-slab {
@@ -722,15 +771,15 @@ body {
   }
 }
 
-@keyframes brutal-stamp-jitter {
+@keyframes brutal-stamp-slam {
   0% {
-    transform: translate(3px, -2px);
+    transform: scale(2.1) rotate(-14deg) translate(18px, -10px);
   }
-  50% {
-    transform: translate(-2px, 2px);
+  40% {
+    transform: scale(0.86) rotate(3deg) translate(-4px, 3px);
   }
   100% {
-    transform: translate(0, 0);
+    transform: scale(1) rotate(-2deg) translate(0, 0);
   }
 }
 

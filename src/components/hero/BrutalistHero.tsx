@@ -24,10 +24,10 @@ const plates = [
 type BayPhase = "seal" | "scan" | "shear" | "stamp" | "cleared";
 
 function phaseFromProgress(value: number): BayPhase {
-  if (value < 0.06) return "seal";
-  if (value < 0.14) return "scan";
-  if (value < 0.42) return "shear";
-  if (value < 0.55) return "stamp";
+  if (value < 0.05) return "seal";
+  if (value < 0.12) return "scan";
+  if (value < 0.4) return "shear";
+  if (value < 0.52) return "stamp";
   return "cleared";
 }
 
@@ -73,19 +73,6 @@ function BrutalistBayHero({
     [0.24, 0.5],
     ["inset(0% 0 0% 0)", "inset(0% 0 100% 0)"],
   );
-  const dockClip = useTransform(
-    scrollYProgress,
-    [0.36, 0.5],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
-  );
-  const stampScale = useTransform(
-    scrollYProgress,
-    [0.44, 0.48, 0.52, 0.56],
-    [2.35, 0.84, 1.1, 1],
-  );
-  const stampRotate = useTransform(scrollYProgress, [0.44, 0.56], [-12, -2]);
-  const stampX = useTransform(scrollYProgress, [0.44, 0.5, 0.56], [28, -6, 0]);
-
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     setPhase(phaseFromProgress(value));
   });
@@ -115,13 +102,12 @@ function BrutalistBayHero({
             secondaryClassName="hero-brutal-btn hero-brutal-btn-secondary"
           />
         </motion.div>
-        <motion.p
-          className="hero-brutal-dock-line"
-          style={{ clipPath: dockClip }}
-          aria-hidden
-        >
-          SITE-06 ARCHIVE · SELECTED WORK
-        </motion.p>
+        <div className="hero-brutal-dock">
+          <p className="hero-brutal-dock-line" aria-hidden>
+            SITE-06 ARCHIVE · SELECTED WORK
+          </p>
+          <span className="hero-brutal-cleared">CLEARED</span>
+        </div>
       </div>
 
       <div className="hero-brutal-bay">
@@ -147,12 +133,6 @@ function BrutalistBayHero({
 
       <div className="hero-brutal-sill">
         <BrutalMark />
-        <motion.span
-          className="hero-brutal-cleared"
-          style={{ scale: stampScale, rotate: stampRotate, x: stampX }}
-        >
-          CLEARED
-        </motion.span>
       </div>
     </div>
   );
@@ -179,6 +159,10 @@ function BrutalistStaticHero() {
             primaryClassName="hero-brutal-btn hero-brutal-btn-primary"
             secondaryClassName="hero-brutal-btn hero-brutal-btn-secondary"
           />
+        </div>
+        <div className="hero-brutal-dock">
+          <p className="hero-brutal-dock-line">SITE-06 ARCHIVE · SELECTED WORK</p>
+          <span className="hero-brutal-cleared">CLEARED</span>
         </div>
       </div>
       <figure className="hero-brutal-static-slab">

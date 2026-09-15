@@ -166,7 +166,7 @@
 .brutal-scroll-stage .slot-work {
   position: relative;
   z-index: 1;
-  margin-top: -155vh;
+  margin-top: -100vh;
 }
 .brutal-scroll-stage[data-brutal-reduced="true"] .brutal-scroll-track { height: auto; }
 .brutal-scroll-stage[data-brutal-reduced="true"] .site-hero {
@@ -215,8 +215,10 @@
     url("/themes/brutalist-slab.webp") center / cover;
   color: #efece3;
 }
-.work-brutalist .cover-symbol { font-size: 2.6rem; }
-.work-brutalist .cover-name { font-size: 1rem; }
+.work-brutalist .cover-symbol { font-size: 2.8rem; margin: auto; }
+.work-brutalist .cover-name,
+.work-brutalist .cover-caption,
+.work-brutalist .cover-folio { display: none; }
 .work-brutalist .project-details { padding: 1.2rem 1.3rem; }
 .work-brutalist .project-details h3 { text-transform: uppercase; font-size: clamp(1.2rem, 2vw, 1.8rem); }
 .work-brutalist .project-link {
@@ -228,7 +230,23 @@
 .work-brutalist .project-link:hover { background: var(--hazard); color: #0a0a0a; }
 
 .services-brutalist { max-width: none; padding-inline: 1rem; }
-.services-brutalist .design-section-heading { border-bottom: 3px solid; padding-bottom: 1.2rem; }
+.services-brutalist .design-section-heading {
+  position: relative;
+  border-bottom: 3px solid;
+  padding-bottom: 1.2rem;
+  padding-right: 11rem;
+}
+.services-brutalist .design-section-heading::after {
+  content: "BAY 06\A SPEC / 05";
+  white-space: pre;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 3px solid;
+  padding: .7rem .85rem;
+  font: 700 .68rem/1.4 var(--font-mono);
+  letter-spacing: .14em;
+}
 .services-brutalist .service-collection { gap: 0; border: 3px solid; }
 .services-brutalist .service-item { border: 3px solid #0a0a0a; margin: -1px; padding: 1.4rem; background: var(--elevated); }
 .services-brutalist .service-item:last-child {
@@ -252,41 +270,58 @@
 .composition-brutalist .approach-timeline .absolute.left-0.top-1\.5 { border-radius: 0; }
 
 .composition-brutalist #pricing { padding-inline: 1rem; }
-.composition-brutalist #pricing > .relative { border: 3px solid; padding: 1.4rem; background: var(--elevated); }
 .composition-brutalist .pricing-packages { grid-template-columns: 1fr; border: 3px solid; }
-.composition-brutalist .pricing-packages article { border: 0; border-bottom: 3px solid; padding: 1.6rem; }
+.composition-brutalist .pricing-packages article { border: 0; border-bottom: 3px solid; padding: 1.6rem; background: var(--elevated); }
 .composition-brutalist .pricing-packages article ul { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem 2rem; }
-.composition-brutalist .pricing-packages [class*="bg-foreground"] { background: var(--foreground); color: var(--accent-ink); }
+.composition-brutalist .pricing-packages article[class*="bg-foreground/"] {
+  background: #0a0a0a;
+  color: #efece3;
+}
 .composition-brutalist #pricing .h-3.w-3 { border-radius: 0; box-shadow: none; background: var(--hazard); }
 .composition-brutalist #pricing .min-h-\[1\.25rem\].text-transparent { color: var(--foreground); }
 
-.composition-brutalist .about-content { border: 3px solid; padding: 1.4rem; background: var(--elevated); }
+.composition-brutalist .about-content {
+  position: relative;
+  border: 3px solid;
+  padding: 1.4rem;
+  background: var(--elevated);
+  overflow: hidden;
+}
+.composition-brutalist .about-content::after {
+  content: "RAW";
+  position: absolute;
+  right: .4rem;
+  top: .2rem;
+  font: 700 clamp(3.2rem, 9vw, 6.5rem)/.8 var(--font-mono);
+  letter-spacing: -.06em;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--foreground);
+  pointer-events: none;
+  opacity: .35;
+}
 .composition-brutalist .about-story p { font-size: 1.15rem; }
 .composition-brutalist .about-beliefs { display: block; border: 3px solid; margin-top: 1.5rem; }
 .composition-brutalist .about-beliefs li { padding: 1.3rem; border-bottom: 3px solid; }
 .composition-brutalist .about-beliefs li:last-child { border-bottom: 0; }
-.composition-brutalist #about > p[aria-hidden] {
-  display: block;
-  mix-blend-mode: multiply;
-  font-family: var(--font-mono), ui-monospace, monospace;
-  letter-spacing: 0;
-  text-transform: uppercase;
-}
+.composition-brutalist #about > p[aria-hidden] { display: none; }
+.composition-brutalist #about .rounded-full { border-radius: 0; }
+.composition-brutalist #about .animate-ping { display: none; }
 
 .composition-brutalist #contact { padding-inline: 1rem; }
 .composition-brutalist #contact .overflow-hidden {
   border-radius: 0;
   border: 4px solid var(--foreground);
   background-color: #0a0a0a;
-  background-image: none;
+  background-image: repeating-linear-gradient(-45deg, #0a0a0a 0 8px, var(--hazard) 8px 16px);
+  background-size: 100% 16px;
+  background-repeat: no-repeat;
   color: #efece3;
+  padding-top: 2.4rem;
 }
-.composition-brutalist #contact .overflow-hidden::before {
-  content: "";
-  display: block;
-  height: 16px;
-  margin: -3.5rem -1.5rem 1.5rem;
-  background: repeating-linear-gradient(-45deg, #0a0a0a 0 8px, var(--hazard) 8px 16px);
+.composition-brutalist #contact .overflow-hidden::before { display: none; }
+.composition-brutalist #contact [class*="bg-[color:var(--volt)]"] {
+  background: #efece3;
+  color: #0a0a0a;
 }
 .composition-brutalist #contact h2,
 .composition-brutalist #contact p,
@@ -462,9 +497,13 @@
   .composition-swiss .about-story { margin-top: 2rem; }
   .work-soft-product .design-projects { grid-template-columns: 1fr; }
   .brutal-scroll-track { height: 200vh; }
-  .brutal-scroll-stage .slot-work { margin-top: -130vh; }
+  .brutal-scroll-stage .slot-work { margin-top: -90vh; }
+  .services-brutalist .design-section-heading { padding-right: 0; }
+  .services-brutalist .design-section-heading::after { display: none; }
   .hero-brutal-page { padding-top: 4.85rem; }
   .hero-brutal-page::before { height: 4.85rem; }
+  .hero-brutal-page[data-brutal-phase="stamp"] .hero-brutal-plates,
+  .hero-brutal-page[data-brutal-phase="cleared"] .hero-brutal-plates { display: none; }
   .hero-brutal-plates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-brutal-plates li:nth-child(2) { border-right: 0; }
   .hero-brutal-plates li:nth-child(-n+2) { border-bottom: 3px solid; }
@@ -477,7 +516,6 @@
   .composition-brutalist .pricing-packages article ul { display: block; }
   .composition-brutalist .approach-grid > div { border-right: 0; border-bottom: 3px solid; }
   .composition-brutalist .approach-grid > div:last-child { border-bottom: 0; }
-  .composition-brutalist #contact .overflow-hidden::before { margin: -3.5rem -1.5rem 1.25rem; }
   .craft-cover { padding: 8rem 1.25rem 4rem; align-items: end; }
   .craft-letter { padding: 2rem; transform: none; }
   .craft-cover .craft-photograph { object-position: 75% center; }
