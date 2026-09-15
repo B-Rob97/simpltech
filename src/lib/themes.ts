@@ -82,7 +82,7 @@ export const THEMES: readonly ThemeDefinition[] = [
   {
     id: "editorial",
     label: "Editorial",
-    pitch: "Photographic cover, magazine spreads, and quiet typography.",
+    pitch: "A magazine cover. The proof lifts; selected work prints on the plate.",
     hero: "magazine",
     density: "regular",
     motion: "calm",
