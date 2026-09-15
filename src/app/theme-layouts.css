@@ -198,45 +198,7 @@
 .composition-neon-club .pricing-packages { gap: 1rem; border: 0; }
 .composition-neon-club .pricing-packages article { padding: 2rem; border: 1px solid #f04edf66; border-top: 8px solid var(--accent); background: #160c20; clip-path: polygon(0 0,100% 0,100% 96%,95% 100%,90% 96%,85% 100%,80% 96%,75% 100%,70% 96%,65% 100%,60% 96%,55% 100%,50% 96%,45% 100%,40% 96%,35% 100%,30% 96%,25% 100%,20% 96%,15% 100%,10% 96%,5% 100%,0 96%); }
 
-/* Newsprint: a true broadsheet, compact multi-column articles and classifieds. */
-[data-theme="newsprint"] .site-header { background: var(--background); border-bottom: 4px double; }
-.composition-newsprint .site-hero, .composition-newsprint .site-hero > div { min-height: auto; }
-.composition-newsprint .site-hero > div { padding-bottom: 0; }
-.composition-newsprint .hero-news-frame { border: 0; box-shadow: none; }
-.composition-newsprint .hero-news-frame > p:nth-child(2) { font-size: clamp(2.8rem, 7vw, 7rem); text-transform: none; }
-.composition-newsprint .theme-sections { max-width: 76rem; margin: auto; display: grid; grid-template-columns: 2fr 1fr; gap: 0; }
-.composition-newsprint .slot-work, .composition-newsprint .slot-pricing, .composition-newsprint .slot-contact { grid-column: 1 / -1; }
-.composition-newsprint .slot-about { border-left: 1px solid var(--foreground); }
-.composition-newsprint .slot-approach { grid-column: 1 / -1; }
-.composition-newsprint .theme-section-slot > section { padding: 2rem; }
-.work-newsprint .design-section-heading { border-block: 4px double; padding-block: 1rem; margin-bottom: 1.5rem; }
-.work-newsprint .design-section-heading h2 { font-size: 3rem; }
-.work-newsprint .design-projects { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
-.work-newsprint .design-project { border-bottom: 1px solid; }
-.work-newsprint .design-project:first-child { grid-column: span 2; grid-row: span 2; }
-.work-newsprint .project-cover { min-height: 9rem; filter: grayscale(1); }
-.work-newsprint .cover-symbol { font-size: 3rem; }
-.work-newsprint .cover-name, .work-newsprint .cover-caption { display: none; }
-.work-newsprint .design-project:first-child .project-cover { min-height: 24rem; background: repeating-linear-gradient(45deg, #202020 0 1px, #e5dfd1 1px 5px); }
-.work-newsprint .design-project:first-child .cover-symbol { font-size: 10rem; background: #e5dfd1; padding: 1rem; }
-.work-newsprint .design-project:first-child .cover-folio { background: #e5dfd1; padding: .25rem; align-self: start; }
-.work-newsprint .project-details h3 { font-size: 1.5rem; }
-.work-newsprint .design-project:first-child h3 { font-size: 3rem; }
-.work-newsprint .project-summary { font-family: var(--font-display); font-size: .95rem; line-height: 1.45; }
-.work-newsprint .project-category { font-size: .55rem; }
-.services-newsprint .service-collection { display: block; }
-.services-newsprint .service-number { float: left; margin-right: .7rem; }
-.services-newsprint .design-section-heading h2 { font-size: 2.5rem; }
-.composition-newsprint .about-content { padding: 0; }
-.composition-newsprint .about-content h2 { font-size: 2.5rem; }
-.composition-newsprint .about-story { margin-top: 2rem; }
-.composition-newsprint .about-story p { font-family: var(--font-display); font-size: 1rem; line-height: 1.6; }
-.composition-newsprint .about-beliefs { display: block; margin-top: 2rem; }
-.composition-newsprint .about-beliefs li { padding: 1rem 0; border-width: 1px 0 0; }
-.composition-newsprint .about-beliefs h3 { font-size: 1.3rem; }
-.composition-newsprint .about-beliefs p { font-size: .85rem; }
-.composition-newsprint .pricing-packages { border: 2px solid; gap: 0; }
-.composition-newsprint .pricing-packages article { padding: 1.5rem; }
+/* Newsprint layout lives in newsprint.css so this look can be polished in isolation. */
 
 /* Playground: a colorful wall of posters, irregular silhouettes and offset cards. */
 .composition-playground .site-hero { background: #c5bcfa; }
@@ -322,14 +284,6 @@
   .craft-cover .craft-photograph { object-position: 75% center; }
   .work-warm-craft .design-projects, .work-playground .design-projects { gap: 3rem; }
   .work-warm-craft .design-project:nth-child(even), .work-playground .design-project:nth-child(even) { margin-top: 0; }
-  .composition-newsprint .theme-sections { display: block; }
-  .composition-newsprint .slot-about { border-left: 0; }
-  .composition-newsprint .theme-section-slot > section { padding: 2rem 1.25rem; }
-  .work-newsprint .design-projects { grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .work-newsprint .design-project:first-child { grid-row: auto; }
-  .work-newsprint .project-details h3 { overflow-wrap: anywhere; }
-  .work-newsprint .project-cover { padding: .75rem; }
-  .work-newsprint .cover-folio { font-size: .55rem; }
   .composition-neon-club .pricing-packages, .composition-warm-craft .pricing-packages, .composition-playground .pricing-packages { grid-template-columns: 1fr; }
 }
 
