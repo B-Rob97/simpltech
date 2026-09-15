@@ -8,6 +8,7 @@ import {
   type MotionValue,
 } from "motion/react";
 import { useRef } from "react";
+import { NightSignalCover } from "@/components/night/NightSignalCover";
 import type { Project } from "@/lib/projects";
 
 type WorkRailProps = {
@@ -23,6 +24,7 @@ function ProjectPanel({
 }) {
   const inner = (
     <>
+      <NightSignalCover projectId={project.id} />
       <div>
         <div className="flex items-start justify-between gap-4">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-[color:var(--signal)]">
@@ -57,7 +59,7 @@ function ProjectPanel({
   );
 
   const className =
-    "flex h-[min(70vh,560px)] w-[min(78vw,520px)] shrink-0 flex-col justify-between rounded-[var(--radius-card)] border-[length:var(--border-width)] border-foreground/10 bg-[color:var(--elevated)]/80 p-8 backdrop-blur-sm sm:p-10";
+    "night-rail-card flex h-[min(70vh,560px)] w-[min(78vw,520px)] shrink-0 flex-col justify-between rounded-[var(--radius-card)] border-[length:var(--border-width)] border-foreground/10 bg-[color:var(--elevated)]/80 p-8 backdrop-blur-sm sm:p-10";
 
   if (project.href) {
     return (

@@ -16,9 +16,11 @@ export function ThemeWordmark({ className = "" }: ThemeWordmarkProps) {
       return <span className={`${className} mission-wordmark`}><span aria-hidden>✳</span> SimplTech<span className="mission-wordmark-plus" aria-hidden>®</span></span>;
     case "night-signal":
       return (
-        <span className={className}>
+        <span className={`night-wordmark ${className}`}>
           {name}
-          <span className="text-[color:var(--volt)]">.</span>
+          <span className="night-wordmark-volt" aria-hidden>
+            .
+          </span>
         </span>
       );
     case "cupertino":

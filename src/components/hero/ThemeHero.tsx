@@ -1,14 +1,10 @@
 "use client";
 
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { useReducedMotion } from "motion/react";
 import { useState, type RefObject } from "react";
 import Image from "next/image";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
+import { NightSignalHero } from "@/components/hero/NightSignalHero";
 import {
   BrutalMark,
   LaptopMark,
@@ -19,7 +15,6 @@ import {
   ProductWindowMark,
   SwissPosterMark,
 } from "@/components/hero/HeroMarks";
-import { HeroCity, HeroSky } from "@/components/HeroScene";
 import { useTheme } from "@/components/ThemeProvider";
 import { siteConfig } from "@/lib/site";
 
@@ -35,7 +30,7 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
       // Mission Control renders its own complete page composition.
       return null;
     case "night-signal":
-      return <NightSignalLayout sectionRef={sectionRef} />;
+      return <NightSignalHero sectionRef={sectionRef} />;
     case "cupertino":
       return <CupertinoLayout />;
     case "editorial":
@@ -59,108 +54,6 @@ export function ThemeHero({ sectionRef }: ThemeHeroProps) {
       return _exhaustive;
     }
   }
-}
-
-function NightSignalLayout({
-  sectionRef,
-}: {
-  sectionRef: RefObject<HTMLElement | null>;
-}) {
-  const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const brandScale = useTransform(scrollYProgress, [0, 0.7], [1, 0.2]);
-  const brandY = useTransform(scrollYProgress, [0, 0.7], [0, -200]);
-  const brandX = useTransform(scrollYProgress, [0, 0.7], [0, -32]);
-  const brandOpacity = useTransform(scrollYProgress, [0.15, 0.65], [1, 0]);
-  const brandTracking = useTransform(
-    scrollYProgress,
-    [0, 0.7],
-    ["-0.04em", "-0.06em"],
-  );
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.45], [0, -40]);
-  const skyY = useTransform(scrollYProgress, [0, 0.8], [0, 40]);
-  const cityY = useTransform(scrollYProgress, [0, 0.8], [0, 88]);
-  const sceneOpacity = useTransform(scrollYProgress, [0.12, 0.82], [1, 0]);
-  const scrollCueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
-
-  return (
-    <>
-      <div className="hero-atmosphere" aria-hidden />
-      <motion.div
-        className={
-          reduceMotion
-            ? "hero-scene pointer-events-none absolute inset-0"
-            : "hero-scene hero-scene-live pointer-events-none absolute inset-0"
-        }
-        aria-hidden
-        style={reduceMotion ? undefined : { opacity: sceneOpacity }}
-      >
-        <motion.div
-          className="absolute inset-0"
-          style={reduceMotion ? undefined : { y: skyY }}
-        >
-          <HeroSky />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0"
-          style={reduceMotion ? undefined : { y: cityY }}
-        >
-          <HeroCity />
-        </motion.div>
-      </motion.div>
-
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[var(--content-max)] flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
-        <motion.p
-          className="origin-bottom-left font-[family-name:var(--font-display)] font-semibold leading-[0.88] text-foreground will-change-transform"
-          style={{
-            fontSize: "var(--hero-mark-size)",
-            letterSpacing: "var(--heading-tracking)",
-            ...(reduceMotion
-              ? undefined
-              : {
-                  scale: brandScale,
-                  y: brandY,
-                  x: brandX,
-                  opacity: brandOpacity,
-                  letterSpacing: brandTracking,
-                }),
-          }}
-        >
-          {siteConfig.name}
-          <span className="text-[color:var(--volt)]">.</span>
-        </motion.p>
-        <motion.div
-          style={
-            reduceMotion ? undefined : { opacity: contentOpacity, y: contentY }
-          }
-        >
-          <HeroCopy className="mt-8 max-w-xl sm:mt-10" />
-          <HeroActions />
-        </motion.div>
-      </div>
-
-      {!reduceMotion ? (
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-6 z-0 flex flex-col items-center gap-2 sm:bottom-8"
-          style={{ opacity: scrollCueOpacity }}
-        >
-          <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/45">
-            Scroll
-          </span>
-          <motion.span
-            className="block h-5 w-px bg-[color:var(--volt)]"
-            animate={{ y: [0, 6, 0], opacity: [0.35, 1, 0.35] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-      ) : null}
-    </>
-  );
 }
 
 function CupertinoLayout() {

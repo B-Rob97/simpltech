@@ -38,7 +38,14 @@ export function Services() {
         <div className="mt-14 grid gap-10 sm:grid-cols-2 sm:gap-x-12 sm:gap-y-14">
           {services.map((service, index) => (
             <Reveal key={service.title} delay={index * 0.06}>
-              <article>
+              <article className="night-service">
+                <div className="night-service-meter" aria-hidden>
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
                 <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-[color:var(--signal)]">
                   {String(index + 1).padStart(2, "0")}
                 </p>

@@ -1,0 +1,726 @@
+/* Night Signal only — skyline lock, observatory feed, street energy. */
+
+[data-theme="night-signal"] .site-hero {
+  overflow: visible;
+  min-height: 0;
+}
+
+[data-theme="night-signal"] .night-signal-lock {
+  height: 230svh;
+}
+
+[data-theme="night-signal"] .night-signal-pin,
+[data-theme="night-signal"] .night-signal-static {
+  position: relative;
+  isolation: isolate;
+  height: 100svh;
+  overflow: hidden;
+  background: #06101c;
+}
+
+[data-theme="night-signal"] .night-signal-pin {
+  position: sticky;
+  top: 0;
+}
+
+[data-theme="night-signal"] .night-signal-photo {
+  position: absolute;
+  inset: 18% 0 0;
+  z-index: 0;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 28%, #000 78%, transparent 100%);
+}
+
+[data-theme="night-signal"] .night-signal-photo img {
+  object-fit: cover;
+}
+
+[data-theme="night-signal"] .night-signal-photo-static {
+  opacity: 0.55;
+}
+
+[data-theme="night-signal"] .night-signal-pin .hero-atmosphere,
+[data-theme="night-signal"] .night-signal-static .hero-atmosphere {
+  z-index: 0;
+}
+
+[data-theme="night-signal"] .night-signal-pin .hero-scene,
+[data-theme="night-signal"] .night-signal-static .hero-scene {
+  z-index: 1;
+}
+
+[data-theme="night-signal"] .night-signal-rings {
+  position: absolute;
+  left: 63%;
+  top: 36%;
+  z-index: 2;
+  width: min(42vw, 22rem);
+  height: min(42vw, 22rem);
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] .night-signal-rings span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid color-mix(in oklab, var(--volt) 55%, transparent);
+  border-radius: 999px;
+  box-shadow: 0 0 24px color-mix(in oklab, var(--volt) 22%, transparent);
+}
+
+[data-theme="night-signal"] .night-signal-rings span:nth-child(2) {
+  inset: 16%;
+  opacity: 0.7;
+}
+
+[data-theme="night-signal"] .night-signal-rings span:nth-child(3) {
+  inset: 32%;
+  opacity: 0.45;
+}
+
+[data-theme="night-signal"] .night-searchlight {
+  position: absolute;
+  left: 63%;
+  top: 36%;
+  z-index: 2;
+  width: min(38vw, 18rem);
+  height: min(72vh, 36rem);
+  transform-origin: 50% 0;
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] .night-searchlight span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--volt) 62%, transparent),
+    color-mix(in oklab, var(--volt) 10%, transparent) 58%,
+    transparent
+  );
+  filter: blur(0.4px);
+  mix-blend-mode: screen;
+}
+
+[data-theme="night-signal"] .night-signal-copy {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  height: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 7.5rem 1.25rem 5.5rem;
+}
+
+@media (min-width: 640px) {
+  [data-theme="night-signal"] .night-signal-copy {
+    padding: 8rem 2rem 6rem;
+  }
+}
+
+[data-theme="night-signal"] .night-signal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+  width: fit-content;
+  padding: 0.35rem 0.7rem 0.35rem 0.55rem;
+  border: 1px solid color-mix(in oklab, var(--volt) 35%, transparent);
+  background: color-mix(in oklab, var(--ink) 55%, transparent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foam) 82%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="night-signal"] .night-live-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--volt);
+  box-shadow: 0 0 10px var(--volt);
+}
+
+[data-theme="night-signal"] .night-live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 1px solid var(--volt);
+  animation: night-ping 2.2s ease-out infinite;
+}
+
+[data-theme="night-signal"] .night-signal-cue {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 1.4rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  pointer-events: none;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foam) 50%, transparent);
+}
+
+[data-theme="night-signal"] .night-signal-cue i {
+  display: block;
+  width: 1px;
+  height: 1.15rem;
+  background: var(--volt);
+  animation: night-cue-drop 1.7s ease-in-out infinite;
+}
+
+[data-theme="night-signal"] .night-signal-lock-label {
+  position: absolute;
+  top: 5.6rem;
+  left: 50%;
+  z-index: 6;
+  translate: -50% 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(0.72rem, 1.4vw, 0.9rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--volt);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--volt) 55%, transparent);
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] .night-observatory {
+  position: absolute;
+  z-index: 5;
+  overflow: hidden;
+  translate: -50% -50%;
+  border: 1px solid color-mix(in oklab, var(--volt) 42%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--ink) 72%, transparent), color-mix(in oklab, #06101c 94%, transparent));
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--signal) 18%, transparent),
+    0 24px 80px rgba(0, 0, 0, 0.45),
+    inset 0 0 80px color-mix(in oklab, var(--signal) 10%, transparent);
+  backdrop-filter: blur(16px);
+}
+
+[data-theme="night-signal"] .night-observatory-chrome {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--volt) 22%, transparent);
+  background: color-mix(in oklab, var(--ink) 55%, transparent);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foam) 62%, transparent);
+}
+
+[data-theme="night-signal"] .night-observatory-scan {
+  position: absolute;
+  inset-inline: 0;
+  top: -20%;
+  z-index: 1;
+  height: 28%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in oklab, var(--volt) 16%, transparent),
+    transparent
+  );
+  animation: night-scan 3.4s linear infinite;
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] .night-observatory-page {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(94vw, 76rem);
+  height: 86svh;
+  translate: -50% -50%;
+  padding: 3.4rem 1.25rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  [data-theme="night-signal"] .night-observatory-page {
+    padding: 3.6rem 2rem 1.75rem;
+  }
+}
+
+[data-theme="night-signal"] .night-feed {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  scroll-margin-top: 5.5rem;
+}
+
+[data-theme="night-signal"] .night-feed-folio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foam) 58%, transparent);
+}
+
+[data-theme="night-signal"] .night-feed-kicker {
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--volt);
+}
+
+[data-theme="night-signal"] .night-feed-title {
+  margin-top: 0.55rem;
+  max-width: 20ch;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.7rem, 4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+[data-theme="night-signal"] .night-feed-lede {
+  max-width: 36rem;
+  margin-top: 0.85rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--foam) 68%, transparent);
+}
+
+[data-theme="night-signal"] .night-feed-board {
+  display: grid;
+  gap: 0;
+  margin-top: 1.4rem;
+  border-top: 1px solid color-mix(in oklab, var(--foam) 12%, transparent);
+}
+
+[data-theme="night-signal"] .night-feed-row {
+  border-bottom: 1px solid color-mix(in oklab, var(--foam) 10%, transparent);
+  animation: night-row-ignite 0.7s var(--motion-ease) both;
+}
+
+[data-theme="night-signal"] .night-feed-link {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1.3fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.72rem 0.15rem;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="night-signal"] .night-feed-link::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--volt) 22%, transparent),
+    transparent
+  );
+  animation: night-row-scan 2.8s ease-in-out infinite;
+}
+
+[data-theme="night-signal"] .night-feed-row:nth-child(2) .night-feed-link::after { animation-delay: 0.2s; }
+[data-theme="night-signal"] .night-feed-row:nth-child(3) .night-feed-link::after { animation-delay: 0.4s; }
+[data-theme="night-signal"] .night-feed-row:nth-child(4) .night-feed-link::after { animation-delay: 0.6s; }
+[data-theme="night-signal"] .night-feed-row:nth-child(5) .night-feed-link::after { animation-delay: 0.8s; }
+[data-theme="night-signal"] .night-feed-row:nth-child(6) .night-feed-link::after { animation-delay: 1s; }
+[data-theme="night-signal"] .night-feed-row:nth-child(7) .night-feed-link::after { animation-delay: 1.2s; }
+[data-theme="night-signal"] .night-feed-row:nth-child(8) .night-feed-link::after { animation-delay: 1.4s; }
+
+[data-theme="night-signal"] a.night-feed-link:hover {
+  color: var(--volt);
+}
+
+[data-theme="night-signal"] .night-feed-index {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.78rem;
+  color: var(--signal);
+}
+
+[data-theme="night-signal"] .night-feed-name {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+}
+
+[data-theme="night-signal"] .night-feed-tags {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: color-mix(in oklab, var(--foam) 55%, transparent);
+}
+
+[data-theme="night-signal"] .night-feed-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--volt);
+}
+
+[data-theme="night-signal"] .night-wordmark-volt {
+  color: var(--volt);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--volt) 70%, transparent);
+  animation: night-beacon-dot 3.1s ease-in-out infinite;
+}
+
+[data-theme="night-signal"] .site-header {
+  border-bottom-color: color-mix(in oklab, var(--volt) 16%, transparent);
+}
+
+[data-theme="night-signal"] .night-street {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #06101c 0%, transparent 22%, transparent 78%, #07111f 100%),
+    #07111f;
+}
+
+[data-theme="night-signal"] .night-street-plate {
+  position: absolute;
+  inset: 0;
+  opacity: 0.28;
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 70%, transparent);
+}
+
+[data-theme="night-signal"] .night-street-plate img {
+  object-fit: cover;
+}
+
+[data-theme="night-signal"] .night-street-streak {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--volt) 0%, transparent) 10%,
+    var(--volt),
+    transparent 72%
+  );
+  animation: night-street-streak 6.5s linear infinite;
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] .night-street-kicker {
+  position: relative;
+  z-index: 1;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--volt);
+}
+
+@media (min-width: 640px) {
+  [data-theme="night-signal"] .night-street-kicker {
+    padding-inline: 2rem;
+  }
+}
+
+[data-theme="night-signal"] .night-work-cover {
+  position: relative;
+  overflow: hidden;
+  min-height: 11rem;
+  margin: -2rem -2rem 1.6rem;
+  background: #0a1628;
+}
+
+[data-theme="night-signal"] .night-work-cover img {
+  object-fit: cover;
+}
+
+[data-theme="night-signal"] .night-window-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--ink) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--ink) 35%, transparent) 1px, transparent 1px);
+  background-size: 18px 22px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] .night-window-lit {
+  position: absolute;
+  width: 3px;
+  height: 5px;
+  background: var(--volt);
+  box-shadow: 0 0 8px var(--volt);
+  animation: night-window-flicker 4.6s ease-in-out infinite;
+}
+
+[data-theme="night-signal"] .night-rail-card {
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--elevated) 88%, transparent), var(--elevated));
+}
+
+[data-theme="night-signal"] .night-rail-card:hover {
+  border-color: color-mix(in oklab, var(--volt) 45%, transparent);
+}
+
+[data-theme="night-signal"] .night-rail-card:hover .night-window-lit {
+  animation-duration: 1.4s;
+}
+
+[data-theme="night-signal"] .night-stack-row {
+  display: grid;
+  grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: center;
+  padding-block: 1.4rem;
+}
+
+[data-theme="night-signal"] .night-stack-thumb {
+  position: relative;
+  min-height: 6.5rem;
+  overflow: hidden;
+  background: #0a1628;
+}
+
+[data-theme="night-signal"] .night-service {
+  position: relative;
+  padding: 1.6rem 0 1.7rem 1.15rem;
+  border-left: 1px solid color-mix(in oklab, var(--foam) 12%, transparent);
+}
+
+[data-theme="night-signal"] .night-service-meter {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 1.1rem;
+  margin-bottom: 0.85rem;
+}
+
+[data-theme="night-signal"] .night-service-meter span {
+  width: 3px;
+  background: color-mix(in oklab, var(--signal) 35%, transparent);
+  animation: night-signal-bar 2.4s ease-in-out infinite;
+}
+
+[data-theme="night-signal"] .night-service-meter span:nth-child(1) { height: 35%; animation-delay: 0s; }
+[data-theme="night-signal"] .night-service-meter span:nth-child(2) { height: 55%; animation-delay: 0.15s; }
+[data-theme="night-signal"] .night-service-meter span:nth-child(3) { height: 80%; animation-delay: 0.3s; }
+[data-theme="night-signal"] .night-service-meter span:nth-child(4) { height: 62%; animation-delay: 0.45s; }
+[data-theme="night-signal"] .night-service-meter span:nth-child(5) { height: 95%; animation-delay: 0.6s; background: var(--volt); }
+
+[data-theme="night-signal"] #services {
+  background:
+    radial-gradient(ellipse 50% 40% at 0% 20%, color-mix(in oklab, var(--signal) 16%, transparent), transparent 60%);
+}
+
+[data-theme="night-signal"] #approach .approach-timeline {
+  --night-path: 0%;
+}
+
+[data-theme="night-signal"] #approach .approach-timeline::after {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: 0;
+  z-index: 2;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--volt);
+  box-shadow: 0 0 14px var(--volt);
+  animation: night-path-pulse 4.8s linear infinite;
+  pointer-events: none;
+}
+
+[data-theme="night-signal"] #about {
+  background-image:
+    linear-gradient(180deg, color-mix(in oklab, var(--background) 82%, transparent), var(--background) 88%),
+    url("/themes/night-signal-tower.webp");
+  background-size: cover;
+  background-position: 70% 20%;
+}
+
+[data-theme="night-signal"] .pricing-packages article p.text-transparent {
+  display: none;
+}
+
+[data-theme="night-signal"] .pricing-packages article:has(.text-\[color\:var\(--volt\)\]) {
+  box-shadow: inset 0 2px 0 var(--volt);
+}
+
+[data-theme="night-signal"] #contact .relative.overflow-hidden {
+  background-image:
+    linear-gradient(135deg, color-mix(in oklab, var(--signal) 28%, transparent), color-mix(in oklab, var(--background) 88%, transparent) 46%, color-mix(in oklab, var(--volt) 14%, transparent)),
+    url("/themes/night-signal-street.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+[data-theme="night-signal"] footer {
+  min-height: 12rem;
+  padding-top: 5.5rem;
+  background-image:
+    linear-gradient(180deg, var(--background), color-mix(in oklab, var(--background) 55%, transparent) 40%, #050b14),
+    url("/themes/night-signal-skyline.webp");
+  background-size: cover;
+  background-position: center 72%;
+}
+
+[data-theme="night-signal"].theme-refresh .theme-refresh-scan {
+  background:
+    radial-gradient(circle at 63% 22%, color-mix(in oklab, var(--volt) 28%, transparent), transparent 34%),
+    linear-gradient(180deg, color-mix(in oklab, var(--foreground) 8%, transparent), transparent 42%);
+}
+
+[data-theme="night-signal"].theme-refresh .theme-refresh-tile {
+  border-radius: 999px;
+}
+
+@keyframes night-ping {
+  0% { transform: scale(0.6); opacity: 0.7; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@keyframes night-cue-drop {
+  0%, 100% { transform: translateY(0); opacity: 0.35; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+
+@keyframes night-scan {
+  from { transform: translateY(0); }
+  to { transform: translateY(420%); }
+}
+
+@keyframes night-row-ignite {
+  from {
+    opacity: 0.2;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes night-row-scan {
+  0%, 70% { width: 0; opacity: 0; }
+  78% { width: 100%; opacity: 0.9; }
+  100% { width: 100%; opacity: 0; }
+}
+
+@keyframes night-beacon-dot {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+@keyframes night-street-streak {
+  from { transform: translateX(-40%); }
+  to { transform: translateX(120%); }
+}
+
+@keyframes night-window-flicker {
+  0%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+  70% { opacity: 0.4; }
+}
+
+@keyframes night-signal-bar {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes night-path-pulse {
+  from { left: 0; opacity: 0; }
+  12% { opacity: 1; }
+  to { left: 100%; opacity: 0; }
+}
+
+@media (max-width: 767px) {
+  [data-theme="night-signal"] .night-signal-lock {
+    height: 210svh;
+  }
+
+  [data-theme="night-signal"] .night-feed-link {
+    grid-template-columns: 2rem minmax(0, 1fr) auto;
+  }
+
+  [data-theme="night-signal"] .night-feed-tags {
+    display: none;
+  }
+
+  [data-theme="night-signal"] .night-observatory-chrome span:nth-child(2) {
+    display: none;
+  }
+
+  [data-theme="night-signal"] .night-stack-row {
+    grid-template-columns: minmax(0, 5.5rem) minmax(0, 1fr);
+  }
+
+  [data-theme="night-signal"] .night-work-cover {
+    margin: -2rem -1.25rem 1.25rem;
+    min-height: 9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="night-signal"] .night-signal-lock {
+    height: auto;
+  }
+
+  [data-theme="night-signal"] .night-live-dot::after,
+  [data-theme="night-signal"] .night-signal-cue i,
+  [data-theme="night-signal"] .night-observatory-scan,
+  [data-theme="night-signal"] .night-feed-row,
+  [data-theme="night-signal"] .night-feed-link::after,
+  [data-theme="night-signal"] .night-wordmark-volt,
+  [data-theme="night-signal"] .night-street-streak,
+  [data-theme="night-signal"] .night-window-lit,
+  [data-theme="night-signal"] .night-service-meter span,
+  [data-theme="night-signal"] #approach .approach-timeline::after {
+    animation: none;
+  }
+
+  [data-theme="night-signal"] .night-feed-row {
+    opacity: 1;
+    clip-path: none;
+  }
+}
+
+[data-motion="still"][data-theme="night-signal"] .night-signal-lock {
+  height: auto;
+}
+
+[data-motion="still"][data-theme="night-signal"] .night-live-dot::after,
+[data-motion="still"][data-theme="night-signal"] .night-observatory-scan,
+[data-motion="still"][data-theme="night-signal"] .night-street-streak,
+[data-motion="still"][data-theme="night-signal"] .night-window-lit,
+[data-motion="still"][data-theme="night-signal"] .night-service-meter span,
+[data-motion="still"][data-theme="night-signal"] .night-wordmark-volt {
+  animation: none;
+}
