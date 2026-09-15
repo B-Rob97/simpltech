@@ -148,14 +148,15 @@ export function MissionHero({
   const starsY = useTransform(scrollYProgress, [0, 0.55], [0, 16]);
   const copyY = useTransform(scrollYProgress, [0.1, 0.48], [0, compact ? -160 : -280]);
   const copyX = useTransform(scrollYProgress, [0.18, 0.48], [0, compact ? -8 : -28]);
-  const hatch = useTransform(scrollYProgress, [0.5, 0.9], [0, 82]);
-  const origin = compact ? "50% 42%" : "70% 46%";
+  const hatch = useTransform(scrollYProgress, [0.46, 0.92], [0, 120]);
+  const origin = compact ? "78% 20%" : "70% 46%";
   const veilMask = useTransform(
     hatch,
     (radius) =>
       `radial-gradient(circle at ${origin}, transparent ${radius}%, #000 ${radius + 0.35}%)`,
   );
-  const ringSize = useTransform(hatch, (radius) => `${Math.max(radius * 2.1, 9)}vmax`);
+  const ringSize = useTransform(hatch, (radius) => `${Math.max(radius * 2.15, 8)}vmax`);
+  const ringOpacity = useTransform(hatch, [0, 1.5, 6], [0, 1, 1]);
   const altitudeValue = useTransform(scrollYProgress, [0, 0.78], [421.4, 11.8]);
   const reticleScale = useTransform(scrollYProgress, [0, 0.42, 0.52], [1.18, 0.62, 0.2]);
   const reticleRotate = useTransform(scrollYProgress, [0, 0.45], [0, 36]);
@@ -263,29 +264,29 @@ export function MissionHero({
             </motion.div>
             <div className="mc-hero-grid" aria-hidden />
             <div className="mc-limb-glow" aria-hidden />
-          </motion.div>
-          <motion.div className="mc-hud-shift" style={{ y: copyY, x: copyX }}>
-            <HeroChrome
-              paused={paused}
-              onPause={onPause}
-              altitude={altitude}
-              phase={phase}
-              met={met}
-              compactHud
-            />
-          </motion.div>
-          <motion.div
-            className="mc-reticle"
-            aria-hidden
-            style={{ scale: reticleScale, rotate: reticleRotate }}
-          >
-            <span />
-            <span />
-            <i />
-            <b />
-            <b />
-            <b />
-            <b />
+            <motion.div className="mc-hud-shift" style={{ y: copyY, x: copyX }}>
+              <HeroChrome
+                paused={paused}
+                onPause={onPause}
+                altitude={altitude}
+                phase={phase}
+                met={met}
+                compactHud
+              />
+            </motion.div>
+            <motion.div
+              className="mc-reticle"
+              aria-hidden
+              style={{ scale: reticleScale, rotate: reticleRotate }}
+            >
+              <span />
+              <span />
+              <i />
+              <b />
+              <b />
+              <b />
+              <b />
+            </motion.div>
           </motion.div>
           <motion.div
             className="mc-hatch-ring"
@@ -293,6 +294,7 @@ export function MissionHero({
             style={{
               width: ringSize,
               height: ringSize,
+              opacity: ringOpacity,
               left: origin.split(" ")[0],
               top: origin.split(" ")[1],
             }}

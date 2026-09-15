@@ -72,17 +72,6 @@ export function MissionPatch() {
           height={640}
           sizes="(max-width: 700px) 180px, 370px"
         />
-        <svg className="mc-patch-caption" viewBox="0 0 200 200">
-          <defs>
-            <path id="mc-patch-arc" d="M34,86 a68,68 0 0,1 132,0" />
-          </defs>
-          <path className="mc-patch-cover" d="M24,92 a76,76 0 0,1 152,0" />
-          <text>
-            <textPath href="#mc-patch-arc" startOffset="50%" textAnchor="middle">
-              SIMPLTECH
-            </textPath>
-          </text>
-        </svg>
       </div>
       <span>SIMPLTECH / YYC</span>
       <span>Independent by design</span>
@@ -122,7 +111,7 @@ export function HatchDeckPreview() {
       </div>
       <div className="mc-deck-hud">
         <span>Porthole / 01</span>
-        <span>Next section on glass</span>
+        <span>YYC lock</span>
         <span>Flight portfolio</span>
       </div>
       <div className="mc-manifesto-strip mc-manifesto-on-glass">
