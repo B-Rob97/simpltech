@@ -33,8 +33,9 @@ export function SwissRegister() {
     offset: ["start start", "end end"],
   });
 
-  const numeralScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.84]);
-  const numeralX = useTransform(scrollYProgress, [0, 0.4], ["7%", "0%"]);
+  const numeralScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.58]);
+  const numeralX = useTransform(scrollYProgress, [0, 0.4], ["14%", "0%"]);
+  const numeralY = useTransform(scrollYProgress, [0, 0.4], ["12%", "0%"]);
   const trimScale = useTransform(scrollYProgress, [0.42, 0.6], [0, 1]);
   const printY = useTransform(scrollYProgress, [0.5, 0.8], ["110%", "0%"]);
   const copyY = useTransform(scrollYProgress, [0.52, 0.82], [0, -56]);
@@ -104,19 +105,20 @@ export function SwissRegister() {
               style={
                 reduceMotion
                   ? undefined
-                  : { scale: numeralScale, x: numeralX }
+                  : { scale: numeralScale, x: numeralX, y: numeralY }
               }
             >
               <SwissPosterMark />
             </motion.div>
-            <div className="swiss-rail" aria-hidden>
-              <span
-                className="swiss-module"
-                style={{ top: `${(cell / RAIL_CELLS) * 100}%` }}
-              />
-            </div>
             <figcaption>Intl · YYC · System 04</figcaption>
           </figure>
+        </div>
+
+        <div className="swiss-rail" aria-hidden>
+          <span
+            className="swiss-module"
+            style={{ top: `${(cell / RAIL_CELLS) * 100}%` }}
+          />
         </div>
 
         <motion.div

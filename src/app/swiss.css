@@ -11,7 +11,8 @@
 
 [data-theme="swiss"] h2 {
   text-transform: uppercase;
-  letter-spacing: -0.07em;
+  letter-spacing: -0.05em;
+  word-spacing: 0.08em;
 }
 
 [data-theme="swiss"] .site-hero {
@@ -143,7 +144,8 @@
   border-bottom: 2px solid var(--foreground);
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
+  word-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -165,13 +167,13 @@
   gap: 4vw;
   align-items: stretch;
   min-height: 0;
-  padding: 1.5rem 4vw 5.5rem;
+  padding: 1.1rem 5.5rem 1.25rem 4vw;
 }
 
 .swiss-copy {
-  align-self: end;
-  max-width: 38rem;
-  padding-bottom: 0.5rem;
+  align-self: start;
+  max-width: 36rem;
+  padding-top: 0.25rem;
 }
 
 .swiss-kicker,
@@ -185,12 +187,13 @@
 }
 
 .swiss-hero-heading {
-  margin: 0.7rem 0 0;
+  margin: 0.55rem 0 0;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(2.6rem, 5.6vw, 6.4rem);
+  font-size: clamp(2rem, 4.2vw, 4.6rem);
   font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.07em;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  word-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -258,7 +261,8 @@
 }
 
 .swiss-plate-image {
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .swiss-numeral-lock {
@@ -281,10 +285,11 @@
 
 .swiss-rail {
   position: absolute;
-  top: 0;
+  top: 7.75rem;
   right: 0;
-  width: calc(100% / 6);
-  height: 100%;
+  bottom: 42%;
+  z-index: 4;
+  width: 3.5rem;
   pointer-events: none;
 }
 
@@ -322,12 +327,8 @@
   inset: 58% 0 0;
   z-index: 3;
   overflow: hidden;
-  border-top: 2px solid var(--foreground);
-  background:
-    linear-gradient(var(--background), var(--background)),
-    url("/themes/swiss-grid.webp");
-  background-size: cover;
-  background-blend-mode: multiply;
+  pointer-events: none;
+  background: transparent;
 }
 
 .swiss-proof {
@@ -336,6 +337,12 @@
   gap: 1rem 3rem;
   height: 100%;
   padding: 1.25rem 4vw 1.5rem;
+  border-top: 2px solid var(--foreground);
+  background:
+    linear-gradient(color-mix(in oklab, var(--background) 88%, white), var(--background)),
+    url("/themes/swiss-grid.webp");
+  background-size: cover;
+  background-blend-mode: multiply;
 }
 
 .swiss-proof-title {
@@ -366,6 +373,7 @@
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  word-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -376,7 +384,7 @@
 
 .swiss-register-cue {
   position: absolute;
-  right: 4vw;
+  left: 4vw;
   bottom: 1.1rem;
   z-index: 5;
   margin: 0;
@@ -391,7 +399,6 @@
   width: 0.7rem;
   height: 0.7rem;
   margin-top: 0.4rem;
-  margin-left: auto;
   background: var(--accent);
   content: "";
   animation: swiss-module-step 1.1s steps(4, end) infinite;
@@ -550,7 +557,8 @@
   letter-spacing: 0.16em;
 }
 
-.work-swiss .cover-symbol {
+.work-swiss .cover-symbol,
+.work-swiss .cover-name {
   display: none;
 }
 
@@ -758,6 +766,11 @@
     height: 180vh;
   }
 
+  .swiss-rail {
+    top: 12.75rem;
+    width: 2.1rem;
+  }
+
   .swiss-folio {
     grid-template-columns: 1fr 1fr;
     gap: 0.35rem 1rem;
@@ -770,23 +783,27 @@
 
   .swiss-stage {
     grid-template-columns: 1fr;
-    padding: 1rem 4vw 8rem;
-  }
+  padding: 1rem 4vw 1.5rem;
+}
 
   .swiss-plate {
     order: -1;
-    min-height: 16rem;
+    min-height: 12rem;
     aspect-ratio: 3 / 4;
-    max-width: 18rem;
+    max-width: 13.5rem;
     justify-self: end;
   }
 
   .swiss-numeral {
-    font-size: clamp(5rem, 28vw, 8rem);
+    font-size: clamp(4.2rem, 24vw, 6.5rem);
   }
 
   .swiss-hero-heading {
-    font-size: clamp(2.1rem, 11vw, 3.4rem);
+    font-size: clamp(1.8rem, 9vw, 2.7rem);
+  }
+
+  .swiss-register-cue {
+    display: none;
   }
 
   .swiss-proof {
