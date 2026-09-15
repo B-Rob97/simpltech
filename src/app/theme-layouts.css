@@ -1075,9 +1075,13 @@
 .composition-cupertino #contact .relative.max-w-2xl { margin-inline: auto; }
 .composition-cupertino #contact .flex { justify-content: center; }
 
-/* Cupertino scroll story: laptop scales until the next section fills the display. */
+/* Cupertino scroll story: laptop stays framed, glass stays readable, next section fills the display. */
 [data-theme="cupertino"] .cupertino-story {
-  height: 250svh;
+  --cupertino-screen-left: 27.4%;
+  --cupertino-screen-top: 15.6%;
+  --cupertino-screen-width: 45.2%;
+  --cupertino-screen-height: 51.8%;
+  height: 260svh;
   position: relative;
   z-index: 2;
 }
@@ -1087,21 +1091,23 @@
 [data-theme="cupertino"] .cupertino-pin {
   position: sticky;
   top: 0;
-  display: flex;
-  flex-direction: column;
   height: 100svh;
   overflow: hidden;
   background: #f5f5f7;
 }
 [data-theme="cupertino"] .cupertino-story-static .cupertino-pin {
   position: relative;
+  display: flex;
+  flex-direction: column;
   height: auto;
   overflow: visible;
   min-height: 100svh;
   padding-bottom: 3rem;
 }
 [data-theme="cupertino"] .cupertino-copy {
-  position: relative;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
   z-index: 4;
   transform-origin: center top;
 }
@@ -1160,22 +1166,25 @@
   margin-top: 1.5rem;
 }
 [data-theme="cupertino"] .cupertino-stage {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 3;
   display: grid;
-  flex: 1 1 auto;
-  place-items: end center;
-  width: 100%;
-  min-height: 0;
+  place-items: center;
   pointer-events: none;
 }
+[data-theme="cupertino"] .cupertino-story-static .cupertino-copy {
+  position: relative;
+}
 [data-theme="cupertino"] .cupertino-story-static .cupertino-stage {
+  position: relative;
   min-height: 22rem;
   margin-top: 1rem;
+  place-items: end center;
 }
 [data-theme="cupertino"] .cupertino-laptop {
   position: relative;
-  width: min(46rem, 78vw);
+  width: min(56rem, 88vw, calc((100svh - 4.5rem) * 16 / 9));
   will-change: transform;
 }
 [data-theme="cupertino"] .cupertino-laptop-photo {
@@ -1184,10 +1193,10 @@
   height: auto;
   -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
   mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-  -webkit-mask-size: 100% 100%, 45.2% 51.8%;
-  mask-size: 100% 100%, 45.2% 51.8%;
-  -webkit-mask-position: 0 0, 27.4% 15.6%;
-  mask-position: 0 0, 27.4% 15.6%;
+  -webkit-mask-size: 100% 100%, var(--cupertino-screen-width) var(--cupertino-screen-height);
+  mask-size: 100% 100%, var(--cupertino-screen-width) var(--cupertino-screen-height);
+  -webkit-mask-position: 0 0, left var(--cupertino-screen-left) top var(--cupertino-screen-top);
+  mask-position: 0 0, left var(--cupertino-screen-left) top var(--cupertino-screen-top);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-composite: xor;
@@ -1196,8 +1205,9 @@
 [data-theme="cupertino"] .cupertino-glass {
   position: absolute;
   overflow: hidden;
-  border-radius: 1.2% / 1.8%;
-  background: #f5f5f7;
+  border-radius: 1.4% / 2.1%;
+  background: transparent;
+  container-type: size;
 }
 [data-theme="cupertino"] .cupertino-boot-shift,
 [data-theme="cupertino"] .cupertino-boot {
@@ -1206,16 +1216,18 @@
 [data-theme="cupertino"] .cupertino-boot {
   display: flex;
   flex-direction: column;
+  min-height: 0;
   background:
     radial-gradient(ellipse at 50% 0%, #fff, #f5f5f7 62%);
   color: #1d1d1f;
-  padding: 6% 7% 7%;
+  padding: 5.5% 6.5% 6%;
 }
 [data-theme="cupertino"] .cupertino-boot-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: clamp(.55rem, 1.3vw, .8rem);
+  flex: 0 0 auto;
+  font-size: clamp(.45rem, 5.6cqw, .8rem);
   font-weight: 600;
 }
 [data-theme="cupertino"] .cupertino-boot-pips {
@@ -1230,47 +1242,48 @@
   background: #d2d2d7;
 }
 [data-theme="cupertino"] .cupertino-boot-kicker {
-  margin: 8% 0 0;
-  font-size: clamp(.5rem, 1.2vw, .75rem);
+  margin: 6% 0 0;
+  font-size: clamp(.4rem, 4.8cqw, .75rem);
   letter-spacing: .16em;
   text-transform: uppercase;
   color: #6e6e73;
 }
 [data-theme="cupertino"] .cupertino-boot-title {
   margin: .35rem 0 0;
-  font: 600 clamp(1rem, 3.2vw, 2rem)/1.08 var(--font-display);
+  font: 600 clamp(.7rem, 11.5cqw, 2rem)/1.08 var(--font-display);
   letter-spacing: -.04em;
 }
 [data-theme="cupertino"] .cupertino-boot-metrics {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: .6rem;
-  margin-top: 6%;
+  gap: .5rem;
+  margin-top: 5%;
+  flex: 0 0 auto;
 }
 [data-theme="cupertino"] .cupertino-boot-metrics p {
   margin: 0;
   border-radius: .7rem;
   background: #fff;
-  padding: .55rem .7rem;
+  padding: .5rem .65rem;
   box-shadow: 0 10px 24px -20px #0004;
 }
 [data-theme="cupertino"] .cupertino-boot-metrics strong {
   display: block;
-  font-size: clamp(.8rem, 1.8vw, 1.15rem);
+  font-size: clamp(.6rem, 7.4cqw, 1.15rem);
 }
 [data-theme="cupertino"] .cupertino-boot-metrics span {
   color: #6e6e73;
-  font-size: clamp(.48rem, 1.1vw, .7rem);
+  font-size: clamp(.4rem, 4.6cqw, .7rem);
 }
 [data-theme="cupertino"] .cupertino-boot-canvas {
   position: relative;
-  flex: 1;
-  margin-top: 6%;
+  flex: 1 1 auto;
+  margin-top: 5%;
   border-radius: .8rem;
   background:
     linear-gradient(180deg, #e8e8ed, #f5f5f7);
   overflow: hidden;
-  min-height: 22%;
+  min-height: 0;
 }
 [data-theme="cupertino"] .cupertino-boot-pulse {
   position: absolute;
@@ -1292,8 +1305,8 @@
 }
 [data-theme="cupertino"] .cupertino-phone-wrap {
   position: absolute;
-  right: max(3vw, calc(50% - 26rem));
-  bottom: 8%;
+  right: max(3vw, calc(50% - 30rem));
+  bottom: 14%;
   width: min(8.5rem, 18vw);
   z-index: 4;
   transform-origin: bottom center;
@@ -1430,7 +1443,7 @@
   [data-theme="cupertino"] .cupertino-phone-wrap { display: none; }
   [data-theme="cupertino"] .cupertino-copy-inner { padding-top: 4.8rem; }
   [data-theme="cupertino"] .cupertino-lede { display: none; }
-  [data-theme="cupertino"] .cupertino-laptop { width: min(36rem, 94vw); }
+  [data-theme="cupertino"] .cupertino-laptop { width: min(40rem, 96vw, calc((100svh - 5.5rem) * 16 / 9)); }
   [data-theme="cupertino"] .cupertino-work-viewport { min-height: 28rem; }
   .work-neon-club .design-project { grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; }
   .work-neon-club .project-number { font-size: 2rem; }

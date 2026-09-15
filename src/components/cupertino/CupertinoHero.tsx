@@ -14,6 +14,7 @@ import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { siteConfig } from "@/lib/site";
 import { services } from "@/lib/projects";
 
+// Inner LCD of /themes/cupertino-laptop.webp (1600×900 studio plate).
 const SCREEN = {
   left: 0.274,
   top: 0.156,
@@ -71,7 +72,10 @@ function CupertinoScrollStory() {
   const clipRef = useRef<HTMLDivElement>(null);
   const worldRef = useRef<HTMLDivElement>(null);
   const laptopRef = useRef<HTMLDivElement>(null);
-  const [endScale, setEndScale] = useState(3.8);
+  const [endScale, setEndScale] = useState(2.8);
+  const [endX, setEndX] = useState(0);
+  const [endY, setEndY] = useState(0);
+  const [restY, setRestY] = useState(48);
   const [copyGone, setCopyGone] = useState(false);
   const [phoneGone, setPhoneGone] = useState(false);
 
@@ -80,17 +84,20 @@ function CupertinoScrollStory() {
     offset: ["start start", "end end"],
   });
 
-  const copyY = useTransform(scrollYProgress, [0, 0.18], [0, -72]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.12, 0.2], [1, 0.15, 0]);
-  const copyScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.92]);
+  const copyY = useTransform(scrollYProgress, [0, 0.2], [0, -64]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.14, 0.24], [1, 0.2, 0]);
+  const copyScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.96]);
   const phoneX = useTransform(scrollYProgress, [0, 0.28], [0, 80]);
   const phoneOpacity = useTransform(scrollYProgress, [0.02, 0.24], [1, 0]);
   const phoneScale = useTransform(scrollYProgress, [0, 0.28], [1, 0.8]);
-  const laptopScale = useTransform(scrollYProgress, [0.16, 0.88], [1, endScale]);
-  const bootY = useTransform(scrollYProgress, [0.14, 0.36], ["0%", "-110%"]);
-  const chromeOpacity = useTransform(scrollYProgress, [0.82, 0.94], [1, 0]);
-  const pinOpacity = useTransform(scrollYProgress, [0.92, 0.995], [1, 0]);
-  const shineOpacity = useTransform(scrollYProgress, [0, 0.18, 0.4], [1, 0.65, 0]);
+  const laptopScale = useTransform(scrollYProgress, [0.1, 0.84], [1, endScale]);
+  const laptopX = useTransform(scrollYProgress, [0.1, 0.84], [0, endX]);
+  const laptopY = useTransform(scrollYProgress, [0.1, 0.84], [restY, endY]);
+  const bootOpacity = useTransform(scrollYProgress, [0.32, 0.5], [1, 0]);
+  const bootY = useTransform(scrollYProgress, [0.32, 0.5], ["0%", "-12%"]);
+  const chromeOpacity = useTransform(scrollYProgress, [0.8, 0.93], [1, 0]);
+  const pinOpacity = useTransform(scrollYProgress, [0.9, 0.995], [1, 0]);
+  const shineOpacity = useTransform(scrollYProgress, [0, 0.2, 0.42], [1, 0.55, 0]);
 
   const alignPortal = useCallback(() => {
     const screen = screenRef.current;
@@ -101,48 +108,70 @@ function CupertinoScrollStory() {
 
     const glass = screen.getBoundingClientRect();
     const frame = pin.getBoundingClientRect();
+    const width = Math.max(glass.width, 1);
+    const height = Math.max(glass.height, 1);
     const x = glass.left - frame.left;
     const y = glass.top - frame.top;
     clip.style.left = `${x}px`;
     clip.style.top = `${y}px`;
-    clip.style.width = `${glass.width}px`;
-    clip.style.height = `${glass.height}px`;
-    clip.style.borderRadius = `${Math.min(glass.width * 0.018, 14)}px`;
-    world.style.width = `${frame.width}px`;
-    world.style.minHeight = `${frame.height}px`;
-    world.style.transform = `translate(${-x}px, ${-y}px)`;
+    clip.style.width = `${width}px`;
+    clip.style.height = `${height}px`;
+    clip.style.borderRadius = `${Math.min(width * 0.02, 16)}px`;
+
+    const pageW = frame.width;
+    const pageH = frame.height;
+    const fit = Math.min(width / pageW, height / pageH);
+    const ox = (width - pageW * fit) / 2;
+    const oy = (height - pageH * fit) / 2;
+    world.style.width = `${pageW}px`;
+    world.style.height = `${pageH}px`;
+    world.style.transformOrigin = "0 0";
+    world.style.transform = `translate(${ox}px, ${oy}px) scale(${fit})`;
   }, []);
 
-  const measureScale = useCallback(() => {
-    const screen = screenRef.current;
+  const measureZoom = useCallback(() => {
+    const pin = pinRef.current;
     const laptop = laptopRef.current;
-    if (!screen || !laptop) return;
-    const baseWidth = screen.offsetWidth;
-    const baseHeight = screen.offsetHeight;
-    if (baseWidth < 8 || baseHeight < 8) return;
-    setEndScale(
-      Math.max(window.innerWidth / baseWidth, window.innerHeight / baseHeight) *
-        1.03,
-    );
+    if (!pin || !laptop) return;
+
+    const pinW = pin.clientWidth;
+    const pinH = pin.clientHeight;
+    const laptopW = laptop.offsetWidth;
+    const laptopH = laptop.offsetHeight;
+    if (pinW < 8 || pinH < 8 || laptopW < 8 || laptopH < 8) return;
+
+    const screenW = laptopW * SCREEN.width;
+    const screenH = laptopH * SCREEN.height;
+    if (screenW < 8 || screenH < 8) return;
+
+    const restLaptopX = (pinW - laptopW) / 2;
+    const restLaptopY = (pinH - laptopH) / 2;
+    const restScreenCX = restLaptopX + laptopW * (SCREEN.left + SCREEN.width / 2);
+    const restScreenCY = restLaptopY + laptopH * (SCREEN.top + SCREEN.height / 2);
+
+    setEndScale(Math.min(pinW / screenW, pinH / screenH));
+    setEndX(pinW / 2 - restScreenCX);
+    setEndY(pinH / 2 - restScreenCY);
+    setRestY(Math.min(pinH * 0.07, 64));
   }, []);
 
   useLayoutEffect(() => {
-    measureScale();
+    measureZoom();
     alignPortal();
-    window.addEventListener("resize", measureScale);
+    window.addEventListener("resize", measureZoom);
     window.addEventListener("resize", alignPortal);
     return () => {
-      window.removeEventListener("resize", measureScale);
+      window.removeEventListener("resize", measureZoom);
       window.removeEventListener("resize", alignPortal);
     };
-  }, [alignPortal, measureScale]);
+  }, [alignPortal, measureZoom]);
 
   useAnimationFrame(() => {
     alignPortal();
   });
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    setCopyGone(progress > 0.14);
+    setCopyGone(progress > 0.16);
     setPhoneGone(progress > 0.22);
     if (pinRef.current) {
       pinRef.current.style.pointerEvents = progress > 0.9 ? "none" : "auto";
@@ -174,7 +203,7 @@ function CupertinoScrollStory() {
           <motion.div
             ref={laptopRef}
             className="cupertino-laptop"
-            style={{ scale: laptopScale, ...laptopOrigin }}
+            style={{ x: laptopX, y: laptopY, scale: laptopScale, ...laptopOrigin }}
           >
             <motion.div style={{ opacity: chromeOpacity }}>
               <LaptopChassis />
@@ -185,7 +214,10 @@ function CupertinoScrollStory() {
               style={screenStyle}
               aria-hidden
             >
-              <motion.div className="cupertino-boot-shift" style={{ y: bootY }}>
+              <motion.div
+                className="cupertino-boot-shift"
+                style={{ y: bootY, opacity: bootOpacity }}
+              >
                 <CupertinoBootUi />
               </motion.div>
             </div>
@@ -197,11 +229,7 @@ function CupertinoScrollStory() {
           </motion.div>
         </div>
 
-        <div
-          ref={clipRef}
-          className="cupertino-section-clip"
-          aria-hidden
-        >
+        <div ref={clipRef} className="cupertino-section-clip" aria-hidden>
           <div ref={worldRef} className="cupertino-section-world">
             <CupertinoServicesPreview />
           </div>
@@ -237,7 +265,7 @@ function LaptopChassis() {
       alt=""
       width={1600}
       height={900}
-      sizes="(max-width: 767px) 140vw, 90vw"
+      sizes="(max-width: 767px) 160vw, 92vw"
       preload
       className="cupertino-laptop-photo"
     />
