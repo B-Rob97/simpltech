@@ -6,13 +6,15 @@ import { SkylineBand } from "@/components/CityNight";
 import { useTheme } from "@/components/ThemeProvider";
 import { projects } from "@/lib/projects";
 import { Reveal } from "@/components/Reveal";
+import { NeonClubWork } from "@/components/NeonClubWork";
 import { ThemeWork } from "@/components/ThemeWork";
 import { NightSignalCover } from "@/components/night/NightSignalCover";
 
 export function Work() {
   const { theme } = useTheme();
-  if (theme.id !== "night-signal") return <ThemeWork />;
-  return <NightSignalStreet />;
+  if (theme.id === "night-signal") return <NightSignalStreet />;
+  if (theme.id === "neon-club") return <NeonClubWork />;
+  return <ThemeWork />;
 }
 
 function NightSignalStreet() {

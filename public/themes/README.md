@@ -215,3 +215,18 @@ Prompt: Photorealistic nightclub interior photograph, landscape 16:9. View from 
 864 × 1152. Wheat-pasted dancer silhouettes on brick, magenta/cyan graphic flyers, no readable text.
 
 Prompt: Photorealistic close-up of a wheat-pasted concert poster wall at night, portrait 3:4. Overlapping flyers on grimy brick: abstract geometric club graphics, silhouettes of dancers, neon magenta and cyan bars, torn paper edges, wheat-paste wrinkles, staples, tape. All posters are purely graphic with no readable letters, no numbers, no logos. Strong side light from a magenta neon tube at the left edge, cyan bounce from the right. Tactile paper texture, cinematic, analog grain. No people, no text, no watermarks, not a website mockup. Full-bleed photograph.
+
+## neon-club-work-*.webp
+
+Eight 3:4 wheat-paste club posters, one per shipped project. Not a shared crop of `neon-club-flyers.webp`.
+
+- `neon-club-work-brettos.webp` — CRT / window-pane graphic
+- `neon-club-work-revolution-drilling.webp` — drill-rig silhouette
+- `neon-club-work-evolving-prowess.webp` — runner / dancer figure
+- `neon-club-work-prism.webp` — prism shards
+- `neon-club-work-mls.webp` — night house + key
+- `neon-club-work-deep-set.webp` — steel anchors
+- `neon-club-work-network-travel.webp` — vapor trail / skyline
+- `neon-club-work-corn-crush.webp` — corn-cup still
+
+Prompt pattern: Photorealistic wheat-pasted concert poster, portrait 3:4, magenta and cyan neon on brick, torn paper, analog grain. Subject matches the project. No watermarks, not a website mockup.

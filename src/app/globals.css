@@ -397,7 +397,10 @@ body {
 }
 
 [data-theme="neon-club"] {
+  height: auto;
+  min-height: 100%;
   overflow-x: clip;
+  overflow-y: auto;
 }
 
 [data-theme="neon-club"] body {
