@@ -1,6 +1,7 @@
 "use client";
 
 import { CupertinoWork } from "@/components/cupertino/CupertinoWork";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { projects, type Project } from "@/lib/projects";
 import { useTheme } from "@/components/ThemeProvider";
 
@@ -13,14 +14,12 @@ function ProjectDetails({ project }: { project: Project }) {
   </>;
 }
 
-// Abstract project covers are intentionally typographic, never fabricated screenshots.
 function ProjectCover({ project, index }: { project: Project; index: number }) {
-  return <div className={`project-cover cover-${index % 4}`} aria-hidden="true">
-    <span className="cover-folio">ST® / {String(index + 1).padStart(2, "0")}</span>
-    <span className="cover-symbol">{["↗", "⊕", "◎", "✳"][index % 4]}</span>
-    <span className="cover-name">{project.name}</span>
-    <span className="cover-caption">{project.tags[0]} · {project.tags[1]}</span>
-  </div>;
+  return (
+    <div className={`project-cover cover-${index % 4}`}>
+      <ProjectLiveView project={project} />
+    </div>
+  );
 }
 
 export function ThemeWork() {

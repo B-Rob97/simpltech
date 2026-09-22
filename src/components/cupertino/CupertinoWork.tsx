@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { projects } from "@/lib/projects";
 
 export function CupertinoWork() {
@@ -49,20 +50,8 @@ export function CupertinoWork() {
               exit={reduceMotion ? undefined : { y: "-22%", opacity: 0 }}
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div
-                className={`project-cover cover-${selected % 4}`}
-                aria-hidden="true"
-              >
-                <span className="cover-folio">
-                  ST® / {String(selected + 1).padStart(2, "0")}
-                </span>
-                <span className="cover-symbol">
-                  {["↗", "⊕", "◎", "✳"][selected % 4]}
-                </span>
-                <span className="cover-name">{project.name}</span>
-                <span className="cover-caption">
-                  {project.tags[0]} · {project.tags[1]}
-                </span>
+              <div className={`project-cover cover-${selected % 4}`}>
+                <ProjectLiveView project={project} eager />
               </div>
               <div>
                 <p className="project-category">{project.tags.join(" / ")}</p>

@@ -265,11 +265,11 @@
 .mc-orbit-point:hover { box-shadow: 0 0 0 6px #edece410; border-color: var(--mc-paper); }
 .mc-project-display { display: flex; flex-direction: column; border-left: 1px solid var(--mc-line); padding: 2rem; min-width: 0; }
 .mc-project-meta { display: flex; justify-content: space-between; gap: 1rem; font: .6rem var(--font-mono); letter-spacing: .07em; text-transform: uppercase; color: #a1a597; }
-.mc-project-art { position: relative; min-height: 198px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; border-bottom: 1px solid var(--mc-line); margin-bottom: 1.5rem; background-image: linear-gradient(#edece408 1px, transparent 1px), linear-gradient(90deg, #edece408 1px, transparent 1px); background-size: 18px 18px; }
+.mc-project-art { position: relative; min-height: 16rem; display: block; overflow: hidden; border-bottom: 1px solid var(--mc-line); margin-bottom: 1.5rem; background: #10110f; }
 .mc-constellation { position: absolute; left: .8rem; top: 1rem; width: 46%; overflow: visible; fill: #edece4; stroke: #edece450; transform: rotate(var(--mc-constellation-turn, 0deg)); transition: transform .8s cubic-bezier(.2,.8,.2,1); }
 .mc-constellation path { fill: none; stroke-dasharray: 160; animation: mc-constellation-draw 1.1s cubic-bezier(.2,.8,.2,1) both; }
 .mc-constellation .is-lock { fill: var(--mc-orange); }
-.mc-project-scan { position: absolute; top: 0; bottom: 0; left: 0; width: 28%; background: linear-gradient(90deg, transparent, #ff6b3524, transparent); animation: mc-scan-travel 2.8s ease-in-out infinite; pointer-events: none; }
+.mc-project-scan { position: absolute; top: 0; bottom: 0; left: 0; z-index: 2; width: 28%; background: linear-gradient(90deg, transparent, #ff6b3524, transparent); animation: mc-scan-travel 2.8s ease-in-out infinite; pointer-events: none; }
 .mc-project-glyph { font: 10rem/1 sans-serif; color: var(--mc-orange); transform: rotate(var(--glyph-turn)); transition: transform .65s cubic-bezier(.2,.8,.2,1); }
 .mc-project-folio { font-size: 8rem; font-weight: 500; line-height: 1; color: #b4b5ac1f; letter-spacing: -.08em; }
 .mc-project-copy { animation: mc-telemetry-wipe .55s cubic-bezier(.2,.8,.2,1); }
@@ -406,7 +406,7 @@
   .mc-flight-deck { grid-template-columns: 1fr 1fr; }
   .mc-project-display { padding: 1.3rem; }
   .mc-orbit-point { width: 44px; height: 44px; }
-  .mc-project-art { min-height: 160px; }
+  .mc-project-art { min-height: 12rem; }
   .mc-project-glyph { font-size: 7rem; }
   .mc-project-folio { font-size: 6rem; }
   .mc-capabilities { gap: 3rem; grid-template-columns: 1fr 1fr; }
@@ -458,7 +458,7 @@
   .mc-orbit-center > span { font-size: 2rem; }
   .mc-orbit-center small { font-size: .4rem; max-width: 4rem; }
   .mc-project-display { border-left: 0; border-top: 1px solid var(--mc-line); padding: 1.5rem; }
-  .mc-project-art { min-height: 150px; }
+  .mc-project-art { min-height: 11rem; }
   .mc-project-index { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .mc-project-index button { padding: .85rem .65rem; font-size: .6rem; }
   .mc-capabilities, .mc-process-layout, .mc-about-layout, .mc-configurator { grid-template-columns: 1fr; gap: 2.5rem; }

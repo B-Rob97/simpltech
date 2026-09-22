@@ -249,9 +249,11 @@
 
 [data-theme="night-signal"] .night-observatory-page {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 2.9rem 1rem 0.85rem;
+  padding: 2.9rem 1rem 0.7rem;
   overflow: hidden;
 }
 
@@ -263,7 +265,8 @@
 
 [data-theme="night-signal"] .night-feed {
   display: flex;
-  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   flex-direction: column;
   justify-content: flex-start;
   scroll-margin-top: 5.5rem;
@@ -309,8 +312,11 @@
 
 [data-theme="night-signal"] .night-feed-board {
   display: grid;
+  flex: 1 1 auto;
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  min-height: 0;
   gap: 0;
-  margin-top: 1.4rem;
+  margin-top: 0.85rem;
   border-top: 1px solid color-mix(in oklab, var(--foam) 12%, transparent);
 }
 
@@ -321,10 +327,12 @@
 
 [data-theme="night-signal"] .night-feed-link {
   display: grid;
-  grid-template-columns: 2.4rem minmax(0, 1.3fr) minmax(0, 1fr) auto;
+  grid-template-columns: 2.2rem 4.5rem minmax(0, 1.3fr) minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.52rem 0.15rem;
+  gap: 0.55rem;
+  height: 100%;
+  min-height: 0;
+  padding: 0.18rem 0.15rem;
   position: relative;
   overflow: hidden;
 }
@@ -352,6 +360,15 @@
 
 [data-theme="night-signal"] a.night-feed-link:hover {
   color: var(--volt);
+}
+
+[data-theme="night-signal"] .night-feed-live {
+  position: relative;
+  display: block;
+  height: 100%;
+  max-height: 1.85rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--foam) 22%, transparent);
 }
 
 [data-theme="night-signal"] .night-feed-index {
@@ -681,7 +698,7 @@
   }
 
   [data-theme="night-signal"] .night-feed-link {
-    grid-template-columns: 2rem minmax(0, 1fr) auto;
+    grid-template-columns: 1.6rem 3.6rem minmax(0, 1fr) auto;
   }
 
   [data-theme="night-signal"] .night-feed-tags {

@@ -260,9 +260,17 @@
   padding-top: 0;
 }
 
-.work-quiet .project-number,
-.work-quiet .project-cover {
+.work-quiet .project-number {
   display: none;
+}
+
+.work-quiet .project-cover {
+  display: block;
+  min-height: 8.75rem;
+  margin-bottom: 1.15rem;
+  padding: 0;
+  border: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+  background: #f4f1ea;
 }
 
 .work-quiet .project-details {

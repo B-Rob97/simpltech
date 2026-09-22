@@ -1,5 +1,6 @@
 "use client";
 
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { projects } from "@/lib/projects";
 
 export function NightSignalWorkLock() {
@@ -23,6 +24,9 @@ export function NightSignalWorkLock() {
             <>
               <span className="night-feed-index">
                 {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="night-feed-live">
+                <ProjectLiveView project={project} />
               </span>
               <span className="night-feed-name">{project.name}</span>
               <span className="night-feed-tags">

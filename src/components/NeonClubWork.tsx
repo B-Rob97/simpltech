@@ -1,27 +1,5 @@
-import Image from "next/image";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { projects, type Project } from "@/lib/projects";
-
-const neonClubPosters = {
-  brettos: "/themes/neon-club-work-brettos.webp",
-  "revolution-drilling": "/themes/neon-club-work-revolution-drilling.webp",
-  "evolving-prowess": "/themes/neon-club-work-evolving-prowess.webp",
-  prism: "/themes/neon-club-work-prism.webp",
-  "wp-mls-ab": "/themes/neon-club-work-mls.webp",
-  "deep-set": "/themes/neon-club-work-deep-set.webp",
-  "network-travel": "/themes/neon-club-work-network-travel.webp",
-  "corn-crush": "/themes/neon-club-work-corn-crush.webp",
-} as const;
-
-type NeonClubProjectId = keyof typeof neonClubPosters;
-
-function isNeonClubProjectId(id: string): id is NeonClubProjectId {
-  return id in neonClubPosters;
-}
-
-function posterFor(project: Project) {
-  if (isNeonClubProjectId(project.id)) return neonClubPosters[project.id];
-  return "/themes/neon-club-flyers.webp";
-}
 
 function ProjectDetails({ project }: { project: Project }) {
   return (
@@ -67,21 +45,8 @@ export function NeonClubWork() {
             <span className="project-number" aria-hidden="true">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <div className="project-cover" aria-hidden="true">
-              <Image
-                src={posterFor(project)}
-                alt=""
-                fill
-                sizes="(max-width: 767px) 100vw, 40vw"
-                className="neon-club-work-photo"
-              />
-              <span className="cover-folio">
-                ST® / {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="cover-name">{project.name}</span>
-              <span className="cover-caption">
-                {project.tags[0]} · {project.tags[1]}
-              </span>
+            <div className="project-cover">
+              <ProjectLiveView project={project} />
             </div>
             <div className="project-details">
               <ProjectDetails project={project} />

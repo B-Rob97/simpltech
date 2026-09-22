@@ -406,36 +406,15 @@
 
 .work-warm-craft .project-cover {
   min-height: 16rem;
+  padding: 0;
   color: #fffaf0;
   background-color: #e4d4be;
-  background-image:
-    linear-gradient(180deg, #fff6eeb8 0%, #fff6ee22 36%, #3a2418c8 100%),
-    url("/themes/craft-work-01.webp");
-  background-size: cover;
-  background-position: center;
 }
 
 .work-warm-craft .design-project:first-child .project-cover {
   min-height: 26rem;
 }
 
-.work-warm-craft .cover-1 {
-  background-image:
-    linear-gradient(180deg, #fff6eeb8 0%, #fff6ee22 36%, #3a2418c8 100%),
-    url("/themes/craft-work-02.webp");
-}
-
-.work-warm-craft .cover-2 {
-  background-image:
-    linear-gradient(180deg, #fff6eeb8 0%, #fff6ee22 36%, #3a2418c8 100%),
-    url("/themes/craft-work-03.webp");
-}
-
-.work-warm-craft .cover-3 {
-  background-image:
-    linear-gradient(180deg, #fff6eeb8 0%, #fff6ee22 36%, #3a2418c8 100%),
-    url("/themes/craft-work-04.webp");
-}
 
 .work-warm-craft .cover-folio,
 .work-warm-craft .cover-name,

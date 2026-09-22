@@ -10,6 +10,8 @@ import {
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
+import { featuredLiveProject } from "@/lib/project-live";
 import { siteConfig } from "@/lib/site";
 
 const STICKERS = [
@@ -231,15 +233,11 @@ function Polaroid({ peel }: { peel?: ReactNode }) {
         />
       </div>
       <div className="playground-polaroid-well">
-        <Image
-          src="/themes/playground-snapshot.webp"
-          alt="Instant photo of a red playground slide on green turf under a blue sky"
-          fill
-          sizes="(min-width: 768px) 30vw, 68vw"
-          className="object-cover"
-        />
+        <ProjectLiveView project={featuredLiveProject} eager />
       </div>
-      <p className="playground-polaroid-caption">Selected work / snapshot 10</p>
+      <p className="playground-polaroid-caption">
+        Selected work / {featuredLiveProject.name}
+      </p>
       {peel}
     </div>
   );

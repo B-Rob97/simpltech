@@ -10,6 +10,8 @@ import {
 import Image from "next/image";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
+import { featuredLiveProject, phoneLiveProject } from "@/lib/project-live";
 import { siteConfig } from "@/lib/site";
 import { services } from "@/lib/projects";
 
@@ -52,7 +54,7 @@ function StaticCupertinoHero() {
             <LaptopChassis />
             <div className="cupertino-glass" style={screenStyle}>
               <div className="cupertino-frame">
-                <CupertinoBootUi />
+                <ProjectLiveView project={featuredLiveProject} eager />
               </div>
             </div>
           </div>
@@ -170,7 +172,11 @@ function CupertinoScrollStory() {
             </div>
             <div className="cupertino-glass" style={screenStyle}>
               <div className="cupertino-frame">
-                {showNext ? <CupertinoGlassNext /> : <CupertinoBootUi />}
+                {showNext ? (
+                  <CupertinoGlassNext />
+                ) : (
+                  <ProjectLiveView project={featuredLiveProject} eager />
+                )}
               </div>
             </div>
             {shineGone ? null : (
@@ -218,43 +224,18 @@ function LaptopChassis() {
 
 function CupertinoPhone() {
   return (
-    <Image
-      src="/themes/cupertino-phone.webp"
-      alt=""
-      width={864}
-      height={1152}
-      sizes="180px"
-      loading="lazy"
-      className="cupertino-phone-photo"
-    />
-  );
-}
-
-function CupertinoBootUi() {
-  return (
-    <div className="cupertino-boot">
-      <div className="cupertino-boot-bar">
-        <span>SimplTech</span>
-        <span className="cupertino-boot-pips" aria-hidden>
-          <i />
-          <i />
-          <i />
-        </span>
-      </div>
-      <p className="cupertino-boot-kicker">Product launch</p>
-      <p className="cupertino-boot-title">A site that feels inevitable.</p>
-      <div className="cupertino-boot-metrics">
-        <p>
-          <strong>7 days</strong>
-          <span>Brief to live</span>
-        </p>
-        <p>
-          <strong>$1,490</strong>
-          <span>Packs from</span>
-        </p>
-      </div>
-      <div className="cupertino-boot-canvas" aria-hidden>
-        <span className="cupertino-boot-pulse" />
+    <div className="cupertino-phone-device">
+      <Image
+        src="/themes/cupertino-phone.webp"
+        alt=""
+        width={864}
+        height={1152}
+        sizes="180px"
+        loading="lazy"
+        className="cupertino-phone-photo"
+      />
+      <div className="cupertino-phone-glass">
+        <ProjectLiveView project={phoneLiveProject} eager />
       </div>
     </div>
   );

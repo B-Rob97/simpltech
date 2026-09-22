@@ -10,6 +10,20 @@
 .design-project { min-width: 0; position: relative; }
 .project-number { display: none; }
 .project-cover { position: relative; display: flex; min-height: 19rem; overflow: hidden; padding: 1.5rem; flex-direction: column; justify-content: space-between; background: #dedbd2; color: #202020; }
+.project-cover:has(.project-live) { padding: 0; }
+.project-cover:has(.project-live) .cover-symbol,
+.project-cover:has(.project-live) .cover-name,
+.project-cover:has(.project-live) .cover-caption,
+.project-cover:has(.project-live) .cover-folio { display: none; }
+.project-live { position: absolute; inset: 0; z-index: 0; overflow: hidden; container-type: size; pointer-events: none; background: #eceae4; }
+.project-live-stage { position: absolute; top: 0; left: 0; width: 1440px; height: 900px; transform-origin: top left; transform: scale(max(calc(100cqw / 1440px), calc(100cqh / 900px))); }
+.project-live-stage iframe,
+.project-live-capture { display: block; width: 1440px; height: 900px; max-width: none; border: 0; background: #fff; }
+.project-live-private { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: .35rem; padding: 1rem 1.05rem 1.1rem; background: linear-gradient(165deg, transparent, #11111110 70%), repeating-linear-gradient(-12deg, transparent, transparent 11px, #11111110 11px, #11111110 12px); color: #1a1a1a; }
+.project-live-private-kicker { font: 600 .62rem/1.4 var(--font-body); letter-spacing: .16em; text-transform: uppercase; opacity: .62; }
+.project-live-private-name { font: 600 clamp(1.15rem, 2vw, 1.7rem)/1.05 var(--font-display); letter-spacing: -.03em; }
+.project-live-private-note { max-width: 28ch; font-size: .75rem; line-height: 1.45; opacity: .72; }
+.project-rail-live { position: relative; height: 12rem; margin: -2rem -2rem 1.5rem; overflow: hidden; }
 .cover-1 { background: #b6c3cd; }
 .cover-2 { background: #bdc7ac; }
 .cover-3 { background: #cebbd8; }
@@ -695,12 +709,7 @@
   object-position: center;
 }
 .work-neon-club .project-cover::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(180deg, transparent 0 38%, #14001855 72%, #140018e0 100%);
+  content: none;
 }
 .work-neon-club .cover-folio,
 .work-neon-club .cover-name,
@@ -1006,6 +1015,7 @@
   container-type: size;
 }
 [data-theme="cupertino"] .cupertino-frame {
+  position: relative;
   height: 100%;
   min-height: 0;
   overflow: hidden;
@@ -1115,11 +1125,24 @@
 [data-theme="cupertino"] .cupertino-phone-wrap.is-gone {
   display: none;
 }
+[data-theme="cupertino"] .cupertino-phone-device {
+  position: relative;
+}
 [data-theme="cupertino"] .cupertino-phone-photo {
   display: block;
   width: 100%;
   height: auto;
   filter: drop-shadow(0 18px 24px #0002);
+}
+[data-theme="cupertino"] .cupertino-phone-glass {
+  position: absolute;
+  left: 32.6%;
+  top: 15.4%;
+  width: 35.2%;
+  height: 67.4%;
+  overflow: hidden;
+  border-radius: 0.28rem;
+  background: #0e0e10;
 }
 [data-theme="cupertino"] .cupertino-next {
   display: flex;

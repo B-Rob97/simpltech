@@ -644,29 +644,9 @@
 
 [data-theme="newsprint"] .work-newsprint .project-cover {
   min-height: 9rem;
-  padding: 0.7rem;
-  filter: grayscale(1) contrast(1.15);
-  background-color: #111;
-  background-size: cover;
-  background-position: center;
+  padding: 0;
+  background-color: #e6e0d4;
   color: var(--news-paper-lift);
-}
-
-[data-theme="newsprint"] .work-newsprint .cover-0 {
-  background-image: url("/themes/newsprint-lead.webp");
-}
-
-[data-theme="newsprint"] .work-newsprint .cover-1 {
-  background-image: url("/themes/newsprint-press.webp");
-}
-
-[data-theme="newsprint"] .work-newsprint .cover-2 {
-  background-image: url("/themes/newsprint-desk.webp");
-}
-
-[data-theme="newsprint"] .work-newsprint .cover-3 {
-  background-image: url("/themes/newsprint-lead.webp");
-  background-position: 70% 40%;
 }
 
 [data-theme="newsprint"] .work-newsprint .design-project:first-child .project-cover {

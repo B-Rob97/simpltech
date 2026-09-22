@@ -8,6 +8,7 @@ import {
   type MotionValue,
 } from "motion/react";
 import { useRef } from "react";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import type { Project } from "@/lib/projects";
 
 type WorkRailProps = {
@@ -23,6 +24,9 @@ function ProjectPanel({
 }) {
   const inner = (
     <>
+      <div className="project-rail-live">
+        <ProjectLiveView project={project} />
+      </div>
       <div>
         <div className="flex items-start justify-between gap-4">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-[color:var(--signal)]">

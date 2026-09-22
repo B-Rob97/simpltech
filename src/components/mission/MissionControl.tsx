@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, type CSSProperties, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { CalendlyButton } from "@/components/CalendlyButton";
 import { MissionHero } from "@/components/mission/MissionHero";
 import {
   LaunchTrajectory,
   MissionPatch,
   OrbitField,
-  ProjectConstellation,
 } from "@/components/mission/MissionMarks";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { projects, services } from "@/lib/projects";
 import { carePlan, pricingPackages } from "@/lib/pricing";
 import { siteConfig } from "@/lib/site";
@@ -86,15 +86,8 @@ function MissionWork() {
             <span>Mission {String(selected + 1).padStart(2, "0")}</span>
             <span>{project.tags[0]}</span>
           </div>
-          <div className="mc-project-art" aria-hidden>
-            <ProjectConstellation index={selected} />
-            <span
-              className="mc-project-glyph"
-              style={{ "--glyph-turn": `${selected * 22.5}deg` } as CSSProperties}
-            >
-              ✳
-            </span>
-            <span className="mc-project-folio">{String(selected + 1).padStart(2, "0")}</span>
+          <div className="mc-project-art">
+            <ProjectLiveView project={project} eager />
             <span className="mc-project-scan" />
           </div>
           <div className="mc-project-copy" key={project.id}>
