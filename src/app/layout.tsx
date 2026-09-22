@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { IBM_Plex_Mono, Newsreader, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
-import Script from "next/script";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { siteConfig } from "@/lib/site";
 import {
@@ -124,12 +123,13 @@ export default async function RootLayout({
       style={{ colorScheme: theme.colorScheme }}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col antialiased">
-        <Script
+      <head>
+        <script
           id="theme-bootstrap"
-          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }}
         />
+      </head>
+      <body className="min-h-full flex flex-col antialiased">
         <ThemeProvider initialThemeId={theme.id}>{children}</ThemeProvider>
       </body>
     </html>

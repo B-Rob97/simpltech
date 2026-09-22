@@ -5,11 +5,11 @@ import {
   motion,
   useInView,
   useMotionValue,
-  useReducedMotion,
-  useTransform,
+  useTransform
 } from "motion/react";
 import { useEffect, useRef } from "react";
 import { pricingFloor } from "@/lib/pricing";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const START = 5000;
 const END = pricingFloor;

@@ -2,9 +2,8 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import Image from "next/image";
 import type { RefObject } from "react";
@@ -12,6 +11,7 @@ import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { HeroCity, HeroSky } from "@/components/HeroScene";
 import { NightSignalWorkLock } from "@/components/night/NightSignalWorkLock";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type NightSignalHeroProps = {
   sectionRef: RefObject<HTMLElement | null>;

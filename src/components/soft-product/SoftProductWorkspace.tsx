@@ -2,13 +2,13 @@
 
 import {
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import { useRef, type CSSProperties, type ReactNode } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { SoftProductWindow } from "@/components/soft-product/SoftProductWindow";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type SoftProductWorkspaceProps = {
   services: ReactNode;

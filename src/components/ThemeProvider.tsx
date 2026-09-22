@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -11,6 +12,7 @@ import {
 import {
   applyThemeToDocument,
   getTheme,
+  isThemeId,
   nextThemeId,
   persistTheme,
   THEME_REFRESH_MS,
@@ -40,6 +42,16 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   const [themeId, setThemeId] = useState<ThemeId>(initialThemeId);
   const [incoming, setIncoming] = useState<ThemeDefinition | null>(null);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (root.dataset.themeReload === "1") return;
+    const rendered = root.dataset.theme;
+    if (isThemeId(rendered) && rendered !== themeId) {
+      setThemeId(rendered);
+    }
+    root.style.visibility = "";
+  }, [themeId]);
 
   const theme = getTheme(themeId);
 

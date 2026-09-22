@@ -3,9 +3,8 @@
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
@@ -13,6 +12,7 @@ import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { featuredLiveProject } from "@/lib/project-live";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const STICKERS = [
   {

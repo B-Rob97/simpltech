@@ -3,9 +3,8 @@
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import Image from "next/image";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
@@ -14,6 +13,7 @@ import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { featuredLiveProject, phoneLiveProject } from "@/lib/project-live";
 import { siteConfig } from "@/lib/site";
 import { services } from "@/lib/projects";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 // Inner LCD of /themes/cupertino-laptop.webp (1600×900 studio plate).
 // Inset from the measured black panel so the UI stays on the glass.

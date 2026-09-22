@@ -18,6 +18,7 @@ const links = [
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { morphProgress } = useBrandMorph();
 
   useEffect(() => {
@@ -26,6 +27,15 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
     <header
@@ -57,11 +67,38 @@ export function Header() {
 
         <div className="flex items-center gap-1.5 sm:gap-3">
           <ThemeSwitcher />
+          <button
+            type="button"
+            className="site-menu-button inline-flex items-center rounded-[var(--radius-button)] border-[length:var(--border-width)] border-foreground/15 bg-foreground/5 px-2.5 py-1.5 text-sm font-semibold text-foreground min-[1100px]:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="site-section-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? "Close" : "Menu"}
+          </button>
           <CalendlyButton className="rounded-[var(--radius-button)] bg-[color:var(--volt)] px-3 py-2 text-sm font-semibold text-[color:var(--accent-ink)] transition-transform hover:-translate-y-0.5 max-[439px]:hidden sm:px-4">
             Start a project
           </CalendlyButton>
         </div>
       </div>
+      {menuOpen ? (
+        <div id="site-section-menu" className="site-section-menu min-[1100px]:hidden">
+          <nav className="grid" aria-label="Sections">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <CalendlyButton className="mt-2 hidden w-full justify-center rounded-[var(--radius-button)] bg-[color:var(--volt)] px-3 py-3 text-sm font-semibold text-[color:var(--accent-ink)] max-[439px]:inline-flex">
+            Start a project
+          </CalendlyButton>
+        </div>
+      ) : null}
     </header>
   );
 }

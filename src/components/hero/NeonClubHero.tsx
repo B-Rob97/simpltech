@@ -1,10 +1,10 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { NeonSignMark, NeonTicketMark } from "@/components/hero/HeroMarks";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type NeonClubHeroProps = {
   sectionRef: RefObject<HTMLElement | null>;

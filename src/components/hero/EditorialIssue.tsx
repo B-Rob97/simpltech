@@ -2,15 +2,15 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
-  type MotionValue,
+  type MotionValue
 } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, type CSSProperties, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const CLIP_VARS = [
   "--ed-clip-t",

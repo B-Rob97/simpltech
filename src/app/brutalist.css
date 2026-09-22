@@ -102,6 +102,22 @@
   border-radius: 0;
 }
 
+[data-theme="brutalist"] .site-header .site-section-menu {
+  background: var(--background);
+  color: var(--foreground);
+  border-bottom: var(--brutal-rule-w) solid var(--foreground);
+}
+
+[data-theme="brutalist"] .site-header .site-section-menu a {
+  color: var(--foreground);
+}
+
+[data-theme="brutalist"] .site-header .site-section-menu a[class*="bg-"] {
+  background: var(--foreground);
+  color: var(--accent-ink);
+  border: var(--brutal-rule-w) solid var(--foreground);
+}
+
 [data-theme="brutalist"] .site-header [class*="rounded-[3px]"] {
   background: var(--accent-ink);
   color: var(--foreground);
@@ -587,6 +603,20 @@
 .composition-brutalist .pricing-packages article[class*="bg-foreground/"] {
   background: var(--foreground);
   color: var(--accent-ink);
+}
+
+.composition-brutalist .pricing-packages article[class*="bg-foreground/"] :is(h3, p, li, span) {
+  color: var(--accent-ink);
+}
+
+.composition-brutalist .pricing-packages article[class*="bg-foreground/"] :is(a, button) {
+  background: var(--accent-ink);
+  color: var(--foreground);
+  border-color: var(--accent-ink);
+}
+
+.composition-brutalist .pricing-packages article[class*="bg-foreground/"] span[aria-hidden] {
+  background: var(--accent-ink);
 }
 
 .composition-brutalist #pricing .h-3.w-3 {

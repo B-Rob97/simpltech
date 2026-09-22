@@ -1,9 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { ProjectLiveView } from "@/components/ProjectLiveView";
 import { projects } from "@/lib/projects";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function CupertinoWork() {
   const reduceMotion = useReducedMotion();

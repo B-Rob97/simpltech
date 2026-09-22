@@ -2,15 +2,15 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import { useRef } from "react";
 import { ChinookGlow, SkylineBand } from "@/components/CityNight";
 import { Reveal } from "@/components/Reveal";
 import { useTheme } from "@/components/ThemeProvider";
 import type { ThemeId } from "@/lib/themes";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const aboutMarks: Record<ThemeId, string> = {
   "mission-control": "",

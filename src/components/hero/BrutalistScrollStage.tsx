@@ -1,5 +1,6 @@
 "use client";
 
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import {
   createContext,
   useContext,
@@ -7,7 +8,6 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
-import { useReducedMotion } from "motion/react";
 
 type BrutalistScrollValue = {
   trackRef: RefObject<HTMLDivElement | null>;

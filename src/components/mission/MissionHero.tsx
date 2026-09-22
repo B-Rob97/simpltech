@@ -6,13 +6,13 @@ import {
   motion,
   useMotionValue,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
   useSpring,
-  useTransform,
+  useTransform
 } from "motion/react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { HatchDeckPreview } from "@/components/mission/MissionMarks";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type Phase = "approach" | "align" | "hatch" | "locked";
 

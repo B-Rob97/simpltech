@@ -130,7 +130,6 @@
 
   [data-theme="playground"] .slot-work {
     margin-top: calc(-1 * var(--playground-pin));
-    padding-bottom: var(--playground-pin);
     position: relative;
     z-index: 1;
   }
@@ -285,6 +284,20 @@
   color: var(--playground-ink);
   white-space: nowrap;
   opacity: var(--frame-p);
+}
+
+@media (max-width: 767px) {
+  .playground-polaroid {
+    padding-bottom: calc(2.6rem * var(--frame-p));
+  }
+
+  .playground-polaroid-caption {
+    height: auto;
+    max-height: calc(2.8rem * var(--frame-p));
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    white-space: normal;
+  }
 }
 
 .playground-peel {

@@ -3,14 +3,14 @@
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import Image from "next/image";
 import { useCallback, useLayoutEffect, useRef, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const NAMEPLATE = `The ${siteConfig.name}`;
 

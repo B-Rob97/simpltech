@@ -283,6 +283,28 @@ html {
   scroll-behavior: auto;
 }
 
+.site-section-menu {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  z-index: 60;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.4rem 1.25rem 0.85rem;
+  background: var(--background);
+  color: var(--foreground);
+  border-bottom: var(--border-width) solid color-mix(in oklab, var(--foreground) 16%, transparent);
+  box-shadow: 0 16px 36px color-mix(in oklab, var(--foreground) 14%, transparent);
+}
+
+.site-section-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.95rem;
+  color: var(--foreground);
+}
+
 html.lenis,
 html.lenis body {
   height: auto;

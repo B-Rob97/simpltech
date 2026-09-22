@@ -2,8 +2,7 @@
 
 import {
   useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
+  useScroll
 } from "motion/react";
 import { useLayoutEffect, useRef, type RefObject } from "react";
 import Image from "next/image";
@@ -26,6 +25,7 @@ import { PlaygroundCollage } from "@/components/hero/PlaygroundCollage";
 import { QuietField } from "@/components/hero/QuietField";
 import { SwissRegister } from "@/components/hero/SwissRegister";
 import { useTheme } from "@/components/ThemeProvider";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type ThemeHeroProps = {
   sectionRef: RefObject<HTMLElement | null>;

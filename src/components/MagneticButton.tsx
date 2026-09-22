@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { useRef, type ReactNode } from "react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type MagneticButtonProps = {
   href: string;

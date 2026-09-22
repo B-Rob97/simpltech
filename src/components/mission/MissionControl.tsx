@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, type CSSProperties, type ReactNode } from "react";
 import { CalendlyButton } from "@/components/CalendlyButton";
 import { MissionHero } from "@/components/mission/MissionHero";
 import {
@@ -68,10 +68,12 @@ function MissionWork() {
               <button
                 key={item.id}
                 className={`mc-orbit-point ${selected === index ? "is-selected" : ""}`}
-                style={{
-                  left: `${50 + 39 * Math.cos(angle)}%`,
-                  top: `${50 + 39 * Math.sin(angle)}%`,
-                }}
+                style={
+                  {
+                    "--orbit-x": `${50 + 39 * Math.cos(angle)}%`,
+                    "--orbit-y": `${50 + 39 * Math.sin(angle)}%`,
+                  } as CSSProperties
+                }
                 onClick={() => setSelected(index)}
                 aria-pressed={selected === index}
                 aria-label={`Explore ${item.name}`}

@@ -2,12 +2,12 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
-  type MotionValue,
+  type MotionValue
 } from "motion/react";
 import { useRef } from "react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const steps = [
   {

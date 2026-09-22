@@ -1,9 +1,9 @@
 "use client";
 
 import Lenis from "lenis";
-import { useReducedMotion } from "motion/react";
 import { useEffect, type ReactNode } from "react";
 import { useTheme } from "@/components/ThemeProvider";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type SmoothScrollProps = {
   children: ReactNode;

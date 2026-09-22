@@ -2,14 +2,14 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
-  type MotionValue,
+  type MotionValue
 } from "motion/react";
 import { useRef } from "react";
 import { ProjectLiveView } from "@/components/ProjectLiveView";
 import type { Project } from "@/lib/projects";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type WorkRailProps = {
   projects: Project[];

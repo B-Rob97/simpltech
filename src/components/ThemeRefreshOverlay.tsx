@@ -1,8 +1,9 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useTheme } from "@/components/ThemeProvider";
 import { themeIndex, THEME_IDS } from "@/lib/themes";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function ThemeRefreshOverlay() {
   const { incoming, refreshing } = useTheme();

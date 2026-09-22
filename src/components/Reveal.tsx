@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTheme } from "@/components/ThemeProvider";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type RevealProps = {
   children: ReactNode;

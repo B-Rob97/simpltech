@@ -2,12 +2,12 @@
 
 import {
   useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
+  useScroll
 } from "motion/react";
 import { useLayoutEffect, useRef } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function QuietField() {
   const reduceMotion = Boolean(useReducedMotion());

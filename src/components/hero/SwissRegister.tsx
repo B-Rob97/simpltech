@@ -3,15 +3,15 @@
 import {
   motion,
   useMotionValueEvent,
-  useReducedMotion,
   useScroll,
-  useTransform,
+  useTransform
 } from "motion/react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { services } from "@/lib/projects";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const RAIL_CELLS = 6;
 const CELL_CODES = ["A1", "A2", "A3", "A4", "A5", "A6"] as const;

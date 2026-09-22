@@ -1,11 +1,12 @@
 "use client";
 
-import { useReducedMotion, useScroll } from "motion/react";
+import { useScroll } from "motion/react";
 import Image from "next/image";
 import { useLayoutEffect, useRef, type RefObject } from "react";
 import { HeroActions, HeroCopy } from "@/components/hero/HeroCopy";
 import { useBrutalistScroll } from "@/components/hero/BrutalistScrollStage";
 import { siteConfig } from "@/lib/site";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type OccupyPhase = "empty" | "draw" | "occupy" | "index";
 
