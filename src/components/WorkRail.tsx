@@ -2,13 +2,14 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
-  type MotionValue,
+  type MotionValue
 } from "motion/react";
 import { useRef } from "react";
+import { ProjectLiveView } from "@/components/ProjectLiveView";
 import type { Project } from "@/lib/projects";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type WorkRailProps = {
   projects: Project[];
@@ -23,6 +24,9 @@ function ProjectPanel({
 }) {
   const inner = (
     <>
+      <div className="project-rail-live">
+        <ProjectLiveView project={project} />
+      </div>
       <div>
         <div className="flex items-start justify-between gap-4">
           <p className="font-[family-name:var(--font-display)] text-sm font-semibold text-[color:var(--signal)]">
@@ -33,13 +37,13 @@ function ProjectPanel({
               View live →
             </span>
           ) : project.privateNote ? (
-            <span className="text-sm font-medium text-white/45">Private IP</span>
+            <span className="text-sm font-medium text-foreground/45">Private IP</span>
           ) : null}
         </div>
-        <h3 className="mt-6 min-h-[2lh] font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white xl:text-4xl">
+        <h3 className="mt-6 min-h-[2lh] font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-foreground xl:text-4xl">
           {project.name}
         </h3>
-        <p className="mt-4 max-w-md text-sm leading-relaxed text-white/65 sm:text-base">
+        <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/65 sm:text-base">
           {project.summary}
         </p>
       </div>
@@ -47,7 +51,7 @@ function ProjectPanel({
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/55"
+            className="rounded-[var(--radius-button)] border-[length:var(--border-width)] border-foreground/10 px-3 py-1 text-xs text-foreground/55"
           >
             {tag}
           </span>
@@ -57,7 +61,7 @@ function ProjectPanel({
   );
 
   const className =
-    "flex h-[min(70vh,560px)] w-[min(78vw,520px)] shrink-0 flex-col justify-between border border-white/10 bg-[color:var(--ink-elevated)]/80 p-8 backdrop-blur-sm sm:p-10";
+    "flex h-[min(70vh,560px)] w-[min(78vw,520px)] shrink-0 flex-col justify-between rounded-[var(--radius-card)] border-[length:var(--border-width)] border-foreground/10 bg-[color:var(--elevated)]/80 p-8 backdrop-blur-sm sm:p-10";
 
   if (project.href) {
     return (

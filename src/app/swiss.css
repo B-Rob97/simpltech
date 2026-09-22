@@ -1,0 +1,681 @@
+/* Swiss / International Style — this file is the only theme-specific stylesheet. */
+
+[data-theme="swiss"],
+[data-theme="swiss"][data-density="dense"] {
+  --section-space: 8rem;
+}
+
+[data-theme="swiss"] body {
+  background-color: var(--background);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: calc((100vw - 8vw) / 12) calc((100vw - 8vw) / 12);
+  background-position: 4vw 0;
+}
+
+[data-theme="swiss"] h2 {
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  word-spacing: 0.1em;
+}
+
+[data-theme="swiss"] .site-hero {
+  overflow: visible;
+  min-height: 0;
+  height: auto;
+}
+
+[data-theme="swiss"] .site-header {
+  border-bottom: 1px solid var(--foreground);
+  background: var(--background);
+  backdrop-filter: none;
+}
+
+[data-theme="swiss"] .site-header nav {
+  counter-reset: swiss-nav;
+  gap: 1.75rem;
+}
+
+[data-theme="swiss"] .site-header nav a {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+[data-theme="swiss"] .site-header nav a::before {
+  counter-increment: swiss-nav;
+  content: counter(swiss-nav, decimal-leading-zero);
+  margin-right: 0.4rem;
+  color: var(--accent);
+}
+
+[data-theme="swiss"] .hover\:-translate-y-0\.5:hover {
+  transform: none;
+}
+
+/* Press-register scroll story ------------------------------------------- */
+
+.swiss-register {
+  height: 210vh;
+}
+
+.swiss-register.is-static {
+  height: auto;
+}
+
+.swiss-register-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  height: 100svh;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.swiss-register.is-static .swiss-register-sticky {
+  position: relative;
+  height: auto;
+  min-height: 100svh;
+  overflow: visible;
+}
+
+.swiss-folio {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem 2rem;
+  align-items: end;
+  margin: 5.25rem 4vw 0;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--foreground);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  word-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.swiss-folio-system {
+  color: var(--accent);
+}
+
+.swiss-folio-reg {
+  justify-self: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.swiss-stage {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 1.2fr) minmax(12rem, 0.7fr);
+  gap: 6vw;
+  align-items: center;
+  min-height: 0;
+  padding: 2.5rem 5.5rem 2.75rem 4vw;
+}
+
+.swiss-copy {
+  align-self: center;
+  max-width: 34rem;
+}
+
+.swiss-proof-kicker {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.swiss-hero-heading {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.1rem, 4.2vw, 4rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  word-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.swiss-hero-body {
+  max-width: 28rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--foreground) 78%, var(--background));
+}
+
+.swiss-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.swiss-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.swiss-btn-solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.swiss-btn-line {
+  border: 1px solid var(--foreground);
+  color: var(--foreground);
+}
+
+.swiss-plate {
+  position: relative;
+  align-self: center;
+  width: min(100%, 22rem);
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--foreground);
+  background: var(--background);
+}
+
+.swiss-plate-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.swiss-rail {
+  position: absolute;
+  top: 8.5rem;
+  right: 0;
+  bottom: 38%;
+  z-index: 4;
+  width: 1.15rem;
+  pointer-events: none;
+}
+
+.swiss-module {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: calc(100% / 6);
+  background: var(--accent);
+}
+
+.swiss-trim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 62%;
+  z-index: 4;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: right center;
+}
+
+.swiss-print-bed {
+  position: absolute;
+  inset: 62% 0 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+}
+
+.swiss-proof {
+  display: grid;
+  gap: 1.25rem;
+  height: 100%;
+  padding: 1.75rem 4vw 2rem;
+  border-top: 1px solid var(--foreground);
+  background: var(--background);
+}
+
+.swiss-proof-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.swiss-proof-list li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  word-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.swiss-proof-list li span {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Services / work / about ---------------------------------------------- */
+
+.services-swiss,
+.work-swiss {
+  max-width: none;
+  margin: 0 4vw;
+  padding-inline: 0;
+  padding-block: var(--section-space);
+}
+
+.services-swiss {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+  gap: 5rem 8vw;
+  border-top: 1px solid var(--foreground);
+}
+
+.services-swiss .design-section-heading {
+  max-width: 22rem;
+}
+
+.services-swiss .design-section-heading::after {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 1.75rem;
+  background: var(--accent);
+  content: "";
+}
+
+.services-swiss .service-collection {
+  display: block;
+}
+
+.services-swiss .service-item {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  padding-block: 1.75rem;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 16%, transparent);
+}
+
+.services-swiss .service-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.services-swiss .service-item p {
+  grid-column: 2;
+}
+
+.services-swiss .service-number {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.work-swiss .design-section-heading {
+  display: block;
+  max-width: 34rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 2.75rem;
+  border-bottom: 1px solid var(--foreground);
+}
+
+.work-swiss .design-section-heading .section-kicker,
+.work-swiss .design-section-heading h2,
+.work-swiss .design-section-heading > p:last-child {
+  grid-column: auto;
+}
+
+.work-swiss .design-section-heading h2 {
+  margin: 0;
+}
+
+.work-swiss .design-section-heading > p:last-child {
+  margin-top: 1.25rem;
+}
+
+.work-swiss .design-projects {
+  display: flex;
+  flex-direction: column;
+  max-width: 72rem;
+  gap: 0;
+  border: 0;
+}
+
+.work-swiss .design-project {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) minmax(12rem, 20rem);
+  column-gap: 2.25rem;
+  align-items: center;
+  position: relative;
+  min-width: 0;
+  padding: 3.25rem 0;
+  border: 0;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  animation: none;
+}
+
+.work-swiss .design-project:first-child {
+  border-top: 0;
+}
+
+.work-swiss .project-number {
+  position: static;
+  z-index: auto;
+  top: auto;
+  left: auto;
+  display: block;
+  padding-top: 0.55rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+}
+
+.work-swiss .project-cover {
+  display: block;
+  grid-column: 3;
+  grid-row: 1;
+  align-self: stretch;
+  min-height: 8.5rem;
+  padding: 0;
+  border: 1px solid #111;
+  background: #f7f4ee;
+}
+
+.work-swiss .project-details {
+  display: block;
+  grid-column: 2;
+  padding: 0;
+}
+
+.work-swiss .project-details h3 {
+  margin: 0.4rem 0 1rem;
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+}
+
+.work-swiss .project-category {
+  letter-spacing: 0.1em;
+}
+
+.work-swiss .project-summary {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.work-swiss .project-link {
+  justify-self: start;
+  margin-top: 1.5rem;
+}
+
+.composition-swiss .about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem 6vw;
+  max-width: none;
+  margin-inline: 4vw;
+  padding-inline: 0;
+}
+
+.composition-swiss .about-story {
+  margin-top: 0;
+}
+
+.composition-swiss .about-beliefs {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  border-top: 1px solid var(--foreground);
+}
+
+.composition-swiss .about-beliefs li {
+  border-color: color-mix(in oklab, var(--foreground) 16%, transparent);
+}
+
+[data-theme="swiss"] #about > p[aria-hidden] {
+  display: block;
+  color: var(--accent);
+  opacity: 0.08 !important;
+  transform: none !important;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="swiss"] #about .animate-ping {
+  display: none;
+}
+
+[data-theme="swiss"] #about .rounded-full {
+  border-radius: 0;
+}
+
+[data-theme="swiss"] #approach {
+  padding-inline: 4vw;
+}
+
+[data-theme="swiss"] #approach .relative.z-10 {
+  max-width: none;
+  padding-inline: 0;
+}
+
+[data-theme="swiss"] .approach-grid {
+  gap: 1.5rem;
+}
+
+[data-theme="swiss"] .approach-grid > div {
+  padding: 2rem 1.5rem 2.25rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent);
+}
+
+[data-theme="swiss"] .approach-grid h3 {
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+[data-theme="swiss"] .approach-timeline .rounded-full {
+  display: none;
+}
+
+[data-theme="swiss"] #pricing > .relative.z-10 {
+  max-width: none;
+  margin-inline: 4vw;
+  padding-inline: 0;
+}
+
+[data-theme="swiss"] .pricing-packages {
+  counter-reset: swiss-pack;
+  gap: 1.5rem;
+  border: 0;
+}
+
+[data-theme="swiss"] .pricing-packages article {
+  counter-increment: swiss-pack;
+  padding: 2.25rem 1.75rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent);
+  background: var(--background);
+}
+
+[data-theme="swiss"] .pricing-packages article > p:first-child {
+  min-height: 0;
+  color: var(--accent);
+}
+
+[data-theme="swiss"] .pricing-packages article > p:first-child::before {
+  content: counter(swiss-pack, decimal-leading-zero) " / ";
+}
+
+[data-theme="swiss"] .pricing-packages li span.h-1\.5 {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0.25rem;
+  border-radius: 0;
+}
+
+.composition-swiss #contact {
+  padding-inline: 4vw;
+}
+
+.composition-swiss #contact > div {
+  max-width: none;
+  padding-inline: 0;
+}
+
+.composition-swiss #contact h2 {
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+}
+
+.composition-swiss #contact .relative.overflow-hidden {
+  border-radius: 0;
+  border: 1px solid var(--foreground);
+  background: var(--background);
+}
+
+.composition-swiss #contact .pointer-events-none.absolute {
+  display: none;
+}
+
+[data-theme="swiss"] footer {
+  margin-top: 0;
+  padding: 1.5rem 4vw 2rem;
+  border-top: 1px solid var(--foreground);
+}
+
+[data-theme="swiss"] footer .relative.mx-auto {
+  max-width: none;
+  padding-inline: 0;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  [data-theme="swiss"],
+  [data-theme="swiss"][data-density="dense"] {
+    --section-space: 5.5rem;
+  }
+
+  .swiss-register {
+    height: 170vh;
+  }
+
+  .swiss-rail {
+    top: 12.5rem;
+    width: 0.85rem;
+  }
+
+  .swiss-folio {
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 1rem;
+    margin-top: 4.6rem;
+  }
+
+  .swiss-folio-reg {
+    justify-self: end;
+  }
+
+  .swiss-stage {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 1.75rem;
+    padding: 1.5rem 4vw 2rem;
+  }
+
+  .swiss-plate {
+    order: -1;
+    width: min(42vw, 9.5rem);
+    justify-self: start;
+  }
+
+  .swiss-hero-heading {
+    font-size: clamp(1.7rem, 8.4vw, 2.5rem);
+  }
+
+  .swiss-proof {
+    padding: 1.25rem 4vw;
+  }
+
+  .swiss-proof-list li {
+    font-size: 0.78rem;
+  }
+
+  .services-swiss {
+    display: block;
+    gap: 0;
+  }
+
+  .services-swiss .design-section-heading {
+    margin-bottom: 2.5rem;
+  }
+
+  .work-swiss .design-projects {
+    max-width: none;
+  }
+
+  .work-swiss .design-project {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: 1.15rem;
+    padding: 2.4rem 0;
+  }
+
+  .work-swiss .project-cover {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 9rem;
+    margin-bottom: 1rem;
+  }
+
+  .work-swiss .project-details {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .work-swiss .project-number {
+    grid-row: 1 / span 2;
+  }
+
+  .work-swiss .project-details h3 {
+    font-size: 1.35rem;
+  }
+
+  .composition-swiss .about-content {
+    display: block;
+    margin-inline: 1.25rem;
+  }
+
+  .composition-swiss .about-story {
+    margin-top: 2rem;
+  }
+
+  [data-theme="swiss"] .approach-grid > div,
+  [data-theme="swiss"] .approach-grid > div:last-child {
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+
+  [data-theme="swiss"] .pricing-packages article,
+  [data-theme="swiss"] .pricing-packages article:last-child {
+    border-right-width: 1px;
+  }
+}

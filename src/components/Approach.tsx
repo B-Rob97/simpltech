@@ -4,15 +4,15 @@ import { Reveal } from "@/components/Reveal";
 
 export function Approach() {
   return (
-    <section id="approach" className="relative scroll-mt-24 py-24 sm:py-32">
+    <section id="approach" className="relative scroll-mt-24 py-[var(--section-space)]">
       <SkylineBand id="approach" flip className="opacity-55" />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto max-w-[var(--content-max)] px-5 sm:px-8">
         <Reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[color:var(--volt)]">
             Approach
           </p>
         </Reveal>
-        <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+        <h2 className="mt-3 max-w-2xl font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
           <Reveal mode="words">Simple process. Serious craft.</Reveal>
         </h2>
 

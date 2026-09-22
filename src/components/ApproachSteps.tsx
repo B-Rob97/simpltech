@@ -2,12 +2,12 @@
 
 import {
   motion,
-  useReducedMotion,
   useScroll,
   useTransform,
-  type MotionValue,
+  type MotionValue
 } from "motion/react";
 import { useRef } from "react";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const steps = [
   {
@@ -42,13 +42,13 @@ export function ApproachSteps() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div ref={ref} className="relative mt-14">
+    <div ref={ref} className="approach-timeline relative mt-14">
       {/* Desktop horizontal connector — sits behind step numbers */}
       <div
         aria-hidden
         className="pointer-events-none absolute left-0 right-0 top-[0.95rem] z-0 hidden h-px md:block"
       >
-        <div className="h-full w-full bg-white/10" />
+        <div className="h-full w-full bg-foreground/10" />
         <motion.div
           className="absolute inset-y-0 left-0 origin-left bg-[color:var(--volt)]"
           style={
@@ -64,7 +64,7 @@ export function ApproachSteps() {
         aria-hidden
         className="pointer-events-none absolute bottom-8 left-[0.55rem] top-3 z-0 w-px md:hidden"
       >
-        <div className="h-full w-full bg-white/10" />
+        <div className="h-full w-full bg-foreground/10" />
         <motion.div
           className="absolute inset-x-0 top-0 origin-top bg-[color:var(--volt)]"
           style={
@@ -75,7 +75,7 @@ export function ApproachSteps() {
         />
       </div>
 
-      <div className="relative z-10 grid gap-10 md:grid-cols-3 md:gap-8">
+      <div className="approach-grid relative z-10 grid gap-10 md:grid-cols-3 md:gap-8">
         {steps.map((item, index) => {
           const threshold = index / (steps.length - 1);
           return (
@@ -119,17 +119,17 @@ function StepCard({
     <div className="relative pl-8 md:pl-0">
       <span
         aria-hidden
-        className="absolute left-0 top-1.5 h-3 w-3 rounded-full border border-[color:var(--volt)] bg-[color:var(--ink)] md:hidden"
+        className="absolute left-0 top-1.5 h-3 w-3 rounded-full border border-[color:var(--volt)] bg-[color:var(--background)] md:hidden"
       />
       {/* Keep the number fully opaque so the ink pad always masks the connector */}
-      <p className="relative z-10 inline-block bg-[color:var(--ink)] px-3 py-0.5 font-[family-name:var(--font-display)] text-base font-semibold tracking-wide text-[color:var(--signal)]">
+      <p className="relative z-10 inline-block bg-[color:var(--background)] px-3 py-0.5 font-[family-name:var(--font-display)] text-base font-semibold tracking-wide text-[color:var(--signal)]">
         {item.step}
       </p>
       <motion.div style={reduceMotion ? undefined : { scale, opacity }}>
-        <h3 className="mt-4 font-[family-name:var(--font-display)] text-xl font-semibold text-white">
+        <h3 className="mt-4 font-[family-name:var(--font-display)] text-xl font-semibold text-foreground">
           {item.title}
         </h3>
-        <p className="mt-3 text-sm leading-relaxed text-white/65 sm:text-base">
+        <p className="mt-3 text-sm leading-relaxed text-foreground/65 sm:text-base">
           {item.description}
         </p>
       </motion.div>

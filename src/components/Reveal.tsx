@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useTheme } from "@/components/ThemeProvider";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 type RevealProps = {
   children: ReactNode;
@@ -23,6 +25,7 @@ export function Reveal({
   mode = "wipe",
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
+  const { theme } = useTheme();
   const wipeRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<HTMLSpanElement>(null);
   const wipeInView = useInView(wipeRef, inViewOptions);
@@ -30,10 +33,6 @@ export function Reveal({
   const inView = mode === "words" ? wordsInView : wipeInView;
   const [shown, setShown] = useState(false);
   const visible = inView || shown;
-
-  useEffect(() => {
-    if (inView) setShown(true);
-  }, [inView]);
 
   useEffect(() => {
     const el = wordsRef.current ?? wipeRef.current;
@@ -46,20 +45,21 @@ export function Reveal({
       }
     };
 
-    revealIfVisible();
+    const frame = requestAnimationFrame(revealIfVisible);
     const timeout = window.setTimeout(revealIfVisible, 200);
     window.addEventListener("scroll", revealIfVisible, { passive: true });
     window.addEventListener("resize", revealIfVisible);
 
     return () => {
+      cancelAnimationFrame(frame);
       window.clearTimeout(timeout);
       window.removeEventListener("scroll", revealIfVisible);
       window.removeEventListener("resize", revealIfVisible);
     };
   }, []);
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
+  if (reduceMotion || theme.motion === "still") {
+    return mode === "words" ? <span className={className}>{children}</span> : <div className={className}>{children}</div>;
   }
 
   const wordText =
